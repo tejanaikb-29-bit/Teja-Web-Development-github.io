@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive college website homepage | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .site { --p: #7a1f2b; --a: #f2c200; --bg: #fffaf5; --tx: #2a1a1c; font-family: "Segoe UI", Arial, sans-serif; background: var(--bg); color: var(--tx); border-radius: 10px; overflow: hidden; border: 1px solid #d5dbe6; }
+.demo .site * { box-sizing: border-box; }
+.demo .s-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; padding: .9rem 1.2rem; background: var(--p); color: #fff; }
+.demo .s-brand { font-weight: 800; font-size: 1.25rem; color: #fff; text-decoration: none; }
+.demo .s-top nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+.demo .s-top nav a { color: #fff; text-decoration: none; opacity: .88; }
+.demo .s-top nav a:hover { opacity: 1; text-decoration: underline; }
+.demo .s-hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 1.5rem; align-items: center; padding: 2rem 1.2rem; }
+.demo .s-hero h2 { font-size: clamp(1.6rem, 4vw, 2.5rem); line-height: 1.15; margin: 0 0 .6rem; }
+.demo .s-hero p { margin: 0 0 1rem; max-width: 46ch; }
+.demo .s-hero img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; }
+.demo .s-cta { display: inline-block; background: var(--a); color: #111; font-weight: 700; text-decoration: none; padding: .7rem 1.2rem; border-radius: 8px; }
+.demo .s-cta:hover { filter: brightness(1.08); }
+.demo .s-sec { padding: 1.5rem 1.2rem; }
+.demo .s-alt { background: rgba(0, 0, 0, .04); }
+.demo .s-sec h3 { font-size: 1.4rem; margin: 0 0 1rem; }
+.demo .s-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.demo .s-card { background: #fff; color: #222; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 12px rgba(0, 0, 0, .1); display: flex; flex-direction: column; }
+.demo .s-card img { width: 100%; height: 120px; object-fit: cover; }
+.demo .s-body { padding: .8rem; display: flex; flex-direction: column; gap: .3rem; flex: 1; }
+.demo .s-card h4 { margin: 0; }
+.demo .s-card p { margin: 0; font-size: .9rem; color: #555; flex: 1; }
+.demo .s-card .meta { font-weight: 700; color: var(--p); }
+.demo .s-band { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 1rem; background: var(--p); color: #fff; padding: 1.4rem 1rem; text-align: center; }
+.demo .s-band strong { display: block; font-size: 1.8rem; }
+.demo .s-list { margin: 0; padding-left: 1.2rem; columns: 2 220px; }
+.demo .s-foot { padding: 1rem 1.2rem; background: #111827; color: #cbd5e1; font-size: .9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+@media (max-width: 700px) { .demo .s-hero { grid-template-columns: 1fr; } .demo .s-top { justify-content: center; } }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Responsive Pages &amp; Websites</p>
+      <h1>Responsive college website homepage</h1>
+      <p class="pp-desc">A college homepage with navigation, hero, programme cards, statistics and campus-life list that adapts to any screen.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="site">
+        <header class="s-top"><a class="s-brand" href="#">Greenfield College</a><nav><a href="#">Home</a><a href="#">Courses</a><a href="#">Admissions</a><a href="#">Contact</a></nav></header>
+        <section class="s-hero">
+          <div><h2>Learn today. Lead tomorrow.</h2><p>Greenfield College offers modern degree programmes, experienced faculty and a lively campus.</p><a class="s-cta" href="#">Apply now</a></div>
+          <img src="../assets/images/img4.svg" alt="Greenfield College banner">
+        </section>
+        <section class="s-sec"><h3>Popular programmes</h3><div class="s-grid"><article class="s-card"><img src="../assets/images/img1.svg" alt="B.Sc Computer Science"><div class="s-body"><h4>B.Sc Computer Science</h4><p>Programming, data and web technology.</p><span class="meta">3 years</span></div></article><article class="s-card"><img src="../assets/images/img4.svg" alt="B.Sc Environmental Science"><div class="s-body"><h4>B.Sc Environmental Science</h4><p>Field work in forests and coasts.</p><span class="meta">3 years</span></div></article><article class="s-card"><img src="../assets/images/img7.svg" alt="B.Com Accounting"><div class="s-body"><h4>B.Com Accounting</h4><p>Finance, tax and business law.</p><span class="meta">3 years</span></div></article><article class="s-card"><img src="../assets/images/img5.svg" alt="M.Sc Data Science"><div class="s-body"><h4>M.Sc Data Science</h4><p>Statistics, machine learning and projects.</p><span class="meta">2 years</span></div></article></div></section>
+        <div class="s-band"><div><strong>4,200</strong>Students</div><div><strong>180</strong>Faculty</div><div><strong>96%</strong>Placement</div><div><strong>40</strong>Years</div></div>
+        <section class="s-sec s-alt"><h3>Campus life</h3><ul class="s-list"><li>Sports ground and gym</li><li>Central library open until 9 pm</li><li>Coding and robotics clubs</li><li>Hostels for boys and girls</li><li>Free Wi-Fi across campus</li><li>Annual cultural fest</li></ul></section>
+        <footer class="s-foot"><span>&copy; 2026 Greenfield College</span><span>Privacy &middot; Terms &middot; Contact</span></footer>
+      </div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="site"&gt;
+  &lt;header class="s-top"&gt;&lt;a class="s-brand" href="#"&gt;Greenfield College&lt;/a&gt;&lt;nav&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;a href="#"&gt;Courses&lt;/a&gt;&lt;a href="#"&gt;Admissions&lt;/a&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/nav&gt;&lt;/header&gt;
+  &lt;section class="s-hero"&gt;
+    &lt;div&gt;&lt;h2&gt;Learn today. Lead tomorrow.&lt;/h2&gt;&lt;p&gt;Greenfield College offers modern degree programmes, experienced faculty and a lively campus.&lt;/p&gt;&lt;a class="s-cta" href="#"&gt;Apply now&lt;/a&gt;&lt;/div&gt;
+    &lt;img src="../assets/images/img4.svg" alt="Greenfield College banner"&gt;
+  &lt;/section&gt;
+  &lt;section class="s-sec"&gt;&lt;h3&gt;Popular programmes&lt;/h3&gt;&lt;div class="s-grid"&gt;&lt;article class="s-card"&gt;&lt;img src="../assets/images/img1.svg" alt="B.Sc Computer Science"&gt;&lt;div class="s-body"&gt;&lt;h4&gt;B.Sc Computer Science&lt;/h4&gt;&lt;p&gt;Programming, data and web technology.&lt;/p&gt;&lt;span class="meta"&gt;3 years&lt;/span&gt;&lt;/div&gt;&lt;/article&gt;&lt;article class="s-card"&gt;&lt;img src="../assets/images/img4.svg" alt="B.Sc Environmental Science"&gt;&lt;div class="s-body"&gt;&lt;h4&gt;B.Sc Environmental Science&lt;/h4&gt;&lt;p&gt;Field work in forests and coasts.&lt;/p&gt;&lt;span class="meta"&gt;3 years&lt;/span&gt;&lt;/div&gt;&lt;/article&gt;&lt;article class="s-card"&gt;&lt;img src="../assets/images/img7.svg" alt="B.Com Accounting"&gt;&lt;div class="s-body"&gt;&lt;h4&gt;B.Com Accounting&lt;/h4&gt;&lt;p&gt;Finance, tax and business law.&lt;/p&gt;&lt;span class="meta"&gt;3 years&lt;/span&gt;&lt;/div&gt;&lt;/article&gt;&lt;article class="s-card"&gt;&lt;img src="../assets/images/img5.svg" alt="M.Sc Data Science"&gt;&lt;div class="s-body"&gt;&lt;h4&gt;M.Sc Data Science&lt;/h4&gt;&lt;p&gt;Statistics, machine learning and projects.&lt;/p&gt;&lt;span class="meta"&gt;2 years&lt;/span&gt;&lt;/div&gt;&lt;/article&gt;&lt;/div&gt;&lt;/section&gt;
+  &lt;div class="s-band"&gt;&lt;div&gt;&lt;strong&gt;4,200&lt;/strong&gt;Students&lt;/div&gt;&lt;div&gt;&lt;strong&gt;180&lt;/strong&gt;Faculty&lt;/div&gt;&lt;div&gt;&lt;strong&gt;96%&lt;/strong&gt;Placement&lt;/div&gt;&lt;div&gt;&lt;strong&gt;40&lt;/strong&gt;Years&lt;/div&gt;&lt;/div&gt;
+  &lt;section class="s-sec s-alt"&gt;&lt;h3&gt;Campus life&lt;/h3&gt;&lt;ul class="s-list"&gt;&lt;li&gt;Sports ground and gym&lt;/li&gt;&lt;li&gt;Central library open until 9 pm&lt;/li&gt;&lt;li&gt;Coding and robotics clubs&lt;/li&gt;&lt;li&gt;Hostels for boys and girls&lt;/li&gt;&lt;li&gt;Free Wi-Fi across campus&lt;/li&gt;&lt;li&gt;Annual cultural fest&lt;/li&gt;&lt;/ul&gt;&lt;/section&gt;
+  &lt;footer class="s-foot"&gt;&lt;span&gt;&amp;copy; 2026 Greenfield College&lt;/span&gt;&lt;span&gt;Privacy &amp;middot; Terms &amp;middot; Contact&lt;/span&gt;&lt;/footer&gt;
+&lt;/div&gt;
+
+/* CSS */
+.demo .site { --p: #7a1f2b; --a: #f2c200; --bg: #fffaf5; --tx: #2a1a1c; font-family: "Segoe UI", Arial, sans-serif; background: var(--bg); color: var(--tx); border-radius: 10px; overflow: hidden; border: 1px solid #d5dbe6; }
+.demo .site * { box-sizing: border-box; }
+.demo .s-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; padding: .9rem 1.2rem; background: var(--p); color: #fff; }
+.demo .s-brand { font-weight: 800; font-size: 1.25rem; color: #fff; text-decoration: none; }
+.demo .s-top nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+.demo .s-top nav a { color: #fff; text-decoration: none; opacity: .88; }
+.demo .s-top nav a:hover { opacity: 1; text-decoration: underline; }
+.demo .s-hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 1.5rem; align-items: center; padding: 2rem 1.2rem; }
+.demo .s-hero h2 { font-size: clamp(1.6rem, 4vw, 2.5rem); line-height: 1.15; margin: 0 0 .6rem; }
+.demo .s-hero p { margin: 0 0 1rem; max-width: 46ch; }
+.demo .s-hero img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; }
+.demo .s-cta { display: inline-block; background: var(--a); color: #111; font-weight: 700; text-decoration: none; padding: .7rem 1.2rem; border-radius: 8px; }
+.demo .s-cta:hover { filter: brightness(1.08); }
+.demo .s-sec { padding: 1.5rem 1.2rem; }
+.demo .s-alt { background: rgba(0, 0, 0, .04); }
+.demo .s-sec h3 { font-size: 1.4rem; margin: 0 0 1rem; }
+.demo .s-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.demo .s-card { background: #fff; color: #222; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 12px rgba(0, 0, 0, .1); display: flex; flex-direction: column; }
+.demo .s-card img { width: 100%; height: 120px; object-fit: cover; }
+.demo .s-body { padding: .8rem; display: flex; flex-direction: column; gap: .3rem; flex: 1; }
+.demo .s-card h4 { margin: 0; }
+.demo .s-card p { margin: 0; font-size: .9rem; color: #555; flex: 1; }
+.demo .s-card .meta { font-weight: 700; color: var(--p); }
+.demo .s-band { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 1rem; background: var(--p); color: #fff; padding: 1.4rem 1rem; text-align: center; }
+.demo .s-band strong { display: block; font-size: 1.8rem; }
+.demo .s-list { margin: 0; padding-left: 1.2rem; columns: 2 220px; }
+.demo .s-foot { padding: 1rem 1.2rem; background: #111827; color: #cbd5e1; font-size: .9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+@media (max-width: 700px) { .demo .s-hero { grid-template-columns: 1fr; } .demo .s-top { justify-content: center; } }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="responsive-contact-form.html">&larr; Previous</a><a href="restaurant-webpage.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

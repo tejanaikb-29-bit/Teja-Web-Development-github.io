@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dropdown menu | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .dd-wrap { min-height: 230px; }
+.demo .dd { display: flex; list-style: none; margin: 0; padding: 0; background: #14213d; border-radius: 8px; }
+.demo .dd > li { position: relative; }
+.demo .dd a { display: block; padding: .9rem 1.2rem; color: #fff; text-decoration: none; }
+.demo .dd > li:hover > a, .demo .dd > li:focus-within > a { background: #1f3160; }
+.demo .dd ul { display: none; position: absolute; left: 0; top: 100%; min-width: 180px; list-style: none; margin: 0; padding: 0; background: #fff; border-radius: 0 0 8px 8px; box-shadow: 0 10px 20px rgba(0, 0, 0, .2); z-index: 5; }
+.demo .dd li:hover > ul, .demo .dd li:focus-within > ul { display: block; }
+.demo .dd ul a { color: #14213d; } .demo .dd ul a:hover { background: #f2c200; }
+.demo .dd .caret::after { content: " \25BE"; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Interactive CSS Components</p>
+      <h1>Dropdown menu</h1>
+      <p class="pp-desc">A pure-CSS dropdown: sub-menus open on hover and on keyboard focus (:focus-within).</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="dd-wrap"><ul class="dd">
+        <li><a href="#">Home</a></li>
+        <li><a class="caret" href="#">Courses</a><ul><li><a href="#">HTML</a></li><li><a href="#">CSS</a></li><li><a href="#">JavaScript</a></li></ul></li>
+        <li><a class="caret" href="#">About</a><ul><li><a href="#">Our team</a></li><li><a href="#">History</a></li></ul></li>
+        <li><a href="#">Contact</a></li></ul></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="dd-wrap"&gt;&lt;ul class="dd"&gt;
+  &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a class="caret" href="#"&gt;Courses&lt;/a&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="#"&gt;HTML&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="#"&gt;CSS&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="#"&gt;JavaScript&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a class="caret" href="#"&gt;About&lt;/a&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="#"&gt;Our team&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="#"&gt;History&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .dd-wrap { min-height: 230px; }
+.demo .dd { display: flex; list-style: none; margin: 0; padding: 0; background: #14213d; border-radius: 8px; }
+.demo .dd &gt; li { position: relative; }
+.demo .dd a { display: block; padding: .9rem 1.2rem; color: #fff; text-decoration: none; }
+.demo .dd &gt; li:hover &gt; a, .demo .dd &gt; li:focus-within &gt; a { background: #1f3160; }
+.demo .dd ul { display: none; position: absolute; left: 0; top: 100%; min-width: 180px; list-style: none; margin: 0; padding: 0; background: #fff; border-radius: 0 0 8px 8px; box-shadow: 0 10px 20px rgba(0, 0, 0, .2); z-index: 5; }
+.demo .dd li:hover &gt; ul, .demo .dd li:focus-within &gt; ul { display: block; }
+.demo .dd ul a { color: #14213d; } .demo .dd ul a:hover { background: #f2c200; }
+.demo .dd .caret::after { content: " \25BE"; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="visibility-hiding.html">&larr; Previous</a><a href="image-hover-effects.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College / student profile page | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .sp { display: grid; grid-template-columns: 240px 1fr; gap: 1.2rem; }
+.demo .sp-card { background: #14213d; color: #fff; border-radius: 12px; padding: 1.2rem; text-align: center; }
+.demo .sp-card img { width: 120px; height: 120px; border-radius: 50%; border: 4px solid #f2c200; }
+.demo .sp-card h3 { margin: .6rem 0 .1rem; } .demo .sp-card p { margin: 0; color: #c9d3e6; font-size: .9rem; }
+.demo .tags { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin-top: .8rem; }
+.demo .tags span { background: rgba(255, 255, 255, .16); padding: .15rem .6rem; border-radius: 999px; font-size: .8rem; }
+.demo .sp-info h4 { margin: 0 0 .5rem; border-bottom: 2px solid #f2c200; display: inline-block; }
+.demo .sp-info dl { display: grid; grid-template-columns: 130px 1fr; gap: .3rem .8rem; margin: 0 0 1.2rem; }
+.demo .sp-info dt { font-weight: 700; color: #55637d; } .demo .sp-info dd { margin: 0; }
+.demo .mk { display: grid; grid-template-columns: 110px 1fr 40px; gap: .6rem; align-items: center; margin: .35rem 0; }
+.demo .mk div { background: #e2e8f4; height: 12px; border-radius: 6px; overflow: hidden; } .demo .mk i { display: block; height: 100%; background: #178a4a; }
+@media (max-width: 640px) { .demo .sp { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Navigation &amp; Page Designs</p>
+      <h1>College / student profile page</h1>
+      <p class="pp-desc">A profile card with photo, personal details, subject marks as progress bars and interest tags.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="sp">
+        <aside class="sp-card"><img src="../assets/images/avatar.svg" alt="Student photo"><h3>Priya Sharma</h3><p>B.Sc Computer Science</p>
+          <div class="tags"><span>Coding</span><span>Music</span><span>Chess</span></div></aside>
+        <section class="sp-info">
+          <h4>Personal details</h4>
+          <dl><dt>Register No.</dt><dd>2024CS0142</dd><dt>Class</dt><dd>II Year &ndash; Section A</dd><dt>Email</dt><dd>priya@example.com</dd><dt>City</dt><dd>Chennai</dd></dl>
+          <h4>Semester marks</h4>
+          <div class="mk"><span>Maths</span><div><i style="width:88%"></i></div><b>88</b></div>
+          <div class="mk"><span>Data Structures</span><div><i style="width:92%"></i></div><b>92</b></div>
+          <div class="mk"><span>Web Tech</span><div><i style="width:95%"></i></div><b>95</b></div>
+          <div class="mk"><span>English</span><div><i style="width:76%"></i></div><b>76</b></div>
+        </section>
+      </div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="sp"&gt;
+  &lt;aside class="sp-card"&gt;&lt;img src="../assets/images/avatar.svg" alt="Student photo"&gt;&lt;h3&gt;Priya Sharma&lt;/h3&gt;&lt;p&gt;B.Sc Computer Science&lt;/p&gt;
+    &lt;div class="tags"&gt;&lt;span&gt;Coding&lt;/span&gt;&lt;span&gt;Music&lt;/span&gt;&lt;span&gt;Chess&lt;/span&gt;&lt;/div&gt;&lt;/aside&gt;
+  &lt;section class="sp-info"&gt;
+    &lt;h4&gt;Personal details&lt;/h4&gt;
+    &lt;dl&gt;&lt;dt&gt;Register No.&lt;/dt&gt;&lt;dd&gt;2024CS0142&lt;/dd&gt;&lt;dt&gt;Class&lt;/dt&gt;&lt;dd&gt;II Year &amp;ndash; Section A&lt;/dd&gt;&lt;dt&gt;Email&lt;/dt&gt;&lt;dd&gt;priya@example.com&lt;/dd&gt;&lt;dt&gt;City&lt;/dt&gt;&lt;dd&gt;Chennai&lt;/dd&gt;&lt;/dl&gt;
+    &lt;h4&gt;Semester marks&lt;/h4&gt;
+    &lt;div class="mk"&gt;&lt;span&gt;Maths&lt;/span&gt;&lt;div&gt;&lt;i style="width:88%"&gt;&lt;/i&gt;&lt;/div&gt;&lt;b&gt;88&lt;/b&gt;&lt;/div&gt;
+    &lt;div class="mk"&gt;&lt;span&gt;Data Structures&lt;/span&gt;&lt;div&gt;&lt;i style="width:92%"&gt;&lt;/i&gt;&lt;/div&gt;&lt;b&gt;92&lt;/b&gt;&lt;/div&gt;
+    &lt;div class="mk"&gt;&lt;span&gt;Web Tech&lt;/span&gt;&lt;div&gt;&lt;i style="width:95%"&gt;&lt;/i&gt;&lt;/div&gt;&lt;b&gt;95&lt;/b&gt;&lt;/div&gt;
+    &lt;div class="mk"&gt;&lt;span&gt;English&lt;/span&gt;&lt;div&gt;&lt;i style="width:76%"&gt;&lt;/i&gt;&lt;/div&gt;&lt;b&gt;76&lt;/b&gt;&lt;/div&gt;
+  &lt;/section&gt;
+&lt;/div&gt;
+
+/* CSS */
+.demo .sp { display: grid; grid-template-columns: 240px 1fr; gap: 1.2rem; }
+.demo .sp-card { background: #14213d; color: #fff; border-radius: 12px; padding: 1.2rem; text-align: center; }
+.demo .sp-card img { width: 120px; height: 120px; border-radius: 50%; border: 4px solid #f2c200; }
+.demo .sp-card h3 { margin: .6rem 0 .1rem; } .demo .sp-card p { margin: 0; color: #c9d3e6; font-size: .9rem; }
+.demo .tags { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin-top: .8rem; }
+.demo .tags span { background: rgba(255, 255, 255, .16); padding: .15rem .6rem; border-radius: 999px; font-size: .8rem; }
+.demo .sp-info h4 { margin: 0 0 .5rem; border-bottom: 2px solid #f2c200; display: inline-block; }
+.demo .sp-info dl { display: grid; grid-template-columns: 130px 1fr; gap: .3rem .8rem; margin: 0 0 1.2rem; }
+.demo .sp-info dt { font-weight: 700; color: #55637d; } .demo .sp-info dd { margin: 0; }
+.demo .mk { display: grid; grid-template-columns: 110px 1fr 40px; gap: .6rem; align-items: center; margin: .35rem 0; }
+.demo .mk div { background: #e2e8f4; height: 12px; border-radius: 6px; overflow: hidden; } .demo .mk i { display: block; height: 100%; background: #178a4a; }
+@media (max-width: 640px) { .demo .sp { grid-template-columns: 1fr; } }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="portfolio-design.html">&larr; Previous</a><a href="login-page.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

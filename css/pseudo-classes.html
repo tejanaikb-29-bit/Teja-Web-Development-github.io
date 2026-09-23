@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pseudo-classes: :hover, :active, :focus, :visited and more | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo a.pc { padding: .3rem .6rem; border-radius: 6px; text-decoration: none; }
+.demo a.pc:link { color: #1769b5; }
+.demo a.pc:visited { color: #7b2cbf; }
+.demo a.pc:hover { background: #fff2c2; }
+.demo a.pc:active { background: #d9481f; color: #fff; }
+.demo input.pf:focus { outline: 0; border-color: #178a4a; box-shadow: 0 0 0 4px rgba(23, 138, 74, .25); background: #f3fbf6; }
+.demo button.pb:hover { transform: translateY(-2px); background: #d9481f; }
+.demo button.pb:active { transform: scale(.95); }
+.demo ul.pl li:first-child { font-weight: 700; color: #178a4a; }
+.demo ul.pl li:last-child { font-weight: 700; color: #c62828; }
+.demo ul.pl li:nth-child(even) { background: #eef2fb; }
+.demo ul.pl li:not(:last-child) { border-bottom: 1px solid #ccd5e6; }
+.demo input.pc-chk:checked + span { color: #178a4a; font-weight: 700; text-decoration: line-through; }
+.demo input.pd:disabled { background: #e5e7eb; cursor: not-allowed; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; CSS Fundamentals</p>
+      <h1>Pseudo-classes: :hover, :active, :focus, :visited and more</h1>
+      <p class="pp-desc">Hover, press, focus and inspect elements to see pseudo-classes react to the state of the page.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <p><a class="pc" href="index.html">:link / :visited (this page's parent list)</a> <a class="pc" href="#">:hover and :active</a></p>
+      <p><input class="pf" type="text" placeholder=":focus - click here"> <button class="pb">Hover &amp; press me</button></p>
+      <ul class="pl"><li>:first-child</li><li>:nth-child(even)</li><li>Third item</li><li>:nth-child(even)</li><li>:last-child</li></ul>
+      <p><label><input class="pc-chk" type="checkbox"><span> :checked - tick to strike through</span></label></p>
+      <p><input class="pd" type="text" value="I am :disabled" disabled></p>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;p&gt;&lt;a class="pc" href="index.html"&gt;:link / :visited (this page's parent list)&lt;/a&gt; &lt;a class="pc" href="#"&gt;:hover and :active&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;input class="pf" type="text" placeholder=":focus - click here"&gt; &lt;button class="pb"&gt;Hover &amp;amp; press me&lt;/button&gt;&lt;/p&gt;
+&lt;ul class="pl"&gt;&lt;li&gt;:first-child&lt;/li&gt;&lt;li&gt;:nth-child(even)&lt;/li&gt;&lt;li&gt;Third item&lt;/li&gt;&lt;li&gt;:nth-child(even)&lt;/li&gt;&lt;li&gt;:last-child&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;label&gt;&lt;input class="pc-chk" type="checkbox"&gt;&lt;span&gt; :checked - tick to strike through&lt;/span&gt;&lt;/label&gt;&lt;/p&gt;
+&lt;p&gt;&lt;input class="pd" type="text" value="I am :disabled" disabled&gt;&lt;/p&gt;
+
+/* CSS */
+.demo a.pc { padding: .3rem .6rem; border-radius: 6px; text-decoration: none; }
+.demo a.pc:link { color: #1769b5; }
+.demo a.pc:visited { color: #7b2cbf; }
+.demo a.pc:hover { background: #fff2c2; }
+.demo a.pc:active { background: #d9481f; color: #fff; }
+.demo input.pf:focus { outline: 0; border-color: #178a4a; box-shadow: 0 0 0 4px rgba(23, 138, 74, .25); background: #f3fbf6; }
+.demo button.pb:hover { transform: translateY(-2px); background: #d9481f; }
+.demo button.pb:active { transform: scale(.95); }
+.demo ul.pl li:first-child { font-weight: 700; color: #178a4a; }
+.demo ul.pl li:last-child { font-weight: 700; color: #c62828; }
+.demo ul.pl li:nth-child(even) { background: #eef2fb; }
+.demo ul.pl li:not(:last-child) { border-bottom: 1px solid #ccd5e6; }
+.demo input.pc-chk:checked + span { color: #178a4a; font-weight: 700; text-decoration: line-through; }
+.demo input.pd:disabled { background: #e5e7eb; cursor: not-allowed; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="styled-navigation-bar.html">&larr; Previous</a><a href="pseudo-elements.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

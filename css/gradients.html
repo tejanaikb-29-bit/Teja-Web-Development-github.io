@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linear and radial gradients | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .gd { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .8rem; }
+.demo .g { height: 120px; border-radius: 10px; color: #fff; font: 700 .78rem Consolas, monospace; padding: .5rem; text-shadow: 0 1px 3px rgba(0, 0, 0, .6); }
+.demo .g1 { background: linear-gradient(#1769b5, #14213d); }
+.demo .g2 { background: linear-gradient(90deg, #d9481f, #f2c200); }
+.demo .g3 { background: linear-gradient(135deg, #7b2cbf 0%, #1769b5 50%, #178a4a 100%); }
+.demo .g4 { background: radial-gradient(circle, #f2c200, #d9481f 70%); }
+.demo .g5 { background: radial-gradient(ellipse at top left, #fff, #1769b5 60%, #14213d); }
+.demo .g6 { background: conic-gradient(#d9481f, #f2c200, #178a4a, #1769b5, #d9481f); }
+.demo .g7 { background: repeating-linear-gradient(45deg, #14213d 0 12px, #f2c200 12px 24px); }
+.demo .g8 { background: repeating-radial-gradient(circle, #1769b5 0 10px, #eaf2ff 10px 20px); color: #14213d; text-shadow: none; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Backgrounds, Effects &amp; Display</p>
+      <h1>Linear and radial gradients</h1>
+      <p class="pp-desc">linear-gradient with angles and colour stops, radial-gradient, conic-gradient and repeating gradients.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="gd">
+        <div class="g g1">linear-gradient(#1769b5, #14213d)</div><div class="g g2">linear 90deg</div><div class="g g3">linear 135deg, 3 stops</div>
+        <div class="g g4">radial-gradient(circle)</div><div class="g g5">radial ellipse at top left</div><div class="g g6">conic-gradient</div>
+        <div class="g g7">repeating-linear-gradient</div><div class="g g8">repeating-radial-gradient</div>
+      </div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="gd"&gt;
+  &lt;div class="g g1"&gt;linear-gradient(#1769b5, #14213d)&lt;/div&gt;&lt;div class="g g2"&gt;linear 90deg&lt;/div&gt;&lt;div class="g g3"&gt;linear 135deg, 3 stops&lt;/div&gt;
+  &lt;div class="g g4"&gt;radial-gradient(circle)&lt;/div&gt;&lt;div class="g g5"&gt;radial ellipse at top left&lt;/div&gt;&lt;div class="g g6"&gt;conic-gradient&lt;/div&gt;
+  &lt;div class="g g7"&gt;repeating-linear-gradient&lt;/div&gt;&lt;div class="g g8"&gt;repeating-radial-gradient&lt;/div&gt;
+&lt;/div&gt;
+
+/* CSS */
+.demo .gd { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .8rem; }
+.demo .g { height: 120px; border-radius: 10px; color: #fff; font: 700 .78rem Consolas, monospace; padding: .5rem; text-shadow: 0 1px 3px rgba(0, 0, 0, .6); }
+.demo .g1 { background: linear-gradient(#1769b5, #14213d); }
+.demo .g2 { background: linear-gradient(90deg, #d9481f, #f2c200); }
+.demo .g3 { background: linear-gradient(135deg, #7b2cbf 0%, #1769b5 50%, #178a4a 100%); }
+.demo .g4 { background: radial-gradient(circle, #f2c200, #d9481f 70%); }
+.demo .g5 { background: radial-gradient(ellipse at top left, #fff, #1769b5 60%, #14213d); }
+.demo .g6 { background: conic-gradient(#d9481f, #f2c200, #178a4a, #1769b5, #d9481f); }
+.demo .g7 { background: repeating-linear-gradient(45deg, #14213d 0 12px, #f2c200 12px 24px); }
+.demo .g8 { background: repeating-radial-gradient(circle, #1769b5 0 10px, #eaf2ff 10px 20px); color: #14213d; text-shadow: none; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="background-images.html">&larr; Previous</a><a href="box-text-shadow.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

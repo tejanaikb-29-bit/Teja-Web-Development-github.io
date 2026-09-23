@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS filters: blur, grayscale, brightness, contrast | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .flt { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: .9rem; }
+.demo .flt figure { margin: 0; } .demo .flt img { width: 100%; height: 110px; object-fit: cover; border-radius: 8px; display: block; }
+.demo .flt figcaption { font: 600 .78rem Consolas, monospace; color: #55637d; margin-top: .25rem; }
+.demo .combo { filter: grayscale(.8) contrast(1.1) brightness(.9); transition: filter .4s; } .demo .combo:hover { filter: none; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Interactive CSS Components</p>
+      <h1>CSS filters: blur, grayscale, brightness, contrast</h1>
+      <p class="pp-desc">The same picture with different filter functions, plus a combined filter with hover.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="flt"><figure><img src="../assets/images/img2.svg" alt="none" style="filter:none"><figcaption>filter: none</figcaption></figure><figure><img src="../assets/images/img2.svg" alt="blur(3px)" style="filter:blur(3px)"><figcaption>filter: blur(3px)</figcaption></figure><figure><img src="../assets/images/img2.svg" alt="grayscale(100%)" style="filter:grayscale(100%)"><figcaption>filter: grayscale(100%)</figcaption></figure><figure><img src="../assets/images/img2.svg" alt="brightness(1.5)" style="filter:brightness(1.5)"><figcaption>filter: brightness(1.5)</figcaption></figure><figure><img src="../assets/images/img2.svg" alt="contrast(2)" style="filter:contrast(2)"><figcaption>filter: contrast(2)</figcaption></figure><figure><img src="../assets/images/img2.svg" alt="sepia(100%)" style="filter:sepia(100%)"><figcaption>filter: sepia(100%)</figcaption></figure><figure><img src="../assets/images/img2.svg" alt="hue-rotate(120deg)" style="filter:hue-rotate(120deg)"><figcaption>filter: hue-rotate(120deg)</figcaption></figure><figure><img src="../assets/images/img2.svg" alt="invert(100%)" style="filter:invert(100%)"><figcaption>filter: invert(100%)</figcaption></figure><figure><img src="../assets/images/img2.svg" alt="saturate(3)" style="filter:saturate(3)"><figcaption>filter: saturate(3)</figcaption></figure><figure><img class="combo" src="../assets/images/img2.svg" alt="combined"><figcaption>combined (hover)</figcaption></figure></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="flt"&gt;&lt;figure&gt;&lt;img src="../assets/images/img2.svg" alt="none" style="filter:none"&gt;&lt;figcaption&gt;filter: none&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img src="../assets/images/img2.svg" alt="blur(3px)" style="filter:blur(3px)"&gt;&lt;figcaption&gt;filter: blur(3px)&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img src="../assets/images/img2.svg" alt="grayscale(100%)" style="filter:grayscale(100%)"&gt;&lt;figcaption&gt;filter: grayscale(100%)&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img src="../assets/images/img2.svg" alt="brightness(1.5)" style="filter:brightness(1.5)"&gt;&lt;figcaption&gt;filter: brightness(1.5)&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img src="../assets/images/img2.svg" alt="contrast(2)" style="filter:contrast(2)"&gt;&lt;figcaption&gt;filter: contrast(2)&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img src="../assets/images/img2.svg" alt="sepia(100%)" style="filter:sepia(100%)"&gt;&lt;figcaption&gt;filter: sepia(100%)&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img src="../assets/images/img2.svg" alt="hue-rotate(120deg)" style="filter:hue-rotate(120deg)"&gt;&lt;figcaption&gt;filter: hue-rotate(120deg)&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img src="../assets/images/img2.svg" alt="invert(100%)" style="filter:invert(100%)"&gt;&lt;figcaption&gt;filter: invert(100%)&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img src="../assets/images/img2.svg" alt="saturate(3)" style="filter:saturate(3)"&gt;&lt;figcaption&gt;filter: saturate(3)&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img class="combo" src="../assets/images/img2.svg" alt="combined"&gt;&lt;figcaption&gt;combined (hover)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .flt { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: .9rem; }
+.demo .flt figure { margin: 0; } .demo .flt img { width: 100%; height: 110px; object-fit: cover; border-radius: 8px; display: block; }
+.demo .flt figcaption { font: 600 .78rem Consolas, monospace; color: #55637d; margin-top: .25rem; }
+.demo .combo { filter: grayscale(.8) contrast(1.1) brightness(.9); transition: filter .4s; } .demo .combo:hover { filter: none; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="button-hover-animations.html">&larr; Previous</a><a href="object-fit-position.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

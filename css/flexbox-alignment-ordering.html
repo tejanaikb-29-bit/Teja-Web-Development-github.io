@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox alignment and ordering | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .ao { display: flex; gap: .6rem; height: 90px; background: #eef2fb; padding: .4rem; border-radius: 8px; }
+.demo .ao i { font-style: normal; background: #1769b5; color: #fff; padding: .4rem .9rem; border-radius: 6px; font-weight: 700; }
+.demo .lab { margin: .7rem 0 .2rem; font: 600 .82rem Consolas, monospace; color: #55637d; }
+.demo .self i:nth-child(2) { align-self: flex-end; background: #d9481f; }
+.demo .ord i:nth-child(1) { order: 3; } .demo .ord i:nth-child(2) { order: 1; background: #d9481f; } .demo .ord i:nth-child(3) { order: 2; }
+.demo .gp { gap: 2rem; height: auto; }
+.demo .ac { flex-wrap: wrap; height: 150px; align-content: space-between; }
+.demo .ac i { width: 45%; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Advanced Layout Techniques</p>
+      <h1>Flexbox alignment and ordering</h1>
+      <p class="pp-desc">align-items, align-self, gap and the order property, which changes visual order without touching the HTML.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <p class="lab">align-items: flex-start</p><div class="ao" style="align-items:flex-start"><i style="height:30px">A</i><i style="height:60px">B</i><i style="height:45px">C</i></div><p class="lab">align-items: center</p><div class="ao" style="align-items:center"><i style="height:30px">A</i><i style="height:60px">B</i><i style="height:45px">C</i></div><p class="lab">align-items: flex-end</p><div class="ao" style="align-items:flex-end"><i style="height:30px">A</i><i style="height:60px">B</i><i style="height:45px">C</i></div><p class="lab">align-items: stretch</p><div class="ao" style="align-items:stretch"><i style="height:30px">A</i><i style="height:60px">B</i><i style="height:45px">C</i></div><p class="lab">align-items: baseline</p><div class="ao" style="align-items:baseline"><i style="height:30px">A</i><i style="height:60px">B</i><i style="height:45px">C</i></div>
+      <p class="lab">align-self: flex-end on item B</p><div class="ao self" style="align-items:flex-start"><i style="height:30px">A</i><i style="height:40px">B</i><i style="height:45px">C</i></div>
+      <p class="lab">order: HTML is A, B, C &ndash; displayed as B, C, A</p><div class="ao ord" style="height:auto"><i>A (order 3)</i><i>B (order 1)</i><i>C (order 2)</i></div>
+      <p class="lab">gap: 2rem</p><div class="ao gp"><i>A</i><i>B</i><i>C</i></div>
+      <p class="lab">flex-wrap + align-content: space-between</p><div class="ao ac"><i>A</i><i>B</i><i>C</i><i>D</i></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;p class="lab"&gt;align-items: flex-start&lt;/p&gt;&lt;div class="ao" style="align-items:flex-start"&gt;&lt;i style="height:30px"&gt;A&lt;/i&gt;&lt;i style="height:60px"&gt;B&lt;/i&gt;&lt;i style="height:45px"&gt;C&lt;/i&gt;&lt;/div&gt;&lt;p class="lab"&gt;align-items: center&lt;/p&gt;&lt;div class="ao" style="align-items:center"&gt;&lt;i style="height:30px"&gt;A&lt;/i&gt;&lt;i style="height:60px"&gt;B&lt;/i&gt;&lt;i style="height:45px"&gt;C&lt;/i&gt;&lt;/div&gt;&lt;p class="lab"&gt;align-items: flex-end&lt;/p&gt;&lt;div class="ao" style="align-items:flex-end"&gt;&lt;i style="height:30px"&gt;A&lt;/i&gt;&lt;i style="height:60px"&gt;B&lt;/i&gt;&lt;i style="height:45px"&gt;C&lt;/i&gt;&lt;/div&gt;&lt;p class="lab"&gt;align-items: stretch&lt;/p&gt;&lt;div class="ao" style="align-items:stretch"&gt;&lt;i style="height:30px"&gt;A&lt;/i&gt;&lt;i style="height:60px"&gt;B&lt;/i&gt;&lt;i style="height:45px"&gt;C&lt;/i&gt;&lt;/div&gt;&lt;p class="lab"&gt;align-items: baseline&lt;/p&gt;&lt;div class="ao" style="align-items:baseline"&gt;&lt;i style="height:30px"&gt;A&lt;/i&gt;&lt;i style="height:60px"&gt;B&lt;/i&gt;&lt;i style="height:45px"&gt;C&lt;/i&gt;&lt;/div&gt;
+&lt;p class="lab"&gt;align-self: flex-end on item B&lt;/p&gt;&lt;div class="ao self" style="align-items:flex-start"&gt;&lt;i style="height:30px"&gt;A&lt;/i&gt;&lt;i style="height:40px"&gt;B&lt;/i&gt;&lt;i style="height:45px"&gt;C&lt;/i&gt;&lt;/div&gt;
+&lt;p class="lab"&gt;order: HTML is A, B, C &amp;ndash; displayed as B, C, A&lt;/p&gt;&lt;div class="ao ord" style="height:auto"&gt;&lt;i&gt;A (order 3)&lt;/i&gt;&lt;i&gt;B (order 1)&lt;/i&gt;&lt;i&gt;C (order 2)&lt;/i&gt;&lt;/div&gt;
+&lt;p class="lab"&gt;gap: 2rem&lt;/p&gt;&lt;div class="ao gp"&gt;&lt;i&gt;A&lt;/i&gt;&lt;i&gt;B&lt;/i&gt;&lt;i&gt;C&lt;/i&gt;&lt;/div&gt;
+&lt;p class="lab"&gt;flex-wrap + align-content: space-between&lt;/p&gt;&lt;div class="ao ac"&gt;&lt;i&gt;A&lt;/i&gt;&lt;i&gt;B&lt;/i&gt;&lt;i&gt;C&lt;/i&gt;&lt;i&gt;D&lt;/i&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .ao { display: flex; gap: .6rem; height: 90px; background: #eef2fb; padding: .4rem; border-radius: 8px; }
+.demo .ao i { font-style: normal; background: #1769b5; color: #fff; padding: .4rem .9rem; border-radius: 6px; font-weight: 700; }
+.demo .lab { margin: .7rem 0 .2rem; font: 600 .82rem Consolas, monospace; color: #55637d; }
+.demo .self i:nth-child(2) { align-self: flex-end; background: #d9481f; }
+.demo .ord i:nth-child(1) { order: 3; } .demo .ord i:nth-child(2) { order: 1; background: #d9481f; } .demo .ord i:nth-child(3) { order: 2; }
+.demo .gp { gap: 2rem; height: auto; }
+.demo .ac { flex-wrap: wrap; height: 150px; align-content: space-between; }
+.demo .ac i { width: 45%; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="grid-template-areas.html">&larr; Previous</a><a href="responsive-grid-media-queries.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

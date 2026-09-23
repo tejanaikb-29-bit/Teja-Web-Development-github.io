@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Background images and positioning | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .bgs { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: .8rem; }
+.demo .bg { height: 130px; border: 2px solid #14213d; border-radius: 8px; color: #fff; font: 700 .8rem Consolas, monospace; padding: .4rem; text-shadow: 0 1px 3px #000; background-image: url("../assets/images/img2.svg"); }
+.demo .bg1 { background-size: cover; background-position: center; }
+.demo .bg2 { background-size: 60px; background-repeat: no-repeat; background-position: right bottom; background-color: #fff2c2; color: #14213d; text-shadow: none; }
+.demo .bg3 { background-size: 80px 50px; background-repeat: repeat; }
+.demo .bg4 { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='14' cy='14' r='5' fill='%231769b5'/%3E%3C/svg%3E"); background-repeat: repeat; background-color: #eaf2ff; color: #14213d; text-shadow: none; }
+.demo .bg5 { background-image: linear-gradient(rgba(20, 33, 61, .65), rgba(20, 33, 61, .65)), url("../assets/images/img5.svg"); background-size: cover; }
+.demo .bg6 { background-size: 200% 200%; background-position: top left; transition: background-position 1.2s; }
+.demo .bg6:hover { background-position: bottom right; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Backgrounds, Effects &amp; Display</p>
+      <h1>Background images and positioning</h1>
+      <p class="pp-desc">background-size (cover, contain), background-repeat, background-position and multiple backgrounds.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="bgs">
+        <div class="bg bg1">size: cover<br>position: center</div><div class="bg bg2">no-repeat<br>position: right bottom</div>
+        <div class="bg bg3">size: 80px 50px<br>repeat</div><div class="bg bg4">repeating pattern tile</div>
+        <div class="bg bg5">multiple backgrounds:<br>gradient overlay + image</div><div class="bg bg6">hover: background-position moves</div>
+      </div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="bgs"&gt;
+  &lt;div class="bg bg1"&gt;size: cover&lt;br&gt;position: center&lt;/div&gt;&lt;div class="bg bg2"&gt;no-repeat&lt;br&gt;position: right bottom&lt;/div&gt;
+  &lt;div class="bg bg3"&gt;size: 80px 50px&lt;br&gt;repeat&lt;/div&gt;&lt;div class="bg bg4"&gt;repeating pattern tile&lt;/div&gt;
+  &lt;div class="bg bg5"&gt;multiple backgrounds:&lt;br&gt;gradient overlay + image&lt;/div&gt;&lt;div class="bg bg6"&gt;hover: background-position moves&lt;/div&gt;
+&lt;/div&gt;
+
+/* CSS */
+.demo .bgs { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: .8rem; }
+.demo .bg { height: 130px; border: 2px solid #14213d; border-radius: 8px; color: #fff; font: 700 .8rem Consolas, monospace; padding: .4rem; text-shadow: 0 1px 3px #000; background-image: url("../assets/images/img2.svg"); }
+.demo .bg1 { background-size: cover; background-position: center; }
+.demo .bg2 { background-size: 60px; background-repeat: no-repeat; background-position: right bottom; background-color: #fff2c2; color: #14213d; text-shadow: none; }
+.demo .bg3 { background-size: 80px 50px; background-repeat: repeat; }
+.demo .bg4 { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='14' cy='14' r='5' fill='%231769b5'/%3E%3C/svg%3E"); background-repeat: repeat; background-color: #eaf2ff; color: #14213d; text-shadow: none; }
+.demo .bg5 { background-image: linear-gradient(rgba(20, 33, 61, .65), rgba(20, 33, 61, .65)), url("../assets/images/img5.svg"); background-size: cover; }
+.demo .bg6 { background-size: 200% 200%; background-position: top left; transition: background-position 1.2s; }
+.demo .bg6:hover { background-position: bottom right; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="css-variables.html">&larr; Previous</a><a href="gradients.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

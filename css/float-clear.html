@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Float and clear properties | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .fl { float: left; margin: 0 1rem .5rem 0; border-radius: 8px; width: 170px; }
+.demo .fr { float: right; margin: 0 0 .5rem 1rem; width: 120px; border-radius: 50%; }
+.demo .par { border: 2px solid #1769b5; padding: .6rem; margin-bottom: 1rem; }
+.demo .par .kid { float: left; width: 80px; height: 50px; background: #d9481f; margin: 4px; }
+.demo .clearfix::after { content: ""; display: block; clear: both; }
+.demo .clear-both { clear: both; background: #f2c200; padding: .4rem; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; CSS Fundamentals</p>
+      <h1>Float and clear properties</h1>
+      <p class="pp-desc">Text wraps around a floated image, and clear / clearfix fix a parent that would otherwise collapse.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="clearfix">
+        <img class="fl" src="../assets/images/img1.svg" alt="Mountains">
+        <img class="fr" src="../assets/images/avatar.svg" alt="Avatar">
+        <p>An image with <code>float: left</code> lets the text wrap around it, like a magazine layout. A second image uses <code>float: right</code>. Floating was the classic way to build columns before Flexbox and Grid existed, and it is still perfect for wrapping text around images.</p>
+      </div>
+      <h3>Parent without clearfix (collapses)</h3>
+      <div class="par"><div class="kid"></div><div class="kid"></div></div>
+      <h3 style="clear:both">Parent with clearfix (wraps its floated children)</h3>
+      <div class="par clearfix"><div class="kid"></div><div class="kid"></div></div>
+      <div class="clear-both">clear: both &ndash; this bar starts below all floats</div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="clearfix"&gt;
+  &lt;img class="fl" src="../assets/images/img1.svg" alt="Mountains"&gt;
+  &lt;img class="fr" src="../assets/images/avatar.svg" alt="Avatar"&gt;
+  &lt;p&gt;An image with &lt;code&gt;float: left&lt;/code&gt; lets the text wrap around it, like a magazine layout. A second image uses &lt;code&gt;float: right&lt;/code&gt;. Floating was the classic way to build columns before Flexbox and Grid existed, and it is still perfect for wrapping text around images.&lt;/p&gt;
+&lt;/div&gt;
+&lt;h3&gt;Parent without clearfix (collapses)&lt;/h3&gt;
+&lt;div class="par"&gt;&lt;div class="kid"&gt;&lt;/div&gt;&lt;div class="kid"&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 style="clear:both"&gt;Parent with clearfix (wraps its floated children)&lt;/h3&gt;
+&lt;div class="par clearfix"&gt;&lt;div class="kid"&gt;&lt;/div&gt;&lt;div class="kid"&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="clear-both"&gt;clear: both &amp;ndash; this bar starts below all floats&lt;/div&gt;
+
+/* CSS */
+.demo .fl { float: left; margin: 0 1rem .5rem 0; border-radius: 8px; width: 170px; }
+.demo .fr { float: right; margin: 0 0 .5rem 1rem; width: 120px; border-radius: 50%; }
+.demo .par { border: 2px solid #1769b5; padding: .6rem; margin-bottom: 1rem; }
+.demo .par .kid { float: left; width: 80px; height: 50px; background: #d9481f; margin: 4px; }
+.demo .clearfix::after { content: ""; display: block; clear: both; }
+.demo .clear-both { clear: both; background: #f2c200; padding: .4rem; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="css-positioning.html">&larr; Previous</a><a href="styled-navigation-bar.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

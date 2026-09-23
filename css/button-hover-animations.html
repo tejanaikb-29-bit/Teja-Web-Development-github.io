@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS-only button hover animations | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .bt { display: flex; flex-wrap: wrap; gap: 1.4rem; padding: 1rem; }
+.demo .bt button { position: relative; overflow: hidden; border: 0; font: 700 1rem "Segoe UI", sans-serif; padding: .85rem 1.6rem; border-radius: 8px; cursor: pointer; z-index: 0; }
+.demo .b1 { background: #fff; color: #14213d; border: 2px solid #14213d !important; transition: color .35s; }
+.demo .b1::before { content: ""; position: absolute; inset: 0; background: #14213d; transform: scaleX(0); transform-origin: left; transition: transform .35s; z-index: -1; }
+.demo .b1:hover { color: #fff; } .demo .b1:hover::before { transform: scaleX(1); }
+.demo .b2 { background: #d9481f; color: #fff; transition: transform .25s, box-shadow .25s; } .demo .b2:hover { transform: scale(1.1); box-shadow: 0 10px 20px rgba(217, 72, 31, .45); }
+.demo .b3 { background: #1769b5; color: #fff; }
+.demo .b3::after { content: ""; position: absolute; top: 0; left: -80%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .55), transparent); transform: skewX(-25deg); }
+.demo .b3:hover::after { left: 130%; transition: left .6s; }
+.demo .b4 { background: transparent; color: #178a4a; border: 2px solid #178a4a !important; letter-spacing: 0; transition: letter-spacing .3s, background .3s, color .3s; } .demo .b4:hover { letter-spacing: .12em; background: #178a4a; color: #fff; }
+.demo .b5 { background: #7b2cbf; color: #fff; box-shadow: 0 6px 0 #4c1a7c; transition: .12s; } .demo .b5:hover { transform: translateY(2px); box-shadow: 0 4px 0 #4c1a7c; } .demo .b5:active { transform: translateY(6px); box-shadow: 0 0 0 #4c1a7c; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Interactive CSS Components</p>
+      <h1>CSS-only button hover animations</h1>
+      <p class="pp-desc">Five buttons with different hover animations: fill sweep, grow, shine, border and 3D press.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="bt"><button class="b1">Fill sweep</button><button class="b2">Grow + shadow</button><button class="b3">Shine</button><button class="b4">Letter spacing</button><button class="b5">3D press</button></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="bt"&gt;&lt;button class="b1"&gt;Fill sweep&lt;/button&gt;&lt;button class="b2"&gt;Grow + shadow&lt;/button&gt;&lt;button class="b3"&gt;Shine&lt;/button&gt;&lt;button class="b4"&gt;Letter spacing&lt;/button&gt;&lt;button class="b5"&gt;3D press&lt;/button&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .bt { display: flex; flex-wrap: wrap; gap: 1.4rem; padding: 1rem; }
+.demo .bt button { position: relative; overflow: hidden; border: 0; font: 700 1rem "Segoe UI", sans-serif; padding: .85rem 1.6rem; border-radius: 8px; cursor: pointer; z-index: 0; }
+.demo .b1 { background: #fff; color: #14213d; border: 2px solid #14213d !important; transition: color .35s; }
+.demo .b1::before { content: ""; position: absolute; inset: 0; background: #14213d; transform: scaleX(0); transform-origin: left; transition: transform .35s; z-index: -1; }
+.demo .b1:hover { color: #fff; } .demo .b1:hover::before { transform: scaleX(1); }
+.demo .b2 { background: #d9481f; color: #fff; transition: transform .25s, box-shadow .25s; } .demo .b2:hover { transform: scale(1.1); box-shadow: 0 10px 20px rgba(217, 72, 31, .45); }
+.demo .b3 { background: #1769b5; color: #fff; }
+.demo .b3::after { content: ""; position: absolute; top: 0; left: -80%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .55), transparent); transform: skewX(-25deg); }
+.demo .b3:hover::after { left: 130%; transition: left .6s; }
+.demo .b4 { background: transparent; color: #178a4a; border: 2px solid #178a4a !important; letter-spacing: 0; transition: letter-spacing .3s, background .3s, color .3s; } .demo .b4:hover { letter-spacing: .12em; background: #178a4a; color: #fff; }
+.demo .b5 { background: #7b2cbf; color: #fff; box-shadow: 0 6px 0 #4c1a7c; transition: .12s; } .demo .b5:hover { transform: translateY(2px); box-shadow: 0 4px 0 #4c1a7c; } .demo .b5:active { transform: translateY(6px); box-shadow: 0 0 0 #4c1a7c; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="css-tooltip.html">&larr; Previous</a><a href="css-filters.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

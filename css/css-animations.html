@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS animations | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .an { display: flex; flex-wrap: wrap; gap: 2rem; padding: 1.5rem 1rem; align-items: center; }
+.demo .ball { width: 60px; height: 60px; border-radius: 50%; background: #d9481f; animation: bounce 1s ease-in-out infinite alternate; }
+.demo .pulse { width: 60px; height: 60px; border-radius: 50%; background: #1769b5; animation: pulse 1.4s infinite; }
+.demo .spin { width: 60px; height: 60px; border-radius: 10px; background: #178a4a; animation: spin 2s linear infinite; }
+.demo .fade { padding: 1rem; background: #f2c200; border-radius: 8px; animation: fade 2s ease-in-out infinite alternate; font-weight: 700; }
+.demo .slide { padding: .8rem 1rem; background: #14213d; color: #fff; border-radius: 8px; animation: slide 2.5s ease-in-out infinite alternate; }
+@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-70px); } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(23, 105, 181, .6); } 100% { box-shadow: 0 0 0 30px rgba(23, 105, 181, 0); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fade { from { opacity: .15; } to { opacity: 1; } }
+@keyframes slide { from { transform: translateX(-40px); } to { transform: translateX(40px); } }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Flexbox, Grid, Responsive Design &amp; Animation</p>
+      <h1>CSS animations</h1>
+      <p class="pp-desc">Bounce, pulse, spin, fade-in and slide animations defined with @keyframes.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="an"><div class="ball"></div><div class="pulse"></div><div class="spin"></div><div class="fade">Fade</div><div class="slide">Slide</div></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="an"&gt;&lt;div class="ball"&gt;&lt;/div&gt;&lt;div class="pulse"&gt;&lt;/div&gt;&lt;div class="spin"&gt;&lt;/div&gt;&lt;div class="fade"&gt;Fade&lt;/div&gt;&lt;div class="slide"&gt;Slide&lt;/div&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .an { display: flex; flex-wrap: wrap; gap: 2rem; padding: 1.5rem 1rem; align-items: center; }
+.demo .ball { width: 60px; height: 60px; border-radius: 50%; background: #d9481f; animation: bounce 1s ease-in-out infinite alternate; }
+.demo .pulse { width: 60px; height: 60px; border-radius: 50%; background: #1769b5; animation: pulse 1.4s infinite; }
+.demo .spin { width: 60px; height: 60px; border-radius: 10px; background: #178a4a; animation: spin 2s linear infinite; }
+.demo .fade { padding: 1rem; background: #f2c200; border-radius: 8px; animation: fade 2s ease-in-out infinite alternate; font-weight: 700; }
+.demo .slide { padding: .8rem 1rem; background: #14213d; color: #fff; border-radius: 8px; animation: slide 2.5s ease-in-out infinite alternate; }
+@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-70px); } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(23, 105, 181, .6); } 100% { box-shadow: 0 0 0 30px rgba(23, 105, 181, 0); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fade { from { opacity: .15; } to { opacity: 1; } }
+@keyframes slide { from { transform: translateX(-40px); } to { transform: translateX(40px); } }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="transitions-transformations.html">&larr; Previous</a><a href="responsive-navigation-menu.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

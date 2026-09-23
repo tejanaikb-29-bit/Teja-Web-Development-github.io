@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS variables (custom properties) | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .vars { --brand: #1769b5; --radius: 12px; --space: 1rem; --text: #fff; }
+.demo .vars .vc { background: var(--brand); color: var(--text); border-radius: var(--radius); padding: var(--space); margin-bottom: var(--space); }
+.demo .vars .vc.alt { --brand: #d9481f; }                       /* override for this element only */
+.demo .vars .vc.big { --space: 2rem; --radius: 30px; --brand: #178a4a; }
+.demo .vars .vb { background: var(--brand); color: var(--text); border: 0; padding: var(--space); border-radius: var(--radius); cursor: pointer; transition: .2s; }
+.demo .vars .vb:hover { --brand: #f2c200; --text: #14213d; }    /* variables change on hover */
+.demo .vars .fb { color: var(--not-defined, hotpink); font-weight: 700; }   /* fallback value */
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Inheritance, Selectors &amp; Variables</p>
+      <h1>CSS variables (custom properties)</h1>
+      <p class="pp-desc">Variables are declared with --name and used with var(). Changing one variable restyles many elements, even on hover.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="vars">
+        <div class="vc">Uses the default variables</div>
+        <div class="vc alt">--brand overridden locally</div>
+        <div class="vc big">--space, --radius and --brand overridden</div>
+        <button class="vb">Hover: variables change</button>
+        <p class="fb">var(--not-defined, hotpink) uses the fallback value</p>
+      </div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="vars"&gt;
+  &lt;div class="vc"&gt;Uses the default variables&lt;/div&gt;
+  &lt;div class="vc alt"&gt;--brand overridden locally&lt;/div&gt;
+  &lt;div class="vc big"&gt;--space, --radius and --brand overridden&lt;/div&gt;
+  &lt;button class="vb"&gt;Hover: variables change&lt;/button&gt;
+  &lt;p class="fb"&gt;var(--not-defined, hotpink) uses the fallback value&lt;/p&gt;
+&lt;/div&gt;
+
+/* CSS */
+.demo .vars { --brand: #1769b5; --radius: 12px; --space: 1rem; --text: #fff; }
+.demo .vars .vc { background: var(--brand); color: var(--text); border-radius: var(--radius); padding: var(--space); margin-bottom: var(--space); }
+.demo .vars .vc.alt { --brand: #d9481f; }                       /* override for this element only */
+.demo .vars .vc.big { --space: 2rem; --radius: 30px; --brand: #178a4a; }
+.demo .vars .vb { background: var(--brand); color: var(--text); border: 0; padding: var(--space); border-radius: var(--radius); cursor: pointer; transition: .2s; }
+.demo .vars .vb:hover { --brand: #f2c200; --text: #14213d; }    /* variables change on hover */
+.demo .vars .fb { color: var(--not-defined, hotpink); font-weight: 700; }   /* fallback value */</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="combinator-selectors.html">&larr; Previous</a><a href="background-images.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

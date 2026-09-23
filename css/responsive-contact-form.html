@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive contact form | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .ct { display: grid; grid-template-columns: 1fr 1.6fr; gap: 1.2rem; }
+.demo .ct-info { background: #14213d; color: #fff; padding: 1.4rem; border-radius: 12px; }
+.demo .ct-info h3 { margin-top: 0; } .demo .ct-info p { margin: .6rem 0; color: #c9d3e6; }
+.demo .ct-form { background: #fff; border: 1px solid #ccd5e6; border-radius: 12px; padding: 1.4rem; }
+.demo .two { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+.demo .ct-form label { display: block; font-weight: 600; margin: .6rem 0 .25rem; font-size: .9rem; }
+.demo .ct-form input, .demo .ct-form select, .demo .ct-form textarea { width: 100%; padding: .65rem .8rem; border: 2px solid #dbe2ef; border-radius: 8px; }
+.demo .ct-form input:focus, .demo .ct-form textarea:focus { outline: 0; border-color: #1769b5; }
+.demo .ct-form button { margin-top: 1rem; padding: .75rem 1.6rem; background: #1769b5; border-radius: 8px; }
+@media (max-width: 720px) { .demo .ct, .demo .two { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Responsive Pages &amp; Websites</p>
+      <h1>Responsive contact form</h1>
+      <p class="pp-desc">A contact page with an information card and a form whose fields sit two per row and stack on small screens.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="ct">
+        <aside class="ct-info"><h3>Get in touch</h3><p>&#9993; hello@example.com</p><p>&#9742; +91 98765 43210</p><p>&#9906; 12 College Road, Chennai</p><p>Mon &ndash; Fri, 9 am to 5 pm</p></aside>
+        <form class="ct-form" onsubmit="return false">
+          <div class="two"><div><label>First name</label><input type="text"></div><div><label>Last name</label><input type="text"></div></div>
+          <div class="two"><div><label>Email</label><input type="email"></div><div><label>Topic</label><select><option>General</option><option>Admissions</option><option>Support</option></select></div></div>
+          <label>Message</label><textarea rows="4"></textarea><button>Send message</button>
+        </form>
+      </div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="ct"&gt;
+  &lt;aside class="ct-info"&gt;&lt;h3&gt;Get in touch&lt;/h3&gt;&lt;p&gt;&amp;#9993; hello@example.com&lt;/p&gt;&lt;p&gt;&amp;#9742; +91 98765 43210&lt;/p&gt;&lt;p&gt;&amp;#9906; 12 College Road, Chennai&lt;/p&gt;&lt;p&gt;Mon &amp;ndash; Fri, 9 am to 5 pm&lt;/p&gt;&lt;/aside&gt;
+  &lt;form class="ct-form" onsubmit="return false"&gt;
+    &lt;div class="two"&gt;&lt;div&gt;&lt;label&gt;First name&lt;/label&gt;&lt;input type="text"&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Last name&lt;/label&gt;&lt;input type="text"&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div class="two"&gt;&lt;div&gt;&lt;label&gt;Email&lt;/label&gt;&lt;input type="email"&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Topic&lt;/label&gt;&lt;select&gt;&lt;option&gt;General&lt;/option&gt;&lt;option&gt;Admissions&lt;/option&gt;&lt;option&gt;Support&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;label&gt;Message&lt;/label&gt;&lt;textarea rows="4"&gt;&lt;/textarea&gt;&lt;button&gt;Send message&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+
+/* CSS */
+.demo .ct { display: grid; grid-template-columns: 1fr 1.6fr; gap: 1.2rem; }
+.demo .ct-info { background: #14213d; color: #fff; padding: 1.4rem; border-radius: 12px; }
+.demo .ct-info h3 { margin-top: 0; } .demo .ct-info p { margin: .6rem 0; color: #c9d3e6; }
+.demo .ct-form { background: #fff; border: 1px solid #ccd5e6; border-radius: 12px; padding: 1.4rem; }
+.demo .two { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+.demo .ct-form label { display: block; font-weight: 600; margin: .6rem 0 .25rem; font-size: .9rem; }
+.demo .ct-form input, .demo .ct-form select, .demo .ct-form textarea { width: 100%; padding: .65rem .8rem; border: 2px solid #dbe2ef; border-radius: 8px; }
+.demo .ct-form input:focus, .demo .ct-form textarea:focus { outline: 0; border-color: #1769b5; }
+.demo .ct-form button { margin-top: 1rem; padding: .75rem 1.6rem; background: #1769b5; border-radius: 8px; }
+@media (max-width: 720px) { .demo .ct, .demo .two { grid-template-columns: 1fr; } }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="responsive-login-signup.html">&larr; Previous</a><a href="responsive-college-homepage.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

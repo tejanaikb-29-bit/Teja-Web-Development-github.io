@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universal, element, class, ID, attribute and grouping selectors | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .pn { border: 1px solid #ccd5e6; border-radius: 8px; padding: .6rem .8rem; margin-bottom: .8rem; }
+.demo .pn h4 { margin: 0 0 .4rem; font: 700 .9rem Consolas, monospace; color: #55637d; }
+.demo .pu * { outline: 1px dashed #d9481f; margin: 3px; padding: 2px 4px; }                   /* universal */
+.demo .pe p { color: #1769b5; font-weight: 700; }                                            /* element */
+.demo .pc .hl { background: #fff2c2; padding: 0 .3rem; }                                    /* class */
+.demo .pi #only { background: #178a4a; color: #fff; padding: .2rem .5rem; }                  /* ID */
+.demo .pa a[href$=".pdf"] { color: #c62828; } .demo .pa a[href^="https"] { color: #178a4a; } /* attribute */
+.demo .pa input[type="password"] { background: #fdeaea; } .demo .pa [class*="warn"] { font-weight: 700; }
+.demo .pg h5, .demo .pg .grp, .demo .pg em { color: #7b2cbf; text-decoration: underline; }   /* grouping */
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Inheritance, Selectors &amp; Variables</p>
+      <h1>Universal, element, class, ID, attribute and grouping selectors</h1>
+      <p class="pp-desc">Six panels, one for each selector type. Each panel is styled by only its own selector.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="pn pu"><h4>* (universal)</h4><span>span</span> <b>bold</b> <i>italic</i></div>
+      <div class="pn pe"><h4>p (element)</h4><p>Every paragraph is blue and bold.</p><p>Second paragraph.</p></div>
+      <div class="pn pc"><h4>.hl (class)</h4><p>Only <span class="hl">this part</span> is highlighted.</p></div>
+      <div class="pn pi"><h4>#only (id)</h4><p>Only <span id="only">this element</span> has the id.</p></div>
+      <div class="pn pa"><h4>[attribute]</h4><a href="#guide.pdf">PDF link (ends with .pdf)</a> &middot; <a href="https://example.com">Secure link (starts with https)</a>
+        <input type="password" placeholder="type=password"> <span class="warn-text">class contains "warn"</span></div>
+      <div class="pn pg"><h4>h5, .grp, em (grouping)</h4><h5>Heading 5</h5><span class="grp">Class item</span> <em>Emphasis</em></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="pn pu"&gt;&lt;h4&gt;* (universal)&lt;/h4&gt;&lt;span&gt;span&lt;/span&gt; &lt;b&gt;bold&lt;/b&gt; &lt;i&gt;italic&lt;/i&gt;&lt;/div&gt;
+&lt;div class="pn pe"&gt;&lt;h4&gt;p (element)&lt;/h4&gt;&lt;p&gt;Every paragraph is blue and bold.&lt;/p&gt;&lt;p&gt;Second paragraph.&lt;/p&gt;&lt;/div&gt;
+&lt;div class="pn pc"&gt;&lt;h4&gt;.hl (class)&lt;/h4&gt;&lt;p&gt;Only &lt;span class="hl"&gt;this part&lt;/span&gt; is highlighted.&lt;/p&gt;&lt;/div&gt;
+&lt;div class="pn pi"&gt;&lt;h4&gt;#only (id)&lt;/h4&gt;&lt;p&gt;Only &lt;span id="only"&gt;this element&lt;/span&gt; has the id.&lt;/p&gt;&lt;/div&gt;
+&lt;div class="pn pa"&gt;&lt;h4&gt;[attribute]&lt;/h4&gt;&lt;a href="#guide.pdf"&gt;PDF link (ends with .pdf)&lt;/a&gt; &amp;middot; &lt;a href="https://example.com"&gt;Secure link (starts with https)&lt;/a&gt;
+  &lt;input type="password" placeholder="type=password"&gt; &lt;span class="warn-text"&gt;class contains "warn"&lt;/span&gt;&lt;/div&gt;
+&lt;div class="pn pg"&gt;&lt;h4&gt;h5, .grp, em (grouping)&lt;/h4&gt;&lt;h5&gt;Heading 5&lt;/h5&gt;&lt;span class="grp"&gt;Class item&lt;/span&gt; &lt;em&gt;Emphasis&lt;/em&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .pn { border: 1px solid #ccd5e6; border-radius: 8px; padding: .6rem .8rem; margin-bottom: .8rem; }
+.demo .pn h4 { margin: 0 0 .4rem; font: 700 .9rem Consolas, monospace; color: #55637d; }
+.demo .pu * { outline: 1px dashed #d9481f; margin: 3px; padding: 2px 4px; }                   /* universal */
+.demo .pe p { color: #1769b5; font-weight: 700; }                                            /* element */
+.demo .pc .hl { background: #fff2c2; padding: 0 .3rem; }                                    /* class */
+.demo .pi #only { background: #178a4a; color: #fff; padding: .2rem .5rem; }                  /* ID */
+.demo .pa a[href$=".pdf"] { color: #c62828; } .demo .pa a[href^="https"] { color: #178a4a; } /* attribute */
+.demo .pa input[type="password"] { background: #fdeaea; } .demo .pa [class*="warn"] { font-weight: 700; }
+.demo .pg h5, .demo .pg .grp, .demo .pg em { color: #7b2cbf; text-decoration: underline; }   /* grouping */</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="inheritance-specificity.html">&larr; Previous</a><a href="combinator-selectors.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

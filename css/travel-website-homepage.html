@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel website homepage | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .site { --p: #0b6e99; --a: #ffb703; --bg: #f2fbff; --tx: #0d2b3a; font-family: "Segoe UI", Arial, sans-serif; background: var(--bg); color: var(--tx); border-radius: 10px; overflow: hidden; border: 1px solid #d5dbe6; }
+.demo .site * { box-sizing: border-box; }
+.demo .s-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; padding: .9rem 1.2rem; background: var(--p); color: #fff; }
+.demo .s-brand { font-weight: 800; font-size: 1.25rem; color: #fff; text-decoration: none; }
+.demo .s-top nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+.demo .s-top nav a { color: #fff; text-decoration: none; opacity: .88; }
+.demo .s-top nav a:hover { opacity: 1; text-decoration: underline; }
+.demo .s-hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 1.5rem; align-items: center; padding: 2rem 1.2rem; }
+.demo .s-hero h2 { font-size: clamp(1.6rem, 4vw, 2.5rem); line-height: 1.15; margin: 0 0 .6rem; }
+.demo .s-hero p { margin: 0 0 1rem; max-width: 46ch; }
+.demo .s-hero img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; }
+.demo .s-cta { display: inline-block; background: var(--a); color: #111; font-weight: 700; text-decoration: none; padding: .7rem 1.2rem; border-radius: 8px; }
+.demo .s-cta:hover { filter: brightness(1.08); }
+.demo .s-sec { padding: 1.5rem 1.2rem; }
+.demo .s-alt { background: rgba(0, 0, 0, .04); }
+.demo .s-sec h3 { font-size: 1.4rem; margin: 0 0 1rem; }
+.demo .s-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.demo .s-card { background: #fff; color: #222; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 12px rgba(0, 0, 0, .1); display: flex; flex-direction: column; }
+.demo .s-card img { width: 100%; height: 120px; object-fit: cover; }
+.demo .s-body { padding: .8rem; display: flex; flex-direction: column; gap: .3rem; flex: 1; }
+.demo .s-card h4 { margin: 0; }
+.demo .s-card p { margin: 0; font-size: .9rem; color: #555; flex: 1; }
+.demo .s-card .meta { font-weight: 700; color: var(--p); }
+.demo .s-band { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 1rem; background: var(--p); color: #fff; padding: 1.4rem 1rem; text-align: center; }
+.demo .s-band strong { display: block; font-size: 1.8rem; }
+.demo .s-list { margin: 0; padding-left: 1.2rem; columns: 2 220px; }
+.demo .s-foot { padding: 1rem 1.2rem; background: #111827; color: #cbd5e1; font-size: .9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+@media (max-width: 700px) { .demo .s-hero { grid-template-columns: 1fr; } .demo .s-top { justify-content: center; } }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Responsive Pages &amp; Websites</p>
+      <h1>Travel website homepage</h1>
+      <p class="pp-desc">A travel homepage with a large hero, destination cards, statistics and a benefits list.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="site">
+        <header class="s-top"><a class="s-brand" href="#">Wanderly</a><nav><a href="#">Destinations</a><a href="#">Tours</a><a href="#">Stories</a><a href="#">Book</a></nav></header>
+        <section class="s-hero">
+          <div><h2>Your next adventure starts here</h2><p>Curated trips to mountains, coasts and deserts, with local guides and small groups.</p><a class="s-cta" href="#">Plan my trip</a></div>
+          <img src="../assets/images/img3.svg" alt="Wanderly banner">
+        </section>
+        <section class="s-sec"><h3>Popular destinations</h3><div class="s-grid"><article class="s-card"><img src="../assets/images/img1.svg" alt="Alpine Escape"><div class="s-body"><h4>Alpine Escape</h4><p>6 days of trails and lakes.</p><span class="meta">from $890</span></div></article><article class="s-card"><img src="../assets/images/img3.svg" alt="Coastal Drive"><div class="s-body"><h4>Coastal Drive</h4><p>8 days along the coast.</p><span class="meta">from $1,150</span></div></article><article class="s-card"><img src="../assets/images/img6.svg" alt="Desert Nights"><div class="s-body"><h4>Desert Nights</h4><p>5 days under wide skies.</p><span class="meta">from $760</span></div></article></div></section>
+        <div class="s-band"><div><strong>120+</strong>Destinations</div><div><strong>35k</strong>Travellers</div><div><strong>4.9/5</strong>Average rating</div></div>
+        <section class="s-sec s-alt"><h3>Why travel with us</h3><ul class="s-list"><li>Small groups of 12 or fewer</li><li>Local guides</li><li>Flexible cancellation</li><li>Carbon-offset trips</li></ul></section>
+        <footer class="s-foot"><span>&copy; 2026 Wanderly Travel</span><span>Privacy &middot; Terms &middot; Contact</span></footer>
+      </div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="site"&gt;
+  &lt;header class="s-top"&gt;&lt;a class="s-brand" href="#"&gt;Wanderly&lt;/a&gt;&lt;nav&gt;&lt;a href="#"&gt;Destinations&lt;/a&gt;&lt;a href="#"&gt;Tours&lt;/a&gt;&lt;a href="#"&gt;Stories&lt;/a&gt;&lt;a href="#"&gt;Book&lt;/a&gt;&lt;/nav&gt;&lt;/header&gt;
+  &lt;section class="s-hero"&gt;
+    &lt;div&gt;&lt;h2&gt;Your next adventure starts here&lt;/h2&gt;&lt;p&gt;Curated trips to mountains, coasts and deserts, with local guides and small groups.&lt;/p&gt;&lt;a class="s-cta" href="#"&gt;Plan my trip&lt;/a&gt;&lt;/div&gt;
+    &lt;img src="../assets/images/img3.svg" alt="Wanderly banner"&gt;
+  &lt;/section&gt;
+  &lt;section class="s-sec"&gt;&lt;h3&gt;Popular destinations&lt;/h3&gt;&lt;div class="s-grid"&gt;&lt;article class="s-card"&gt;&lt;img src="../assets/images/img1.svg" alt="Alpine Escape"&gt;&lt;div class="s-body"&gt;&lt;h4&gt;Alpine Escape&lt;/h4&gt;&lt;p&gt;6 days of trails and lakes.&lt;/p&gt;&lt;span class="meta"&gt;from $890&lt;/span&gt;&lt;/div&gt;&lt;/article&gt;&lt;article class="s-card"&gt;&lt;img src="../assets/images/img3.svg" alt="Coastal Drive"&gt;&lt;div class="s-body"&gt;&lt;h4&gt;Coastal Drive&lt;/h4&gt;&lt;p&gt;8 days along the coast.&lt;/p&gt;&lt;span class="meta"&gt;from $1,150&lt;/span&gt;&lt;/div&gt;&lt;/article&gt;&lt;article class="s-card"&gt;&lt;img src="../assets/images/img6.svg" alt="Desert Nights"&gt;&lt;div class="s-body"&gt;&lt;h4&gt;Desert Nights&lt;/h4&gt;&lt;p&gt;5 days under wide skies.&lt;/p&gt;&lt;span class="meta"&gt;from $760&lt;/span&gt;&lt;/div&gt;&lt;/article&gt;&lt;/div&gt;&lt;/section&gt;
+  &lt;div class="s-band"&gt;&lt;div&gt;&lt;strong&gt;120+&lt;/strong&gt;Destinations&lt;/div&gt;&lt;div&gt;&lt;strong&gt;35k&lt;/strong&gt;Travellers&lt;/div&gt;&lt;div&gt;&lt;strong&gt;4.9/5&lt;/strong&gt;Average rating&lt;/div&gt;&lt;/div&gt;
+  &lt;section class="s-sec s-alt"&gt;&lt;h3&gt;Why travel with us&lt;/h3&gt;&lt;ul class="s-list"&gt;&lt;li&gt;Small groups of 12 or fewer&lt;/li&gt;&lt;li&gt;Local guides&lt;/li&gt;&lt;li&gt;Flexible cancellation&lt;/li&gt;&lt;li&gt;Carbon-offset trips&lt;/li&gt;&lt;/ul&gt;&lt;/section&gt;
+  &lt;footer class="s-foot"&gt;&lt;span&gt;&amp;copy; 2026 Wanderly Travel&lt;/span&gt;&lt;span&gt;Privacy &amp;middot; Terms &amp;middot; Contact&lt;/span&gt;&lt;/footer&gt;
+&lt;/div&gt;
+
+/* CSS */
+.demo .site { --p: #0b6e99; --a: #ffb703; --bg: #f2fbff; --tx: #0d2b3a; font-family: "Segoe UI", Arial, sans-serif; background: var(--bg); color: var(--tx); border-radius: 10px; overflow: hidden; border: 1px solid #d5dbe6; }
+.demo .site * { box-sizing: border-box; }
+.demo .s-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; padding: .9rem 1.2rem; background: var(--p); color: #fff; }
+.demo .s-brand { font-weight: 800; font-size: 1.25rem; color: #fff; text-decoration: none; }
+.demo .s-top nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+.demo .s-top nav a { color: #fff; text-decoration: none; opacity: .88; }
+.demo .s-top nav a:hover { opacity: 1; text-decoration: underline; }
+.demo .s-hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 1.5rem; align-items: center; padding: 2rem 1.2rem; }
+.demo .s-hero h2 { font-size: clamp(1.6rem, 4vw, 2.5rem); line-height: 1.15; margin: 0 0 .6rem; }
+.demo .s-hero p { margin: 0 0 1rem; max-width: 46ch; }
+.demo .s-hero img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; }
+.demo .s-cta { display: inline-block; background: var(--a); color: #111; font-weight: 700; text-decoration: none; padding: .7rem 1.2rem; border-radius: 8px; }
+.demo .s-cta:hover { filter: brightness(1.08); }
+.demo .s-sec { padding: 1.5rem 1.2rem; }
+.demo .s-alt { background: rgba(0, 0, 0, .04); }
+.demo .s-sec h3 { font-size: 1.4rem; margin: 0 0 1rem; }
+.demo .s-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.demo .s-card { background: #fff; color: #222; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 12px rgba(0, 0, 0, .1); display: flex; flex-direction: column; }
+.demo .s-card img { width: 100%; height: 120px; object-fit: cover; }
+.demo .s-body { padding: .8rem; display: flex; flex-direction: column; gap: .3rem; flex: 1; }
+.demo .s-card h4 { margin: 0; }
+.demo .s-card p { margin: 0; font-size: .9rem; color: #555; flex: 1; }
+.demo .s-card .meta { font-weight: 700; color: var(--p); }
+.demo .s-band { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 1rem; background: var(--p); color: #fff; padding: 1.4rem 1rem; text-align: center; }
+.demo .s-band strong { display: block; font-size: 1.8rem; }
+.demo .s-list { margin: 0; padding-left: 1.2rem; columns: 2 220px; }
+.demo .s-foot { padding: 1rem 1.2rem; background: #111827; color: #cbd5e1; font-size: .9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+@media (max-width: 700px) { .demo .s-hero { grid-template-columns: 1fr; } .demo .s-top { justify-content: center; } }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="online-shopping-page.html">&larr; Previous</a><a href="news-blog-grid-layout.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

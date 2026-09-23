@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS-only modal / popup | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .stage { position: relative; min-height: 300px; border: 2px dashed #b9c3d6; border-radius: 10px; padding: 1rem; overflow: hidden; }
+.demo #m-toggle { display: none; }
+.demo .open-btn { display: inline-block; background: #1769b5; color: #fff; padding: .6rem 1.2rem; border-radius: 8px; cursor: pointer; font-weight: 700; }
+.demo .overlay { position: absolute; inset: 0; background: rgba(20, 33, 61, .65); display: grid; place-items: center; opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; }
+.demo .dialog { background: #fff; width: min(340px, 90%); border-radius: 12px; padding: 1.4rem; position: relative; transform: scale(.85); transition: transform .3s; }
+.demo #m-toggle:checked ~ .overlay { opacity: 1; visibility: visible; } .demo #m-toggle:checked ~ .overlay .dialog { transform: scale(1); }
+.demo .close { position: absolute; top: .4rem; right: .8rem; font-size: 1.6rem; cursor: pointer; line-height: 1; }
+.demo .bg-close { position: absolute; inset: 0; cursor: default; }
+.demo .dialog h3 { margin-top: 0; } .demo .dialog .ok { display: inline-block; background: #178a4a; color: #fff; padding: .5rem 1rem; border-radius: 8px; cursor: pointer; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Transitions, Transforms &amp; Animation</p>
+      <h1>CSS-only modal / popup</h1>
+      <p class="pp-desc">A modal dialog opened and closed with a hidden checkbox and labels, no JavaScript. The overlay fades and the dialog scales in.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="stage"><p>Page content behind the modal.</p>
+        <input type="checkbox" id="m-toggle"><label class="open-btn" for="m-toggle">Open modal</label>
+        <div class="overlay"><label class="bg-close" for="m-toggle"></label>
+          <div class="dialog"><label class="close" for="m-toggle">&times;</label><h3>Subscribe</h3><p>This popup uses only HTML and CSS. Click the &times;, the dark area or the button to close it.</p><label class="ok" for="m-toggle">Got it</label></div></div></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="stage"&gt;&lt;p&gt;Page content behind the modal.&lt;/p&gt;
+  &lt;input type="checkbox" id="m-toggle"&gt;&lt;label class="open-btn" for="m-toggle"&gt;Open modal&lt;/label&gt;
+  &lt;div class="overlay"&gt;&lt;label class="bg-close" for="m-toggle"&gt;&lt;/label&gt;
+    &lt;div class="dialog"&gt;&lt;label class="close" for="m-toggle"&gt;&amp;times;&lt;/label&gt;&lt;h3&gt;Subscribe&lt;/h3&gt;&lt;p&gt;This popup uses only HTML and CSS. Click the &amp;times;, the dark area or the button to close it.&lt;/p&gt;&lt;label class="ok" for="m-toggle"&gt;Got it&lt;/label&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .stage { position: relative; min-height: 300px; border: 2px dashed #b9c3d6; border-radius: 10px; padding: 1rem; overflow: hidden; }
+.demo #m-toggle { display: none; }
+.demo .open-btn { display: inline-block; background: #1769b5; color: #fff; padding: .6rem 1.2rem; border-radius: 8px; cursor: pointer; font-weight: 700; }
+.demo .overlay { position: absolute; inset: 0; background: rgba(20, 33, 61, .65); display: grid; place-items: center; opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; }
+.demo .dialog { background: #fff; width: min(340px, 90%); border-radius: 12px; padding: 1.4rem; position: relative; transform: scale(.85); transition: transform .3s; }
+.demo #m-toggle:checked ~ .overlay { opacity: 1; visibility: visible; } .demo #m-toggle:checked ~ .overlay .dialog { transform: scale(1); }
+.demo .close { position: absolute; top: .4rem; right: .8rem; font-size: 1.6rem; cursor: pointer; line-height: 1; }
+.demo .bg-close { position: absolute; inset: 0; cursor: default; }
+.demo .dialog h3 { margin-top: 0; } .demo .dialog .ok { display: inline-block; background: #178a4a; color: #fff; padding: .5rem 1rem; border-radius: 8px; cursor: pointer; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="sliding-image-card-animation.html">&larr; Previous</a><a href="dark-mode-css-variables.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

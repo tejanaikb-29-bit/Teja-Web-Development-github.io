@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login page | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .lg-wrap { min-height: 420px; display: grid; place-items: center; padding: 1.5rem; border-radius: 12px; background: linear-gradient(135deg, #14213d, #1769b5 60%, #f2c200); }
+.demo .lg { width: 100%; max-width: 360px; background: #fff; border-radius: 14px; padding: 2rem 1.6rem; box-shadow: 0 18px 40px rgba(0, 0, 0, .3); }
+.demo .lg h3 { margin: 0 0 .2rem; font-size: 1.5rem; } .demo .lg p.sub { margin: 0 0 1.2rem; color: #6b778c; }
+.demo .lg input[type=email], .demo .lg input[type=password] { width: 100%; padding: .75rem .9rem; margin-bottom: .9rem; border: 2px solid #dbe2ef; border-radius: 8px; }
+.demo .lg input:focus { outline: 0; border-color: #1769b5; }
+.demo .lg .opts { display: flex; justify-content: space-between; font-size: .88rem; margin-bottom: 1rem; }
+.demo .lg button { width: 100%; padding: .8rem; border: 0; border-radius: 8px; background: #14213d; color: #fff; font-weight: 700; cursor: pointer; transition: background .2s; }
+.demo .lg button:hover { background: #1769b5; }
+.demo .lg .foot { text-align: center; margin: 1rem 0 0; font-size: .9rem; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Navigation &amp; Page Designs</p>
+      <h1>Login page</h1>
+      <p class="pp-desc">A centred login card over a gradient background with focus states and a hover button.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="lg-wrap"><form class="lg" onsubmit="return false">
+        <h3>Welcome back</h3><p class="sub">Sign in to continue</p>
+        <input type="email" placeholder="Email address"><input type="password" placeholder="Password">
+        <div class="opts"><label><input type="checkbox"> Remember me</label><a href="#">Forgot password?</a></div>
+        <button>Sign in</button><p class="foot">No account? <a href="#">Create one</a></p></form></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="lg-wrap"&gt;&lt;form class="lg" onsubmit="return false"&gt;
+  &lt;h3&gt;Welcome back&lt;/h3&gt;&lt;p class="sub"&gt;Sign in to continue&lt;/p&gt;
+  &lt;input type="email" placeholder="Email address"&gt;&lt;input type="password" placeholder="Password"&gt;
+  &lt;div class="opts"&gt;&lt;label&gt;&lt;input type="checkbox"&gt; Remember me&lt;/label&gt;&lt;a href="#"&gt;Forgot password?&lt;/a&gt;&lt;/div&gt;
+  &lt;button&gt;Sign in&lt;/button&gt;&lt;p class="foot"&gt;No account? &lt;a href="#"&gt;Create one&lt;/a&gt;&lt;/p&gt;&lt;/form&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .lg-wrap { min-height: 420px; display: grid; place-items: center; padding: 1.5rem; border-radius: 12px; background: linear-gradient(135deg, #14213d, #1769b5 60%, #f2c200); }
+.demo .lg { width: 100%; max-width: 360px; background: #fff; border-radius: 14px; padding: 2rem 1.6rem; box-shadow: 0 18px 40px rgba(0, 0, 0, .3); }
+.demo .lg h3 { margin: 0 0 .2rem; font-size: 1.5rem; } .demo .lg p.sub { margin: 0 0 1.2rem; color: #6b778c; }
+.demo .lg input[type=email], .demo .lg input[type=password] { width: 100%; padding: .75rem .9rem; margin-bottom: .9rem; border: 2px solid #dbe2ef; border-radius: 8px; }
+.demo .lg input:focus { outline: 0; border-color: #1769b5; }
+.demo .lg .opts { display: flex; justify-content: space-between; font-size: .88rem; margin-bottom: 1rem; }
+.demo .lg button { width: 100%; padding: .8rem; border: 0; border-radius: 8px; background: #14213d; color: #fff; font-weight: 700; cursor: pointer; transition: background .2s; }
+.demo .lg button:hover { background: #1769b5; }
+.demo .lg .foot { text-align: center; margin: 1rem 0 0; font-size: .9rem; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="student-profile-page.html">&larr; Previous</a><a href="product-card-layout.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

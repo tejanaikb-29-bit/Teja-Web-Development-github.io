@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online shopping webpage | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .site { --p: #1f3a93; --a: #ff7a00; --bg: #f6f8ff; --tx: #151b33; font-family: "Segoe UI", Arial, sans-serif; background: var(--bg); color: var(--tx); border-radius: 10px; overflow: hidden; border: 1px solid #d5dbe6; }
+.demo .site * { box-sizing: border-box; }
+.demo .s-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; padding: .9rem 1.2rem; background: var(--p); color: #fff; }
+.demo .s-brand { font-weight: 800; font-size: 1.25rem; color: #fff; text-decoration: none; }
+.demo .s-top nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+.demo .s-top nav a { color: #fff; text-decoration: none; opacity: .88; }
+.demo .s-top nav a:hover { opacity: 1; text-decoration: underline; }
+.demo .s-hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 1.5rem; align-items: center; padding: 2rem 1.2rem; }
+.demo .s-hero h2 { font-size: clamp(1.6rem, 4vw, 2.5rem); line-height: 1.15; margin: 0 0 .6rem; }
+.demo .s-hero p { margin: 0 0 1rem; max-width: 46ch; }
+.demo .s-hero img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; }
+.demo .s-cta { display: inline-block; background: var(--a); color: #111; font-weight: 700; text-decoration: none; padding: .7rem 1.2rem; border-radius: 8px; }
+.demo .s-cta:hover { filter: brightness(1.08); }
+.demo .s-sec { padding: 1.5rem 1.2rem; }
+.demo .s-alt { background: rgba(0, 0, 0, .04); }
+.demo .s-sec h3 { font-size: 1.4rem; margin: 0 0 1rem; }
+.demo .s-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.demo .s-card { background: #fff; color: #222; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 12px rgba(0, 0, 0, .1); display: flex; flex-direction: column; }
+.demo .s-card img { width: 100%; height: 120px; object-fit: cover; }
+.demo .s-body { padding: .8rem; display: flex; flex-direction: column; gap: .3rem; flex: 1; }
+.demo .s-card h4 { margin: 0; }
+.demo .s-card p { margin: 0; font-size: .9rem; color: #555; flex: 1; }
+.demo .s-card .meta { font-weight: 700; color: var(--p); }
+.demo .s-band { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 1rem; background: var(--p); color: #fff; padding: 1.4rem 1rem; text-align: center; }
+.demo .s-band strong { display: block; font-size: 1.8rem; }
+.demo .s-list { margin: 0; padding-left: 1.2rem; columns: 2 220px; }
+.demo .s-foot { padding: 1rem 1.2rem; background: #111827; color: #cbd5e1; font-size: .9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+@media (max-width: 700px) { .demo .s-hero { grid-template-columns: 1fr; } .demo .s-top { justify-content: center; } }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Responsive Pages &amp; Websites</p>
+      <h1>Online shopping webpage</h1>
+      <p class="pp-desc">A shop front with category navigation, a promotion banner, a product grid with prices and a service band.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="site">
+        <header class="s-top"><a class="s-brand" href="#">QuickCart</a><nav><a href="#">Deals</a><a href="#">Men</a><a href="#">Women</a><a href="#">Electronics</a><a href="#">Cart (0)</a></nav></header>
+        <section class="s-hero">
+          <div><h2>Big savings on everyday essentials</h2><p>Free delivery on orders above $50. Easy returns within 30 days.</p><a class="s-cta" href="#">Shop now</a></div>
+          <img src="../assets/images/img8.svg" alt="QuickCart banner">
+        </section>
+        <section class="s-sec"><h3>Trending products</h3><div class="s-grid"><article class="s-card"><img src="../assets/images/img1.svg" alt="Trail Backpack"><div class="s-body"><h4>Trail Backpack</h4><p>Water-resistant, 28 litre.</p><span class="meta">$49</span></div></article><article class="s-card"><img src="../assets/images/img3.svg" alt="Insulated Bottle"><div class="s-body"><h4>Insulated Bottle</h4><p>Keeps drinks cold for 24 hours.</p><span class="meta">$19</span></div></article><article class="s-card"><img src="../assets/images/img5.svg" alt="Desk Lamp"><div class="s-body"><h4>Desk Lamp</h4><p>Warm to cool light, USB powered.</p><span class="meta">$29</span></div></article><article class="s-card"><img src="../assets/images/img8.svg" alt="Yoga Mat"><div class="s-body"><h4>Yoga Mat</h4><p>Non-slip, 6 mm thick.</p><span class="meta">$24</span></div></article></div></section>
+        <div class="s-band"><div><strong>Free</strong>Delivery over $50</div><div><strong>30 days</strong>Easy returns</div><div><strong>24/7</strong>Customer support</div></div>
+
+        <footer class="s-foot"><span>&copy; 2026 QuickCart</span><span>Privacy &middot; Terms &middot; Contact</span></footer>
+      </div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="site"&gt;
+  &lt;header class="s-top"&gt;&lt;a class="s-brand" href="#"&gt;QuickCart&lt;/a&gt;&lt;nav&gt;&lt;a href="#"&gt;Deals&lt;/a&gt;&lt;a href="#"&gt;Men&lt;/a&gt;&lt;a href="#"&gt;Women&lt;/a&gt;&lt;a href="#"&gt;Electronics&lt;/a&gt;&lt;a href="#"&gt;Cart (0)&lt;/a&gt;&lt;/nav&gt;&lt;/header&gt;
+  &lt;section class="s-hero"&gt;
+    &lt;div&gt;&lt;h2&gt;Big savings on everyday essentials&lt;/h2&gt;&lt;p&gt;Free delivery on orders above $50. Easy returns within 30 days.&lt;/p&gt;&lt;a class="s-cta" href="#"&gt;Shop now&lt;/a&gt;&lt;/div&gt;
+    &lt;img src="../assets/images/img8.svg" alt="QuickCart banner"&gt;
+  &lt;/section&gt;
+  &lt;section class="s-sec"&gt;&lt;h3&gt;Trending products&lt;/h3&gt;&lt;div class="s-grid"&gt;&lt;article class="s-card"&gt;&lt;img src="../assets/images/img1.svg" alt="Trail Backpack"&gt;&lt;div class="s-body"&gt;&lt;h4&gt;Trail Backpack&lt;/h4&gt;&lt;p&gt;Water-resistant, 28 litre.&lt;/p&gt;&lt;span class="meta"&gt;$49&lt;/span&gt;&lt;/div&gt;&lt;/article&gt;&lt;article class="s-card"&gt;&lt;img src="../assets/images/img3.svg" alt="Insulated Bottle"&gt;&lt;div class="s-body"&gt;&lt;h4&gt;Insulated Bottle&lt;/h4&gt;&lt;p&gt;Keeps drinks cold for 24 hours.&lt;/p&gt;&lt;span class="meta"&gt;$19&lt;/span&gt;&lt;/div&gt;&lt;/article&gt;&lt;article class="s-card"&gt;&lt;img src="../assets/images/img5.svg" alt="Desk Lamp"&gt;&lt;div class="s-body"&gt;&lt;h4&gt;Desk Lamp&lt;/h4&gt;&lt;p&gt;Warm to cool light, USB powered.&lt;/p&gt;&lt;span class="meta"&gt;$29&lt;/span&gt;&lt;/div&gt;&lt;/article&gt;&lt;article class="s-card"&gt;&lt;img src="../assets/images/img8.svg" alt="Yoga Mat"&gt;&lt;div class="s-body"&gt;&lt;h4&gt;Yoga Mat&lt;/h4&gt;&lt;p&gt;Non-slip, 6 mm thick.&lt;/p&gt;&lt;span class="meta"&gt;$24&lt;/span&gt;&lt;/div&gt;&lt;/article&gt;&lt;/div&gt;&lt;/section&gt;
+  &lt;div class="s-band"&gt;&lt;div&gt;&lt;strong&gt;Free&lt;/strong&gt;Delivery over $50&lt;/div&gt;&lt;div&gt;&lt;strong&gt;30 days&lt;/strong&gt;Easy returns&lt;/div&gt;&lt;div&gt;&lt;strong&gt;24/7&lt;/strong&gt;Customer support&lt;/div&gt;&lt;/div&gt;
+
+  &lt;footer class="s-foot"&gt;&lt;span&gt;&amp;copy; 2026 QuickCart&lt;/span&gt;&lt;span&gt;Privacy &amp;middot; Terms &amp;middot; Contact&lt;/span&gt;&lt;/footer&gt;
+&lt;/div&gt;
+
+/* CSS */
+.demo .site { --p: #1f3a93; --a: #ff7a00; --bg: #f6f8ff; --tx: #151b33; font-family: "Segoe UI", Arial, sans-serif; background: var(--bg); color: var(--tx); border-radius: 10px; overflow: hidden; border: 1px solid #d5dbe6; }
+.demo .site * { box-sizing: border-box; }
+.demo .s-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; padding: .9rem 1.2rem; background: var(--p); color: #fff; }
+.demo .s-brand { font-weight: 800; font-size: 1.25rem; color: #fff; text-decoration: none; }
+.demo .s-top nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+.demo .s-top nav a { color: #fff; text-decoration: none; opacity: .88; }
+.demo .s-top nav a:hover { opacity: 1; text-decoration: underline; }
+.demo .s-hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 1.5rem; align-items: center; padding: 2rem 1.2rem; }
+.demo .s-hero h2 { font-size: clamp(1.6rem, 4vw, 2.5rem); line-height: 1.15; margin: 0 0 .6rem; }
+.demo .s-hero p { margin: 0 0 1rem; max-width: 46ch; }
+.demo .s-hero img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; }
+.demo .s-cta { display: inline-block; background: var(--a); color: #111; font-weight: 700; text-decoration: none; padding: .7rem 1.2rem; border-radius: 8px; }
+.demo .s-cta:hover { filter: brightness(1.08); }
+.demo .s-sec { padding: 1.5rem 1.2rem; }
+.demo .s-alt { background: rgba(0, 0, 0, .04); }
+.demo .s-sec h3 { font-size: 1.4rem; margin: 0 0 1rem; }
+.demo .s-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.demo .s-card { background: #fff; color: #222; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 12px rgba(0, 0, 0, .1); display: flex; flex-direction: column; }
+.demo .s-card img { width: 100%; height: 120px; object-fit: cover; }
+.demo .s-body { padding: .8rem; display: flex; flex-direction: column; gap: .3rem; flex: 1; }
+.demo .s-card h4 { margin: 0; }
+.demo .s-card p { margin: 0; font-size: .9rem; color: #555; flex: 1; }
+.demo .s-card .meta { font-weight: 700; color: var(--p); }
+.demo .s-band { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 1rem; background: var(--p); color: #fff; padding: 1.4rem 1rem; text-align: center; }
+.demo .s-band strong { display: block; font-size: 1.8rem; }
+.demo .s-list { margin: 0; padding-left: 1.2rem; columns: 2 220px; }
+.demo .s-foot { padding: 1rem 1.2rem; background: #111827; color: #cbd5e1; font-size: .9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+@media (max-width: 700px) { .demo .s-hero { grid-template-columns: 1fr; } .demo .s-top { justify-content: center; } }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="restaurant-webpage.html">&larr; Previous</a><a href="travel-website-homepage.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

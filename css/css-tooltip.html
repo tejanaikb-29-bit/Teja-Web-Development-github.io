@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tooltip using CSS | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .tips { display: flex; flex-wrap: wrap; gap: 3rem; padding: 3rem 1rem 2rem; }
+.demo [data-tip] { position: relative; cursor: help; border-bottom: 2px dotted #1769b5; color: #1769b5; font-weight: 600; }
+.demo [data-tip]::after { content: attr(data-tip); position: absolute; bottom: 135%; left: 50%; transform: translateX(-50%) translateY(6px); background: #14213d; color: #fff; padding: .4rem .7rem; border-radius: 6px; font-size: .8rem; font-weight: 400; white-space: nowrap; opacity: 0; visibility: hidden; transition: .2s; }
+.demo [data-tip]::before { content: ""; position: absolute; bottom: 115%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: #14213d; opacity: 0; visibility: hidden; transition: .2s; }
+.demo [data-tip]:hover::after, .demo [data-tip]:focus::after { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.demo [data-tip]:hover::before, .demo [data-tip]:focus::before { opacity: 1; visibility: visible; }
+.demo [data-tip].below::after { bottom: auto; top: 135%; } .demo [data-tip].below::before { bottom: auto; top: 115%; border-top-color: transparent; border-bottom-color: #14213d; }
+.demo button[data-tip] { border: 0; background: #1769b5; color: #fff; padding: .5rem 1rem; border-radius: 8px; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Interactive CSS Components</p>
+      <h1>Tooltip using CSS</h1>
+      <p class="pp-desc">Tooltips built with a data-tip attribute, ::after and attr(). Hover or focus the elements.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="tips">
+        <span data-tip="HyperText Markup Language" tabindex="0">HTML</span>
+        <span data-tip="Cascading Style Sheets" tabindex="0">CSS</span>
+        <span class="below" data-tip="Tooltip shown below" tabindex="0">Below</span>
+        <button data-tip="Save your work">Save</button>
+      </div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="tips"&gt;
+  &lt;span data-tip="HyperText Markup Language" tabindex="0"&gt;HTML&lt;/span&gt;
+  &lt;span data-tip="Cascading Style Sheets" tabindex="0"&gt;CSS&lt;/span&gt;
+  &lt;span class="below" data-tip="Tooltip shown below" tabindex="0"&gt;Below&lt;/span&gt;
+  &lt;button data-tip="Save your work"&gt;Save&lt;/button&gt;
+&lt;/div&gt;
+
+/* CSS */
+.demo .tips { display: flex; flex-wrap: wrap; gap: 3rem; padding: 3rem 1rem 2rem; }
+.demo [data-tip] { position: relative; cursor: help; border-bottom: 2px dotted #1769b5; color: #1769b5; font-weight: 600; }
+.demo [data-tip]::after { content: attr(data-tip); position: absolute; bottom: 135%; left: 50%; transform: translateX(-50%) translateY(6px); background: #14213d; color: #fff; padding: .4rem .7rem; border-radius: 6px; font-size: .8rem; font-weight: 400; white-space: nowrap; opacity: 0; visibility: hidden; transition: .2s; }
+.demo [data-tip]::before { content: ""; position: absolute; bottom: 115%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: #14213d; opacity: 0; visibility: hidden; transition: .2s; }
+.demo [data-tip]:hover::after, .demo [data-tip]:focus::after { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.demo [data-tip]:hover::before, .demo [data-tip]:focus::before { opacity: 1; visibility: visible; }
+.demo [data-tip].below::after { bottom: auto; top: 135%; } .demo [data-tip].below::before { bottom: auto; top: 115%; border-top-color: transparent; border-bottom-color: #14213d; }
+.demo button[data-tip] { border: 0; background: #1769b5; color: #fff; padding: .5rem 1rem; border-radius: 8px; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="image-hover-effects.html">&larr; Previous</a><a href="button-hover-animations.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS lists and tables | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo ul.custom { list-style: none; padding: 0; }
+.demo ul.custom li { padding: .35rem 0 .35rem 1.8rem; position: relative; }
+.demo ul.custom li::before { content: "\2714"; position: absolute; left: 0; color: #178a4a; }
+.demo ol.roman { list-style-type: upper-roman; color: #1769b5; font-weight: 700; }
+.demo ol.roman li span { color: #333; font-weight: 400; }
+.demo ul.sq { list-style: square inside; }
+.demo table.t { border-collapse: collapse; width: 100%; box-shadow: 0 2px 10px rgba(0, 0, 0, .1); }
+.demo table.t caption { padding: .5rem; font-weight: 700; caption-side: top; }
+.demo table.t th { background: #1769b5; color: #fff; padding: .7rem; text-align: left; }
+.demo table.t td { padding: .6rem .7rem; border-bottom: 1px solid #e2e8f4; }
+.demo table.t tr:nth-child(even) td { background: #f3f6fc; }
+.demo table.t tr:hover td { background: #fff2c2; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; CSS Fundamentals</p>
+      <h1>CSS lists and tables</h1>
+      <p class="pp-desc">Custom list markers, a navigation-style list and a striped, hoverable table using border-collapse.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="row" style="align-items:flex-start">
+        <div style="flex:1;min-width:200px"><h3>Custom bullets</h3><ul class="custom"><li>Install VS Code</li><li>Create index.html</li><li>Open in browser</li></ul>
+        <h3>Roman numerals</h3><ol class="roman"><li><span>Introduction</span></li><li><span>Body</span></li><li><span>Conclusion</span></li></ol></div>
+        <div style="flex:2;min-width:280px"><table class="t"><caption>Class Marks</caption>
+          <tr><th>Name</th><th>Subject</th><th>Marks</th></tr>
+          <tr><td>Asha</td><td>Maths</td><td>88</td></tr><tr><td>Ravi</td><td>Physics</td><td>76</td></tr>
+          <tr><td>Meena</td><td>Chemistry</td><td>91</td></tr><tr><td>Kiran</td><td>Biology</td><td>69</td></tr></table></div>
+      </div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row" style="align-items:flex-start"&gt;
+  &lt;div style="flex:1;min-width:200px"&gt;&lt;h3&gt;Custom bullets&lt;/h3&gt;&lt;ul class="custom"&gt;&lt;li&gt;Install VS Code&lt;/li&gt;&lt;li&gt;Create index.html&lt;/li&gt;&lt;li&gt;Open in browser&lt;/li&gt;&lt;/ul&gt;
+  &lt;h3&gt;Roman numerals&lt;/h3&gt;&lt;ol class="roman"&gt;&lt;li&gt;&lt;span&gt;Introduction&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span&gt;Body&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span&gt;Conclusion&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;
+  &lt;div style="flex:2;min-width:280px"&gt;&lt;table class="t"&gt;&lt;caption&gt;Class Marks&lt;/caption&gt;
+    &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Subject&lt;/th&gt;&lt;th&gt;Marks&lt;/th&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Asha&lt;/td&gt;&lt;td&gt;Maths&lt;/td&gt;&lt;td&gt;88&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ravi&lt;/td&gt;&lt;td&gt;Physics&lt;/td&gt;&lt;td&gt;76&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Meena&lt;/td&gt;&lt;td&gt;Chemistry&lt;/td&gt;&lt;td&gt;91&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Kiran&lt;/td&gt;&lt;td&gt;Biology&lt;/td&gt;&lt;td&gt;69&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+/* CSS */
+.demo ul.custom { list-style: none; padding: 0; }
+.demo ul.custom li { padding: .35rem 0 .35rem 1.8rem; position: relative; }
+.demo ul.custom li::before { content: "\2714"; position: absolute; left: 0; color: #178a4a; }
+.demo ol.roman { list-style-type: upper-roman; color: #1769b5; font-weight: 700; }
+.demo ol.roman li span { color: #333; font-weight: 400; }
+.demo ul.sq { list-style: square inside; }
+.demo table.t { border-collapse: collapse; width: 100%; box-shadow: 0 2px 10px rgba(0, 0, 0, .1); }
+.demo table.t caption { padding: .5rem; font-weight: 700; caption-side: top; }
+.demo table.t th { background: #1769b5; color: #fff; padding: .7rem; text-align: left; }
+.demo table.t td { padding: .6rem .7rem; border-bottom: 1px solid #e2e8f4; }
+.demo table.t tr:nth-child(even) td { background: #f3f6fc; }
+.demo table.t tr:hover td { background: #fff2c2; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="pseudo-elements.html">&larr; Previous</a><a href="styled-registration-form.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

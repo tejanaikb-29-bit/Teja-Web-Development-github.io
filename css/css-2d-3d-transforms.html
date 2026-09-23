@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2D and 3D CSS transformations | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .t2d { display: flex; flex-wrap: wrap; gap: 2rem; padding: 1rem 1rem 1.6rem; }
+.demo .t2d div { width: 90px; height: 60px; display: grid; place-items: center; color: #fff; background: #1769b5; font-size: .72rem; font-weight: 700; text-align: center; border-radius: 6px; }
+.demo .t2d div:nth-child(1) { transform: translate(15px, 10px); } .demo .t2d div:nth-child(2) { transform: rotate(-15deg); background: #d9481f; }
+.demo .t2d div:nth-child(3) { transform: scale(1.3); background: #178a4a; } .demo .t2d div:nth-child(4) { transform: skew(-20deg, 5deg); background: #7b2cbf; }
+.demo .t3d { display: flex; flex-wrap: wrap; gap: 2.5rem; padding: 1rem; align-items: center; }
+.demo .persp { perspective: 500px; }
+.demo .rx { width: 110px; height: 70px; background: #d98a00; color: #fff; display: grid; place-items: center; font-weight: 700; transform: rotateY(40deg) rotateX(15deg); }
+.demo .flip { width: 150px; height: 100px; perspective: 600px; }
+.demo .flip-in { position: relative; width: 100%; height: 100%; transition: transform .7s; transform-style: preserve-3d; }
+.demo .flip:hover .flip-in { transform: rotateY(180deg); }
+.demo .flip-in div { position: absolute; inset: 0; display: grid; place-items: center; border-radius: 10px; font-weight: 700; color: #fff; backface-visibility: hidden; }
+.demo .front { background: #1769b5; } .demo .back { background: #178a4a; transform: rotateY(180deg); }
+.demo .scene { width: 100px; height: 100px; perspective: 400px; margin: 0 1.5rem; }
+.demo .cube { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; animation: spincube 9s linear infinite; }
+.demo .cube div { position: absolute; width: 100px; height: 100px; display: grid; place-items: center; color: #fff; font-weight: 700; opacity: .92; border: 1px solid #fff; }
+.demo .cube div:nth-child(1) { transform: translateZ(50px); background: #d9481f; } .demo .cube div:nth-child(2) { transform: rotateY(90deg) translateZ(50px); background: #1769b5; }
+.demo .cube div:nth-child(3) { transform: rotateY(180deg) translateZ(50px); background: #178a4a; } .demo .cube div:nth-child(4) { transform: rotateY(-90deg) translateZ(50px); background: #7b2cbf; }
+.demo .cube div:nth-child(5) { transform: rotateX(90deg) translateZ(50px); background: #d98a00; } .demo .cube div:nth-child(6) { transform: rotateX(-90deg) translateZ(50px); background: #14213d; }
+@keyframes spincube { to { transform: rotateX(360deg) rotateY(360deg); } }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Transitions, Transforms &amp; Animation</p>
+      <h1>2D and 3D CSS transformations</h1>
+      <p class="pp-desc">2D: translate, rotate, scale, skew. 3D: rotateX/Y with perspective, a flip card (hover it) and a spinning cube.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <h3>2D transforms</h3>
+      <div class="t2d"><div>translate</div><div>rotate</div><div>scale</div><div>skew</div></div>
+      <h3>3D transforms</h3>
+      <div class="t3d">
+        <div class="persp"><div class="rx">rotateY + rotateX</div></div>
+        <div class="flip"><div class="flip-in"><div class="front">Hover to flip</div><div class="back">Back side</div></div></div>
+        <div class="scene"><div class="cube"><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div></div></div>
+      </div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;h3&gt;2D transforms&lt;/h3&gt;
+&lt;div class="t2d"&gt;&lt;div&gt;translate&lt;/div&gt;&lt;div&gt;rotate&lt;/div&gt;&lt;div&gt;scale&lt;/div&gt;&lt;div&gt;skew&lt;/div&gt;&lt;/div&gt;
+&lt;h3&gt;3D transforms&lt;/h3&gt;
+&lt;div class="t3d"&gt;
+  &lt;div class="persp"&gt;&lt;div class="rx"&gt;rotateY + rotateX&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="flip"&gt;&lt;div class="flip-in"&gt;&lt;div class="front"&gt;Hover to flip&lt;/div&gt;&lt;div class="back"&gt;Back side&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="scene"&gt;&lt;div class="cube"&gt;&lt;div&gt;1&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;&lt;div&gt;4&lt;/div&gt;&lt;div&gt;5&lt;/div&gt;&lt;div&gt;6&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+/* CSS */
+.demo .t2d { display: flex; flex-wrap: wrap; gap: 2rem; padding: 1rem 1rem 1.6rem; }
+.demo .t2d div { width: 90px; height: 60px; display: grid; place-items: center; color: #fff; background: #1769b5; font-size: .72rem; font-weight: 700; text-align: center; border-radius: 6px; }
+.demo .t2d div:nth-child(1) { transform: translate(15px, 10px); } .demo .t2d div:nth-child(2) { transform: rotate(-15deg); background: #d9481f; }
+.demo .t2d div:nth-child(3) { transform: scale(1.3); background: #178a4a; } .demo .t2d div:nth-child(4) { transform: skew(-20deg, 5deg); background: #7b2cbf; }
+.demo .t3d { display: flex; flex-wrap: wrap; gap: 2.5rem; padding: 1rem; align-items: center; }
+.demo .persp { perspective: 500px; }
+.demo .rx { width: 110px; height: 70px; background: #d98a00; color: #fff; display: grid; place-items: center; font-weight: 700; transform: rotateY(40deg) rotateX(15deg); }
+.demo .flip { width: 150px; height: 100px; perspective: 600px; }
+.demo .flip-in { position: relative; width: 100%; height: 100%; transition: transform .7s; transform-style: preserve-3d; }
+.demo .flip:hover .flip-in { transform: rotateY(180deg); }
+.demo .flip-in div { position: absolute; inset: 0; display: grid; place-items: center; border-radius: 10px; font-weight: 700; color: #fff; backface-visibility: hidden; }
+.demo .front { background: #1769b5; } .demo .back { background: #178a4a; transform: rotateY(180deg); }
+.demo .scene { width: 100px; height: 100px; perspective: 400px; margin: 0 1.5rem; }
+.demo .cube { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; animation: spincube 9s linear infinite; }
+.demo .cube div { position: absolute; width: 100px; height: 100px; display: grid; place-items: center; color: #fff; font-weight: 700; opacity: .92; border: 1px solid #fff; }
+.demo .cube div:nth-child(1) { transform: translateZ(50px); background: #d9481f; } .demo .cube div:nth-child(2) { transform: rotateY(90deg) translateZ(50px); background: #1769b5; }
+.demo .cube div:nth-child(3) { transform: rotateY(180deg) translateZ(50px); background: #178a4a; } .demo .cube div:nth-child(4) { transform: rotateY(-90deg) translateZ(50px); background: #7b2cbf; }
+.demo .cube div:nth-child(5) { transform: rotateX(90deg) translateZ(50px); background: #d98a00; } .demo .cube div:nth-child(6) { transform: rotateX(-90deg) translateZ(50px); background: #14213d; }
+@keyframes spincube { to { transform: rotateX(360deg) rotateY(360deg); } }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="css-transitions.html">&larr; Previous</a><a href="keyframe-animations.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

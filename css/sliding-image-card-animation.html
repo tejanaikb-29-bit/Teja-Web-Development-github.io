@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sliding image and card animation | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .marq { overflow: hidden; border-radius: 10px; background: #14213d; padding: .6rem 0; }
+.demo .strip { display: flex; gap: .6rem; width: max-content; animation: slide 30s linear infinite; }
+.demo .marq:hover .strip { animation-play-state: paused; }
+.demo .strip img { width: 180px; height: 110px; object-fit: cover; border-radius: 8px; }
+@keyframes slide { to { transform: translateX(calc(-50% - .3rem)); } }
+.demo .cs { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.2rem; }
+.demo .cs div { flex: 1 1 150px; padding: 1.1rem; border-radius: 10px; color: #fff; font-weight: 700; animation: cardin 5s ease-in-out infinite both; }
+.demo .cs div:nth-child(1) { background: #d9481f; } .demo .cs div:nth-child(2) { background: #1769b5; animation-delay: .35s; } .demo .cs div:nth-child(3) { background: #178a4a; animation-delay: .7s; }
+@keyframes cardin { 0% { opacity: 0; transform: translateX(-70px); } 15%, 80% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(70px); } }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Transitions, Transforms &amp; Animation</p>
+      <h1>Sliding image and card animation</h1>
+      <p class="pp-desc">An endlessly scrolling image strip (pauses on hover) and cards that slide in one after another.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="marq"><div class="strip"><img src="../assets/images/img1.svg" alt="Slide 1"><img src="../assets/images/img2.svg" alt="Slide 2"><img src="../assets/images/img3.svg" alt="Slide 3"><img src="../assets/images/img4.svg" alt="Slide 4"><img src="../assets/images/img5.svg" alt="Slide 5"><img src="../assets/images/img6.svg" alt="Slide 6"><img src="../assets/images/img7.svg" alt="Slide 7"><img src="../assets/images/img8.svg" alt="Slide 8"><img src="../assets/images/img1.svg" alt="Slide 1"><img src="../assets/images/img2.svg" alt="Slide 2"><img src="../assets/images/img3.svg" alt="Slide 3"><img src="../assets/images/img4.svg" alt="Slide 4"><img src="../assets/images/img5.svg" alt="Slide 5"><img src="../assets/images/img6.svg" alt="Slide 6"><img src="../assets/images/img7.svg" alt="Slide 7"><img src="../assets/images/img8.svg" alt="Slide 8"></div></div><div class="cs"><div>Card one</div><div>Card two</div><div>Card three</div></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="marq"&gt;&lt;div class="strip"&gt;&lt;img src="../assets/images/img1.svg" alt="Slide 1"&gt;&lt;img src="../assets/images/img2.svg" alt="Slide 2"&gt;&lt;img src="../assets/images/img3.svg" alt="Slide 3"&gt;&lt;img src="../assets/images/img4.svg" alt="Slide 4"&gt;&lt;img src="../assets/images/img5.svg" alt="Slide 5"&gt;&lt;img src="../assets/images/img6.svg" alt="Slide 6"&gt;&lt;img src="../assets/images/img7.svg" alt="Slide 7"&gt;&lt;img src="../assets/images/img8.svg" alt="Slide 8"&gt;&lt;img src="../assets/images/img1.svg" alt="Slide 1"&gt;&lt;img src="../assets/images/img2.svg" alt="Slide 2"&gt;&lt;img src="../assets/images/img3.svg" alt="Slide 3"&gt;&lt;img src="../assets/images/img4.svg" alt="Slide 4"&gt;&lt;img src="../assets/images/img5.svg" alt="Slide 5"&gt;&lt;img src="../assets/images/img6.svg" alt="Slide 6"&gt;&lt;img src="../assets/images/img7.svg" alt="Slide 7"&gt;&lt;img src="../assets/images/img8.svg" alt="Slide 8"&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="cs"&gt;&lt;div&gt;Card one&lt;/div&gt;&lt;div&gt;Card two&lt;/div&gt;&lt;div&gt;Card three&lt;/div&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .marq { overflow: hidden; border-radius: 10px; background: #14213d; padding: .6rem 0; }
+.demo .strip { display: flex; gap: .6rem; width: max-content; animation: slide 30s linear infinite; }
+.demo .marq:hover .strip { animation-play-state: paused; }
+.demo .strip img { width: 180px; height: 110px; object-fit: cover; border-radius: 8px; }
+@keyframes slide { to { transform: translateX(calc(-50% - .3rem)); } }
+.demo .cs { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.2rem; }
+.demo .cs div { flex: 1 1 150px; padding: 1.1rem; border-radius: 10px; color: #fff; font-weight: 700; animation: cardin 5s ease-in-out infinite both; }
+.demo .cs div:nth-child(1) { background: #d9481f; } .demo .cs div:nth-child(2) { background: #1769b5; animation-delay: .35s; } .demo .cs div:nth-child(3) { background: #178a4a; animation-delay: .7s; }
+@keyframes cardin { 0% { opacity: 0; transform: translateX(-70px); } 15%, 80% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(70px); } }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="loading-spinners.html">&larr; Previous</a><a href="css-only-modal.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card-based layout using Flexbox | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .fcs { display: flex; flex-wrap: wrap; gap: 1rem; }
+.demo .fc { flex: 1 1 200px; display: flex; flex-direction: column; background: #fff; border: 1px solid #dbe2ef; border-radius: 12px; overflow: hidden; }
+.demo .fc img { width: 100%; height: 110px; object-fit: cover; }
+.demo .fc div { padding: .8rem; flex: 1; } .demo .fc h4 { margin: 0 0 .3rem; } .demo .fc p { margin: 0; color: #55637d; font-size: .9rem; }
+.demo .fc a { margin: 0 .8rem .8rem; padding: .5rem; text-align: center; background: #1769b5; color: #fff; border-radius: 8px; text-decoration: none; font-weight: 600; }
+.demo .fc a:hover { background: #124f8a; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Layouts with Flexbox &amp; Grid</p>
+      <h1>Card-based layout using Flexbox</h1>
+      <p class="pp-desc">Cards share the row equally, wrap when space runs out, keep equal heights and pin the link to the bottom.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="fcs"><article class="fc"><img src="../assets/images/img2.svg" alt="HTML"><div><h4>HTML</h4><p>Structure your content with tags.</p></div><a href="#">Read more</a></article><article class="fc"><img src="../assets/images/img3.svg" alt="CSS"><div><h4>CSS</h4><p>Style and lay it out beautifully.</p></div><a href="#">Read more</a></article><article class="fc"><img src="../assets/images/img4.svg" alt="JavaScript"><div><h4>JavaScript</h4><p>Add behaviour and logic to the page. This card has a longer description to show equal heights.</p></div><a href="#">Read more</a></article><article class="fc"><img src="../assets/images/img5.svg" alt="Git"><div><h4>Git</h4><p>Track every change in your project.</p></div><a href="#">Read more</a></article></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="fcs"&gt;&lt;article class="fc"&gt;&lt;img src="../assets/images/img2.svg" alt="HTML"&gt;&lt;div&gt;&lt;h4&gt;HTML&lt;/h4&gt;&lt;p&gt;Structure your content with tags.&lt;/p&gt;&lt;/div&gt;&lt;a href="#"&gt;Read more&lt;/a&gt;&lt;/article&gt;&lt;article class="fc"&gt;&lt;img src="../assets/images/img3.svg" alt="CSS"&gt;&lt;div&gt;&lt;h4&gt;CSS&lt;/h4&gt;&lt;p&gt;Style and lay it out beautifully.&lt;/p&gt;&lt;/div&gt;&lt;a href="#"&gt;Read more&lt;/a&gt;&lt;/article&gt;&lt;article class="fc"&gt;&lt;img src="../assets/images/img4.svg" alt="JavaScript"&gt;&lt;div&gt;&lt;h4&gt;JavaScript&lt;/h4&gt;&lt;p&gt;Add behaviour and logic to the page. This card has a longer description to show equal heights.&lt;/p&gt;&lt;/div&gt;&lt;a href="#"&gt;Read more&lt;/a&gt;&lt;/article&gt;&lt;article class="fc"&gt;&lt;img src="../assets/images/img5.svg" alt="Git"&gt;&lt;div&gt;&lt;h4&gt;Git&lt;/h4&gt;&lt;p&gt;Track every change in your project.&lt;/p&gt;&lt;/div&gt;&lt;a href="#"&gt;Read more&lt;/a&gt;&lt;/article&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .fcs { display: flex; flex-wrap: wrap; gap: 1rem; }
+.demo .fc { flex: 1 1 200px; display: flex; flex-direction: column; background: #fff; border: 1px solid #dbe2ef; border-radius: 12px; overflow: hidden; }
+.demo .fc img { width: 100%; height: 110px; object-fit: cover; }
+.demo .fc div { padding: .8rem; flex: 1; } .demo .fc h4 { margin: 0 0 .3rem; } .demo .fc p { margin: 0; color: #55637d; font-size: .9rem; }
+.demo .fc a { margin: 0 .8rem .8rem; padding: .5rem; text-align: center; background: #1769b5; color: #fff; border-radius: 8px; text-decoration: none; font-weight: 600; }
+.demo .fc a:hover { background: #124f8a; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="responsive-image-gallery.html">&larr; Previous</a><a href="grid-dashboard-layout.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio website with multiple sections | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .pf { --bg: #ffffff; --tx: #1c2437; --ac: #1769b5; --card: #f1f4fa; background: var(--bg); color: var(--tx); border-radius: 10px; padding: 0 1.2rem 1rem; }
+.demo .pf a { color: var(--ac); }
+.demo .pf-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; padding: 1rem 0; border-bottom: 1px solid rgba(128, 128, 128, .35); }
+.demo .pf-top nav { display: flex; gap: 1rem; }
+.demo .pf-top nav a { text-decoration: none; }
+.demo .pf-hero { display: flex; gap: 1.4rem; align-items: center; flex-wrap: wrap; padding: 1.8rem 0; }
+.demo .pf-hero img { width: 120px; height: 120px; border-radius: 50%; border: 5px solid var(--ac); }
+.demo .pf-hero h2 { margin: 0 0 .3rem; font-size: clamp(1.5rem, 4vw, 2.2rem); }
+.demo .pf-hero p { margin: 0 0 .8rem; opacity: .85; }
+.demo .pf-btn { display: inline-block; background: var(--ac); color: var(--bg) !important; padding: .55rem 1.1rem; border-radius: 8px; font-weight: 700; text-decoration: none; }
+.demo .pf section { padding: .6rem 0 1rem; }
+.demo .pf h3 { margin: 0 0 .6rem; border-left: 5px solid var(--ac); padding-left: .6rem; }
+.demo .pf-bar { display: grid; grid-template-columns: 110px 1fr 44px; gap: .6rem; align-items: center; margin: .4rem 0; }
+.demo .pf-bar div { height: 10px; background: rgba(128, 128, 128, .3); border-radius: 6px; overflow: hidden; }
+.demo .pf-bar i { display: block; height: 100%; background: var(--ac); }
+.demo .pf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+.demo .pf-card { background: var(--card); border-radius: 10px; padding: .7rem; }
+.demo .pf-card img { width: 100%; height: 100px; object-fit: cover; border-radius: 6px; }
+.demo .pf-card h4 { margin: .5rem 0 .2rem; }
+.demo .pf-card p { margin: 0; font-size: .9rem; opacity: .85; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Responsive Pages &amp; Websites</p>
+      <h1>Portfolio website with multiple sections</h1>
+      <p class="pp-desc">A light-themed portfolio with navigation links to About, Skills, Projects and Contact sections built with HTML and CSS.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="pf">
+        <header class="pf-top"><strong>Meera Nair</strong><nav><a href="#pf-about">About</a><a href="#pf-skills">Skills</a><a href="#pf-projects">Projects</a><a href="#pf-contact">Contact</a></nav></header>
+        <section class="pf-hero" id="pf-home">
+          <img src="../assets/images/avatar.svg" alt="Meera Nair">
+          <div><h2>Hi, I'm Meera Nair</h2><p>Web designer &amp; developer. I build friendly, accessible websites.</p><a class="pf-btn" href="#pf-projects">See my work</a></div>
+        </section>
+        <section id="pf-about"><h3>About</h3><p>I turn ideas into clean, responsive web pages. I like learning by building small projects and improving them every week.</p></section>
+        <section id="pf-skills"><h3>Skills</h3><div class="pf-bar"><span>HTML5</span><div><i style="width:90%"></i></div><b>90%</b></div><div class="pf-bar"><span>CSS3</span><div><i style="width:85%"></i></div><b>85%</b></div><div class="pf-bar"><span>JavaScript</span><div><i style="width:75%"></i></div><b>75%</b></div><div class="pf-bar"><span>Git & GitHub</span><div><i style="width:65%"></i></div><b>65%</b></div></section>
+        <section id="pf-projects"><h3>Projects</h3><div class="pf-grid"><article class="pf-card"><img src="../assets/images/img1.svg" alt="Weather Dashboard"><h4>Weather Dashboard</h4><p>Live weather using a public API.</p></article><article class="pf-card"><img src="../assets/images/img3.svg" alt="Expense Tracker"><h4>Expense Tracker</h4><p>Track income and spending.</p></article><article class="pf-card"><img src="../assets/images/img5.svg" alt="Quiz Game"><h4>Quiz Game</h4><p>Timed multiple-choice quiz.</p></article></div></section>
+        <section id="pf-contact"><h3>Contact</h3><p>Email <a href="mailto:hello@example.com">hello@example.com</a> &middot; Chennai, India</p></section>
+      </div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="pf"&gt;
+  &lt;header class="pf-top"&gt;&lt;strong&gt;Meera Nair&lt;/strong&gt;&lt;nav&gt;&lt;a href="#pf-about"&gt;About&lt;/a&gt;&lt;a href="#pf-skills"&gt;Skills&lt;/a&gt;&lt;a href="#pf-projects"&gt;Projects&lt;/a&gt;&lt;a href="#pf-contact"&gt;Contact&lt;/a&gt;&lt;/nav&gt;&lt;/header&gt;
+  &lt;section class="pf-hero" id="pf-home"&gt;
+    &lt;img src="../assets/images/avatar.svg" alt="Meera Nair"&gt;
+    &lt;div&gt;&lt;h2&gt;Hi, I'm Meera Nair&lt;/h2&gt;&lt;p&gt;Web designer &amp;amp; developer. I build friendly, accessible websites.&lt;/p&gt;&lt;a class="pf-btn" href="#pf-projects"&gt;See my work&lt;/a&gt;&lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section id="pf-about"&gt;&lt;h3&gt;About&lt;/h3&gt;&lt;p&gt;I turn ideas into clean, responsive web pages. I like learning by building small projects and improving them every week.&lt;/p&gt;&lt;/section&gt;
+  &lt;section id="pf-skills"&gt;&lt;h3&gt;Skills&lt;/h3&gt;&lt;div class="pf-bar"&gt;&lt;span&gt;HTML5&lt;/span&gt;&lt;div&gt;&lt;i style="width:90%"&gt;&lt;/i&gt;&lt;/div&gt;&lt;b&gt;90%&lt;/b&gt;&lt;/div&gt;&lt;div class="pf-bar"&gt;&lt;span&gt;CSS3&lt;/span&gt;&lt;div&gt;&lt;i style="width:85%"&gt;&lt;/i&gt;&lt;/div&gt;&lt;b&gt;85%&lt;/b&gt;&lt;/div&gt;&lt;div class="pf-bar"&gt;&lt;span&gt;JavaScript&lt;/span&gt;&lt;div&gt;&lt;i style="width:75%"&gt;&lt;/i&gt;&lt;/div&gt;&lt;b&gt;75%&lt;/b&gt;&lt;/div&gt;&lt;div class="pf-bar"&gt;&lt;span&gt;Git &amp; GitHub&lt;/span&gt;&lt;div&gt;&lt;i style="width:65%"&gt;&lt;/i&gt;&lt;/div&gt;&lt;b&gt;65%&lt;/b&gt;&lt;/div&gt;&lt;/section&gt;
+  &lt;section id="pf-projects"&gt;&lt;h3&gt;Projects&lt;/h3&gt;&lt;div class="pf-grid"&gt;&lt;article class="pf-card"&gt;&lt;img src="../assets/images/img1.svg" alt="Weather Dashboard"&gt;&lt;h4&gt;Weather Dashboard&lt;/h4&gt;&lt;p&gt;Live weather using a public API.&lt;/p&gt;&lt;/article&gt;&lt;article class="pf-card"&gt;&lt;img src="../assets/images/img3.svg" alt="Expense Tracker"&gt;&lt;h4&gt;Expense Tracker&lt;/h4&gt;&lt;p&gt;Track income and spending.&lt;/p&gt;&lt;/article&gt;&lt;article class="pf-card"&gt;&lt;img src="../assets/images/img5.svg" alt="Quiz Game"&gt;&lt;h4&gt;Quiz Game&lt;/h4&gt;&lt;p&gt;Timed multiple-choice quiz.&lt;/p&gt;&lt;/article&gt;&lt;/div&gt;&lt;/section&gt;
+  &lt;section id="pf-contact"&gt;&lt;h3&gt;Contact&lt;/h3&gt;&lt;p&gt;Email &lt;a href="mailto:hello@example.com"&gt;hello@example.com&lt;/a&gt; &amp;middot; Chennai, India&lt;/p&gt;&lt;/section&gt;
+&lt;/div&gt;
+
+/* CSS */
+.demo .pf { --bg: #ffffff; --tx: #1c2437; --ac: #1769b5; --card: #f1f4fa; background: var(--bg); color: var(--tx); border-radius: 10px; padding: 0 1.2rem 1rem; }
+.demo .pf a { color: var(--ac); }
+.demo .pf-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; padding: 1rem 0; border-bottom: 1px solid rgba(128, 128, 128, .35); }
+.demo .pf-top nav { display: flex; gap: 1rem; }
+.demo .pf-top nav a { text-decoration: none; }
+.demo .pf-hero { display: flex; gap: 1.4rem; align-items: center; flex-wrap: wrap; padding: 1.8rem 0; }
+.demo .pf-hero img { width: 120px; height: 120px; border-radius: 50%; border: 5px solid var(--ac); }
+.demo .pf-hero h2 { margin: 0 0 .3rem; font-size: clamp(1.5rem, 4vw, 2.2rem); }
+.demo .pf-hero p { margin: 0 0 .8rem; opacity: .85; }
+.demo .pf-btn { display: inline-block; background: var(--ac); color: var(--bg) !important; padding: .55rem 1.1rem; border-radius: 8px; font-weight: 700; text-decoration: none; }
+.demo .pf section { padding: .6rem 0 1rem; }
+.demo .pf h3 { margin: 0 0 .6rem; border-left: 5px solid var(--ac); padding-left: .6rem; }
+.demo .pf-bar { display: grid; grid-template-columns: 110px 1fr 44px; gap: .6rem; align-items: center; margin: .4rem 0; }
+.demo .pf-bar div { height: 10px; background: rgba(128, 128, 128, .3); border-radius: 6px; overflow: hidden; }
+.demo .pf-bar i { display: block; height: 100%; background: var(--ac); }
+.demo .pf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+.demo .pf-card { background: var(--card); border-radius: 10px; padding: .7rem; }
+.demo .pf-card img { width: 100%; height: 100px; object-fit: cover; border-radius: 6px; }
+.demo .pf-card h4 { margin: .5rem 0 .2rem; }
+.demo .pf-card p { margin: 0; font-size: .9rem; opacity: .85; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="news-blog-grid-layout.html">&larr; Previous</a><a href="grid-template-areas.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

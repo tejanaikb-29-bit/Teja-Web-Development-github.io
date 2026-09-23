@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Styled navigation bar | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .nav { display: flex; align-items: center; list-style: none; margin: 0; padding: 0 .5rem; background: #14213d; border-radius: 8px; flex-wrap: wrap; }
+.demo .nav a { display: block; padding: 1rem 1.1rem; color: #dbe3f0; text-decoration: none; font-weight: 600; border-bottom: 4px solid transparent; transition: .2s; }
+.demo .nav a:hover { color: #fff; background: #1f3160; border-bottom-color: #f2c200; }
+.demo .nav a.active { color: #14213d; background: #f2c200; }
+.demo .nav .right { margin-left: auto; }
+.demo .nav .brand { font-size: 1.15rem; color: #f2c200; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; CSS Fundamentals</p>
+      <h1>Styled navigation bar</h1>
+      <p class="pp-desc">A horizontal navigation bar with hover effect, an active link and a right-aligned item, built with Flexbox.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <ul class="nav">
+        <li><a class="brand" href="#">MyCollege</a></li>
+        <li><a class="active" href="#">Home</a></li><li><a href="#">Courses</a></li><li><a href="#">Faculty</a></li><li><a href="#">Contact</a></li>
+        <li class="right"><a href="#">Login</a></li>
+      </ul>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;ul class="nav"&gt;
+  &lt;li&gt;&lt;a class="brand" href="#"&gt;MyCollege&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a class="active" href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="#"&gt;Courses&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="#"&gt;Faculty&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="right"&gt;&lt;a href="#"&gt;Login&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+/* CSS */
+.demo .nav { display: flex; align-items: center; list-style: none; margin: 0; padding: 0 .5rem; background: #14213d; border-radius: 8px; flex-wrap: wrap; }
+.demo .nav a { display: block; padding: 1rem 1.1rem; color: #dbe3f0; text-decoration: none; font-weight: 600; border-bottom: 4px solid transparent; transition: .2s; }
+.demo .nav a:hover { color: #fff; background: #1f3160; border-bottom-color: #f2c200; }
+.demo .nav a.active { color: #14213d; background: #f2c200; }
+.demo .nav .right { margin-left: auto; }
+.demo .nav .brand { font-size: 1.15rem; color: #f2c200; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="float-clear.html">&larr; Previous</a><a href="pseudo-classes.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

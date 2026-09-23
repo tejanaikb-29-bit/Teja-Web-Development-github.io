@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>object-fit and object-position | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .ofg { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+.demo .ofg figure { margin: 0; } .demo .ofb { width: 160px; height: 110px; border: 2px solid #14213d; background: #eef2fb; }
+.demo .ofb img { width: 100%; height: 100%; display: block; }
+.demo .ofg figcaption { font: 600 .78rem Consolas, monospace; color: #55637d; margin-top: .25rem; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Interactive CSS Components</p>
+      <h1>object-fit and object-position</h1>
+      <p class="pp-desc">How an image fills a fixed 160x110 box: fill, contain, cover, none and scale-down, then different focal points.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="ofg"><figure><div class="ofb"><img src="../assets/images/img1.svg" alt="fill" style="object-fit:fill"></div><figcaption>object-fit: fill</figcaption></figure><figure><div class="ofb"><img src="../assets/images/img1.svg" alt="contain" style="object-fit:contain"></div><figcaption>object-fit: contain</figcaption></figure><figure><div class="ofb"><img src="../assets/images/img1.svg" alt="cover" style="object-fit:cover"></div><figcaption>object-fit: cover</figcaption></figure><figure><div class="ofb"><img src="../assets/images/img1.svg" alt="none" style="object-fit:none"></div><figcaption>object-fit: none</figcaption></figure><figure><div class="ofb"><img src="../assets/images/img1.svg" alt="scale-down" style="object-fit:scale-down"></div><figcaption>object-fit: scale-down</figcaption></figure></div><div class="ofg"><figure><div class="ofb"><img src="../assets/images/img1.svg" alt="left top" style="object-fit:cover;object-position:left top"></div><figcaption>object-position: left top</figcaption></figure><figure><div class="ofb"><img src="../assets/images/img1.svg" alt="center" style="object-fit:cover;object-position:center"></div><figcaption>object-position: center</figcaption></figure><figure><div class="ofb"><img src="../assets/images/img1.svg" alt="right bottom" style="object-fit:cover;object-position:right bottom"></div><figcaption>object-position: right bottom</figcaption></figure></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="ofg"&gt;&lt;figure&gt;&lt;div class="ofb"&gt;&lt;img src="../assets/images/img1.svg" alt="fill" style="object-fit:fill"&gt;&lt;/div&gt;&lt;figcaption&gt;object-fit: fill&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;div class="ofb"&gt;&lt;img src="../assets/images/img1.svg" alt="contain" style="object-fit:contain"&gt;&lt;/div&gt;&lt;figcaption&gt;object-fit: contain&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;div class="ofb"&gt;&lt;img src="../assets/images/img1.svg" alt="cover" style="object-fit:cover"&gt;&lt;/div&gt;&lt;figcaption&gt;object-fit: cover&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;div class="ofb"&gt;&lt;img src="../assets/images/img1.svg" alt="none" style="object-fit:none"&gt;&lt;/div&gt;&lt;figcaption&gt;object-fit: none&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;div class="ofb"&gt;&lt;img src="../assets/images/img1.svg" alt="scale-down" style="object-fit:scale-down"&gt;&lt;/div&gt;&lt;figcaption&gt;object-fit: scale-down&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;&lt;div class="ofg"&gt;&lt;figure&gt;&lt;div class="ofb"&gt;&lt;img src="../assets/images/img1.svg" alt="left top" style="object-fit:cover;object-position:left top"&gt;&lt;/div&gt;&lt;figcaption&gt;object-position: left top&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;div class="ofb"&gt;&lt;img src="../assets/images/img1.svg" alt="center" style="object-fit:cover;object-position:center"&gt;&lt;/div&gt;&lt;figcaption&gt;object-position: center&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;div class="ofb"&gt;&lt;img src="../assets/images/img1.svg" alt="right bottom" style="object-fit:cover;object-position:right bottom"&gt;&lt;/div&gt;&lt;figcaption&gt;object-position: right bottom&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .ofg { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+.demo .ofg figure { margin: 0; } .demo .ofb { width: 160px; height: 110px; border: 2px solid #14213d; background: #eef2fb; }
+.demo .ofb img { width: 100%; height: 100%; display: block; }
+.demo .ofg figcaption { font: 600 .78rem Consolas, monospace; color: #55637d; margin-top: .25rem; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="css-filters.html">&larr; Previous</a><a href="responsive-image-gallery.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transitions and transformations | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .tr { display: flex; flex-wrap: wrap; gap: 1.4rem; padding: 1rem; }
+.demo .tb { width: 110px; height: 110px; display: grid; place-items: center; text-align: center; color: #fff; font-weight: 700; border-radius: 10px; font-size: .85rem; transition: transform .5s ease, background-color .5s, box-shadow .5s; }
+.demo .t1 { background: #1769b5; } .demo .t1:hover { transform: scale(1.25); box-shadow: 0 10px 20px rgba(0, 0, 0, .3); }
+.demo .t2 { background: #d9481f; } .demo .t2:hover { transform: rotate(180deg); }
+.demo .t3 { background: #178a4a; } .demo .t3:hover { transform: translateY(-18px); }
+.demo .t4 { background: #7b2cbf; } .demo .t4:hover { transform: skewX(-20deg); }
+.demo .t5 { background: #14213d; } .demo .t5:hover { transform: rotate(15deg) scale(1.15) translateX(10px); background: #d98a00; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Flexbox, Grid, Responsive Design &amp; Animation</p>
+      <h1>Transitions and transformations</h1>
+      <p class="pp-desc">Hover each box: transform functions (scale, rotate, translate, skew) animate smoothly using transition.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="tr"><div class="tb t1">scale(1.25)</div><div class="tb t2">rotate(180deg)</div><div class="tb t3">translateY(-18px)</div><div class="tb t4">skewX(-20deg)</div><div class="tb t5">combined</div></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="tr"&gt;&lt;div class="tb t1"&gt;scale(1.25)&lt;/div&gt;&lt;div class="tb t2"&gt;rotate(180deg)&lt;/div&gt;&lt;div class="tb t3"&gt;translateY(-18px)&lt;/div&gt;&lt;div class="tb t4"&gt;skewX(-20deg)&lt;/div&gt;&lt;div class="tb t5"&gt;combined&lt;/div&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .tr { display: flex; flex-wrap: wrap; gap: 1.4rem; padding: 1rem; }
+.demo .tb { width: 110px; height: 110px; display: grid; place-items: center; text-align: center; color: #fff; font-weight: 700; border-radius: 10px; font-size: .85rem; transition: transform .5s ease, background-color .5s, box-shadow .5s; }
+.demo .t1 { background: #1769b5; } .demo .t1:hover { transform: scale(1.25); box-shadow: 0 10px 20px rgba(0, 0, 0, .3); }
+.demo .t2 { background: #d9481f; } .demo .t2:hover { transform: rotate(180deg); }
+.demo .t3 { background: #178a4a; } .demo .t3:hover { transform: translateY(-18px); }
+.demo .t4 { background: #7b2cbf; } .demo .t4:hover { transform: skewX(-20deg); }
+.demo .t5 { background: #14213d; } .demo .t5:hover { transform: rotate(15deg) scale(1.15) translateX(10px); background: #d98a00; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="media-queries.html">&larr; Previous</a><a href="css-animations.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

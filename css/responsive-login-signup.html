@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive login and signup page | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .auth { display: grid; grid-template-columns: 1fr 1.1fr; border-radius: 14px; overflow: hidden; border: 1px solid #ccd5e6; min-height: 430px; }
+.demo .brand-side { background: linear-gradient(rgba(20, 33, 61, .78), rgba(20, 33, 61, .78)), url("../assets/images/img5.svg") center / cover; color: #fff; padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
+.demo .brand-side h3 { font-size: 1.7rem; margin: 0 0 .6rem; }
+.demo .form-side { padding: 1.6rem; background: #fff; }
+.demo .form-side > input[type=radio] { display: none; }
+.demo .tabs { display: flex; margin-bottom: 1.2rem; border-bottom: 2px solid #e2e8f4; }
+.demo .tabs label { flex: 1; text-align: center; padding: .7rem; cursor: pointer; font-weight: 700; color: #55637d; border-bottom: 4px solid transparent; margin-bottom: -2px; }
+.demo #tab-login:checked ~ .tabs label[for="tab-login"], .demo #tab-signup:checked ~ .tabs label[for="tab-signup"] { color: #1769b5; border-bottom-color: #1769b5; }
+.demo #tab-login:checked ~ .f-signup, .demo #tab-signup:checked ~ .f-login { display: none; }
+.demo .form-side input:not([type=radio]) { width: 100%; padding: .7rem .85rem; margin-bottom: .8rem; border: 2px solid #dbe2ef; border-radius: 8px; }
+.demo .form-side input:focus { outline: 0; border-color: #1769b5; }
+.demo .form-side button { width: 100%; padding: .8rem; background: #1769b5; border-radius: 8px; font-weight: 700; }
+@media (max-width: 680px) { .demo .auth { grid-template-columns: 1fr; } .demo .brand-side { padding: 1.2rem; } }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Responsive Pages &amp; Websites</p>
+      <h1>Responsive login and signup page</h1>
+      <p class="pp-desc">A split-screen page: a branding panel plus a Login / Sign up form switched with CSS only (radio buttons). Stacks on small screens.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="auth">
+        <aside class="brand-side"><h3>Welcome to StudyHub</h3><p>Join thousands of students learning to code, one small project at a time.</p></aside>
+        <div class="form-side">
+          <input type="radio" name="authtab" id="tab-login" checked><input type="radio" name="authtab" id="tab-signup">
+          <div class="tabs"><label for="tab-login">Login</label><label for="tab-signup">Sign up</label></div>
+          <form class="f-login" onsubmit="return false"><input type="email" placeholder="Email"><input type="password" placeholder="Password"><button>Login</button></form>
+          <form class="f-signup" onsubmit="return false"><input type="text" placeholder="Full name"><input type="email" placeholder="Email"><input type="password" placeholder="Create password"><button>Create account</button></form>
+        </div>
+      </div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="auth"&gt;
+  &lt;aside class="brand-side"&gt;&lt;h3&gt;Welcome to StudyHub&lt;/h3&gt;&lt;p&gt;Join thousands of students learning to code, one small project at a time.&lt;/p&gt;&lt;/aside&gt;
+  &lt;div class="form-side"&gt;
+    &lt;input type="radio" name="authtab" id="tab-login" checked&gt;&lt;input type="radio" name="authtab" id="tab-signup"&gt;
+    &lt;div class="tabs"&gt;&lt;label for="tab-login"&gt;Login&lt;/label&gt;&lt;label for="tab-signup"&gt;Sign up&lt;/label&gt;&lt;/div&gt;
+    &lt;form class="f-login" onsubmit="return false"&gt;&lt;input type="email" placeholder="Email"&gt;&lt;input type="password" placeholder="Password"&gt;&lt;button&gt;Login&lt;/button&gt;&lt;/form&gt;
+    &lt;form class="f-signup" onsubmit="return false"&gt;&lt;input type="text" placeholder="Full name"&gt;&lt;input type="email" placeholder="Email"&gt;&lt;input type="password" placeholder="Create password"&gt;&lt;button&gt;Create account&lt;/button&gt;&lt;/form&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+/* CSS */
+.demo .auth { display: grid; grid-template-columns: 1fr 1.1fr; border-radius: 14px; overflow: hidden; border: 1px solid #ccd5e6; min-height: 430px; }
+.demo .brand-side { background: linear-gradient(rgba(20, 33, 61, .78), rgba(20, 33, 61, .78)), url("../assets/images/img5.svg") center / cover; color: #fff; padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
+.demo .brand-side h3 { font-size: 1.7rem; margin: 0 0 .6rem; }
+.demo .form-side { padding: 1.6rem; background: #fff; }
+.demo .form-side &gt; input[type=radio] { display: none; }
+.demo .tabs { display: flex; margin-bottom: 1.2rem; border-bottom: 2px solid #e2e8f4; }
+.demo .tabs label { flex: 1; text-align: center; padding: .7rem; cursor: pointer; font-weight: 700; color: #55637d; border-bottom: 4px solid transparent; margin-bottom: -2px; }
+.demo #tab-login:checked ~ .tabs label[for="tab-login"], .demo #tab-signup:checked ~ .tabs label[for="tab-signup"] { color: #1769b5; border-bottom-color: #1769b5; }
+.demo #tab-login:checked ~ .f-signup, .demo #tab-signup:checked ~ .f-login { display: none; }
+.demo .form-side input:not([type=radio]) { width: 100%; padding: .7rem .85rem; margin-bottom: .8rem; border: 2px solid #dbe2ef; border-radius: 8px; }
+.demo .form-side input:focus { outline: 0; border-color: #1769b5; }
+.demo .form-side button { width: 100%; padding: .8rem; background: #1769b5; border-radius: 8px; font-weight: 700; }
+@media (max-width: 680px) { .demo .auth { grid-template-columns: 1fr; } .demo .brand-side { padding: 1.2rem; } }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="responsive-footer.html">&larr; Previous</a><a href="responsive-contact-form.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

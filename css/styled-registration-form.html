@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Styled registration form | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .rf { max-width: 460px; margin: 0 auto; padding: 1.5rem; border: 1px solid #d5dbe6; border-top: 6px solid #1769b5; border-radius: 10px; background: #fff; }
+.demo .rf h3 { margin-top: 0; text-align: center; color: #14213d; }
+.demo .rf label.t { display: block; font-weight: 600; margin: .9rem 0 .3rem; }
+.demo .rf input[type=text], .demo .rf input[type=email], .demo .rf input[type=password], .demo .rf select { width: 100%; padding: .65rem .8rem; border: 2px solid #ccd5e6; border-radius: 8px; transition: border-color .2s, box-shadow .2s; }
+.demo .rf input:focus, .demo .rf select:focus { outline: 0; border-color: #1769b5; box-shadow: 0 0 0 4px rgba(23, 105, 181, .18); }
+.demo .rf .pills { display: flex; gap: .5rem; margin-top: .3rem; }
+.demo .rf .pills input { position: absolute; opacity: 0; }
+.demo .rf .pills span { display: block; padding: .45rem 1rem; border: 2px solid #ccd5e6; border-radius: 999px; cursor: pointer; }
+.demo .rf .pills input:checked + span { background: #1769b5; color: #fff; border-color: #1769b5; }
+.demo .rf .pills input:focus-visible + span { outline: 3px solid #f2c200; }
+.demo .rf button { width: 100%; margin-top: 1.4rem; padding: .8rem; background: #1769b5; color: #fff; border: 0; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; }
+.demo .rf button:hover { background: #124f8a; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; CSS Fundamentals</p>
+      <h1>Styled registration form</h1>
+      <p class="pp-desc">A clean registration form with focus effects, styled radio buttons and a full-width submit button.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <form class="rf" onsubmit="return false">
+        <h3>Create your account</h3>
+        <label class="t" for="n1">Full name</label><input type="text" id="n1" placeholder="Your name">
+        <label class="t" for="e1">Email</label><input type="email" id="e1" placeholder="you@example.com">
+        <label class="t" for="p1">Password</label><input type="password" id="p1" placeholder="At least 8 characters">
+        <label class="t" for="c1">Course</label><select id="c1"><option>BCA</option><option>B.Sc CS</option><option>B.Com</option></select>
+        <label class="t">Gender</label>
+        <div class="pills"><label><input type="radio" name="g" checked><span>Male</span></label><label><input type="radio" name="g"><span>Female</span></label><label><input type="radio" name="g"><span>Other</span></label></div>
+        <button type="submit">Register</button>
+      </form>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;form class="rf" onsubmit="return false"&gt;
+  &lt;h3&gt;Create your account&lt;/h3&gt;
+  &lt;label class="t" for="n1"&gt;Full name&lt;/label&gt;&lt;input type="text" id="n1" placeholder="Your name"&gt;
+  &lt;label class="t" for="e1"&gt;Email&lt;/label&gt;&lt;input type="email" id="e1" placeholder="you@example.com"&gt;
+  &lt;label class="t" for="p1"&gt;Password&lt;/label&gt;&lt;input type="password" id="p1" placeholder="At least 8 characters"&gt;
+  &lt;label class="t" for="c1"&gt;Course&lt;/label&gt;&lt;select id="c1"&gt;&lt;option&gt;BCA&lt;/option&gt;&lt;option&gt;B.Sc CS&lt;/option&gt;&lt;option&gt;B.Com&lt;/option&gt;&lt;/select&gt;
+  &lt;label class="t"&gt;Gender&lt;/label&gt;
+  &lt;div class="pills"&gt;&lt;label&gt;&lt;input type="radio" name="g" checked&gt;&lt;span&gt;Male&lt;/span&gt;&lt;/label&gt;&lt;label&gt;&lt;input type="radio" name="g"&gt;&lt;span&gt;Female&lt;/span&gt;&lt;/label&gt;&lt;label&gt;&lt;input type="radio" name="g"&gt;&lt;span&gt;Other&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;
+  &lt;button type="submit"&gt;Register&lt;/button&gt;
+&lt;/form&gt;
+
+/* CSS */
+.demo .rf { max-width: 460px; margin: 0 auto; padding: 1.5rem; border: 1px solid #d5dbe6; border-top: 6px solid #1769b5; border-radius: 10px; background: #fff; }
+.demo .rf h3 { margin-top: 0; text-align: center; color: #14213d; }
+.demo .rf label.t { display: block; font-weight: 600; margin: .9rem 0 .3rem; }
+.demo .rf input[type=text], .demo .rf input[type=email], .demo .rf input[type=password], .demo .rf select { width: 100%; padding: .65rem .8rem; border: 2px solid #ccd5e6; border-radius: 8px; transition: border-color .2s, box-shadow .2s; }
+.demo .rf input:focus, .demo .rf select:focus { outline: 0; border-color: #1769b5; box-shadow: 0 0 0 4px rgba(23, 105, 181, .18); }
+.demo .rf .pills { display: flex; gap: .5rem; margin-top: .3rem; }
+.demo .rf .pills input { position: absolute; opacity: 0; }
+.demo .rf .pills span { display: block; padding: .45rem 1rem; border: 2px solid #ccd5e6; border-radius: 999px; cursor: pointer; }
+.demo .rf .pills input:checked + span { background: #1769b5; color: #fff; border-color: #1769b5; }
+.demo .rf .pills input:focus-visible + span { outline: 3px solid #f2c200; }
+.demo .rf button { width: 100%; margin-top: 1.4rem; padding: .8rem; background: #1769b5; color: #fff; border: 0; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; }
+.demo .rf button:hover { background: #124f8a; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="css-lists-tables.html">&larr; Previous</a><a href="flexbox-demo.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

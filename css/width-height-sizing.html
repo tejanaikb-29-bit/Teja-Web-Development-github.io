@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Width, height and sizing properties | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .s { background: #2b59c3; color: #fff; padding: .6rem; margin-bottom: .5rem; border-radius: 6px; }
+.demo .px { width: 300px; } .demo .pc { width: 60%; } .demo .em { width: 20em; } .demo .vw { width: 40vw; }
+.demo .mm { width: 100%; max-width: 420px; min-width: 200px; background: #178a4a; }
+.demo .tall { height: 90px; width: 50%; background: #d9481f; }
+.demo .ar { width: 50%; aspect-ratio: 16 / 9; background: #14213d; }
+.demo .fit { width: fit-content; background: #d98a00; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; CSS Fundamentals</p>
+      <h1>Width, height and sizing properties</h1>
+      <p class="pp-desc">Fixed and relative units, min/max limits, percentage widths, viewport units and aspect-ratio.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="s px">width: 300px</div><div class="s pc">width: 60%</div><div class="s em">width: 20em</div><div class="s vw">width: 40vw</div>
+      <div class="s mm">width:100%; max-width:420px; min-width:200px</div>
+      <div class="s tall">height: 90px; width: 50%</div>
+      <div class="s ar">aspect-ratio: 16 / 9</div>
+      <div class="s fit">width: fit-content</div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="s px"&gt;width: 300px&lt;/div&gt;&lt;div class="s pc"&gt;width: 60%&lt;/div&gt;&lt;div class="s em"&gt;width: 20em&lt;/div&gt;&lt;div class="s vw"&gt;width: 40vw&lt;/div&gt;
+&lt;div class="s mm"&gt;width:100%; max-width:420px; min-width:200px&lt;/div&gt;
+&lt;div class="s tall"&gt;height: 90px; width: 50%&lt;/div&gt;
+&lt;div class="s ar"&gt;aspect-ratio: 16 / 9&lt;/div&gt;
+&lt;div class="s fit"&gt;width: fit-content&lt;/div&gt;
+
+/* CSS */
+.demo .s { background: #2b59c3; color: #fff; padding: .6rem; margin-bottom: .5rem; border-radius: 6px; }
+.demo .px { width: 300px; } .demo .pc { width: 60%; } .demo .em { width: 20em; } .demo .vw { width: 40vw; }
+.demo .mm { width: 100%; max-width: 420px; min-width: 200px; background: #178a4a; }
+.demo .tall { height: 90px; width: 50%; background: #d9481f; }
+.demo .ar { width: 50%; aspect-ratio: 16 / 9; background: #14213d; }
+.demo .fit { width: fit-content; background: #d98a00; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="box-model.html">&larr; Previous</a><a href="css-positioning.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

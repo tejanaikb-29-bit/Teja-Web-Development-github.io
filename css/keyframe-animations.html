@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyframe animations | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .ka { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; margin-bottom: 1.4rem; }
+.demo .morph { width: 70px; height: 70px; background: #d9481f; animation: morph 4s ease-in-out infinite; }
+@keyframes morph { 0% { border-radius: 0; background: #d9481f; transform: rotate(0); } 33% { border-radius: 50%; background: #1769b5; transform: rotate(120deg); } 66% { border-radius: 50% 0; background: #178a4a; transform: rotate(240deg) scale(1.2); } 100% { border-radius: 0; background: #d9481f; transform: rotate(360deg); } }
+.demo .type { font: 700 1.3rem "Courier New", monospace; width: 25ch; white-space: nowrap; overflow: hidden; border-right: 3px solid #14213d; animation: typing 3s steps(25) infinite alternate, caret .6s step-end infinite; }
+@keyframes typing { from { width: 0; } to { width: 25ch; } } @keyframes caret { 50% { border-color: transparent; } }
+.demo .bar { width: 100%; max-width: 320px; height: 16px; background: #e2e8f4; border-radius: 8px; overflow: hidden; }
+.demo .bar i { display: block; height: 100%; background: linear-gradient(90deg, #178a4a, #5eead4); animation: fill 3s ease-in-out infinite; }
+@keyframes fill { 0% { width: 0; } 70%, 100% { width: 100%; } }
+.demo .dots { display: flex; gap: .5rem; } .demo .dots i { width: 18px; height: 18px; border-radius: 50%; background: #7b2cbf; animation: jump .9s ease-in-out infinite; }
+.demo .dots i:nth-child(2) { animation-delay: .15s; } .demo .dots i:nth-child(3) { animation-delay: .3s; } .demo .dots i:nth-child(4) { animation-delay: .45s; }
+@keyframes jump { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Transitions, Transforms &amp; Animation</p>
+      <h1>Keyframe animations</h1>
+      <p class="pp-desc">Multi-step @keyframes: a morphing shape, a typing effect with steps(), a progress bar and staggered dots using animation-delay.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="ka"><div class="morph"></div><div class="type">Hello, I am learning CSS!</div></div>
+      <div class="ka"><div class="bar"><i></i></div><div class="dots"><i></i><i></i><i></i><i></i></div></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="ka"&gt;&lt;div class="morph"&gt;&lt;/div&gt;&lt;div class="type"&gt;Hello, I am learning CSS!&lt;/div&gt;&lt;/div&gt;
+&lt;div class="ka"&gt;&lt;div class="bar"&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;&lt;div class="dots"&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .ka { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; margin-bottom: 1.4rem; }
+.demo .morph { width: 70px; height: 70px; background: #d9481f; animation: morph 4s ease-in-out infinite; }
+@keyframes morph { 0% { border-radius: 0; background: #d9481f; transform: rotate(0); } 33% { border-radius: 50%; background: #1769b5; transform: rotate(120deg); } 66% { border-radius: 50% 0; background: #178a4a; transform: rotate(240deg) scale(1.2); } 100% { border-radius: 0; background: #d9481f; transform: rotate(360deg); } }
+.demo .type { font: 700 1.3rem "Courier New", monospace; width: 25ch; white-space: nowrap; overflow: hidden; border-right: 3px solid #14213d; animation: typing 3s steps(25) infinite alternate, caret .6s step-end infinite; }
+@keyframes typing { from { width: 0; } to { width: 25ch; } } @keyframes caret { 50% { border-color: transparent; } }
+.demo .bar { width: 100%; max-width: 320px; height: 16px; background: #e2e8f4; border-radius: 8px; overflow: hidden; }
+.demo .bar i { display: block; height: 100%; background: linear-gradient(90deg, #178a4a, #5eead4); animation: fill 3s ease-in-out infinite; }
+@keyframes fill { 0% { width: 0; } 70%, 100% { width: 100%; } }
+.demo .dots { display: flex; gap: .5rem; } .demo .dots i { width: 18px; height: 18px; border-radius: 50%; background: #7b2cbf; animation: jump .9s ease-in-out infinite; }
+.demo .dots i:nth-child(2) { animation-delay: .15s; } .demo .dots i:nth-child(3) { animation-delay: .3s; } .demo .dots i:nth-child(4) { animation-delay: .45s; }
+@keyframes jump { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="css-2d-3d-transforms.html">&larr; Previous</a><a href="loading-spinners.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

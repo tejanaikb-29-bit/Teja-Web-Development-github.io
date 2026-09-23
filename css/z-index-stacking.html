@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>z-index and stacking order | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .zs { position: relative; height: 210px; margin-bottom: 1rem; }
+.demo .zb { position: absolute; width: 130px; height: 100px; color: #fff; font-weight: 700; padding: .5rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, .3); }
+.demo .z1 { background: #d9481f; left: 10px; top: 10px; z-index: 1; }
+.demo .z2 { background: #1769b5; left: 70px; top: 50px; z-index: 3; }
+.demo .z3 { background: #178a4a; left: 130px; top: 90px; z-index: 2; }
+.demo .z4 { background: #7b2cbf; left: 190px; top: 30px; z-index: -1; }
+.demo .ctx { position: relative; height: 130px; }
+.demo .ctx .parent1 { position: absolute; z-index: 1; left: 0; top: 0; width: 200px; height: 110px; background: #f2c200; padding: .4rem; }
+.demo .ctx .parent1 .child { position: absolute; z-index: 9999; left: 60px; top: 50px; width: 130px; height: 60px; background: #14213d; color: #fff; padding: .3rem; }
+.demo .ctx .parent2 { position: absolute; z-index: 2; left: 120px; top: 30px; width: 200px; height: 90px; background: #0f6b5c; color: #fff; padding: .4rem; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Backgrounds, Effects &amp; Display</p>
+      <h1>z-index and stacking order</h1>
+      <p class="pp-desc">Overlapping positioned boxes. The box with the highest z-index is drawn on top; a click-free demo of stacking contexts.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <h3>z-index order: 3 &gt; 2 &gt; 1 &gt; -1</h3>
+      <div class="zs"><div class="zb z1">z-index: 1</div><div class="zb z2">z-index: 3 (top)</div><div class="zb z3">z-index: 2</div><div class="zb z4">z-index: -1</div></div>
+      <h3>Stacking context: a child cannot escape its parent's level</h3>
+      <div class="ctx"><div class="parent1">parent z-index: 1<div class="child">child z-index: 9999</div></div><div class="parent2">parent z-index: 2 (covers the child)</div></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;h3&gt;z-index order: 3 &amp;gt; 2 &amp;gt; 1 &amp;gt; -1&lt;/h3&gt;
+&lt;div class="zs"&gt;&lt;div class="zb z1"&gt;z-index: 1&lt;/div&gt;&lt;div class="zb z2"&gt;z-index: 3 (top)&lt;/div&gt;&lt;div class="zb z3"&gt;z-index: 2&lt;/div&gt;&lt;div class="zb z4"&gt;z-index: -1&lt;/div&gt;&lt;/div&gt;
+&lt;h3&gt;Stacking context: a child cannot escape its parent's level&lt;/h3&gt;
+&lt;div class="ctx"&gt;&lt;div class="parent1"&gt;parent z-index: 1&lt;div class="child"&gt;child z-index: 9999&lt;/div&gt;&lt;/div&gt;&lt;div class="parent2"&gt;parent z-index: 2 (covers the child)&lt;/div&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .zs { position: relative; height: 210px; margin-bottom: 1rem; }
+.demo .zb { position: absolute; width: 130px; height: 100px; color: #fff; font-weight: 700; padding: .5rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, .3); }
+.demo .z1 { background: #d9481f; left: 10px; top: 10px; z-index: 1; }
+.demo .z2 { background: #1769b5; left: 70px; top: 50px; z-index: 3; }
+.demo .z3 { background: #178a4a; left: 130px; top: 90px; z-index: 2; }
+.demo .z4 { background: #7b2cbf; left: 190px; top: 30px; z-index: -1; }
+.demo .ctx { position: relative; height: 130px; }
+.demo .ctx .parent1 { position: absolute; z-index: 1; left: 0; top: 0; width: 200px; height: 110px; background: #f2c200; padding: .4rem; }
+.demo .ctx .parent1 .child { position: absolute; z-index: 9999; left: 60px; top: 50px; width: 130px; height: 60px; background: #14213d; color: #fff; padding: .3rem; }
+.demo .ctx .parent2 { position: absolute; z-index: 2; left: 120px; top: 30px; width: 200px; height: 90px; background: #0f6b5c; color: #fff; padding: .4rem; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="overflow-properties.html">&larr; Previous</a><a href="display-properties.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

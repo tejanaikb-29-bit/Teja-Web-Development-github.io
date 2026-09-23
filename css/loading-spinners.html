@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading spinner animations | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .sp { display: flex; flex-wrap: wrap; gap: 2.4rem; align-items: center; padding: 1rem; }
+.demo .s1 { width: 48px; height: 48px; border: 6px solid #dbe2ef; border-top-color: #1769b5; border-radius: 50%; animation: rot 0.9s linear infinite; }
+.demo .s2 { display: flex; gap: 6px; } .demo .s2 i { width: 14px; height: 14px; background: #d9481f; border-radius: 50%; animation: pop 1s infinite ease-in-out both; }
+.demo .s2 i:nth-child(1) { animation-delay: -.32s; } .demo .s2 i:nth-child(2) { animation-delay: -.16s; }
+.demo .s3 { width: 48px; height: 48px; border-radius: 50%; background: #178a4a; animation: ping 1.2s ease-out infinite; }
+.demo .s4 { display: flex; gap: 4px; align-items: center; height: 48px; } .demo .s4 i { width: 7px; height: 100%; background: #7b2cbf; animation: eq 1s ease-in-out infinite; }
+.demo .s4 i:nth-child(2) { animation-delay: .1s; } .demo .s4 i:nth-child(3) { animation-delay: .2s; } .demo .s4 i:nth-child(4) { animation-delay: .3s; } .demo .s4 i:nth-child(5) { animation-delay: .4s; }
+.demo .s5 { width: 48px; height: 48px; border-radius: 50%; border: 5px solid transparent; border-top-color: #14213d; border-bottom-color: #f2c200; animation: rot 1.1s linear infinite; }
+@keyframes rot { to { transform: rotate(360deg); } }
+@keyframes pop { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+@keyframes ping { 0% { transform: scale(.2); opacity: 1; } 100% { transform: scale(1); opacity: 0; } }
+@keyframes eq { 0%, 100% { transform: scaleY(.25); } 50% { transform: scaleY(1); } }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Transitions, Transforms &amp; Animation</p>
+      <h1>Loading spinner animations</h1>
+      <p class="pp-desc">Five spinners built only with CSS: ring, dots, pulse, bars and a dual ring.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="sp"><div class="s1"></div><div class="s2"><i></i><i></i><i></i></div><div class="s3"></div><div class="s4"><i></i><i></i><i></i><i></i><i></i></div><div class="s5"></div></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="sp"&gt;&lt;div class="s1"&gt;&lt;/div&gt;&lt;div class="s2"&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;&lt;div class="s3"&gt;&lt;/div&gt;&lt;div class="s4"&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;&lt;div class="s5"&gt;&lt;/div&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .sp { display: flex; flex-wrap: wrap; gap: 2.4rem; align-items: center; padding: 1rem; }
+.demo .s1 { width: 48px; height: 48px; border: 6px solid #dbe2ef; border-top-color: #1769b5; border-radius: 50%; animation: rot 0.9s linear infinite; }
+.demo .s2 { display: flex; gap: 6px; } .demo .s2 i { width: 14px; height: 14px; background: #d9481f; border-radius: 50%; animation: pop 1s infinite ease-in-out both; }
+.demo .s2 i:nth-child(1) { animation-delay: -.32s; } .demo .s2 i:nth-child(2) { animation-delay: -.16s; }
+.demo .s3 { width: 48px; height: 48px; border-radius: 50%; background: #178a4a; animation: ping 1.2s ease-out infinite; }
+.demo .s4 { display: flex; gap: 4px; align-items: center; height: 48px; } .demo .s4 i { width: 7px; height: 100%; background: #7b2cbf; animation: eq 1s ease-in-out infinite; }
+.demo .s4 i:nth-child(2) { animation-delay: .1s; } .demo .s4 i:nth-child(3) { animation-delay: .2s; } .demo .s4 i:nth-child(4) { animation-delay: .3s; } .demo .s4 i:nth-child(5) { animation-delay: .4s; }
+.demo .s5 { width: 48px; height: 48px; border-radius: 50%; border: 5px solid transparent; border-top-color: #14213d; border-bottom-color: #f2c200; animation: rot 1.1s linear infinite; }
+@keyframes rot { to { transform: rotate(360deg); } }
+@keyframes pop { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+@keyframes ping { 0% { transform: scale(.2); opacity: 1; } 100% { transform: scale(1); opacity: 0; } }
+@keyframes eq { 0%, 100% { transform: scaleY(.25); } 50% { transform: scaleY(1); } }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="keyframe-animations.html">&larr; Previous</a><a href="sliding-image-card-animation.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

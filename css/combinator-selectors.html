@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Combinator selectors: descendant, child, adjacent sibling, general sibling | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .cb { border: 1px solid #ccd5e6; border-radius: 8px; padding: .6rem .8rem; margin-bottom: .8rem; }
+.demo .cb code { display: block; margin-bottom: .4rem; color: #55637d; }
+.demo .cb p, .demo .cb section, .demo .cb h5 { margin: .25rem 0; padding: .15rem .4rem; border: 1px dotted #b9c3d6; }
+.demo .d1 div p { background: #cfe3ff; }            /* descendant: p anywhere inside div */
+.demo .d2 div > p { background: #ffe0b8; }          /* child: only direct children */
+.demo .d3 h5 + p { background: #c9f0d5; }           /* adjacent sibling: first p right after h5 */
+.demo .d4 h5 ~ p { background: #e8d5ff; }           /* general sibling: all p after h5 */
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Inheritance, Selectors &amp; Variables</p>
+      <h1>Combinator selectors: descendant, child, adjacent sibling, general sibling</h1>
+      <p class="pp-desc">Four boxes show how space, &gt;, + and ~ select different elements in the same HTML structure.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="cb d1"><code>div p { }  (descendant)</code><div><p>child p &#10003;</p><section><p>grandchild p &#10003;</p></section></div></div>
+      <div class="cb d2"><code>div &gt; p { }  (child)</code><div><p>child p &#10003;</p><section><p>grandchild p &#10007;</p></section></div></div>
+      <div class="cb d3"><code>h5 + p { }  (adjacent sibling)</code><h5>Heading</h5><p>first p after h5 &#10003;</p><p>second p &#10007;</p></div>
+      <div class="cb d4"><code>h5 ~ p { }  (general sibling)</code><p>p before the h5 &#10007;</p><h5>Heading</h5><p>p after h5 &#10003;</p><p>another p after h5 &#10003;</p></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="cb d1"&gt;&lt;code&gt;div p { }  (descendant)&lt;/code&gt;&lt;div&gt;&lt;p&gt;child p &amp;#10003;&lt;/p&gt;&lt;section&gt;&lt;p&gt;grandchild p &amp;#10003;&lt;/p&gt;&lt;/section&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="cb d2"&gt;&lt;code&gt;div &amp;gt; p { }  (child)&lt;/code&gt;&lt;div&gt;&lt;p&gt;child p &amp;#10003;&lt;/p&gt;&lt;section&gt;&lt;p&gt;grandchild p &amp;#10007;&lt;/p&gt;&lt;/section&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="cb d3"&gt;&lt;code&gt;h5 + p { }  (adjacent sibling)&lt;/code&gt;&lt;h5&gt;Heading&lt;/h5&gt;&lt;p&gt;first p after h5 &amp;#10003;&lt;/p&gt;&lt;p&gt;second p &amp;#10007;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="cb d4"&gt;&lt;code&gt;h5 ~ p { }  (general sibling)&lt;/code&gt;&lt;p&gt;p before the h5 &amp;#10007;&lt;/p&gt;&lt;h5&gt;Heading&lt;/h5&gt;&lt;p&gt;p after h5 &amp;#10003;&lt;/p&gt;&lt;p&gt;another p after h5 &amp;#10003;&lt;/p&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .cb { border: 1px solid #ccd5e6; border-radius: 8px; padding: .6rem .8rem; margin-bottom: .8rem; }
+.demo .cb code { display: block; margin-bottom: .4rem; color: #55637d; }
+.demo .cb p, .demo .cb section, .demo .cb h5 { margin: .25rem 0; padding: .15rem .4rem; border: 1px dotted #b9c3d6; }
+.demo .d1 div p { background: #cfe3ff; }            /* descendant: p anywhere inside div */
+.demo .d2 div &gt; p { background: #ffe0b8; }          /* child: only direct children */
+.demo .d3 h5 + p { background: #c9f0d5; }           /* adjacent sibling: first p right after h5 */
+.demo .d4 h5 ~ p { background: #e8d5ff; }           /* general sibling: all p after h5 */</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="selector-types.html">&larr; Previous</a><a href="css-variables.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

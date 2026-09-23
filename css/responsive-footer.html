@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive footer | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .ft { background: #14213d; color: #c9d3e6; padding: 1.6rem 1.2rem 1rem; border-radius: 10px; }
+.demo .ft-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
+.demo .ft h4 { color: #fff; margin: 0 0 .6rem; } .demo .ft ul { list-style: none; margin: 0; padding: 0; }
+.demo .ft li { margin: .3rem 0; } .demo .ft a { color: #c9d3e6; text-decoration: none; } .demo .ft a:hover { color: #f2c200; text-decoration: underline; }
+.demo .ft-bottom { margin-top: 1.2rem; padding-top: .8rem; border-top: 1px solid rgba(255, 255, 255, .2); display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; font-size: .88rem; }
+@media (max-width: 800px) { .demo .ft-cols { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .demo .ft-cols { grid-template-columns: 1fr; } .demo .ft-bottom { justify-content: center; text-align: center; } }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Sticky, Fixed &amp; Footer</p>
+      <h1>Responsive footer</h1>
+      <p class="pp-desc">A four-column footer that becomes two columns on tablets and one column on phones.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <footer class="ft"><div class="ft-cols">
+        <div><h4>MyCollege</h4><p>Quality education since 1985.</p></div>
+        <div><h4>Courses</h4><ul><li><a href="#">B.Sc</a></li><li><a href="#">BCA</a></li><li><a href="#">B.Com</a></li></ul></div>
+        <div><h4>Links</h4><ul><li><a href="#">Admissions</a></li><li><a href="#">Library</a></li><li><a href="#">Careers</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li>Chennai, India</li><li>+91 98765 43210</li><li>info@example.com</li></ul></div></div>
+        <div class="ft-bottom"><span>&copy; 2026 MyCollege</span><span>Privacy &middot; Terms</span></div></footer>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;footer class="ft"&gt;&lt;div class="ft-cols"&gt;
+  &lt;div&gt;&lt;h4&gt;MyCollege&lt;/h4&gt;&lt;p&gt;Quality education since 1985.&lt;/p&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;h4&gt;Courses&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="#"&gt;B.Sc&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="#"&gt;BCA&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="#"&gt;B.Com&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;h4&gt;Links&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="#"&gt;Admissions&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="#"&gt;Library&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="#"&gt;Careers&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;h4&gt;Contact&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;Chennai, India&lt;/li&gt;&lt;li&gt;+91 98765 43210&lt;/li&gt;&lt;li&gt;info@example.com&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="ft-bottom"&gt;&lt;span&gt;&amp;copy; 2026 MyCollege&lt;/span&gt;&lt;span&gt;Privacy &amp;middot; Terms&lt;/span&gt;&lt;/div&gt;&lt;/footer&gt;
+
+/* CSS */
+.demo .ft { background: #14213d; color: #c9d3e6; padding: 1.6rem 1.2rem 1rem; border-radius: 10px; }
+.demo .ft-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
+.demo .ft h4 { color: #fff; margin: 0 0 .6rem; } .demo .ft ul { list-style: none; margin: 0; padding: 0; }
+.demo .ft li { margin: .3rem 0; } .demo .ft a { color: #c9d3e6; text-decoration: none; } .demo .ft a:hover { color: #f2c200; text-decoration: underline; }
+.demo .ft-bottom { margin-top: 1.2rem; padding-top: .8rem; border-top: 1px solid rgba(255, 255, 255, .2); display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; font-size: .88rem; }
+@media (max-width: 800px) { .demo .ft-cols { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .demo .ft-cols { grid-template-columns: 1fr; } .demo .ft-bottom { justify-content: center; text-align: center; } }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="fixed-sidebar.html">&larr; Previous</a><a href="responsive-login-signup.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,9 @@
+/* External stylesheet (linked with <link rel="stylesheet">) */
+.ext-box {
+  background: #e8f0ff;
+  border: 2px solid #2b59c3;
+  border-radius: 10px;
+  padding: 1rem;
+  color: #14213d;
+}
+.ext-box h3 { margin-top: 0; color: #2b59c3; }

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News / blog webpage layout using CSS Grid | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .news { display: grid; grid-template-columns: 3fr 1fr; gap: 1.2rem; }
+.demo .arts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+.demo .art img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; display: block; }
+.demo .art h4 { margin: .5rem 0 .2rem; } .demo .art p { margin: 0; color: #55637d; font-size: .9rem; } .demo .art small { color: #1769b5; font-weight: 700; }
+.demo .feat { grid-column: 1 / -1; display: grid; grid-template-columns: 1.2fr 1fr; gap: 1rem; align-items: center; background: #14213d; color: #fff; border-radius: 12px; padding: 1rem; }
+.demo .feat img { height: 200px; } .demo .feat p { color: #c9d3e6; } .demo .feat small { color: #f2c200; }
+.demo .trend { background: #f1f4fa; border-radius: 12px; padding: 1rem; align-self: start; }
+.demo .trend h4 { margin: 0 0 .6rem; } .demo .trend ol { margin: 0; padding-left: 1.2rem; } .demo .trend li { margin: .5rem 0; }
+@media (max-width: 760px) { .demo .news, .demo .feat, .demo .arts { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Responsive Pages &amp; Websites</p>
+      <h1>News / blog webpage layout using CSS Grid</h1>
+      <p class="pp-desc">A newspaper-style layout: a featured story, a grid of smaller articles and a trending sidebar.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="news"><div class="arts">
+        <article class="art feat"><img src="../assets/images/img1.svg" alt="Feature"><div><small>Top story</small><h3 style="margin:.2rem 0">Students build weather station from recycled parts</h3><p>A first-year team combined sensors and a tiny web server to publish live data for the whole campus.</p></div></article>
+        <article class="art"><img src="../assets/images/img3.svg" alt="Sports"><small>Sports</small><h4>Coastal cup final this weekend</h4><p>Both teams are unbeaten this season.</p></article>
+        <article class="art"><img src="../assets/images/img4.svg" alt="Nature"><small>Nature</small><h4>Forest trail reopens</h4><p>New signs and safer bridges installed.</p></article>
+        <article class="art"><img src="../assets/images/img5.svg" alt="Science"><small>Science</small><h4>Night sky festival returns</h4><p>Free telescopes for all visitors.</p></article>
+        <article class="art"><img src="../assets/images/img7.svg" alt="Food"><small>Lifestyle</small><h4>Farmers' market moves indoors</h4><p>Open every Saturday morning.</p></article></div>
+        <aside class="trend"><h4>Trending</h4><ol><li>Coding club wins state hackathon</li><li>New library hours announced</li><li>Ten study tips that work</li><li>Campus cafe adds vegan menu</li></ol></aside></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="news"&gt;&lt;div class="arts"&gt;
+  &lt;article class="art feat"&gt;&lt;img src="../assets/images/img1.svg" alt="Feature"&gt;&lt;div&gt;&lt;small&gt;Top story&lt;/small&gt;&lt;h3 style="margin:.2rem 0"&gt;Students build weather station from recycled parts&lt;/h3&gt;&lt;p&gt;A first-year team combined sensors and a tiny web server to publish live data for the whole campus.&lt;/p&gt;&lt;/div&gt;&lt;/article&gt;
+  &lt;article class="art"&gt;&lt;img src="../assets/images/img3.svg" alt="Sports"&gt;&lt;small&gt;Sports&lt;/small&gt;&lt;h4&gt;Coastal cup final this weekend&lt;/h4&gt;&lt;p&gt;Both teams are unbeaten this season.&lt;/p&gt;&lt;/article&gt;
+  &lt;article class="art"&gt;&lt;img src="../assets/images/img4.svg" alt="Nature"&gt;&lt;small&gt;Nature&lt;/small&gt;&lt;h4&gt;Forest trail reopens&lt;/h4&gt;&lt;p&gt;New signs and safer bridges installed.&lt;/p&gt;&lt;/article&gt;
+  &lt;article class="art"&gt;&lt;img src="../assets/images/img5.svg" alt="Science"&gt;&lt;small&gt;Science&lt;/small&gt;&lt;h4&gt;Night sky festival returns&lt;/h4&gt;&lt;p&gt;Free telescopes for all visitors.&lt;/p&gt;&lt;/article&gt;
+  &lt;article class="art"&gt;&lt;img src="../assets/images/img7.svg" alt="Food"&gt;&lt;small&gt;Lifestyle&lt;/small&gt;&lt;h4&gt;Farmers' market moves indoors&lt;/h4&gt;&lt;p&gt;Open every Saturday morning.&lt;/p&gt;&lt;/article&gt;&lt;/div&gt;
+  &lt;aside class="trend"&gt;&lt;h4&gt;Trending&lt;/h4&gt;&lt;ol&gt;&lt;li&gt;Coding club wins state hackathon&lt;/li&gt;&lt;li&gt;New library hours announced&lt;/li&gt;&lt;li&gt;Ten study tips that work&lt;/li&gt;&lt;li&gt;Campus cafe adds vegan menu&lt;/li&gt;&lt;/ol&gt;&lt;/aside&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .news { display: grid; grid-template-columns: 3fr 1fr; gap: 1.2rem; }
+.demo .arts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+.demo .art img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; display: block; }
+.demo .art h4 { margin: .5rem 0 .2rem; } .demo .art p { margin: 0; color: #55637d; font-size: .9rem; } .demo .art small { color: #1769b5; font-weight: 700; }
+.demo .feat { grid-column: 1 / -1; display: grid; grid-template-columns: 1.2fr 1fr; gap: 1rem; align-items: center; background: #14213d; color: #fff; border-radius: 12px; padding: 1rem; }
+.demo .feat img { height: 200px; } .demo .feat p { color: #c9d3e6; } .demo .feat small { color: #f2c200; }
+.demo .trend { background: #f1f4fa; border-radius: 12px; padding: 1rem; align-self: start; }
+.demo .trend h4 { margin: 0 0 .6rem; } .demo .trend ol { margin: 0; padding-left: 1.2rem; } .demo .trend li { margin: .5rem 0; }
+@media (max-width: 760px) { .demo .news, .demo .feat, .demo .arts { grid-template-columns: 1fr; } }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="travel-website-homepage.html">&larr; Previous</a><a href="portfolio-website-sections.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

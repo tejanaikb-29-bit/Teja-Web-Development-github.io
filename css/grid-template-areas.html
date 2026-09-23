@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Grid template areas | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .ga { display: grid; gap: .6rem; grid-template-columns: 140px 1fr 140px; grid-template-areas: "head head head" "nav main ads" "foot foot foot"; }
+.demo .ga > * { padding: 1rem; border-radius: 8px; color: #fff; font-weight: 700; }
+.demo .ga .h { grid-area: head; background: #14213d; } .demo .ga .n { grid-area: nav; background: #1769b5; }
+.demo .ga .m { grid-area: main; background: #178a4a; min-height: 110px; } .demo .ga .a { grid-area: ads; background: #d9481f; }
+.demo .ga .f { grid-area: foot; background: #7b2cbf; }
+@media (max-width: 600px) { .demo .ga { grid-template-columns: 1fr; grid-template-areas: "head" "main" "nav" "ads" "foot"; } }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Advanced Layout Techniques</p>
+      <h1>CSS Grid template areas</h1>
+      <p class="pp-desc">The layout is drawn as text with grid-template-areas. A media query redraws it as a single column on small screens.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <pre style="background:#f1f4fa;padding:.6rem;border-radius:8px;overflow:auto">grid-template-areas:
+        "head head head"
+        "nav  main ads"
+        "foot foot foot";</pre>
+      <div class="ga"><div class="h">header</div><div class="n">nav</div><div class="m">main</div><div class="a">ads</div><div class="f">footer</div></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;pre style="background:#f1f4fa;padding:.6rem;border-radius:8px;overflow:auto"&gt;grid-template-areas:
+  "head head head"
+  "nav  main ads"
+  "foot foot foot";&lt;/pre&gt;
+&lt;div class="ga"&gt;&lt;div class="h"&gt;header&lt;/div&gt;&lt;div class="n"&gt;nav&lt;/div&gt;&lt;div class="m"&gt;main&lt;/div&gt;&lt;div class="a"&gt;ads&lt;/div&gt;&lt;div class="f"&gt;footer&lt;/div&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .ga { display: grid; gap: .6rem; grid-template-columns: 140px 1fr 140px; grid-template-areas: "head head head" "nav main ads" "foot foot foot"; }
+.demo .ga &gt; * { padding: 1rem; border-radius: 8px; color: #fff; font-weight: 700; }
+.demo .ga .h { grid-area: head; background: #14213d; } .demo .ga .n { grid-area: nav; background: #1769b5; }
+.demo .ga .m { grid-area: main; background: #178a4a; min-height: 110px; } .demo .ga .a { grid-area: ads; background: #d9481f; }
+.demo .ga .f { grid-area: foot; background: #7b2cbf; }
+@media (max-width: 600px) { .demo .ga { grid-template-columns: 1fr; grid-template-areas: "head" "main" "nav" "ads" "foot"; } }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="portfolio-website-sections.html">&larr; Previous</a><a href="flexbox-alignment-ordering.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

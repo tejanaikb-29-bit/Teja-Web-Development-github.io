@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Border-radius: designing different shapes | CSS Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .shp { display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: flex-end; }
+.demo .shp div { background: #1769b5; color: #fff; display: grid; place-items: center; font-size: .75rem; font-weight: 700; text-align: center; }
+.demo .r1 { width: 100px; height: 100px; border-radius: 50%; }
+.demo .r2 { width: 160px; height: 60px; border-radius: 999px; background: #d9481f !important; }
+.demo .r3 { width: 100px; height: 100px; border-radius: 0 100% 0 100%; background: #178a4a !important; }
+.demo .r4 { width: 120px; height: 100px; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; background: #7b2cbf !important; }
+.demo .r5 { width: 140px; height: 70px; border-radius: 140px 140px 0 0; background: #f2c200 !important; color: #14213d !important; }
+.demo .r6 { width: 100px; height: 130px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: #14213d !important; }
+.demo .r7 { width: 150px; height: 70px; border-radius: 16px 16px 16px 0; background: #d98a00 !important; }
+.demo .r8 { width: 100px; height: 100px; border-radius: 10px 40px 10px 40px; background: #0f6b5c !important; }
+</style>
+</head>
+<body data-sec="css">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to CSS Programs</a>
+      </nav>
+      <p class="pp-cat">CSS &rsaquo; Backgrounds, Effects &amp; Display</p>
+      <h1>Border-radius: designing different shapes</h1>
+      <p class="pp-desc">Circles, pills, leaves, blobs, half-circles and speech bubbles made from a single element with border-radius.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="shp"><div class="r1">circle 50%</div><div class="r2">pill 999px</div><div class="r3">leaf</div><div class="r4">blob</div><div class="r5">half circle</div><div class="r6">egg</div><div class="r7">speech bubble</div><div class="r8">mixed corners</div></div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="shp"&gt;&lt;div class="r1"&gt;circle 50%&lt;/div&gt;&lt;div class="r2"&gt;pill 999px&lt;/div&gt;&lt;div class="r3"&gt;leaf&lt;/div&gt;&lt;div class="r4"&gt;blob&lt;/div&gt;&lt;div class="r5"&gt;half circle&lt;/div&gt;&lt;div class="r6"&gt;egg&lt;/div&gt;&lt;div class="r7"&gt;speech bubble&lt;/div&gt;&lt;div class="r8"&gt;mixed corners&lt;/div&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .shp { display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: flex-end; }
+.demo .shp div { background: #1769b5; color: #fff; display: grid; place-items: center; font-size: .75rem; font-weight: 700; text-align: center; }
+.demo .r1 { width: 100px; height: 100px; border-radius: 50%; }
+.demo .r2 { width: 160px; height: 60px; border-radius: 999px; background: #d9481f !important; }
+.demo .r3 { width: 100px; height: 100px; border-radius: 0 100% 0 100%; background: #178a4a !important; }
+.demo .r4 { width: 120px; height: 100px; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; background: #7b2cbf !important; }
+.demo .r5 { width: 140px; height: 70px; border-radius: 140px 140px 0 0; background: #f2c200 !important; color: #14213d !important; }
+.demo .r6 { width: 100px; height: 130px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: #14213d !important; }
+.demo .r7 { width: 150px; height: 70px; border-radius: 16px 16px 16px 0; background: #d98a00 !important; }
+.demo .r8 { width: 100px; height: 100px; border-radius: 10px 40px 10px 40px; background: #0f6b5c !important; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">CSS Programs</a>
+      <span class="spacer"></span>
+      <a href="box-text-shadow.html">&larr; Previous</a><a href="opacity-transparency.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>
