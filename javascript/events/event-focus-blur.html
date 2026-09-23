@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The focus and blur events | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo input.fld:focus { outline: 0; border-color: #178a4a; background: #f0fbf4; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › JavaScript Events</p>
+<h1>The focus and blur events</h1>
+<p class="pp-desc">focus fires when a field is selected and blur when the user leaves it. The field colour and log show both events.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row"><input class="fld" id="a" placeholder="First field" type="text"/><input class="fld" id="b" placeholder="Second field" type="text"/><input class="fld" id="c" placeholder="Third field" type="text"/></div><div class="out" id="log" style="font-family:Consolas,monospace;font-size:.85rem;min-height:5rem">Event log (newest first)</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;&lt;input class="fld" id="a" type="text" placeholder="First field"&gt;&lt;input class="fld" id="b" type="text" placeholder="Second field"&gt;&lt;input class="fld" id="c" type="text" placeholder="Third field"&gt;&lt;/div&gt;&lt;div class="out" id="log" style="font-family:Consolas,monospace;font-size:.85rem;min-height:5rem"&gt;Event log (newest first)&lt;/div&gt;
+
+/* CSS */
+.demo input.fld:focus { outline: 0; border-color: #178a4a; background: #f0fbf4; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const logBox = $('log');
+function log(text) {
+  const line = document.createElement('div');
+  line.textContent = new Date().toLocaleTimeString() + '  ' + text;
+  if (logBox.textContent.startsWith('Event log')) logBox.textContent = '';
+  logBox.prepend(line);
+  while (logBox.children.length &gt; 8) logBox.lastElementChild.remove();
+}
+
+['a', 'b', 'c'].forEach((id) =&gt; {
+  $(id).addEventListener('focus', () =&gt; log(`focus  -&gt; field "${id}" received focus`));
+  $(id).addEventListener('blur', () =&gt; log(`blur   -&gt; field "${id}" lost focus (value: "${$(id).value}")`));
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../events/event-key-press-counter.html">← Previous</a><a href="../events/event-change.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const logBox = $('log');
+function log(text) {
+  const line = document.createElement('div');
+  line.textContent = new Date().toLocaleTimeString() + '  ' + text;
+  if (logBox.textContent.startsWith('Event log')) logBox.textContent = '';
+  logBox.prepend(line);
+  while (logBox.children.length > 8) logBox.lastElementChild.remove();
+}
+
+['a', 'b', 'c'].forEach((id) => {
+  $(id).addEventListener('focus', () => log(`focus  -> field "${id}" received focus`));
+  $(id).addEventListener('blur', () => log(`blur   -> field "${id}" lost focus (value: "${$(id).value}")`));
+});
+</script>
+</body>
+</html>

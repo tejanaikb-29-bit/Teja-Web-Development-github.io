@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Window object | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo table.data th { width: 38%; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Browser Objects &amp; Browser Features</p>
+<h1>The Window object</h1>
+<p class="pp-desc">window properties (size, position, scroll), the window.open() / close() methods and live updates when you resize or scroll.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<table class="data"><tbody id="tb"></tbody></table><div class="row"><button id="open">window.open() a small window</button><button class="secondary" id="close">Close it</button><button class="secondary" id="scroll">window.scrollTo(0, 0)</button></div><p class="muted" id="msg">Resize or scroll the window and watch the values change.</p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;table class="data"&gt;&lt;tbody id="tb"&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;div class="row"&gt;&lt;button id="open"&gt;window.open() a small window&lt;/button&gt;&lt;button id="close" class="secondary"&gt;Close it&lt;/button&gt;&lt;button id="scroll" class="secondary"&gt;window.scrollTo(0, 0)&lt;/button&gt;&lt;/div&gt;&lt;p class="muted" id="msg"&gt;Resize or scroll the window and watch the values change.&lt;/p&gt;
+
+/* CSS */
+.demo table.data th { width: 38%; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+function update() {
+  const rows = [
+    ['window.innerWidth x innerHeight', `${window.innerWidth} x ${window.innerHeight} px (viewport)`],
+    ['window.outerWidth x outerHeight', `${window.outerWidth} x ${window.outerHeight} px (whole browser window)`],
+    ['window.screenX, screenY', `${window.screenX}, ${window.screenY}`],
+    ['window.scrollX, scrollY', `${Math.round(window.scrollX)}, ${Math.round(window.scrollY)}`],
+    ['window.devicePixelRatio', window.devicePixelRatio],
+    ['window.name', window.name || '(empty)'],
+    ['window.history.length', window.history.length],
+    ['window.self === window', window.self === window],
+    ['window.frames.length', window.frames.length],
+  ];
+  $('tb').innerHTML = '';
+  rows.forEach(([k, v]) =&gt; { const tr = $('tb').insertRow(); tr.insertCell().textContent = k; tr.insertCell().textContent = v; });
+}
+let popup = null;
+$('open').addEventListener('click', () =&gt; {
+  popup = window.open('', 'demoPopup', 'width=380,height=220');
+  if (!popup) { $('msg').textContent = 'The browser blocked the popup. Allow popups for this page.'; return; }
+  popup.document.write('&lt;h3 style="font-family:sans-serif"&gt;Hello from a new window&lt;/h3&gt;&lt;p style="font-family:sans-serif"&gt;Created with window.open().&lt;/p&gt;');
+  $('msg').textContent = 'A new window was opened.';
+});
+$('close').addEventListener('click', () =&gt; { if (popup &amp;&amp; !popup.closed) { popup.close(); $('msg').textContent = 'The window was closed with popup.close().'; } else $('msg').textContent = 'No open popup.'; });
+$('scroll').addEventListener('click', () =&gt; window.scrollTo({ top: 0, behavior: 'smooth' }));
+window.addEventListener('resize', update);
+window.addEventListener('scroll', update);
+update();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../forms-validation/form-validate-without-page-reload.html">← Previous</a><a href="../browser-objects/browser-alert-confirm-prompt.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+function update() {
+  const rows = [
+    ['window.innerWidth x innerHeight', `${window.innerWidth} x ${window.innerHeight} px (viewport)`],
+    ['window.outerWidth x outerHeight', `${window.outerWidth} x ${window.outerHeight} px (whole browser window)`],
+    ['window.screenX, screenY', `${window.screenX}, ${window.screenY}`],
+    ['window.scrollX, scrollY', `${Math.round(window.scrollX)}, ${Math.round(window.scrollY)}`],
+    ['window.devicePixelRatio', window.devicePixelRatio],
+    ['window.name', window.name || '(empty)'],
+    ['window.history.length', window.history.length],
+    ['window.self === window', window.self === window],
+    ['window.frames.length', window.frames.length],
+  ];
+  $('tb').innerHTML = '';
+  rows.forEach(([k, v]) => { const tr = $('tb').insertRow(); tr.insertCell().textContent = k; tr.insertCell().textContent = v; });
+}
+let popup = null;
+$('open').addEventListener('click', () => {
+  popup = window.open('', 'demoPopup', 'width=380,height=220');
+  if (!popup) { $('msg').textContent = 'The browser blocked the popup. Allow popups for this page.'; return; }
+  popup.document.write('<h3 style="font-family:sans-serif">Hello from a new window</h3><p style="font-family:sans-serif">Created with window.open().</p>');
+  $('msg').textContent = 'A new window was opened.';
+});
+$('close').addEventListener('click', () => { if (popup && !popup.closed) { popup.close(); $('msg').textContent = 'The window was closed with popup.close().'; } else $('msg').textContent = 'No open popup.'; });
+$('scroll').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+window.addEventListener('resize', update);
+window.addEventListener('scroll', update);
+update();
+</script>
+</body>
+</html>

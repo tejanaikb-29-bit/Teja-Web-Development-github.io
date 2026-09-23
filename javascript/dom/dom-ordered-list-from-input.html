@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create a dynamic ordered list from user input | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM Manipulation</p>
+<h1>Create a dynamic ordered list from user input</h1>
+<p class="pp-desc">Type an item and press Add: it is appended to an &lt;ol&gt;, which numbers the items automatically.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row"><input id="item" placeholder="Type an item and press Enter" style="flex:1;min-width:200px" type="text"/><button id="add">Add</button><button class="danger" id="clear">Clear</button></div>
+<ol id="list"></ol><p class="muted" id="count"></p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;&lt;input id="item" type="text" placeholder="Type an item and press Enter" style="flex:1;min-width:200px"&gt;&lt;button id="add"&gt;Add&lt;/button&gt;&lt;button id="clear" class="danger"&gt;Clear&lt;/button&gt;&lt;/div&gt;
+&lt;ol id="list"&gt;&lt;/ol&gt;&lt;p class="muted" id="count"&gt;&lt;/p&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+function count() { $('count').textContent = `${$('list').children.length} item(s)`; }
+function add() {
+  const v = $('item').value.trim();
+  if (!v) return;
+  const li = document.createElement('li');
+  li.textContent = v;
+  $('list').appendChild(li);
+  $('item').value = '';
+  $('item').focus();
+  count();
+}
+$('add').addEventListener('click', add);
+$('item').addEventListener('keydown', (e) =&gt; { if (e.key === 'Enter') add(); });
+$('clear').addEventListener('click', () =&gt; { $('list').innerHTML = ''; count(); });
+count();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../dom/dom-list-from-array.html">← Previous</a><a href="../dom/dom-student-table.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+function count() { $('count').textContent = `${$('list').children.length} item(s)`; }
+function add() {
+  const v = $('item').value.trim();
+  if (!v) return;
+  const li = document.createElement('li');
+  li.textContent = v;
+  $('list').appendChild(li);
+  $('item').value = '';
+  $('item').focus();
+  count();
+}
+$('add').addEventListener('click', add);
+$('item').addEventListener('keydown', (e) => { if (e.key === 'Enter') add(); });
+$('clear').addEventListener('click', () => { $('list').innerHTML = ''; count(); });
+count();
+</script>
+</body>
+</html>

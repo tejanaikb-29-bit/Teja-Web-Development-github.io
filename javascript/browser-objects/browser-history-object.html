@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The History object | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Browser Objects &amp; Browser Features</p>
+<h1>The History object</h1>
+<p class="pp-desc">history.length, history.pushState() and the popstate event: add fake history entries and move through them with Back / Forward.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row"><button id="push">history.pushState()</button><button class="secondary" id="back">history.back()</button><button class="secondary" id="fwd">history.forward()</button><button class="secondary" id="go">history.go(-2)</button></div><p>history.length: <strong id="len"></strong> · current state: <strong id="state">none</strong></p><div class="out" id="log" style="font-family:Consolas,monospace;font-size:.85rem">Log</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;&lt;button id="push"&gt;history.pushState()&lt;/button&gt;&lt;button id="back" class="secondary"&gt;history.back()&lt;/button&gt;&lt;button id="fwd" class="secondary"&gt;history.forward()&lt;/button&gt;&lt;button id="go" class="secondary"&gt;history.go(-2)&lt;/button&gt;&lt;/div&gt;&lt;p&gt;history.length: &lt;strong id="len"&gt;&lt;/strong&gt; &amp;middot; current state: &lt;strong id="state"&gt;none&lt;/strong&gt;&lt;/p&gt;&lt;div class="out" id="log" style="font-family:Consolas,monospace;font-size:.85rem"&gt;Log&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+let n = 0;
+const log = (t) =&gt; { $('log').textContent = t + '\n' + $('log').textContent.split('\n').slice(0, 6).join('\n'); };
+function update() { $('len').textContent = history.length; $('state').textContent = history.state ? JSON.stringify(history.state) : 'none'; }
+$('push').addEventListener('click', () =&gt; { n++; history.pushState({ step: n }, '', '#step' + n); log(`pushState({step: ${n}}) - URL now ends with #step${n}`); update(); });
+$('back').addEventListener('click', () =&gt; history.back());
+$('fwd').addEventListener('click', () =&gt; history.forward());
+$('go').addEventListener('click', () =&gt; history.go(-2));
+window.addEventListener('popstate', (e) =&gt; { log('popstate event, state = ' + JSON.stringify(e.state)); update(); });
+update();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../browser-objects/browser-display-current-url.html">← Previous</a><a href="../browser-objects/browser-back-forward-reload-buttons.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+let n = 0;
+const log = (t) => { $('log').textContent = t + '\n' + $('log').textContent.split('\n').slice(0, 6).join('\n'); };
+function update() { $('len').textContent = history.length; $('state').textContent = history.state ? JSON.stringify(history.state) : 'none'; }
+$('push').addEventListener('click', () => { n++; history.pushState({ step: n }, '', '#step' + n); log(`pushState({step: ${n}}) - URL now ends with #step${n}`); update(); });
+$('back').addEventListener('click', () => history.back());
+$('fwd').addEventListener('click', () => history.forward());
+$('go').addEventListener('click', () => history.go(-2));
+window.addEventListener('popstate', (e) => { log('popstate event, state = ' + JSON.stringify(e.state)); update(); });
+update();
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Display the current browser language | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Browser Objects &amp; Browser Features</p>
+<h1>Display the current browser language</h1>
+<p class="pp-desc">Shows navigator.language, the full language list and formats a date and number in that language.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="out"><div id="main" style="font-size:1.6rem;font-weight:800"></div><div id="list"></div></div><table class="data" style="margin-top:1rem"><tr><th>Date in your language</th><td id="d"></td></tr><tr><th>Number in your language</th><td id="n"></td></tr><tr><th>Currency</th><td id="c"></td></tr></table>
+<label class="field" style="max-width:260px;margin-top:1rem">Try another locale<select id="loc"><option value="">Browser default</option><option>en-US</option><option>en-GB</option><option>ta-IN</option><option>hi-IN</option><option>de-DE</option><option>ja-JP</option><option>ar-EG</option></select></label>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="out"&gt;&lt;div style="font-size:1.6rem;font-weight:800" id="main"&gt;&lt;/div&gt;&lt;div id="list"&gt;&lt;/div&gt;&lt;/div&gt;&lt;table class="data" style="margin-top:1rem"&gt;&lt;tr&gt;&lt;th&gt;Date in your language&lt;/th&gt;&lt;td id="d"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Number in your language&lt;/th&gt;&lt;td id="n"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Currency&lt;/th&gt;&lt;td id="c"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;label class="field" style="max-width:260px;margin-top:1rem"&gt;Try another locale&lt;select id="loc"&gt;&lt;option value=""&gt;Browser default&lt;/option&gt;&lt;option&gt;en-US&lt;/option&gt;&lt;option&gt;en-GB&lt;/option&gt;&lt;option&gt;ta-IN&lt;/option&gt;&lt;option&gt;hi-IN&lt;/option&gt;&lt;option&gt;de-DE&lt;/option&gt;&lt;option&gt;ja-JP&lt;/option&gt;&lt;option&gt;ar-EG&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+// Some systems report unusual language tags, so fall back to en-US if a tag is not valid
+const safeLocale = (tag) =&gt; { try { new Intl.DateTimeFormat(tag); return tag; } catch (e) { return 'en-US'; } };
+function update() {
+  const loc = safeLocale($('loc').value || navigator.language);
+  const short = loc.split('-')[0];
+  let full = short;
+  try { full = new Intl.DisplayNames([loc], { type: 'language' }).of(short); } catch (e) { /* keep the code */ }
+  $('main').textContent = `${loc}  (${full})`;
+  $('list').textContent = 'navigator.languages: ' + navigator.languages.join(', ');
+  const now = new Date();
+  $('d').textContent = now.toLocaleDateString(loc, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  $('n').textContent = (1234567.89).toLocaleString(loc);
+  $('c').textContent = (2499.5).toLocaleString(loc, { style: 'currency', currency: 'INR' });
+}
+$('loc').addEventListener('change', update);
+update();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../browser-objects/browser-online-offline-detect.html">← Previous</a><a href="../browser-objects/browser-geolocation.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+// Some systems report unusual language tags, so fall back to en-US if a tag is not valid
+const safeLocale = (tag) => { try { new Intl.DateTimeFormat(tag); return tag; } catch (e) { return 'en-US'; } };
+function update() {
+  const loc = safeLocale($('loc').value || navigator.language);
+  const short = loc.split('-')[0];
+  let full = short;
+  try { full = new Intl.DisplayNames([loc], { type: 'language' }).of(short); } catch (e) { /* keep the code */ }
+  $('main').textContent = `${loc}  (${full})`;
+  $('list').textContent = 'navigator.languages: ' + navigator.languages.join(', ');
+  const now = new Date();
+  $('d').textContent = now.toLocaleDateString(loc, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  $('n').textContent = (1234567.89).toLocaleString(loc);
+  $('c').textContent = (2499.5).toLocaleString(loc, { style: 'currency', currency: 'INR' });
+}
+$('loc').addEventListener('change', update);
+update();
+</script>
+</body>
+</html>

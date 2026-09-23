@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mouse coordinate tracker | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .track { height: 200px; border: 3px dashed #8a97b3; border-radius: 12px; background: #f7f9fe; display: grid; place-items: center; text-align: center; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › JavaScript Events</p>
+<h1>Mouse coordinate tracker</h1>
+<p class="pp-desc">Shows the pointer position relative to the viewport, the page and the tracking box, updated on every mouse move.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="track" id="track">Move the mouse anywhere; click here to log a point</div><table class="data" style="margin-top:.8rem"><tr><th>clientX / clientY (viewport)</th><td id="c">-</td></tr><tr><th>pageX / pageY (whole page)</th><td id="p">-</td></tr><tr><th>Inside the box</th><td id="b">-</td></tr><tr><th>Last click</th><td id="k">-</td></tr></table>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="track" id="track"&gt;Move the mouse anywhere; click here to log a point&lt;/div&gt;&lt;table class="data" style="margin-top:.8rem"&gt;&lt;tr&gt;&lt;th&gt;clientX / clientY (viewport)&lt;/th&gt;&lt;td id="c"&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;pageX / pageY (whole page)&lt;/th&gt;&lt;td id="p"&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Inside the box&lt;/th&gt;&lt;td id="b"&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Last click&lt;/th&gt;&lt;td id="k"&gt;-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+/* CSS */
+.demo .track { height: 200px; border: 3px dashed #8a97b3; border-radius: 12px; background: #f7f9fe; display: grid; place-items: center; text-align: center; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+document.addEventListener('mousemove', (e) =&gt; {
+  $('c').textContent = `${e.clientX}, ${e.clientY}`;
+  $('p').textContent = `${e.pageX}, ${e.pageY}`;
+  const r = $('track').getBoundingClientRect();
+  const inside = e.clientX &gt;= r.left &amp;&amp; e.clientX &lt;= r.right &amp;&amp; e.clientY &gt;= r.top &amp;&amp; e.clientY &lt;= r.bottom;
+  $('b').textContent = inside ? `${Math.round(e.clientX - r.left)}, ${Math.round(e.clientY - r.top)}` : 'outside';
+});
+$('track').addEventListener('click', (e) =&gt; {
+  const r = $('track').getBoundingClientRect();
+  $('k').textContent = `${Math.round(e.clientX - r.left)}, ${Math.round(e.clientY - r.top)}`;
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../events/event-drag-and-drop.html">← Previous</a><a href="../events/event-keyboard-moving-object.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+document.addEventListener('mousemove', (e) => {
+  $('c').textContent = `${e.clientX}, ${e.clientY}`;
+  $('p').textContent = `${e.pageX}, ${e.pageY}`;
+  const r = $('track').getBoundingClientRect();
+  const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+  $('b').textContent = inside ? `${Math.round(e.clientX - r.left)}, ${Math.round(e.clientY - r.top)}` : 'outside';
+});
+$('track').addEventListener('click', (e) => {
+  const r = $('track').getBoundingClientRect();
+  $('k').textContent = `${Math.round(e.clientX - r.left)}, ${Math.round(e.clientY - r.top)}`;
+});
+</script>
+</body>
+</html>

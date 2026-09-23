@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Button to redirect the user to another webpage | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Browser Objects &amp; Browser Features</p>
+<h1>Button to redirect the user to another webpage</h1>
+<p class="pp-desc">location.href, location.assign() and location.replace() send the visitor to another page. An automatic redirect with a cancel option is included.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row"><button id="home">Go to Home (location.href)</button><button class="secondary" id="list">Go to JavaScript list (location.assign)</button><button class="success" id="ext">Open MDN (new tab)</button></div>
+<div class="out"><strong>Automatic redirect</strong><br/><span id="msg">Press the button to start a 5 second countdown to the home page.</span></div><div class="row"><button id="auto">Redirect in 5 seconds</button><button class="danger" id="cancel">Cancel</button></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;&lt;button id="home"&gt;Go to Home (location.href)&lt;/button&gt;&lt;button id="list" class="secondary"&gt;Go to JavaScript list (location.assign)&lt;/button&gt;&lt;button id="ext" class="success"&gt;Open MDN (new tab)&lt;/button&gt;&lt;/div&gt;
+&lt;div class="out"&gt;&lt;strong&gt;Automatic redirect&lt;/strong&gt;&lt;br&gt;&lt;span id="msg"&gt;Press the button to start a 5 second countdown to the home page.&lt;/span&gt;&lt;/div&gt;&lt;div class="row"&gt;&lt;button id="auto"&gt;Redirect in 5 seconds&lt;/button&gt;&lt;button id="cancel" class="danger"&gt;Cancel&lt;/button&gt;&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+$('home').addEventListener('click', () =&gt; { location.href = '../index.html'; });
+$('list').addEventListener('click', () =&gt; { location.assign('index.html'); });     // keeps this page in history (Back works)
+$('ext').addEventListener('click', () =&gt; { window.open('https://developer.mozilla.org/', '_blank', 'noopener'); });
+let timer = null;
+$('auto').addEventListener('click', () =&gt; {
+  clearInterval(timer);
+  let left = 5;
+  $('msg').textContent = `Redirecting in ${left}...`;
+  timer = setInterval(() =&gt; {
+    left--;
+    if (left &lt;= 0) { clearInterval(timer); location.replace('../index.html'); }      // replace() removes this page from history
+    else $('msg').textContent = `Redirecting in ${left}...`;
+  }, 1000);
+});
+$('cancel').addEventListener('click', () =&gt; { clearInterval(timer); $('msg').textContent = 'Redirect cancelled.'; });</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../browser-objects/browser-location-object.html">← Previous</a><a href="../browser-objects/browser-display-current-url.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+$('home').addEventListener('click', () => { location.href = '../index.html'; });
+$('list').addEventListener('click', () => { location.assign('index.html'); });     // keeps this page in history (Back works)
+$('ext').addEventListener('click', () => { window.open('https://developer.mozilla.org/', '_blank', 'noopener'); });
+let timer = null;
+$('auto').addEventListener('click', () => {
+  clearInterval(timer);
+  let left = 5;
+  $('msg').textContent = `Redirecting in ${left}...`;
+  timer = setInterval(() => {
+    left--;
+    if (left <= 0) { clearInterval(timer); location.replace('../index.html'); }      // replace() removes this page from history
+    else $('msg').textContent = `Redirecting in ${left}...`;
+  }, 1000);
+});
+$('cancel').addEventListener('click', () => { clearInterval(timer); $('msg').textContent = 'Redirect cancelled.'; });
+</script>
+</body>
+</html>

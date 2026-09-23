@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Change text using JavaScript | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM &amp; Event-Based Experiments</p>
+<h1>Change text using JavaScript</h1>
+<p class="pp-desc">Reads text from an input box and replaces the heading text with textContent.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<h2 id="heading">Original heading text</h2>
+<div class="row"><input id="newText" placeholder="Type new text" style="flex:1;min-width:200px" type="text"/>
+<button id="change">Change text</button><button class="secondary" id="reset">Reset</button></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;h2 id="heading"&gt;Original heading text&lt;/h2&gt;
+&lt;div class="row"&gt;&lt;input id="newText" type="text" placeholder="Type new text" style="flex:1;min-width:200px"&gt;
+&lt;button id="change"&gt;Change text&lt;/button&gt;&lt;button id="reset" class="secondary"&gt;Reset&lt;/button&gt;&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const original = $('heading').textContent;
+$('change').addEventListener('click', () =&gt; {
+  const value = $('newText').value.trim();
+  if (value) $('heading').textContent = value;
+});
+$('reset').addEventListener('click', () =&gt; { $('heading').textContent = original; $('newText').value = ''; });</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../advanced/date-and-math-objects.html">← Previous</a><a href="../events/change-background-color.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const original = $('heading').textContent;
+$('change').addEventListener('click', () => {
+  const value = $('newText').value.trim();
+  if (value) $('heading').textContent = value;
+});
+$('reset').addEventListener('click', () => { $('heading').textContent = original; $('newText').value = ''; });
+</script>
+</body>
+</html>

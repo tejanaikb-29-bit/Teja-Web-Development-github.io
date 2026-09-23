@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Remove an event listener using removeEventListener() | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › JavaScript Events</p>
+<h1>Remove an event listener using removeEventListener()</h1>
+<p class="pp-desc">The button has a listener that can be removed and re-added. removeEventListener needs the same function reference.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<button id="target" style="padding:1rem 1.6rem">Target button</button><div class="row"><button class="danger" id="rm">removeEventListener</button><button class="success" id="ad">addEventListener</button></div><div class="out" id="out">Listener is ATTACHED. Click the target.</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;button id="target" style="padding:1rem 1.6rem"&gt;Target button&lt;/button&gt;&lt;div class="row"&gt;&lt;button id="rm" class="danger"&gt;removeEventListener&lt;/button&gt;&lt;button id="ad" class="success"&gt;addEventListener&lt;/button&gt;&lt;/div&gt;&lt;div class="out" id="out"&gt;Listener is ATTACHED. Click the target.&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+let clicks = 0;
+function onTargetClick() {                       // a named function, so it can be removed later
+  clicks++;
+  $('out').textContent = `Listener ran. Target clicked ${clicks} time(s).`;
+}
+$('target').addEventListener('click', onTargetClick);
+$('rm').addEventListener('click', () =&gt; { $('target').removeEventListener('click', onTargetClick); $('out').textContent = 'Listener REMOVED. Clicking the target now does nothing.'; });
+$('ad').addEventListener('click', () =&gt; { $('target').removeEventListener('click', onTargetClick); $('target').addEventListener('click', onTargetClick); $('out').textContent = 'Listener ATTACHED again.'; });</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../events/event-multiple-listeners.html">← Previous</a><a href="../events/event-bubbling.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+let clicks = 0;
+function onTargetClick() {                       // a named function, so it can be removed later
+  clicks++;
+  $('out').textContent = `Listener ran. Target clicked ${clicks} time(s).`;
+}
+$('target').addEventListener('click', onTargetClick);
+$('rm').addEventListener('click', () => { $('target').removeEventListener('click', onTargetClick); $('out').textContent = 'Listener REMOVED. Clicking the target now does nothing.'; });
+$('ad').addEventListener('click', () => { $('target').removeEventListener('click', onTargetClick); $('target').addEventListener('click', onTargetClick); $('out').textContent = 'Listener ATTACHED again.'; });
+</script>
+</body>
+</html>

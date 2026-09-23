@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Change the style of an element dynamically | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM Manipulation</p>
+<h1>Change the style of an element dynamically</h1>
+<p class="pp-desc">Sliders and pickers change the colour, size, padding, border-radius and rotation of a box through element.style.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div style="min-height:150px;display:grid;place-items:center"><div id="box" style="background:#1769b5;color:#fff;padding:20px;border-radius:8px;font-weight:700">Style me!</div></div>
+<div class="row">
+<label class="field">Background<input id="bg" type="color" value="#1769b5"/></label>
+<label class="field">Text colour<input id="fg" type="color" value="#ffffff"/></label>
+<label class="field">Font size<input id="fs" max="48" min="12" type="range" value="18"/></label>
+<label class="field">Padding<input id="pd" max="60" min="0" type="range" value="20"/></label>
+<label class="field">Radius<input id="rd" max="80" min="0" type="range" value="8"/></label>
+<label class="field">Rotate<input id="rt" max="45" min="-45" type="range" value="0"/></label>
+</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div style="min-height:150px;display:grid;place-items:center"&gt;&lt;div id="box" style="background:#1769b5;color:#fff;padding:20px;border-radius:8px;font-weight:700"&gt;Style me!&lt;/div&gt;&lt;/div&gt;
+&lt;div class="row"&gt;
+  &lt;label class="field"&gt;Background&lt;input id="bg" type="color" value="#1769b5"&gt;&lt;/label&gt;
+  &lt;label class="field"&gt;Text colour&lt;input id="fg" type="color" value="#ffffff"&gt;&lt;/label&gt;
+  &lt;label class="field"&gt;Font size&lt;input id="fs" type="range" min="12" max="48" value="18"&gt;&lt;/label&gt;
+  &lt;label class="field"&gt;Padding&lt;input id="pd" type="range" min="0" max="60" value="20"&gt;&lt;/label&gt;
+  &lt;label class="field"&gt;Radius&lt;input id="rd" type="range" min="0" max="80" value="8"&gt;&lt;/label&gt;
+  &lt;label class="field"&gt;Rotate&lt;input id="rt" type="range" min="-45" max="45" value="0"&gt;&lt;/label&gt;
+&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const box = $('box');
+$('bg').oninput = (e) =&gt; { box.style.backgroundColor = e.target.value; };
+$('fg').oninput = (e) =&gt; { box.style.color = e.target.value; };
+$('fs').oninput = (e) =&gt; { box.style.fontSize = e.target.value + 'px'; };
+$('pd').oninput = (e) =&gt; { box.style.padding = e.target.value + 'px'; };
+$('rd').oninput = (e) =&gt; { box.style.borderRadius = e.target.value + 'px'; };
+$('rt').oninput = (e) =&gt; { box.style.transform = `rotate(${e.target.value}deg)`; };</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../dom/dom-change-innerhtml.html">← Previous</a><a href="../dom/dom-background-color-button.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const box = $('box');
+$('bg').oninput = (e) => { box.style.backgroundColor = e.target.value; };
+$('fg').oninput = (e) => { box.style.color = e.target.value; };
+$('fs').oninput = (e) => { box.style.fontSize = e.target.value + 'px'; };
+$('pd').oninput = (e) => { box.style.padding = e.target.value + 'px'; };
+$('rd').oninput = (e) => { box.style.borderRadius = e.target.value + 'px'; };
+$('rt').oninput = (e) => { box.style.transform = `rotate(${e.target.value}deg)`; };
+</script>
+</body>
+</html>

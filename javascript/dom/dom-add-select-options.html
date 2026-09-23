@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add options dynamically to a &lt;select&gt; element | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM Manipulation</p>
+<h1>Add options dynamically to a &lt;select&gt; element</h1>
+<p class="pp-desc">Type a new option and add it with new Option(); you can also remove the selected option.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row"><input id="txt" placeholder="New option text" type="text"/><button id="add">Add option</button></div>
+<div class="row"><select id="sel" size="6" style="min-width:200px"><option>Chennai</option><option>Madurai</option></select>
+<div><button class="danger" id="rem">Remove selected</button><p class="muted" id="msg"></p></div></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;&lt;input id="txt" type="text" placeholder="New option text"&gt;&lt;button id="add"&gt;Add option&lt;/button&gt;&lt;/div&gt;
+&lt;div class="row"&gt;&lt;select id="sel" size="6" style="min-width:200px"&gt;&lt;option&gt;Chennai&lt;/option&gt;&lt;option&gt;Madurai&lt;/option&gt;&lt;/select&gt;
+&lt;div&gt;&lt;button id="rem" class="danger"&gt;Remove selected&lt;/button&gt;&lt;p id="msg" class="muted"&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+$('add').addEventListener('click', () =&gt; {
+  const t = $('txt').value.trim();
+  if (!t) { $('msg').textContent = 'Type something first.'; return; }
+  if ([...$('sel').options].some((o) =&gt; o.text.toLowerCase() === t.toLowerCase())) { $('msg').textContent = 'That option already exists.'; return; }
+  $('sel').add(new Option(t, t.toLowerCase()));         // new Option(text, value)
+  $('sel').selectedIndex = $('sel').options.length - 1;
+  $('txt').value = '';
+  $('msg').textContent = `Added "${t}". Total options: ${$('sel').options.length}`;
+});
+$('rem').addEventListener('click', () =&gt; {
+  if ($('sel').selectedIndex &lt; 0) { $('msg').textContent = 'Select an option to remove.'; return; }
+  $('sel').remove($('sel').selectedIndex);
+  $('msg').textContent = 'Option removed.';
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../dom/dom-dynamic-dropdown-menu.html">← Previous</a><a href="../dom/dom-dependent-dropdown.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+$('add').addEventListener('click', () => {
+  const t = $('txt').value.trim();
+  if (!t) { $('msg').textContent = 'Type something first.'; return; }
+  if ([...$('sel').options].some((o) => o.text.toLowerCase() === t.toLowerCase())) { $('msg').textContent = 'That option already exists.'; return; }
+  $('sel').add(new Option(t, t.toLowerCase()));         // new Option(text, value)
+  $('sel').selectedIndex = $('sel').options.length - 1;
+  $('txt').value = '';
+  $('msg').textContent = `Added "${t}". Total options: ${$('sel').options.length}`;
+});
+$('rem').addEventListener('click', () => {
+  if ($('sel').selectedIndex < 0) { $('msg').textContent = 'Select an option to remove.'; return; }
+  $('sel').remove($('sel').selectedIndex);
+  $('msg').textContent = 'Option removed.';
+});
+</script>
+</body>
+</html>

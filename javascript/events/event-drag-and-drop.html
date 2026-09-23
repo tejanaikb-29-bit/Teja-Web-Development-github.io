@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Drag-and-drop application | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
+.demo .col { background: #eef2fb; border-radius: 10px; padding: .6rem; min-height: 200px; border: 2px dashed transparent; }
+.demo .col.over { border-color: #1f419a; background: #dfe8fb; } .demo .col h4 { margin: 0 0 .5rem; }
+.demo .task { background: #fff; border: 1px solid #ccd5e6; border-left: 5px solid #1f419a; border-radius: 8px; padding: .55rem .7rem; margin-bottom: .5rem; cursor: grab; }
+.demo .task.dragging { opacity: .4; }
+@media (max-width: 600px) { .demo .board { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › JavaScript Events</p>
+<h1>Drag-and-drop application</h1>
+<p class="pp-desc">A small task board: drag task cards between the To Do, Doing and Done columns using the HTML5 drag-and-drop events.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="board"><div class="col" data-col="todo"><h4>To Do</h4></div><div class="col" data-col="doing"><h4>Doing</h4></div><div class="col" data-col="done"><h4>Done</h4></div></div><p class="muted" id="msg">Drag a card to another column.</p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="board"&gt;&lt;div class="col" data-col="todo"&gt;&lt;h4&gt;To Do&lt;/h4&gt;&lt;/div&gt;&lt;div class="col" data-col="doing"&gt;&lt;h4&gt;Doing&lt;/h4&gt;&lt;/div&gt;&lt;div class="col" data-col="done"&gt;&lt;h4&gt;Done&lt;/h4&gt;&lt;/div&gt;&lt;/div&gt;&lt;p class="muted" id="msg"&gt;Drag a card to another column.&lt;/p&gt;
+
+/* CSS */
+.demo .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
+.demo .col { background: #eef2fb; border-radius: 10px; padding: .6rem; min-height: 200px; border: 2px dashed transparent; }
+.demo .col.over { border-color: #1f419a; background: #dfe8fb; } .demo .col h4 { margin: 0 0 .5rem; }
+.demo .task { background: #fff; border: 1px solid #ccd5e6; border-left: 5px solid #1f419a; border-radius: 8px; padding: .55rem .7rem; margin-bottom: .5rem; cursor: grab; }
+.demo .task.dragging { opacity: .4; }
+@media (max-width: 600px) { .demo .board { grid-template-columns: 1fr; } }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const tasks = [['Write HTML page', 'todo'], ['Style with CSS', 'todo'], ['Add JavaScript', 'doing'], ['Test in browser', 'done']];
+tasks.forEach(([t, col], i) =&gt; {
+  const d = document.createElement('div');
+  d.className = 'task'; d.draggable = true; d.id = 'task' + i; d.textContent = t;
+  d.addEventListener('dragstart', (e) =&gt; { e.dataTransfer.setData('text/plain', d.id); d.classList.add('dragging'); });
+  d.addEventListener('dragend', () =&gt; d.classList.remove('dragging'));
+  document.querySelector(`[data-col=${col}]`).appendChild(d);
+});
+document.querySelectorAll('.col').forEach((col) =&gt; {
+  col.addEventListener('dragover', (e) =&gt; { e.preventDefault(); col.classList.add('over'); });   // preventDefault allows dropping
+  col.addEventListener('dragleave', () =&gt; col.classList.remove('over'));
+  col.addEventListener('drop', (e) =&gt; {
+    e.preventDefault();
+    col.classList.remove('over');
+    const card = $(e.dataTransfer.getData('text/plain'));
+    col.appendChild(card);
+    $('msg').textContent = `"${card.textContent}" moved to ${col.querySelector('h4').textContent}`;
+  });
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../events/event-delegation.html">← Previous</a><a href="../events/event-mouse-coordinate-tracker.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const tasks = [['Write HTML page', 'todo'], ['Style with CSS', 'todo'], ['Add JavaScript', 'doing'], ['Test in browser', 'done']];
+tasks.forEach(([t, col], i) => {
+  const d = document.createElement('div');
+  d.className = 'task'; d.draggable = true; d.id = 'task' + i; d.textContent = t;
+  d.addEventListener('dragstart', (e) => { e.dataTransfer.setData('text/plain', d.id); d.classList.add('dragging'); });
+  d.addEventListener('dragend', () => d.classList.remove('dragging'));
+  document.querySelector(`[data-col=${col}]`).appendChild(d);
+});
+document.querySelectorAll('.col').forEach((col) => {
+  col.addEventListener('dragover', (e) => { e.preventDefault(); col.classList.add('over'); });   // preventDefault allows dropping
+  col.addEventListener('dragleave', () => col.classList.remove('over'));
+  col.addEventListener('drop', (e) => {
+    e.preventDefault();
+    col.classList.remove('over');
+    const card = $(e.dataTransfer.getData('text/plain'));
+    col.appendChild(card);
+    $('msg').textContent = `"${card.textContent}" moved to ${col.querySelector('h4').textContent}`;
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Keyboard events using keydown | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › JavaScript Events</p>
+<h1>Keyboard events using keydown</h1>
+<p class="pp-desc">keydown fires when a key is pressed down (and repeats while it is held). Type in the box to see key details.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<input id="inp" placeholder="Click here and press keys" style="width:100%;max-width:420px" type="text"/><div class="out" id="log" style="font-family:Consolas,monospace;font-size:.85rem;min-height:5rem">Event log (newest first)</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;input id="inp" type="text" placeholder="Click here and press keys" style="width:100%;max-width:420px"&gt;&lt;div class="out" id="log" style="font-family:Consolas,monospace;font-size:.85rem;min-height:5rem"&gt;Event log (newest first)&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const logBox = $('log');
+function log(text) {
+  const line = document.createElement('div');
+  line.textContent = new Date().toLocaleTimeString() + '  ' + text;
+  if (logBox.textContent.startsWith('Event log')) logBox.textContent = '';
+  logBox.prepend(line);
+  while (logBox.children.length &gt; 8) logBox.lastElementChild.remove();
+}
+
+$('inp').addEventListener('keydown', (e) =&gt; {
+  log(`keydown -&gt; key: "${e.key}"  code: ${e.code}  repeat: ${e.repeat}${e.shiftKey ? '  +Shift' : ''}${e.ctrlKey ? '  +Ctrl' : ''}`);
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../events/event-mousemove.html">← Previous</a><a href="../events/event-keyup.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const logBox = $('log');
+function log(text) {
+  const line = document.createElement('div');
+  line.textContent = new Date().toLocaleTimeString() + '  ' + text;
+  if (logBox.textContent.startsWith('Event log')) logBox.textContent = '';
+  logBox.prepend(line);
+  while (logBox.children.length > 8) logBox.lastElementChild.remove();
+}
+
+$('inp').addEventListener('keydown', (e) => {
+  log(`keydown -> key: "${e.key}"  code: ${e.code}  repeat: ${e.repeat}${e.shiftKey ? '  +Shift' : ''}${e.ctrlKey ? '  +Ctrl' : ''}`);
+});
+</script>
+</body>
+</html>

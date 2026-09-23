@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The submit event | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › JavaScript Events</p>
+<h1>The submit event</h1>
+<p class="pp-desc">The submit event fires when a form is sent. preventDefault() stops the page from reloading so JavaScript can handle it.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<form class="row" id="f"><label class="field">Name<input id="n" required="" type="text"/></label><label class="field">City<input id="c" type="text"/></label><button type="submit">Submit</button></form><div class="out" id="out">Submit the form to see the data.</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;form id="f" class="row"&gt;&lt;label class="field"&gt;Name&lt;input id="n" type="text" required&gt;&lt;/label&gt;&lt;label class="field"&gt;City&lt;input id="c" type="text"&gt;&lt;/label&gt;&lt;button type="submit"&gt;Submit&lt;/button&gt;&lt;/form&gt;&lt;div class="out" id="out"&gt;Submit the form to see the data.&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+$('f').addEventListener('submit', (e) =&gt; {
+  e.preventDefault();                                  // stop the normal form submission
+  const data = new FormData($('f'));
+  $('out').textContent = 'submit event fired.\n' + [...data.entries()].map(([k, v]) =&gt; `${k}: ${v}`).join('\n');
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../events/event-input.html">← Previous</a><a href="../events/event-reset.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+$('f').addEventListener('submit', (e) => {
+  e.preventDefault();                                  // stop the normal form submission
+  const data = new FormData($('f'));
+  $('out').textContent = 'submit event fired.\n' + [...data.entries()].map(([k, v]) => `${k}: ${v}`).join('\n');
+});
+</script>
+</body>
+</html>

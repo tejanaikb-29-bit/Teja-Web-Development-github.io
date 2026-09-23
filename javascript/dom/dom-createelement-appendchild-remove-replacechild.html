@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>createElement(), appendChild(), remove() and replaceChild() | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .stage { display: flex; gap: .6rem; flex-wrap: wrap; min-height: 70px; padding: .8rem; border: 2px dashed #8a97b3; border-radius: 10px; } .demo .stage .n { padding: .6rem 1rem; border-radius: 8px; color: #fff; font-weight: 700; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM Manipulation</p>
+<h1>createElement(), appendChild(), remove() and replaceChild()</h1>
+<p class="pp-desc">A playground for the four core DOM methods. Each button runs one method and the log explains what happened.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="stage" id="stage"><div class="n" style="background:#1769b5">Box 1</div><div class="n" style="background:#178a4a">Box 2</div></div>
+<div class="row"><button id="c">createElement + appendChild</button><button class="danger" id="r">remove() last</button><button class="secondary" id="rc">replaceChild() first</button></div>
+<pre class="out" id="log" style="font-size:.85rem">Log:</pre>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="stage" id="stage"&gt;&lt;div class="n" style="background:#1769b5"&gt;Box 1&lt;/div&gt;&lt;div class="n" style="background:#178a4a"&gt;Box 2&lt;/div&gt;&lt;/div&gt;
+&lt;div class="row"&gt;&lt;button id="c"&gt;createElement + appendChild&lt;/button&gt;&lt;button id="r" class="danger"&gt;remove() last&lt;/button&gt;&lt;button id="rc" class="secondary"&gt;replaceChild() first&lt;/button&gt;&lt;/div&gt;
+&lt;pre class="out" id="log" style="font-size:.85rem"&gt;Log:&lt;/pre&gt;
+
+/* CSS */
+.demo .stage { display: flex; gap: .6rem; flex-wrap: wrap; min-height: 70px; padding: .8rem; border: 2px dashed #8a97b3; border-radius: 10px; } .demo .stage .n { padding: .6rem 1rem; border-radius: 8px; color: #fff; font-weight: 700; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+let n = 2;
+const colors = ['#d9481f', '#7b2cbf', '#0f6b5c', '#d98a00', '#14213d'];
+const log = (t) =&gt; { $('log').textContent += '\n' + t; };
+function newBox() {
+  const d = document.createElement('div');          // 1. create an element
+  d.className = 'n';
+  d.textContent = 'Box ' + (++n);
+  d.style.background = colors[n % colors.length];
+  return d;
+}
+$('c').addEventListener('click', () =&gt; { $('stage').appendChild(newBox()); log(`createElement() + appendChild() -&gt; Box ${n} added`); });
+$('r').addEventListener('click', () =&gt; {
+  const last = $('stage').lastElementChild;
+  if (!last) return log('remove(): nothing left to remove');
+  log(`remove() -&gt; "${last.textContent}" removed`);
+  last.remove();
+});
+$('rc').addEventListener('click', () =&gt; {
+  const first = $('stage').firstElementChild;
+  if (!first) return log('replaceChild(): stage is empty');
+  const fresh = newBox();
+  $('stage').replaceChild(fresh, first);
+  log(`replaceChild() -&gt; "${first.textContent}" replaced by "${fresh.textContent}"`);
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../dom/dom-todo-add-edit-delete.html">← Previous</a><a href="../events/event-onclick.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+let n = 2;
+const colors = ['#d9481f', '#7b2cbf', '#0f6b5c', '#d98a00', '#14213d'];
+const log = (t) => { $('log').textContent += '\n' + t; };
+function newBox() {
+  const d = document.createElement('div');          // 1. create an element
+  d.className = 'n';
+  d.textContent = 'Box ' + (++n);
+  d.style.background = colors[n % colors.length];
+  return d;
+}
+$('c').addEventListener('click', () => { $('stage').appendChild(newBox()); log(`createElement() + appendChild() -> Box ${n} added`); });
+$('r').addEventListener('click', () => {
+  const last = $('stage').lastElementChild;
+  if (!last) return log('remove(): nothing left to remove');
+  log(`remove() -> "${last.textContent}" removed`);
+  last.remove();
+});
+$('rc').addEventListener('click', () => {
+  const first = $('stage').firstElementChild;
+  if (!first) return log('replaceChild(): stage is empty');
+  const fresh = newBox();
+  $('stage').replaceChild(fresh, first);
+  log(`replaceChild() -> "${first.textContent}" replaced by "${fresh.textContent}"`);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Keyboard-controlled moving object | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .arena { position: relative; height: 280px; border: 3px solid #14213d; border-radius: 12px; background: repeating-linear-gradient(0deg, #f1f4fa 0 20px, #e8edf8 20px 40px); overflow: hidden; outline: 0; } .demo .arena:focus { border-color: #d9481f; } .demo .player { position: absolute; width: 40px; height: 40px; background: #d9481f; border-radius: 8px; transition: left .06s linear, top .06s linear; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › JavaScript Events</p>
+<h1>Keyboard-controlled moving object</h1>
+<p class="pp-desc">Move the square with the arrow keys or W A S D. It stays inside the arena and leaves a step counter.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="arena" id="arena" tabindex="0"><div class="player" id="p" style="left:20px;top:20px"></div></div><p>Click the arena, then use <strong>arrow keys</strong> or <strong>W A S D</strong>. Steps: <strong id="steps">0</strong></p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="arena" id="arena" tabindex="0"&gt;&lt;div class="player" id="p" style="left:20px;top:20px"&gt;&lt;/div&gt;&lt;/div&gt;&lt;p&gt;Click the arena, then use &lt;strong&gt;arrow keys&lt;/strong&gt; or &lt;strong&gt;W A S D&lt;/strong&gt;. Steps: &lt;strong id="steps"&gt;0&lt;/strong&gt;&lt;/p&gt;
+
+/* CSS */
+.demo .arena { position: relative; height: 280px; border: 3px solid #14213d; border-radius: 12px; background: repeating-linear-gradient(0deg, #f1f4fa 0 20px, #e8edf8 20px 40px); overflow: hidden; outline: 0; } .demo .arena:focus { border-color: #d9481f; } .demo .player { position: absolute; width: 40px; height: 40px; background: #d9481f; border-radius: 8px; transition: left .06s linear, top .06s linear; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const STEP = 20;
+let x = 20, y = 20, steps = 0;
+const keys = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0], w: [0, -1], s: [0, 1], a: [-1, 0], d: [1, 0] };
+$('arena').focus();
+$('arena').addEventListener('keydown', (e) =&gt; {
+  const move = keys[e.key];
+  if (!move) return;
+  e.preventDefault();
+  const maxX = $('arena').clientWidth - 40, maxY = $('arena').clientHeight - 40;
+  x = Math.min(maxX, Math.max(0, x + move[0] * STEP));
+  y = Math.min(maxY, Math.max(0, y + move[1] * STEP));
+  $('p').style.left = x + 'px';
+  $('p').style.top = y + 'px';
+  $('steps').textContent = ++steps;
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../events/event-mouse-coordinate-tracker.html">← Previous</a><a href="../events/event-click-counter.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const STEP = 20;
+let x = 20, y = 20, steps = 0;
+const keys = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0], w: [0, -1], s: [0, 1], a: [-1, 0], d: [1, 0] };
+$('arena').focus();
+$('arena').addEventListener('keydown', (e) => {
+  const move = keys[e.key];
+  if (!move) return;
+  e.preventDefault();
+  const maxX = $('arena').clientWidth - 40, maxY = $('arena').clientHeight - 40;
+  x = Math.min(maxX, Math.max(0, x + move[0] * STEP));
+  y = Math.min(maxY, Math.max(0, y + move[1] * STEP));
+  $('p').style.left = x + 'px';
+  $('p').style.top = y + 'px';
+  $('steps').textContent = ++steps;
+});
+</script>
+</body>
+</html>

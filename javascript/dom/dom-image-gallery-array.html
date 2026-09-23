@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create an image gallery dynamically from an array of image data | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .7rem; } .demo .thumbs figure { margin: 0; cursor: pointer; border-radius: 8px; overflow: hidden; border: 3px solid transparent; } .demo .thumbs figure.on { border-color: #f2c200; } .demo .thumbs img { width: 100%; height: 100px; object-fit: cover; display: block; } .demo .thumbs figcaption { padding: .3rem .5rem; font-size: .8rem; background: #f1f4fa; } .demo #big { width: 100%; max-height: 300px; object-fit: cover; border-radius: 10px; margin-bottom: .8rem; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM Manipulation</p>
+<h1>Create an image gallery dynamically from an array of image data</h1>
+<p class="pp-desc">Each object in the array (source, title, category) becomes a thumbnail. Click one to enlarge; filter by category.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<img alt="" id="big" src=""/><p id="cap" style="font-weight:700"></p>
+<div class="row" id="filters"></div><div class="thumbs" id="thumbs"></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;img id="big" src="" alt=""&gt;&lt;p id="cap" style="font-weight:700"&gt;&lt;/p&gt;
+&lt;div class="row" id="filters"&gt;&lt;/div&gt;&lt;div class="thumbs" id="thumbs"&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .7rem; } .demo .thumbs figure { margin: 0; cursor: pointer; border-radius: 8px; overflow: hidden; border: 3px solid transparent; } .demo .thumbs figure.on { border-color: #f2c200; } .demo .thumbs img { width: 100%; height: 100px; object-fit: cover; display: block; } .demo .thumbs figcaption { padding: .3rem .5rem; font-size: .8rem; background: #f1f4fa; } .demo #big { width: 100%; max-height: 300px; object-fit: cover; border-radius: 10px; margin-bottom: .8rem; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const photos = [
+  { src: '../assets/images/img1.svg', title: 'Mountains', cat: 'Nature' }, { src: '../assets/images/img2.svg', title: 'Sunset', cat: 'Sky' },
+  { src: '../assets/images/img3.svg', title: 'Ocean', cat: 'Nature' }, { src: '../assets/images/img4.svg', title: 'Forest', cat: 'Nature' },
+  { src: '../assets/images/img5.svg', title: 'Night', cat: 'Sky' }, { src: '../assets/images/img6.svg', title: 'Desert', cat: 'Nature' },
+  { src: '../assets/images/img7.svg', title: 'Meadow', cat: 'Nature' }, { src: '../assets/images/img8.svg', title: 'Lavender', cat: 'Sky' },
+];
+let category = 'All', current = photos[0];
+function show(p) { current = p; $('big').src = p.src; $('big').alt = p.title; $('cap').textContent = `${p.title} (${p.cat})`; render(); }
+function render() {
+  $('filters').innerHTML = '';
+  ['All', ...new Set(photos.map((p) =&gt; p.cat))].forEach((c) =&gt; {
+    const b = document.createElement('button');
+    b.textContent = c; if (c !== category) b.className = 'secondary';
+    b.addEventListener('click', () =&gt; { category = c; render(); });
+    $('filters').appendChild(b);
+  });
+  $('thumbs').innerHTML = '';
+  photos.filter((p) =&gt; category === 'All' || p.cat === category).forEach((p) =&gt; {
+    const f = document.createElement('figure');
+    if (p === current) f.classList.add('on');
+    f.innerHTML = `&lt;img src="${p.src}" alt="${p.title}"&gt;&lt;figcaption&gt;${p.title}&lt;/figcaption&gt;`;
+    f.addEventListener('click', () =&gt; show(p));
+    $('thumbs').appendChild(f);
+  });
+}
+show(photos[0]);</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../dom/dom-dependent-dropdown.html">← Previous</a><a href="../dom/dom-image-slideshow.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const photos = [
+  { src: '../assets/images/img1.svg', title: 'Mountains', cat: 'Nature' }, { src: '../assets/images/img2.svg', title: 'Sunset', cat: 'Sky' },
+  { src: '../assets/images/img3.svg', title: 'Ocean', cat: 'Nature' }, { src: '../assets/images/img4.svg', title: 'Forest', cat: 'Nature' },
+  { src: '../assets/images/img5.svg', title: 'Night', cat: 'Sky' }, { src: '../assets/images/img6.svg', title: 'Desert', cat: 'Nature' },
+  { src: '../assets/images/img7.svg', title: 'Meadow', cat: 'Nature' }, { src: '../assets/images/img8.svg', title: 'Lavender', cat: 'Sky' },
+];
+let category = 'All', current = photos[0];
+function show(p) { current = p; $('big').src = p.src; $('big').alt = p.title; $('cap').textContent = `${p.title} (${p.cat})`; render(); }
+function render() {
+  $('filters').innerHTML = '';
+  ['All', ...new Set(photos.map((p) => p.cat))].forEach((c) => {
+    const b = document.createElement('button');
+    b.textContent = c; if (c !== category) b.className = 'secondary';
+    b.addEventListener('click', () => { category = c; render(); });
+    $('filters').appendChild(b);
+  });
+  $('thumbs').innerHTML = '';
+  photos.filter((p) => category === 'All' || p.cat === category).forEach((p) => {
+    const f = document.createElement('figure');
+    if (p === current) f.classList.add('on');
+    f.innerHTML = `<img src="${p.src}" alt="${p.title}"><figcaption>${p.title}</figcaption>`;
+    f.addEventListener('click', () => show(p));
+    $('thumbs').appendChild(f);
+  });
+}
+show(photos[0]);
+</script>
+</body>
+</html>

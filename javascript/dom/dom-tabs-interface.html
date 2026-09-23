@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create a tabs interface using DOM manipulation | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .tabbar { display: flex; gap: .2rem; border-bottom: 3px solid #d5dbe6; flex-wrap: wrap; } .demo .tabbar button { background: #eef2fb; color: #1c2437; border-radius: 8px 8px 0 0; } .demo .tabbar button[aria-selected=true] { background: #1f419a; color: #fff; } .demo .tabpanel { padding: 1rem; background: #f7f9fe; border-radius: 0 0 10px 10px; min-height: 100px; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM Manipulation</p>
+<h1>Create a tabs interface using DOM manipulation</h1>
+<p class="pp-desc">Clicking a tab button shows its panel and hides the others. Arrow keys also move between tabs.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="tabbar" role="tablist"><button data-t="0" role="tab">HTML</button><button data-t="1" role="tab">CSS</button><button data-t="2" role="tab">JavaScript</button></div>
+<div class="tabpanel" id="p0"><h4>HTML</h4><p>HTML gives a page its structure with elements such as headings, lists and forms.</p></div>
+<div class="tabpanel" id="p1"><h4>CSS</h4><p>CSS controls colours, fonts and layout.</p></div>
+<div class="tabpanel" id="p2"><h4>JavaScript</h4><p>JavaScript adds behaviour and interactivity.</p></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="tabbar" role="tablist"&gt;&lt;button role="tab" data-t="0"&gt;HTML&lt;/button&gt;&lt;button role="tab" data-t="1"&gt;CSS&lt;/button&gt;&lt;button role="tab" data-t="2"&gt;JavaScript&lt;/button&gt;&lt;/div&gt;
+&lt;div class="tabpanel" id="p0"&gt;&lt;h4&gt;HTML&lt;/h4&gt;&lt;p&gt;HTML gives a page its structure with elements such as headings, lists and forms.&lt;/p&gt;&lt;/div&gt;
+&lt;div class="tabpanel" id="p1"&gt;&lt;h4&gt;CSS&lt;/h4&gt;&lt;p&gt;CSS controls colours, fonts and layout.&lt;/p&gt;&lt;/div&gt;
+&lt;div class="tabpanel" id="p2"&gt;&lt;h4&gt;JavaScript&lt;/h4&gt;&lt;p&gt;JavaScript adds behaviour and interactivity.&lt;/p&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .tabbar { display: flex; gap: .2rem; border-bottom: 3px solid #d5dbe6; flex-wrap: wrap; } .demo .tabbar button { background: #eef2fb; color: #1c2437; border-radius: 8px 8px 0 0; } .demo .tabbar button[aria-selected=true] { background: #1f419a; color: #fff; } .demo .tabpanel { padding: 1rem; background: #f7f9fe; border-radius: 0 0 10px 10px; min-height: 100px; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const tabs = [...document.querySelectorAll('[role=tab]')];
+function select(n) {
+  tabs.forEach((t, i) =&gt; {
+    t.setAttribute('aria-selected', i === n);
+    $('p' + i).hidden = i !== n;
+  });
+}
+tabs.forEach((t, i) =&gt; {
+  t.addEventListener('click', () =&gt; select(i));
+  t.addEventListener('keydown', (e) =&gt; {
+    if (e.key === 'ArrowRight') { select((i + 1) % tabs.length); tabs[(i + 1) % tabs.length].focus(); }
+    if (e.key === 'ArrowLeft') { select((i + tabs.length - 1) % tabs.length); tabs[(i + tabs.length - 1) % tabs.length].focus(); }
+  });
+});
+select(0);</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../dom/dom-show-hide-content.html">← Previous</a><a href="../dom/dom-accordion.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const tabs = [...document.querySelectorAll('[role=tab]')];
+function select(n) {
+  tabs.forEach((t, i) => {
+    t.setAttribute('aria-selected', i === n);
+    $('p' + i).hidden = i !== n;
+  });
+}
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => select(i));
+  t.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { select((i + 1) % tabs.length); tabs[(i + 1) % tabs.length].focus(); }
+    if (e.key === 'ArrowLeft') { select((i + tabs.length - 1) % tabs.length); tabs[(i + tabs.length - 1) % tabs.length].focus(); }
+  });
+});
+select(0);
+</script>
+</body>
+</html>

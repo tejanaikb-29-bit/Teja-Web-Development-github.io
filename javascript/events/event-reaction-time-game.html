@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reaction-time game | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .rt { display: grid; place-items: center; min-height: 200px; border-radius: 14px; font: 700 1.5rem 'Segoe UI', sans-serif; color: #fff; cursor: pointer; user-select: none; text-align: center; padding: 1rem; background: #1f419a; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › JavaScript Events</p>
+<h1>Reaction-time game</h1>
+<p class="pp-desc">Wait for the box to turn green, then click as fast as you can. Clicking too early is a false start.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="rt" id="rt">Click to start</div><p class="center">Last: <strong id="last">-</strong> · Best: <strong id="best">-</strong> · Average: <strong id="avg">-</strong></p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="rt" id="rt"&gt;Click to start&lt;/div&gt;&lt;p class="center"&gt;Last: &lt;strong id="last"&gt;-&lt;/strong&gt; &amp;middot; Best: &lt;strong id="best"&gt;-&lt;/strong&gt; &amp;middot; Average: &lt;strong id="avg"&gt;-&lt;/strong&gt;&lt;/p&gt;
+
+/* CSS */
+.demo .rt { display: grid; place-items: center; min-height: 200px; border-radius: 14px; font: 700 1.5rem 'Segoe UI', sans-serif; color: #fff; cursor: pointer; user-select: none; text-align: center; padding: 1rem; background: #1f419a; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+let state = 'idle', startAt = 0, timeout = null, times = [];
+const set = (text, color) =&gt; { $('rt').textContent = text; $('rt').style.background = color; };
+$('rt').addEventListener('click', () =&gt; {
+  if (state === 'idle') {
+    state = 'waiting';
+    set('Wait for green...', '#c62828');
+    timeout = setTimeout(() =&gt; { state = 'go'; startAt = performance.now(); set('CLICK NOW!', '#178a4a'); }, 1000 + Math.random() * 2500);
+  } else if (state === 'waiting') {
+    clearTimeout(timeout);
+    state = 'idle';
+    set('Too soon! Click to try again.', '#d98a00');
+  } else if (state === 'go') {
+    const ms = Math.round(performance.now() - startAt);
+    times.push(ms);
+    state = 'idle';
+    $('last').textContent = ms + ' ms';
+    $('best').textContent = Math.min(...times) + ' ms';
+    $('avg').textContent = Math.round(times.reduce((a, b) =&gt; a + b, 0) / times.length) + ' ms';
+    set(`${ms} ms - click to play again`, '#1f419a');
+  }
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../events/event-double-click-counter.html">← Previous</a><a href="../events/event-typing-test.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+let state = 'idle', startAt = 0, timeout = null, times = [];
+const set = (text, color) => { $('rt').textContent = text; $('rt').style.background = color; };
+$('rt').addEventListener('click', () => {
+  if (state === 'idle') {
+    state = 'waiting';
+    set('Wait for green...', '#c62828');
+    timeout = setTimeout(() => { state = 'go'; startAt = performance.now(); set('CLICK NOW!', '#178a4a'); }, 1000 + Math.random() * 2500);
+  } else if (state === 'waiting') {
+    clearTimeout(timeout);
+    state = 'idle';
+    set('Too soon! Click to try again.', '#d98a00');
+  } else if (state === 'go') {
+    const ms = Math.round(performance.now() - startAt);
+    times.push(ms);
+    state = 'idle';
+    $('last').textContent = ms + ' ms';
+    $('best').textContent = Math.min(...times) + ' ms';
+    $('avg').textContent = Math.round(times.reduce((a, b) => a + b, 0) / times.length) + ' ms';
+    set(`${ms} ms - click to play again`, '#1f419a');
+  }
+});
+</script>
+</body>
+</html>

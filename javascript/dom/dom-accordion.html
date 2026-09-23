@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create an accordion using JavaScript | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .acc-item { border: 1px solid #d5dbe6; border-radius: 8px; margin-bottom: .5rem; overflow: hidden; } .demo .acc-head { width: 100%; text-align: left; background: #f1f4fa; color: #1c2437; border-radius: 0; display: flex; justify-content: space-between; } .demo .acc-head::after { content: '+'; font-weight: 800; } .demo .acc-item.open .acc-head { background: #1f419a; color: #fff; } .demo .acc-item.open .acc-head::after { content: '\2212'; } .demo .acc-body { max-height: 0; overflow: hidden; transition: max-height .3s; padding: 0 1rem; } .demo .acc-item.open .acc-body { padding: .8rem 1rem; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM Manipulation</p>
+<h1>Create an accordion using JavaScript</h1>
+<p class="pp-desc">Click a heading to open its section; opening one closes the others. "Allow many open" switches that off.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<label><input id="many" type="checkbox"/> Allow many open at once</label>
+<div id="acc" style="margin-top:.8rem"></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;label&gt;&lt;input type="checkbox" id="many"&gt; Allow many open at once&lt;/label&gt;
+&lt;div id="acc" style="margin-top:.8rem"&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .acc-item { border: 1px solid #d5dbe6; border-radius: 8px; margin-bottom: .5rem; overflow: hidden; } .demo .acc-head { width: 100%; text-align: left; background: #f1f4fa; color: #1c2437; border-radius: 0; display: flex; justify-content: space-between; } .demo .acc-head::after { content: '+'; font-weight: 800; } .demo .acc-item.open .acc-head { background: #1f419a; color: #fff; } .demo .acc-item.open .acc-head::after { content: '\2212'; } .demo .acc-body { max-height: 0; overflow: hidden; transition: max-height .3s; padding: 0 1rem; } .demo .acc-item.open .acc-body { padding: .8rem 1rem; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const items = [
+  ['What is the DOM?', 'The Document Object Model is a tree of objects that represents the page. JavaScript can read and change it.'],
+  ['What is an event?', 'An event is something that happens, such as a click or a key press. Event listeners run code in response.'],
+  ['What is localStorage?', 'A key / value store in the browser that keeps data after the page is closed.'],
+];
+items.forEach(([q, a]) =&gt; {
+  const item = document.createElement('div');
+  item.className = 'acc-item';
+  item.innerHTML = `&lt;button class="acc-head"&gt;&lt;/button&gt;&lt;div class="acc-body"&gt;&lt;p style="margin:0"&gt;&lt;/p&gt;&lt;/div&gt;`;
+  item.querySelector('button').textContent = q;
+  item.querySelector('p').textContent = a;
+  item.querySelector('button').addEventListener('click', () =&gt; {
+    const willOpen = !item.classList.contains('open');
+    if (!$('many').checked) document.querySelectorAll('.acc-item').forEach((x) =&gt; { x.classList.remove('open'); x.querySelector('.acc-body').style.maxHeight = null; });
+    item.classList.toggle('open', willOpen);
+    const body = item.querySelector('.acc-body');
+    body.style.maxHeight = willOpen ? body.scrollHeight + 40 + 'px' : null;
+  });
+  $('acc').appendChild(item);
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../dom/dom-tabs-interface.html">← Previous</a><a href="../dom/dom-modal-popup.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const items = [
+  ['What is the DOM?', 'The Document Object Model is a tree of objects that represents the page. JavaScript can read and change it.'],
+  ['What is an event?', 'An event is something that happens, such as a click or a key press. Event listeners run code in response.'],
+  ['What is localStorage?', 'A key / value store in the browser that keeps data after the page is closed.'],
+];
+items.forEach(([q, a]) => {
+  const item = document.createElement('div');
+  item.className = 'acc-item';
+  item.innerHTML = `<button class="acc-head"></button><div class="acc-body"><p style="margin:0"></p></div>`;
+  item.querySelector('button').textContent = q;
+  item.querySelector('p').textContent = a;
+  item.querySelector('button').addEventListener('click', () => {
+    const willOpen = !item.classList.contains('open');
+    if (!$('many').checked) document.querySelectorAll('.acc-item').forEach((x) => { x.classList.remove('open'); x.querySelector('.acc-body').style.maxHeight = null; });
+    item.classList.toggle('open', willOpen);
+    const body = item.querySelector('.acc-body');
+    body.style.maxHeight = willOpen ? body.scrollHeight + 40 + 'px' : null;
+  });
+  $('acc').appendChild(item);
+});
+</script>
+</body>
+</html>

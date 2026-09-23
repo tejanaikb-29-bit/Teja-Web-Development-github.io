@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Live word counter | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: .6rem; margin-top: .8rem; } .demo .stats div { background: #f1f4fa; border-radius: 8px; padding: .6rem; text-align: center; } .demo .stats b { display: block; font-size: 1.6rem; color: #1f419a; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM Manipulation</p>
+<h1>Live word counter</h1>
+<p class="pp-desc">Shows words, characters, sentences, paragraphs and estimated reading time while you type.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<textarea id="t" placeholder="Start typing or paste some text here..." rows="6" style="width:100%">JavaScript makes web pages interactive. Type here and watch the numbers change!</textarea>
+<div class="stats"><div><b id="w">0</b>Words</div><div><b id="c">0</b>Characters</div><div><b id="cs">0</b>No spaces</div><div><b id="s">0</b>Sentences</div><div><b id="p">0</b>Paragraphs</div><div><b id="r">0</b>Min to read</div></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;textarea id="t" rows="6" style="width:100%" placeholder="Start typing or paste some text here..."&gt;JavaScript makes web pages interactive. Type here and watch the numbers change!&lt;/textarea&gt;
+&lt;div class="stats"&gt;&lt;div&gt;&lt;b id="w"&gt;0&lt;/b&gt;Words&lt;/div&gt;&lt;div&gt;&lt;b id="c"&gt;0&lt;/b&gt;Characters&lt;/div&gt;&lt;div&gt;&lt;b id="cs"&gt;0&lt;/b&gt;No spaces&lt;/div&gt;&lt;div&gt;&lt;b id="s"&gt;0&lt;/b&gt;Sentences&lt;/div&gt;&lt;div&gt;&lt;b id="p"&gt;0&lt;/b&gt;Paragraphs&lt;/div&gt;&lt;div&gt;&lt;b id="r"&gt;0&lt;/b&gt;Min to read&lt;/div&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: .6rem; margin-top: .8rem; } .demo .stats div { background: #f1f4fa; border-radius: 8px; padding: .6rem; text-align: center; } .demo .stats b { display: block; font-size: 1.6rem; color: #1f419a; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+function update() {
+  const text = $('t').value;
+  const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+  $('w').textContent = words;
+  $('c').textContent = text.length;
+  $('cs').textContent = text.replace(/\s/g, '').length;
+  $('s').textContent = (text.match(/[^.!?]+[.!?]+/g) || []).length;
+  $('p').textContent = text.split(/\n+/).filter((x) =&gt; x.trim()).length;
+  $('r').textContent = words ? Math.max(1, Math.ceil(words / 200)) : 0;     // about 200 words per minute
+}
+$('t').addEventListener('input', update);
+update();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../dom/dom-live-character-counter.html">← Previous</a><a href="../dom/dom-current-date-time.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+function update() {
+  const text = $('t').value;
+  const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+  $('w').textContent = words;
+  $('c').textContent = text.length;
+  $('cs').textContent = text.replace(/\s/g, '').length;
+  $('s').textContent = (text.match(/[^.!?]+[.!?]+/g) || []).length;
+  $('p').textContent = text.split(/\n+/).filter((x) => x.trim()).length;
+  $('r').textContent = words ? Math.max(1, Math.ceil(words / 200)) : 0;     // about 200 words per minute
+}
+$('t').addEventListener('input', update);
+update();
+</script>
+</body>
+</html>

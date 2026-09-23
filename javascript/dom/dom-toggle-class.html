@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Toggle a CSS class using JavaScript | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .card2 { padding: 1.4rem; border-radius: 10px; background: #fff; border: 2px solid #d5dbe6; transition: .3s; } .demo .card2.active { background: #14213d; color: #f2c200; border-color: #f2c200; transform: scale(1.03); }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM Manipulation</p>
+<h1>Toggle a CSS class using JavaScript</h1>
+<p class="pp-desc">classList.toggle() adds the class if it is missing and removes it if present. The card switches between two looks.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="card2" id="c"><h3 style="margin-top:0">Toggle card</h3><p>Click the button or the card itself.</p></div>
+<div class="row"><button id="t">Toggle class "active"</button><span>State: <strong id="state">off</strong></span></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div id="c" class="card2"&gt;&lt;h3 style="margin-top:0"&gt;Toggle card&lt;/h3&gt;&lt;p&gt;Click the button or the card itself.&lt;/p&gt;&lt;/div&gt;
+&lt;div class="row"&gt;&lt;button id="t"&gt;Toggle class "active"&lt;/button&gt;&lt;span&gt;State: &lt;strong id="state"&gt;off&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .card2 { padding: 1.4rem; border-radius: 10px; background: #fff; border: 2px solid #d5dbe6; transition: .3s; } .demo .card2.active { background: #14213d; color: #f2c200; border-color: #f2c200; transform: scale(1.03); }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+function toggle() {
+  const on = $('c').classList.toggle('active');    // returns true when the class was added
+  $('state').textContent = on ? 'on' : 'off';
+}
+$('t').addEventListener('click', toggle);
+$('c').addEventListener('click', toggle);</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../dom/dom-add-remove-classes.html">← Previous</a><a href="../dom/dom-change-attributes.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+function toggle() {
+  const on = $('c').classList.toggle('active');    // returns true when the class was added
+  $('state').textContent = on ? 'on' : 'off';
+}
+$('t').addEventListener('click', toggle);
+$('c').addEventListener('click', toggle);
+</script>
+</body>
+</html>

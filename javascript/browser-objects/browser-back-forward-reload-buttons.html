@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Buttons for Back, Forward and Reload | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .toolbar { display: flex; gap: .4rem; align-items: center; background: #e8edf8; padding: .6rem; border-radius: 10px; } .demo .toolbar button { background: #fff; color: #14213d; border: 1px solid #b9c3d6; font-size: 1.1rem; } .demo .toolbar .addr { flex: 1; background: #fff; border: 1px solid #b9c3d6; border-radius: 8px; padding: .4rem .7rem; font-size: .9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Browser Objects &amp; Browser Features</p>
+<h1>Buttons for Back, Forward and Reload</h1>
+<p class="pp-desc">Custom browser-style toolbar buttons using history.back(), history.forward() and location.reload().</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="toolbar"><button id="back" title="Back">←</button><button id="fwd" title="Forward">→</button><button id="rel" title="Reload">↻</button><div class="addr" id="addr"></div></div>
+<p>Visit the <a href="../index.html">JavaScript list</a> and come back with the Back button, or press Reload to see the time change: <strong id="t"></strong></p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="toolbar"&gt;&lt;button id="back" title="Back"&gt;&amp;larr;&lt;/button&gt;&lt;button id="fwd" title="Forward"&gt;&amp;rarr;&lt;/button&gt;&lt;button id="rel" title="Reload"&gt;&amp;#8635;&lt;/button&gt;&lt;div class="addr" id="addr"&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Visit the &lt;a href="index.html"&gt;JavaScript list&lt;/a&gt; and come back with the Back button, or press Reload to see the time change: &lt;strong id="t"&gt;&lt;/strong&gt;&lt;/p&gt;
+
+/* CSS */
+.demo .toolbar { display: flex; gap: .4rem; align-items: center; background: #e8edf8; padding: .6rem; border-radius: 10px; } .demo .toolbar button { background: #fff; color: #14213d; border: 1px solid #b9c3d6; font-size: 1.1rem; } .demo .toolbar .addr { flex: 1; background: #fff; border: 1px solid #b9c3d6; border-radius: 8px; padding: .4rem .7rem; font-size: .9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+$('addr').textContent = location.href;
+$('t').textContent = new Date().toLocaleTimeString();
+$('back').addEventListener('click', () =&gt; history.back());
+$('fwd').addEventListener('click', () =&gt; history.forward());
+$('rel').addEventListener('click', () =&gt; location.reload());</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../browser-objects/browser-history-object.html">← Previous</a><a href="../browser-objects/browser-navigator-object.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+$('addr').textContent = location.href;
+$('t').textContent = new Date().toLocaleTimeString();
+$('back').addEventListener('click', () => history.back());
+$('fwd').addEventListener('click', () => history.forward());
+$('rel').addEventListener('click', () => location.reload());
+</script>
+</body>
+</html>

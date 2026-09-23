@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Show / hide content button | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM Manipulation</p>
+<h1>Show / hide content button</h1>
+<p class="pp-desc">A "Read more" button expands and collapses extra text, and a second button hides a whole section.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<p>JavaScript is the language of the web. <span hidden="" id="more">It runs in every browser, powers interactive pages and, with Node.js, can even run on servers. Learning it opens the door to front-end and back-end development.</span></p>
+<button id="rm">Read more</button>
+<hr/><button class="secondary" id="tg">Hide section</button>
+<div class="card" id="sec" style="margin-top:.8rem"><h4 style="margin-top:0">A section</h4><p>This whole block can be hidden with the hidden attribute.</p></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;p&gt;JavaScript is the language of the web. &lt;span id="more" hidden&gt;It runs in every browser, powers interactive pages and, with Node.js, can even run on servers. Learning it opens the door to front-end and back-end development.&lt;/span&gt;&lt;/p&gt;
+&lt;button id="rm"&gt;Read more&lt;/button&gt;
+&lt;hr&gt;&lt;button id="tg" class="secondary"&gt;Hide section&lt;/button&gt;
+&lt;div id="sec" class="card" style="margin-top:.8rem"&gt;&lt;h4 style="margin-top:0"&gt;A section&lt;/h4&gt;&lt;p&gt;This whole block can be hidden with the hidden attribute.&lt;/p&gt;&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+$('rm').addEventListener('click', () =&gt; {
+  $('more').hidden = !$('more').hidden;
+  $('rm').textContent = $('more').hidden ? 'Read more' : 'Read less';
+});
+$('tg').addEventListener('click', () =&gt; {
+  $('sec').hidden = !$('sec').hidden;
+  $('tg').textContent = $('sec').hidden ? 'Show section' : 'Hide section';
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../dom/dom-show-hide-password.html">← Previous</a><a href="../dom/dom-tabs-interface.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+$('rm').addEventListener('click', () => {
+  $('more').hidden = !$('more').hidden;
+  $('rm').textContent = $('more').hidden ? 'Read more' : 'Read less';
+});
+$('tg').addEventListener('click', () => {
+  $('sec').hidden = !$('sec').hidden;
+  $('tg').textContent = $('sec').hidden ? 'Show section' : 'Hide section';
+});
+</script>
+</body>
+</html>

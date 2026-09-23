@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The onmousemove event | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .area { position: relative; height: 220px; border: 3px dashed #8a97b3; border-radius: 12px; background: #f7f9fe; overflow: hidden; cursor: crosshair; } .demo .dot { position: absolute; width: 22px; height: 22px; border-radius: 50%; background: #d9481f; transform: translate(-50%, -50%); pointer-events: none; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › JavaScript Events</p>
+<h1>The onmousemove event</h1>
+<p class="pp-desc">A dot follows the pointer inside the area and the coordinates relative to the area are displayed.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="area" id="area"><div class="dot" hidden="" id="dot"></div></div><p>Position inside the area: <strong id="pos">move the mouse</strong></p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="area" id="area"&gt;&lt;div class="dot" id="dot" hidden&gt;&lt;/div&gt;&lt;/div&gt;&lt;p&gt;Position inside the area: &lt;strong id="pos"&gt;move the mouse&lt;/strong&gt;&lt;/p&gt;
+
+/* CSS */
+.demo .area { position: relative; height: 220px; border: 3px dashed #8a97b3; border-radius: 12px; background: #f7f9fe; overflow: hidden; cursor: crosshair; } .demo .dot { position: absolute; width: 22px; height: 22px; border-radius: 50%; background: #d9481f; transform: translate(-50%, -50%); pointer-events: none; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+$('area').addEventListener('mousemove', (e) =&gt; {
+  const r = $('area').getBoundingClientRect();
+  const x = Math.round(e.clientX - r.left), y = Math.round(e.clientY - r.top);
+  $('dot').hidden = false;
+  $('dot').style.left = x + 'px';
+  $('dot').style.top = y + 'px';
+  $('pos').textContent = `x = ${x}, y = ${y}`;
+});
+$('area').addEventListener('mouseleave', () =&gt; { $('dot').hidden = true; });</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../events/event-mousedown-mouseup.html">← Previous</a><a href="../events/event-keydown.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+$('area').addEventListener('mousemove', (e) => {
+  const r = $('area').getBoundingClientRect();
+  const x = Math.round(e.clientX - r.left), y = Math.round(e.clientY - r.top);
+  $('dot').hidden = false;
+  $('dot').style.left = x + 'px';
+  $('dot').style.top = y + 'px';
+  $('pos').textContent = `x = ${x}, y = ${y}`;
+});
+$('area').addEventListener('mouseleave', () => { $('dot').hidden = true; });
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edit table data dynamically | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo #tb td { cursor: text; } .demo #tb td:hover { background: #f4f8ff; } .demo td input { width: 100%; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM Manipulation</p>
+<h1>Edit table data dynamically</h1>
+<p class="pp-desc">Double-click a cell to edit it. Press Enter or click away to save, Escape to cancel.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<table class="data"><thead><tr><th>Name</th><th>Department</th><th>Salary</th></tr></thead>
+<tbody id="tb"><tr><td>Asha</td><td>Design</td><td>52000</td></tr><tr><td>Ravi</td><td>Engineering</td><td>68000</td></tr><tr><td>Meena</td><td>Finance</td><td>61000</td></tr></tbody></table>
+<p class="muted" id="msg">Double-click any cell.</p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;table class="data"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Department&lt;/th&gt;&lt;th&gt;Salary&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody id="tb"&gt;&lt;tr&gt;&lt;td&gt;Asha&lt;/td&gt;&lt;td&gt;Design&lt;/td&gt;&lt;td&gt;52000&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ravi&lt;/td&gt;&lt;td&gt;Engineering&lt;/td&gt;&lt;td&gt;68000&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Meena&lt;/td&gt;&lt;td&gt;Finance&lt;/td&gt;&lt;td&gt;61000&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;p class="muted" id="msg"&gt;Double-click any cell.&lt;/p&gt;
+
+/* CSS */
+.demo #tb td { cursor: text; } .demo #tb td:hover { background: #f4f8ff; } .demo td input { width: 100%; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+$('tb').addEventListener('dblclick', (e) =&gt; {
+  const td = e.target.closest('td');
+  if (!td || td.querySelector('input')) return;
+  const old = td.textContent;
+  const input = document.createElement('input');
+  input.value = old;
+  td.textContent = '';
+  td.appendChild(input);
+  input.focus(); input.select();
+  let done = false;
+  const finish = (save) =&gt; {
+    if (done) return; done = true;
+    const value = save &amp;&amp; input.value.trim() ? input.value.trim() : old;
+    td.textContent = value;
+    $('msg').textContent = value !== old ? `Changed "${old}" to "${value}"` : 'No change.';
+  };
+  input.addEventListener('keydown', (ev) =&gt; { if (ev.key === 'Enter') finish(true); if (ev.key === 'Escape') finish(false); });
+  input.addEventListener('blur', () =&gt; finish(true));
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../dom/dom-delete-table-row.html">← Previous</a><a href="../dom/dom-searchable-filterable-table.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+$('tb').addEventListener('dblclick', (e) => {
+  const td = e.target.closest('td');
+  if (!td || td.querySelector('input')) return;
+  const old = td.textContent;
+  const input = document.createElement('input');
+  input.value = old;
+  td.textContent = '';
+  td.appendChild(input);
+  input.focus(); input.select();
+  let done = false;
+  const finish = (save) => {
+    if (done) return; done = true;
+    const value = save && input.value.trim() ? input.value.trim() : old;
+    td.textContent = value;
+    $('msg').textContent = value !== old ? `Changed "${old}" to "${value}"` : 'No change.';
+  };
+  input.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') finish(true); if (ev.key === 'Escape') finish(false); });
+  input.addEventListener('blur', () => finish(true));
+});
+</script>
+</body>
+</html>

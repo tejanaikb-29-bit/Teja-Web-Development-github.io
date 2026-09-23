@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Display the user's current coordinates using the Geolocation API | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo table.data th { width: 38%; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Browser Objects &amp; Browser Features</p>
+<h1>Display the user's current coordinates using the Geolocation API</h1>
+<p class="pp-desc">Shows latitude, longitude, accuracy, altitude and speed, a link to the map, and can keep tracking with watchPosition().</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row"><button id="get">Get my coordinates</button><button class="secondary" id="watch">Start tracking</button></div><table class="data"><tbody id="tb"><tr><td class="muted" colspan="2">No data yet.</td></tr></tbody></table><p id="map"></p><p class="err" id="err"></p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;&lt;button id="get"&gt;Get my coordinates&lt;/button&gt;&lt;button id="watch" class="secondary"&gt;Start tracking&lt;/button&gt;&lt;/div&gt;&lt;table class="data"&gt;&lt;tbody id="tb"&gt;&lt;tr&gt;&lt;td colspan="2" class="muted"&gt;No data yet.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;p id="map"&gt;&lt;/p&gt;&lt;p class="err" id="err"&gt;&lt;/p&gt;
+
+/* CSS */
+.demo table.data th { width: 38%; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+let watchId = null;
+function show(pos) {
+  const c = pos.coords;
+  const rows = [['Latitude', c.latitude.toFixed(6)], ['Longitude', c.longitude.toFixed(6)], ['Accuracy', Math.round(c.accuracy) + ' metres'], ['Altitude', c.altitude === null ? 'not available' : Math.round(c.altitude) + ' m'], ['Speed', c.speed === null ? 'not available' : c.speed.toFixed(1) + ' m/s'], ['Time', new Date(pos.timestamp).toLocaleTimeString()]];
+  $('tb').innerHTML = '';
+  rows.forEach(([k, v]) =&gt; { const tr = $('tb').insertRow(); tr.insertCell().textContent = k; tr.insertCell().textContent = v; });
+  $('map').innerHTML = `&lt;a target="_blank" rel="noopener" href="https://www.openstreetmap.org/?mlat=${c.latitude}&amp;mlon=${c.longitude}#map=16/${c.latitude}/${c.longitude}"&gt;Open this position on OpenStreetMap&lt;/a&gt;`;
+  $('err').textContent = '';
+}
+function fail(err) { $('err').textContent = err.code === 1 ? 'Permission denied.' : 'Could not get position: ' + err.message; }
+$('get').addEventListener('click', () =&gt; {
+  if (!navigator.geolocation) return ($('err').textContent = 'Geolocation not supported.');
+  navigator.geolocation.getCurrentPosition(show, fail, { enableHighAccuracy: true, timeout: 10000 });
+});
+$('watch').addEventListener('click', () =&gt; {
+  if (!navigator.geolocation) return;
+  if (watchId !== null) { navigator.geolocation.clearWatch(watchId); watchId = null; $('watch').textContent = 'Start tracking'; return; }
+  watchId = navigator.geolocation.watchPosition(show, fail, { enableHighAccuracy: true });
+  $('watch').textContent = 'Stop tracking';
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../browser-objects/browser-geolocation.html">← Previous</a><a href="../browser-objects/browser-online-offline-live-updates.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+let watchId = null;
+function show(pos) {
+  const c = pos.coords;
+  const rows = [['Latitude', c.latitude.toFixed(6)], ['Longitude', c.longitude.toFixed(6)], ['Accuracy', Math.round(c.accuracy) + ' metres'], ['Altitude', c.altitude === null ? 'not available' : Math.round(c.altitude) + ' m'], ['Speed', c.speed === null ? 'not available' : c.speed.toFixed(1) + ' m/s'], ['Time', new Date(pos.timestamp).toLocaleTimeString()]];
+  $('tb').innerHTML = '';
+  rows.forEach(([k, v]) => { const tr = $('tb').insertRow(); tr.insertCell().textContent = k; tr.insertCell().textContent = v; });
+  $('map').innerHTML = `<a target="_blank" rel="noopener" href="https://www.openstreetmap.org/?mlat=${c.latitude}&mlon=${c.longitude}#map=16/${c.latitude}/${c.longitude}">Open this position on OpenStreetMap</a>`;
+  $('err').textContent = '';
+}
+function fail(err) { $('err').textContent = err.code === 1 ? 'Permission denied.' : 'Could not get position: ' + err.message; }
+$('get').addEventListener('click', () => {
+  if (!navigator.geolocation) return ($('err').textContent = 'Geolocation not supported.');
+  navigator.geolocation.getCurrentPosition(show, fail, { enableHighAccuracy: true, timeout: 10000 });
+});
+$('watch').addEventListener('click', () => {
+  if (!navigator.geolocation) return;
+  if (watchId !== null) { navigator.geolocation.clearWatch(watchId); watchId = null; $('watch').textContent = 'Start tracking'; return; }
+  watchId = navigator.geolocation.watchPosition(show, fail, { enableHighAccuracy: true });
+  $('watch').textContent = 'Stop tracking';
+});
+</script>
+</body>
+</html>

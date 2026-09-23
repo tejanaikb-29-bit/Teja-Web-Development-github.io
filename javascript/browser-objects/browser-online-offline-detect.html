@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Detect whether the browser is online or offline | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .status { text-align: center; padding: 1.6rem; border-radius: 14px; font: 800 1.8rem 'Segoe UI', sans-serif; color: #fff; transition: background .3s; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Browser Objects &amp; Browser Features</p>
+<h1>Detect whether the browser is online or offline</h1>
+<p class="pp-desc">Reads navigator.onLine and lets you test a real network request. Turn off your Wi-Fi to see the status change.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="status" id="status"></div><div class="row"><button id="test">Test connection with a real request</button></div><div class="out" id="out">navigator.onLine only says whether a network is connected, not whether the internet works.</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="status" id="status"&gt;&lt;/div&gt;&lt;div class="row"&gt;&lt;button id="test"&gt;Test connection with a real request&lt;/button&gt;&lt;/div&gt;&lt;div class="out" id="out"&gt;navigator.onLine only says whether a network is connected, not whether the internet works.&lt;/div&gt;
+
+/* CSS */
+.demo .status { text-align: center; padding: 1.6rem; border-radius: 14px; font: 800 1.8rem 'Segoe UI', sans-serif; color: #fff; transition: background .3s; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+function update() {
+  const online = navigator.onLine;
+  $('status').textContent = online ? 'ONLINE' : 'OFFLINE';
+  $('status').style.background = online ? '#178a4a' : '#c62828';
+}
+window.addEventListener('online', update);
+window.addEventListener('offline', update);
+$('test').addEventListener('click', async () =&gt; {
+  $('out').textContent = 'Testing...';
+  try {
+    await fetch('https://jsonplaceholder.typicode.com/todos/1', { cache: 'no-store' });
+    $('out').textContent = 'Request succeeded - the internet is reachable.';
+  } catch (e) { $('out').textContent = 'Request failed - no internet access.'; }
+});
+update();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../browser-objects/browser-screen-width-height.html">← Previous</a><a href="../browser-objects/browser-language.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+function update() {
+  const online = navigator.onLine;
+  $('status').textContent = online ? 'ONLINE' : 'OFFLINE';
+  $('status').style.background = online ? '#178a4a' : '#c62828';
+}
+window.addEventListener('online', update);
+window.addEventListener('offline', update);
+$('test').addEventListener('click', async () => {
+  $('out').textContent = 'Testing...';
+  try {
+    await fetch('https://jsonplaceholder.typicode.com/todos/1', { cache: 'no-store' });
+    $('out').textContent = 'Request succeeded - the internet is reachable.';
+  } catch (e) { $('out').textContent = 'Request failed - no internet access.'; }
+});
+update();
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Button click event | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM &amp; Event-Based Experiments</p>
+<h1>Button click event</h1>
+<p class="pp-desc">Runs a function every time a button is clicked and counts the clicks.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<button id="btn">Click me</button>
+<div class="out" id="out">You have not clicked yet.</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;button id="btn"&gt;Click me&lt;/button&gt;
+&lt;div class="out" id="out"&gt;You have not clicked yet.&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+let clicks = 0;
+$('btn').addEventListener('click', () =&gt; {
+  clicks++;
+  $('out').textContent = `Button clicked ${clicks} time${clicks === 1 ? '' : 's'}.`;
+  $('btn').textContent = clicks &lt; 5 ? 'Click again' : 'Enough!';
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../events/change-background-color.html">← Previous</a><a href="../events/show-hide-element.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+let clicks = 0;
+$('btn').addEventListener('click', () => {
+  clicks++;
+  $('out').textContent = `Button clicked ${clicks} time${clicks === 1 ? '' : 's'}.`;
+  $('btn').textContent = clicks < 5 ? 'Click again' : 'Enough!';
+});
+</script>
+</body>
+</html>

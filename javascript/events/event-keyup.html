@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Keyboard events using keyup | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › JavaScript Events</p>
+<h1>Keyboard events using keyup</h1>
+<p class="pp-desc">keyup fires once when a key is released. The text below is updated only after each key is released.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<input id="inp" placeholder="Type here" style="width:100%;max-width:420px" type="text"/><p>Length after last keyup: <strong id="len">0</strong> · upper-case copy: <strong id="up"></strong></p><div class="out" id="log" style="font-family:Consolas,monospace;font-size:.85rem;min-height:5rem">Event log (newest first)</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;input id="inp" type="text" placeholder="Type here" style="width:100%;max-width:420px"&gt;&lt;p&gt;Length after last keyup: &lt;strong id="len"&gt;0&lt;/strong&gt; &amp;middot; upper-case copy: &lt;strong id="up"&gt;&lt;/strong&gt;&lt;/p&gt;&lt;div class="out" id="log" style="font-family:Consolas,monospace;font-size:.85rem;min-height:5rem"&gt;Event log (newest first)&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const logBox = $('log');
+function log(text) {
+  const line = document.createElement('div');
+  line.textContent = new Date().toLocaleTimeString() + '  ' + text;
+  if (logBox.textContent.startsWith('Event log')) logBox.textContent = '';
+  logBox.prepend(line);
+  while (logBox.children.length &gt; 8) logBox.lastElementChild.remove();
+}
+
+$('inp').addEventListener('keyup', (e) =&gt; {
+  $('len').textContent = $('inp').value.length;
+  $('up').textContent = $('inp').value.toUpperCase();
+  log(`keyup -&gt; key "${e.key}" released`);
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../events/event-keydown.html">← Previous</a><a href="../events/event-display-key-pressed.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const logBox = $('log');
+function log(text) {
+  const line = document.createElement('div');
+  line.textContent = new Date().toLocaleTimeString() + '  ' + text;
+  if (logBox.textContent.startsWith('Event log')) logBox.textContent = '';
+  logBox.prepend(line);
+  while (logBox.children.length > 8) logBox.lastElementChild.remove();
+}
+
+$('inp').addEventListener('keyup', (e) => {
+  $('len').textContent = $('inp').value.length;
+  $('up').textContent = $('inp').value.toUpperCase();
+  log(`keyup -> key "${e.key}" released`);
+});
+</script>
+</body>
+</html>

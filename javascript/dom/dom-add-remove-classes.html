@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add and remove CSS classes using JavaScript | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .tgt { padding: 1.2rem; border-radius: 10px; border: 3px solid #b9c3d6; text-align: center; font-weight: 700; transition: .3s; margin-bottom: .8rem; }
+.demo .tgt.bg-blue { background: #b3d4ff; } .demo .tgt.bg-green { background: #b8e6c4; } .demo .tgt.round { border-radius: 40px; }
+.demo .tgt.big { font-size: 1.8rem; } .demo .tgt.bold-border { border: 6px solid #14213d; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM Manipulation</p>
+<h1>Add and remove CSS classes using JavaScript</h1>
+<p class="pp-desc">classList.add() and classList.remove() apply or take away styling classes. The current class list is displayed.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="tgt" id="t">Target element</div>
+<div class="row" id="btns"><button data-add="bg-blue">+ bg-blue</button><button data-add="bg-green">+ bg-green</button><button data-add="round">+ round</button><button data-add="big">+ big</button><button data-add="bold-border">+ bold-border</button>
+<button class="danger" id="clear">Remove all classes</button></div>
+<p>className: <code id="cls"></code></p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div id="t" class="tgt"&gt;Target element&lt;/div&gt;
+&lt;div class="row" id="btns"&gt;&lt;button data-add="bg-blue"&gt;+ bg-blue&lt;/button&gt;&lt;button data-add="bg-green"&gt;+ bg-green&lt;/button&gt;&lt;button data-add="round"&gt;+ round&lt;/button&gt;&lt;button data-add="big"&gt;+ big&lt;/button&gt;&lt;button data-add="bold-border"&gt;+ bold-border&lt;/button&gt;
+&lt;button id="clear" class="danger"&gt;Remove all classes&lt;/button&gt;&lt;/div&gt;
+&lt;p&gt;className: &lt;code id="cls"&gt;&lt;/code&gt;&lt;/p&gt;
+
+/* CSS */
+.demo .tgt { padding: 1.2rem; border-radius: 10px; border: 3px solid #b9c3d6; text-align: center; font-weight: 700; transition: .3s; margin-bottom: .8rem; }
+.demo .tgt.bg-blue { background: #b3d4ff; } .demo .tgt.bg-green { background: #b8e6c4; } .demo .tgt.round { border-radius: 40px; }
+.demo .tgt.big { font-size: 1.8rem; } .demo .tgt.bold-border { border: 6px solid #14213d; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+function show() { $('cls').textContent = $('t').className; }
+document.querySelectorAll('button[data-add]').forEach((b) =&gt; {
+  b.addEventListener('click', () =&gt; {
+    const cls = b.dataset.add;
+    if (cls === 'bg-blue') $('t').classList.remove('bg-green');
+    if (cls === 'bg-green') $('t').classList.remove('bg-blue');
+    $('t').classList.add(cls);
+    show();
+  });
+});
+$('clear').addEventListener('click', () =&gt; { $('t').className = 'tgt'; show(); });
+show();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../dom/dom-replace-element.html">← Previous</a><a href="../dom/dom-toggle-class.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+function show() { $('cls').textContent = $('t').className; }
+document.querySelectorAll('button[data-add]').forEach((b) => {
+  b.addEventListener('click', () => {
+    const cls = b.dataset.add;
+    if (cls === 'bg-blue') $('t').classList.remove('bg-green');
+    if (cls === 'bg-green') $('t').classList.remove('bg-blue');
+    $('t').classList.add(cls);
+    show();
+  });
+});
+$('clear').addEventListener('click', () => { $('t').className = 'tgt'; show(); });
+show();
+</script>
+</body>
+</html>

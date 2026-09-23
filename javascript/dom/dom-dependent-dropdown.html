@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dependent dropdown: Country, State and City | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM Manipulation</p>
+<h1>Dependent dropdown: Country, State and City</h1>
+<p class="pp-desc">Choosing a country fills the state list, and choosing a state fills the city list.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row"><label class="field">Country<select id="country"></select></label><label class="field">State<select disabled="" id="state"></select></label><label class="field">City<select disabled="" id="city"></select></label></div>
+<div class="out" id="out">Select a country to begin.</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;&lt;label class="field"&gt;Country&lt;select id="country"&gt;&lt;/select&gt;&lt;/label&gt;&lt;label class="field"&gt;State&lt;select id="state" disabled&gt;&lt;/select&gt;&lt;/label&gt;&lt;label class="field"&gt;City&lt;select id="city" disabled&gt;&lt;/select&gt;&lt;/label&gt;&lt;/div&gt;
+&lt;div class="out" id="out"&gt;Select a country to begin.&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const data = {
+  India: { 'Tamil Nadu': ['Chennai', 'Madurai', 'Coimbatore'], Kerala: ['Kochi', 'Thiruvananthapuram'], Karnataka: ['Bengaluru', 'Mysuru'] },
+  USA: { California: ['Los Angeles', 'San Francisco'], Texas: ['Houston', 'Austin'] },
+  UK: { England: ['London', 'Manchester'], Scotland: ['Edinburgh', 'Glasgow'] },
+};
+function fill(select, items, label) {
+  select.innerHTML = '';
+  select.add(new Option(`-- ${label} --`, ''));
+  items.forEach((i) =&gt; select.add(new Option(i, i)));
+  select.disabled = items.length === 0;
+}
+function summary() {
+  const parts = [$('country').value, $('state').value, $('city').value].filter(Boolean);
+  $('out').textContent = parts.length ? 'Selected: ' + parts.join(' &gt; ') : 'Select a country to begin.';
+}
+fill($('country'), Object.keys(data), 'Select country');
+fill($('state'), [], 'Select state');
+fill($('city'), [], 'Select city');
+$('country').addEventListener('change', () =&gt; {
+  fill($('state'), $('country').value ? Object.keys(data[$('country').value]) : [], 'Select state');
+  fill($('city'), [], 'Select city');
+  summary();
+});
+$('state').addEventListener('change', () =&gt; {
+  fill($('city'), $('state').value ? data[$('country').value][$('state').value] : [], 'Select city');
+  summary();
+});
+$('city').addEventListener('change', summary);</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../dom/dom-add-select-options.html">← Previous</a><a href="../dom/dom-image-gallery-array.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const data = {
+  India: { 'Tamil Nadu': ['Chennai', 'Madurai', 'Coimbatore'], Kerala: ['Kochi', 'Thiruvananthapuram'], Karnataka: ['Bengaluru', 'Mysuru'] },
+  USA: { California: ['Los Angeles', 'San Francisco'], Texas: ['Houston', 'Austin'] },
+  UK: { England: ['London', 'Manchester'], Scotland: ['Edinburgh', 'Glasgow'] },
+};
+function fill(select, items, label) {
+  select.innerHTML = '';
+  select.add(new Option(`-- ${label} --`, ''));
+  items.forEach((i) => select.add(new Option(i, i)));
+  select.disabled = items.length === 0;
+}
+function summary() {
+  const parts = [$('country').value, $('state').value, $('city').value].filter(Boolean);
+  $('out').textContent = parts.length ? 'Selected: ' + parts.join(' > ') : 'Select a country to begin.';
+}
+fill($('country'), Object.keys(data), 'Select country');
+fill($('state'), [], 'Select state');
+fill($('city'), [], 'Select city');
+$('country').addEventListener('change', () => {
+  fill($('state'), $('country').value ? Object.keys(data[$('country').value]) : [], 'Select state');
+  fill($('city'), [], 'Select city');
+  summary();
+});
+$('state').addEventListener('change', () => {
+  fill($('city'), $('state').value ? data[$('country').value][$('state').value] : [], 'Select city');
+  summary();
+});
+$('city').addEventListener('change', summary);
+</script>
+</body>
+</html>

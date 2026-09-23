@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Location object | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo table.data th { width: 38%; } .demo td { word-break: break-all; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Browser Objects &amp; Browser Features</p>
+<h1>The Location object</h1>
+<p class="pp-desc">Shows every part of the current address (protocol, host, path, search, hash) and lets you change the hash and query string.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<table class="data"><tbody id="tb"></tbody></table><div class="row"><button id="hash">Set location.hash = "#section2"</button><button class="secondary" id="clearHash">Clear hash</button><button class="secondary" id="reload">location.reload()</button></div><p class="muted">Pages opened directly from a folder use the file: protocol, so host and port may be empty.</p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;table class="data"&gt;&lt;tbody id="tb"&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;div class="row"&gt;&lt;button id="hash"&gt;Set location.hash = "#section2"&lt;/button&gt;&lt;button id="clearHash" class="secondary"&gt;Clear hash&lt;/button&gt;&lt;button id="reload" class="secondary"&gt;location.reload()&lt;/button&gt;&lt;/div&gt;&lt;p class="muted"&gt;Pages opened directly from a folder use the file: protocol, so host and port may be empty.&lt;/p&gt;
+
+/* CSS */
+.demo table.data th { width: 38%; } .demo td { word-break: break-all; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+function update() {
+  const keys = ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash', 'origin'];
+  $('tb').innerHTML = '';
+  keys.forEach((k) =&gt; { const tr = $('tb').insertRow(); tr.insertCell().textContent = 'location.' + k; tr.insertCell().textContent = location[k] || '(empty)'; });
+}
+$('hash').addEventListener('click', () =&gt; { location.hash = '#section2'; update(); });
+$('clearHash').addEventListener('click', () =&gt; { history.replaceState(null, '', location.pathname + location.search); update(); });
+$('reload').addEventListener('click', () =&gt; location.reload());
+window.addEventListener('hashchange', update);
+update();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../browser-objects/browser-stopwatch.html">← Previous</a><a href="../browser-objects/browser-redirect-button.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+function update() {
+  const keys = ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash', 'origin'];
+  $('tb').innerHTML = '';
+  keys.forEach((k) => { const tr = $('tb').insertRow(); tr.insertCell().textContent = 'location.' + k; tr.insertCell().textContent = location[k] || '(empty)'; });
+}
+$('hash').addEventListener('click', () => { location.hash = '#section2'; update(); });
+$('clearHash').addEventListener('click', () => { history.replaceState(null, '', location.pathname + location.search); update(); });
+$('reload').addEventListener('click', () => location.reload());
+window.addEventListener('hashchange', update);
+update();
+</script>
+</body>
+</html>

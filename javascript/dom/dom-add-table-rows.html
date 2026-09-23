@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add new rows to an HTML table dynamically | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM Manipulation</p>
+<h1>Add new rows to an HTML table dynamically</h1>
+<p class="pp-desc">A small form adds a new row to the table with insertRow() and insertCell().</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<form class="row" id="f"><label class="field">Name<input id="n" type="text"/></label><label class="field">Course<input id="c" type="text"/></label><label class="field">Fees<input id="fee" min="0" type="number"/></label><button>Add row</button></form>
+<p class="err" id="err"></p>
+<table class="data"><thead><tr><th>#</th><th>Name</th><th>Course</th><th>Fees</th></tr></thead><tbody id="tb"></tbody><tfoot><tr><th colspan="3">Total fees</th><th id="total">0</th></tr></tfoot></table>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;form id="f" class="row"&gt;&lt;label class="field"&gt;Name&lt;input id="n" type="text"&gt;&lt;/label&gt;&lt;label class="field"&gt;Course&lt;input id="c" type="text"&gt;&lt;/label&gt;&lt;label class="field"&gt;Fees&lt;input id="fee" type="number" min="0"&gt;&lt;/label&gt;&lt;button&gt;Add row&lt;/button&gt;&lt;/form&gt;
+&lt;p class="err" id="err"&gt;&lt;/p&gt;
+&lt;table class="data"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;#&lt;/th&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Course&lt;/th&gt;&lt;th&gt;Fees&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id="tb"&gt;&lt;/tbody&gt;&lt;tfoot&gt;&lt;tr&gt;&lt;th colspan="3"&gt;Total fees&lt;/th&gt;&lt;th id="total"&gt;0&lt;/th&gt;&lt;/tr&gt;&lt;/tfoot&gt;&lt;/table&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+let total = 0;
+$('f').addEventListener('submit', (e) =&gt; {
+  e.preventDefault();
+  const n = $('n').value.trim(), c = $('c').value.trim(), fee = parseFloat($('fee').value);
+  if (!n || !c || Number.isNaN(fee)) { $('err').textContent = 'Fill in all three fields.'; return; }
+  $('err').textContent = '';
+  const row = $('tb').insertRow();
+  [$('tb').rows.length, n, c, fee].forEach((v) =&gt; { row.insertCell().textContent = v; });
+  total += fee;
+  $('total').textContent = total;
+  $('f').reset();
+  $('n').focus();
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../dom/dom-student-table.html">← Previous</a><a href="../dom/dom-delete-table-row.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+let total = 0;
+$('f').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const n = $('n').value.trim(), c = $('c').value.trim(), fee = parseFloat($('fee').value);
+  if (!n || !c || Number.isNaN(fee)) { $('err').textContent = 'Fill in all three fields.'; return; }
+  $('err').textContent = '';
+  const row = $('tb').insertRow();
+  [$('tb').rows.length, n, c, fee].forEach((v) => { row.insertCell().textContent = v; });
+  total += fee;
+  $('total').textContent = total;
+  $('f').reset();
+  $('n').focus();
+});
+</script>
+</body>
+</html>

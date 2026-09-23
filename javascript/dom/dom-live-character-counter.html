@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Live character counter for a textarea | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .cc-bar { height: 8px; background: #e2e8f4; border-radius: 4px; overflow: hidden; margin-top: .3rem; } .demo .cc-bar i { display: block; height: 100%; width: 0; background: #178a4a; transition: width .1s, background .2s; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM Manipulation</p>
+<h1>Live character counter for a textarea</h1>
+<p class="pp-desc">Counts characters as you type and turns red when you approach the 140 character limit.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<textarea id="t" maxlength="140" placeholder="Write a short message (max 140 characters)..." rows="4" style="width:100%"></textarea>
+<div class="cc-bar"><i id="bar"></i></div><p><strong id="n">0</strong> / 140 characters · <span id="left">140 left</span></p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;textarea id="t" rows="4" maxlength="140" placeholder="Write a short message (max 140 characters)..." style="width:100%"&gt;&lt;/textarea&gt;
+&lt;div class="cc-bar"&gt;&lt;i id="bar"&gt;&lt;/i&gt;&lt;/div&gt;&lt;p&gt;&lt;strong id="n"&gt;0&lt;/strong&gt; / 140 characters &amp;middot; &lt;span id="left"&gt;140 left&lt;/span&gt;&lt;/p&gt;
+
+/* CSS */
+.demo .cc-bar { height: 8px; background: #e2e8f4; border-radius: 4px; overflow: hidden; margin-top: .3rem; } .demo .cc-bar i { display: block; height: 100%; width: 0; background: #178a4a; transition: width .1s, background .2s; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const MAX = 140;
+$('t').addEventListener('input', () =&gt; {
+  const len = $('t').value.length;
+  $('n').textContent = len;
+  $('left').textContent = `${MAX - len} left`;
+  $('bar').style.width = (len / MAX) * 100 + '%';
+  const color = len &gt;= MAX ? '#c62828' : len &gt; MAX * 0.85 ? '#d98a00' : '#178a4a';
+  $('bar').style.background = color;
+  $('n').style.color = color;
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../dom/dom-dynamic-tooltip.html">← Previous</a><a href="../dom/dom-live-word-counter.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const MAX = 140;
+$('t').addEventListener('input', () => {
+  const len = $('t').value.length;
+  $('n').textContent = len;
+  $('left').textContent = `${MAX - len} left`;
+  $('bar').style.width = (len / MAX) * 100 + '%';
+  const color = len >= MAX ? '#c62828' : len > MAX * 0.85 ? '#d98a00' : '#178a4a';
+  $('bar').style.background = color;
+  $('n').style.color = color;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Event bubbling | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .lv { padding: 1rem; border: 3px solid #14213d; border-radius: 10px; cursor: pointer; }
+.demo .l1 { background: #dbe9ff; } .demo .l2 { background: #c4f0d2; } .demo .l3 { background: #ffe3a3; text-align: center; font-weight: 700; }
+.demo .lv > span { display: block; font-weight: 700; margin-bottom: .5rem; }
+.demo .flash { outline: 4px solid #d9481f; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › JavaScript Events</p>
+<h1>Event bubbling</h1>
+<p class="pp-desc">A click on the inner element bubbles up: inner, then middle, then outer. Tick the box to stop it with stopPropagation().</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="lv l1" id="outer"><span>Outer div</span><div class="lv l2" id="middle"><span>Middle div</span><div class="lv l3" id="inner">Inner div (click me)</div></div></div>
+<label><input id="stop" type="checkbox"/> stopPropagation() in the middle div</label><div class="out" id="log" style="font-family:Consolas,monospace;font-size:.85rem;min-height:5rem">Event log (newest first)</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="lv l1" id="outer"&gt;&lt;span&gt;Outer div&lt;/span&gt;&lt;div class="lv l2" id="middle"&gt;&lt;span&gt;Middle div&lt;/span&gt;&lt;div class="lv l3" id="inner"&gt;Inner div (click me)&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;label&gt;&lt;input type="checkbox" id="stop"&gt; stopPropagation() in the middle div&lt;/label&gt;&lt;div class="out" id="log" style="font-family:Consolas,monospace;font-size:.85rem;min-height:5rem"&gt;Event log (newest first)&lt;/div&gt;
+
+/* CSS */
+.demo .lv { padding: 1rem; border: 3px solid #14213d; border-radius: 10px; cursor: pointer; }
+.demo .l1 { background: #dbe9ff; } .demo .l2 { background: #c4f0d2; } .demo .l3 { background: #ffe3a3; text-align: center; font-weight: 700; }
+.demo .lv &gt; span { display: block; font-weight: 700; margin-bottom: .5rem; }
+.demo .flash { outline: 4px solid #d9481f; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const logBox = $('log');
+function log(text) {
+  const line = document.createElement('div');
+  line.textContent = new Date().toLocaleTimeString() + '  ' + text;
+  if (logBox.textContent.startsWith('Event log')) logBox.textContent = '';
+  logBox.prepend(line);
+  while (logBox.children.length &gt; 8) logBox.lastElementChild.remove();
+}
+
+['inner', 'middle', 'outer'].forEach((id) =&gt; {
+  $(id).addEventListener('click', (e) =&gt; {          // bubbling phase (default)
+    log(`${id} handler (target was "${e.target.id}")`);
+    $(id).classList.add('flash'); setTimeout(() =&gt; $(id).classList.remove('flash'), 400);
+    if (id === 'middle' &amp;&amp; $('stop').checked) { e.stopPropagation(); log('   stopPropagation() called - outer will not fire'); }
+  });
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../events/event-removeeventlistener.html">← Previous</a><a href="../events/event-capturing.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const logBox = $('log');
+function log(text) {
+  const line = document.createElement('div');
+  line.textContent = new Date().toLocaleTimeString() + '  ' + text;
+  if (logBox.textContent.startsWith('Event log')) logBox.textContent = '';
+  logBox.prepend(line);
+  while (logBox.children.length > 8) logBox.lastElementChild.remove();
+}
+
+['inner', 'middle', 'outer'].forEach((id) => {
+  $(id).addEventListener('click', (e) => {          // bubbling phase (default)
+    log(`${id} handler (target was "${e.target.id}")`);
+    $(id).classList.add('flash'); setTimeout(() => $(id).classList.remove('flash'), 400);
+    if (id === 'middle' && $('stop').checked) { e.stopPropagation(); log('   stopPropagation() called - outer will not fire'); }
+  });
+});
+</script>
+</body>
+</html>

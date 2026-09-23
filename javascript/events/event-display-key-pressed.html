@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Display the key pressed by the user | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .key { font: 800 4.5rem/1 'Courier New', monospace; text-align: center; padding: 1.2rem; background: #101828; color: #5eead4; border-radius: 14px; min-height: 8rem; display: grid; place-items: center; } .demo .key small { font-size: 1rem; color: #94a3b8; display: block; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › JavaScript Events</p>
+<h1>Display the key pressed by the user</h1>
+<p class="pp-desc">Press any key on the keyboard and the key, its code and the key code are shown in large text.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="key" id="key"><span>Press any key</span></div><p class="muted center">Keys are captured anywhere on this page.</p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="key" id="key"&gt;&lt;span&gt;Press any key&lt;/span&gt;&lt;/div&gt;&lt;p class="muted center"&gt;Keys are captured anywhere on this page.&lt;/p&gt;
+
+/* CSS */
+.demo .key { font: 800 4.5rem/1 'Courier New', monospace; text-align: center; padding: 1.2rem; background: #101828; color: #5eead4; border-radius: 14px; min-height: 8rem; display: grid; place-items: center; } .demo .key small { font-size: 1rem; color: #94a3b8; display: block; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+document.addEventListener('keydown', (e) =&gt; {
+  const shown = e.key === ' ' ? 'Space' : e.key;
+  $('key').innerHTML = `&lt;span&gt;&lt;/span&gt;`;
+  $('key').firstChild.textContent = shown.length &gt; 8 ? shown.slice(0, 8) : shown;
+  const small = document.createElement('small');
+  small.textContent = `key: "${e.key}"  |  code: ${e.code}  |  keyCode: ${e.keyCode}`;
+  $('key').firstChild.appendChild(small);
+  if (['Space', 'ArrowUp', 'ArrowDown'].includes(e.code)) e.preventDefault();     // stop page scrolling
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../events/event-keyup.html">← Previous</a><a href="../events/event-key-press-counter.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+document.addEventListener('keydown', (e) => {
+  const shown = e.key === ' ' ? 'Space' : e.key;
+  $('key').innerHTML = `<span></span>`;
+  $('key').firstChild.textContent = shown.length > 8 ? shown.slice(0, 8) : shown;
+  const small = document.createElement('small');
+  small.textContent = `key: "${e.key}"  |  code: ${e.code}  |  keyCode: ${e.keyCode}`;
+  $('key').firstChild.appendChild(small);
+  if (['Space', 'ArrowUp', 'ArrowDown'].includes(e.code)) e.preventDefault();     // stop page scrolling
+});
+</script>
+</body>
+</html>

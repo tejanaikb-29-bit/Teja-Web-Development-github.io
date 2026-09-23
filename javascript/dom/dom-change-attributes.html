@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Change the attributes of an HTML element dynamically | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › DOM Manipulation</p>
+<h1>Change the attributes of an HTML element dynamically</h1>
+<p class="pp-desc">setAttribute(), getAttribute() and removeAttribute() change src, alt, href, title and disabled on real elements.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<img alt="Mountains" id="img" src="../../assets/images/img1.svg" style="border-radius:8px" title="Mountains" width="260"/><br/>
+<a href="../index.html" id="lnk">A link to the JavaScript list</a> <input id="inp" type="text" value="Editable input"/>
+<div class="row"><button id="a1">Change image</button><button class="secondary" id="a2">Change link href + text</button><button id="a3">Disable input</button><button class="danger" id="a4">Remove title attribute</button></div>
+<pre class="out" id="out"></pre>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;img id="img" src="../assets/images/img1.svg" alt="Mountains" title="Mountains" width="260" style="border-radius:8px"&gt;&lt;br&gt;
+&lt;a id="lnk" href="index.html"&gt;A link to the JavaScript list&lt;/a&gt; &lt;input id="inp" type="text" value="Editable input"&gt;
+&lt;div class="row"&gt;&lt;button id="a1"&gt;Change image&lt;/button&gt;&lt;button id="a2" class="secondary"&gt;Change link href + text&lt;/button&gt;&lt;button id="a3"&gt;Disable input&lt;/button&gt;&lt;button id="a4" class="danger"&gt;Remove title attribute&lt;/button&gt;&lt;/div&gt;
+&lt;pre class="out" id="out"&gt;&lt;/pre&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const info = () =&gt; {
+  $('out').textContent = `img.src   = ${$('img').getAttribute('src')}\nimg.alt   = ${$('img').getAttribute('alt')}\nimg.title = ${$('img').getAttribute('title')}\nlink.href = ${$('lnk').getAttribute('href')}\ninput disabled? ${$('inp').hasAttribute('disabled')}`;
+};
+$('a1').onclick = () =&gt; { $('img').setAttribute('src', '../assets/images/img3.svg'); $('img').setAttribute('alt', 'Ocean'); $('img').setAttribute('title', 'Ocean'); info(); };
+$('a2').onclick = () =&gt; { $('lnk').setAttribute('href', '../index.html'); $('lnk').textContent = 'Now links to Home'; info(); };
+$('a3').onclick = () =&gt; { const d = $('inp').hasAttribute('disabled'); d ? $('inp').removeAttribute('disabled') : $('inp').setAttribute('disabled', ''); $('a3').textContent = d ? 'Disable input' : 'Enable input'; info(); };
+$('a4').onclick = () =&gt; { $('img').removeAttribute('title'); info(); };
+info();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../dom/dom-toggle-class.html">← Previous</a><a href="../dom/dom-list-from-array.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const info = () => {
+  $('out').textContent = `img.src   = ${$('img').getAttribute('src')}\nimg.alt   = ${$('img').getAttribute('alt')}\nimg.title = ${$('img').getAttribute('title')}\nlink.href = ${$('lnk').getAttribute('href')}\ninput disabled? ${$('inp').hasAttribute('disabled')}`;
+};
+$('a1').onclick = () => { $('img').setAttribute('src', '../assets/images/img3.svg'); $('img').setAttribute('alt', 'Ocean'); $('img').setAttribute('title', 'Ocean'); info(); };
+$('a2').onclick = () => { $('lnk').setAttribute('href', '../index.html'); $('lnk').textContent = 'Now links to Home'; info(); };
+$('a3').onclick = () => { const d = $('inp').hasAttribute('disabled'); d ? $('inp').removeAttribute('disabled') : $('inp').setAttribute('disabled', ''); $('a3').textContent = d ? 'Disable input' : 'Enable input'; info(); };
+$('a4').onclick = () => { $('img').removeAttribute('title'); info(); };
+info();
+</script>
+</body>
+</html>

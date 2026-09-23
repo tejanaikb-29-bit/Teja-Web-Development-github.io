@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Event delegation | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo #list li { cursor: pointer; padding: .3rem .5rem; border-radius: 6px; } .demo #list li:hover { background: #eef2fb; } .demo #list li.sel { background: #fff2a8; font-weight: 700; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › JavaScript Events</p>
+<h1>Event delegation</h1>
+<p class="pp-desc">One listener on the parent list handles clicks for every item, including items added later.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row"><input id="txt" placeholder="New item" type="text"/><button id="add">Add item</button></div><ul id="list"><li>Apples</li><li>Bananas</li><li>Cherries</li></ul><p class="muted" id="msg">Click an item to select it.</p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;&lt;input id="txt" type="text" placeholder="New item"&gt;&lt;button id="add"&gt;Add item&lt;/button&gt;&lt;/div&gt;&lt;ul id="list"&gt;&lt;li&gt;Apples&lt;/li&gt;&lt;li&gt;Bananas&lt;/li&gt;&lt;li&gt;Cherries&lt;/li&gt;&lt;/ul&gt;&lt;p class="muted" id="msg"&gt;Click an item to select it.&lt;/p&gt;
+
+/* CSS */
+.demo #list li { cursor: pointer; padding: .3rem .5rem; border-radius: 6px; } .demo #list li:hover { background: #eef2fb; } .demo #list li.sel { background: #fff2a8; font-weight: 700; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+// ONE listener on the &lt;ul&gt; instead of one per &lt;li&gt;
+$('list').addEventListener('click', (e) =&gt; {
+  const li = e.target.closest('li');
+  if (!li) return;
+  li.classList.toggle('sel');
+  $('msg').textContent = `Clicked: "${li.textContent}" (${document.querySelectorAll('#list li.sel').length} selected)`;
+});
+$('add').addEventListener('click', () =&gt; {
+  const v = $('txt').value.trim();
+  if (!v) return;
+  const li = document.createElement('li');
+  li.textContent = v;
+  $('list').appendChild(li);          // works immediately, no new listener needed
+  $('txt').value = '';
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../events/event-capturing.html">← Previous</a><a href="../events/event-drag-and-drop.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+// ONE listener on the <ul> instead of one per <li>
+$('list').addEventListener('click', (e) => {
+  const li = e.target.closest('li');
+  if (!li) return;
+  li.classList.toggle('sel');
+  $('msg').textContent = `Clicked: "${li.textContent}" (${document.querySelectorAll('#list li.sel').length} selected)`;
+});
+$('add').addEventListener('click', () => {
+  const v = $('txt').value.trim();
+  if (!v) return;
+  const li = document.createElement('li');
+  li.textContent = v;
+  $('list').appendChild(li);          // works immediately, no new listener needed
+  $('txt').value = '';
+});
+</script>
+</body>
+</html>

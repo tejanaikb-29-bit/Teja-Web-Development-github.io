@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>A button that changes the font size dynamically | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › JavaScript Events</p>
+<h1>A button that changes the font size dynamically</h1>
+<p class="pp-desc">Increase, decrease or reset the font size of the paragraph. Limits are 10px to 60px.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<p id="p" style="font-size:20px;transition:font-size .15s">The quick brown fox jumps over the lazy dog.</p><div class="row"><button id="inc">A+</button><button class="secondary" id="dec">A-</button><button class="danger" id="rst">Reset</button><span class="muted">Size: <strong id="sz">20</strong>px</span></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;p id="p" style="font-size:20px;transition:font-size .15s"&gt;The quick brown fox jumps over the lazy dog.&lt;/p&gt;&lt;div class="row"&gt;&lt;button id="inc"&gt;A+&lt;/button&gt;&lt;button id="dec" class="secondary"&gt;A-&lt;/button&gt;&lt;button id="rst" class="danger"&gt;Reset&lt;/button&gt;&lt;span class="muted"&gt;Size: &lt;strong id="sz"&gt;20&lt;/strong&gt;px&lt;/span&gt;&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+let size = 20;
+const apply = () =&gt; { $('p').style.fontSize = size + 'px'; $('sz').textContent = size; };
+$('inc').addEventListener('click', () =&gt; { size = Math.min(60, size + 4); apply(); });
+$('dec').addEventListener('click', () =&gt; { size = Math.max(10, size - 4); apply(); });
+$('rst').addEventListener('click', () =&gt; { size = 20; apply(); });</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../events/event-button-change-background.html">← Previous</a><a href="../events/event-multiple-buttons-handlers.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+let size = 20;
+const apply = () => { $('p').style.fontSize = size + 'px'; $('sz').textContent = size; };
+$('inc').addEventListener('click', () => { size = Math.min(60, size + 4); apply(); });
+$('dec').addEventListener('click', () => { size = Math.max(10, size - 4); apply(); });
+$('rst').addEventListener('click', () => { size = 20; apply(); });
+</script>
+</body>
+</html>

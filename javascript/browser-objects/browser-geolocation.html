@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Browser geolocation | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Browser Objects &amp; Browser Features</p>
+<h1>Browser geolocation</h1>
+<p class="pp-desc">Uses the Geolocation API to ask permission and report whether your position could be found. Pages opened from a file may be blocked by some browsers.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row"><button id="go">Find my location</button></div><div class="out" id="out">Press the button. The browser will ask for permission.</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;&lt;button id="go"&gt;Find my location&lt;/button&gt;&lt;/div&gt;&lt;div class="out" id="out"&gt;Press the button. The browser will ask for permission.&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+$('go').addEventListener('click', () =&gt; {
+  if (!('geolocation' in navigator)) { $('out').textContent = 'Geolocation is not supported by this browser.'; return; }
+  $('out').textContent = 'Requesting location... (allow it in the permission prompt)';
+  navigator.geolocation.getCurrentPosition(
+    (pos) =&gt; { $('out').textContent = `Location found!\nLatitude : ${pos.coords.latitude.toFixed(5)}\nLongitude: ${pos.coords.longitude.toFixed(5)}`; },
+    (err) =&gt; {
+      const reasons = { 1: 'Permission denied - you blocked location access.', 2: 'Position unavailable - the device could not determine location.', 3: 'Timed out - it took too long.' };
+      $('out').textContent = 'Could not get location: ' + (reasons[err.code] || err.message);
+    },
+    { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 });
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../browser-objects/browser-language.html">← Previous</a><a href="../browser-objects/browser-geolocation-coordinates.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+$('go').addEventListener('click', () => {
+  if (!('geolocation' in navigator)) { $('out').textContent = 'Geolocation is not supported by this browser.'; return; }
+  $('out').textContent = 'Requesting location... (allow it in the permission prompt)';
+  navigator.geolocation.getCurrentPosition(
+    (pos) => { $('out').textContent = `Location found!\nLatitude : ${pos.coords.latitude.toFixed(5)}\nLongitude: ${pos.coords.longitude.toFixed(5)}`; },
+    (err) => {
+      const reasons = { 1: 'Permission denied - you blocked location access.', 2: 'Position unavailable - the device could not determine location.', 3: 'Timed out - it took too long.' };
+      $('out').textContent = 'Could not get location: ' + (reasons[err.code] || err.message);
+    },
+    { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 });
+});
+</script>
+</body>
+</html>

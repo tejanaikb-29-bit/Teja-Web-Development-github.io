@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Program using setInterval() | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .big { font: 800 4rem 'Courier New', monospace; text-align: center; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Browser Objects &amp; Browser Features</p>
+<h1>Program using setInterval()</h1>
+<p class="pp-desc">setInterval() repeats a function at a fixed interval until clearInterval() stops it. Change the speed while it runs.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="big" id="n">0</div><div class="row" style="justify-content:center"><label class="field">Interval (ms)<input id="ms" min="100" step="100" style="width:120px" type="number" value="1000"/></label><button class="success" id="start">Start</button><button class="danger" id="stop">Stop</button><button class="secondary" id="reset">Reset</button></div><p class="center muted" id="msg"></p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="big" id="n"&gt;0&lt;/div&gt;&lt;div class="row" style="justify-content:center"&gt;&lt;label class="field"&gt;Interval (ms)&lt;input id="ms" type="number" value="1000" min="100" step="100" style="width:120px"&gt;&lt;/label&gt;&lt;button id="start" class="success"&gt;Start&lt;/button&gt;&lt;button id="stop" class="danger"&gt;Stop&lt;/button&gt;&lt;button id="reset" class="secondary"&gt;Reset&lt;/button&gt;&lt;/div&gt;&lt;p class="center muted" id="msg"&gt;&lt;/p&gt;
+
+/* CSS */
+.demo .big { font: 800 4rem 'Courier New', monospace; text-align: center; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+let n = 0, id = null;
+function start() {
+  if (id) clearInterval(id);
+  const ms = Math.max(100, parseInt($('ms').value) || 1000);
+  id = setInterval(() =&gt; { $('n').textContent = ++n; }, ms);
+  $('msg').textContent = `Running: the number increases every ${ms} ms.`;
+}
+$('start').addEventListener('click', start);
+$('stop').addEventListener('click', () =&gt; { clearInterval(id); id = null; $('msg').textContent = 'Stopped with clearInterval().'; });
+$('reset').addEventListener('click', () =&gt; { n = 0; $('n').textContent = 0; });</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../browser-objects/browser-settimeout.html">← Previous</a><a href="../browser-objects/browser-digital-clock-setinterval.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+let n = 0, id = null;
+function start() {
+  if (id) clearInterval(id);
+  const ms = Math.max(100, parseInt($('ms').value) || 1000);
+  id = setInterval(() => { $('n').textContent = ++n; }, ms);
+  $('msg').textContent = `Running: the number increases every ${ms} ms.`;
+}
+$('start').addEventListener('click', start);
+$('stop').addEventListener('click', () => { clearInterval(id); id = null; $('msg').textContent = 'Stopped with clearInterval().'; });
+$('reset').addEventListener('click', () => { n = 0; $('n').textContent = 0; });
+</script>
+</body>
+</html>

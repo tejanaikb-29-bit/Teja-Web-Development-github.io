@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The ondblclick event | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .pad { display: grid; place-items: center; min-height: 120px; border: 3px dashed #8a97b3; border-radius: 12px; background: #f7f9fe; font-weight: 700; text-align: center; user-select: none; padding: 1rem; transition: background .15s, transform .1s; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › JavaScript Events</p>
+<h1>The ondblclick event</h1>
+<p class="pp-desc">Double-click the box to trigger the event. A single click does nothing.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="pad" id="box">Double-click me</div><div class="out" id="out">Waiting for a double click...</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="pad" id="box"&gt;Double-click me&lt;/div&gt;&lt;div class="out" id="out"&gt;Waiting for a double click...&lt;/div&gt;
+
+/* CSS */
+.demo .pad { display: grid; place-items: center; min-height: 120px; border: 3px dashed #8a97b3; border-radius: 12px; background: #f7f9fe; font-weight: 700; text-align: center; user-select: none; padding: 1rem; transition: background .15s, transform .1s; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+$('box').ondblclick = () =&gt; {
+  $('box').style.background = $('box').style.background === 'rgb(255, 242, 168)' ? '' : '#fff2a8';
+  $('out').textContent = 'dblclick fired at ' + new Date().toLocaleTimeString();
+};</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../events/event-onclick.html">← Previous</a><a href="../events/event-mouseover-mouseout.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+$('box').ondblclick = () => {
+  $('box').style.background = $('box').style.background === 'rgb(255, 242, 168)' ? '' : '#fff2a8';
+  $('out').textContent = 'dblclick fired at ' + new Date().toLocaleTimeString();
+};
+</script>
+</body>
+</html>

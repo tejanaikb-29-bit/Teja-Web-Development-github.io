@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Program using setTimeout() | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Browser Objects &amp; Browser Features</p>
+<h1>Program using setTimeout()</h1>
+<p class="pp-desc">setTimeout() runs a function once after a delay. You can cancel it with clearTimeout() before it fires.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row"><label class="field">Delay (seconds)<input id="sec" max="10" min="1" style="width:110px" type="number" value="3"/></label><button id="start">Start timeout</button><button class="danger" id="cancel">clearTimeout()</button></div><div class="out" id="out">Nothing scheduled.</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;&lt;label class="field"&gt;Delay (seconds)&lt;input id="sec" type="number" min="1" max="10" value="3" style="width:110px"&gt;&lt;/label&gt;&lt;button id="start"&gt;Start timeout&lt;/button&gt;&lt;button id="cancel" class="danger"&gt;clearTimeout()&lt;/button&gt;&lt;/div&gt;&lt;div class="out" id="out"&gt;Nothing scheduled.&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+let id = null, ticker = null;
+$('start').addEventListener('click', () =&gt; {
+  clearTimeout(id); clearInterval(ticker);
+  const sec = Math.min(10, Math.max(1, parseInt($('sec').value) || 3));
+  let left = sec;
+  $('out').textContent = `Timeout scheduled: message in ${left} second(s)...`;
+  ticker = setInterval(() =&gt; { left--; if (left &gt; 0) $('out').textContent = `Timeout scheduled: message in ${left} second(s)...`; }, 1000);
+  id = setTimeout(() =&gt; { clearInterval(ticker); $('out').textContent = `The timeout finished after ${sec} second(s). This ran only once!`; id = null; }, sec * 1000);
+});
+$('cancel').addEventListener('click', () =&gt; { clearTimeout(id); clearInterval(ticker); id = null; $('out').textContent = 'Timeout cancelled with clearTimeout().'; });</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../browser-objects/browser-alert-confirm-prompt.html">← Previous</a><a href="../browser-objects/browser-setinterval.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+let id = null, ticker = null;
+$('start').addEventListener('click', () => {
+  clearTimeout(id); clearInterval(ticker);
+  const sec = Math.min(10, Math.max(1, parseInt($('sec').value) || 3));
+  let left = sec;
+  $('out').textContent = `Timeout scheduled: message in ${left} second(s)...`;
+  ticker = setInterval(() => { left--; if (left > 0) $('out').textContent = `Timeout scheduled: message in ${left} second(s)...`; }, 1000);
+  id = setTimeout(() => { clearInterval(ticker); $('out').textContent = `The timeout finished after ${sec} second(s). This ran only once!`; id = null; }, sec * 1000);
+});
+$('cancel').addEventListener('click', () => { clearTimeout(id); clearInterval(ticker); id = null; $('out').textContent = 'Timeout cancelled with clearTimeout().'; });
+</script>
+</body>
+</html>
