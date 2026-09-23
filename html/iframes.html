@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frames and iframes | HTML Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo iframe { width: 100%; max-width: 560px; height: 190px; border: 3px solid #1769b5; border-radius: 8px; }
+</style>
+</head>
+<body data-sec="html">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to HTML Programs</a>
+      </nav>
+      <p class="pp-cat">HTML &rsaquo; Forms, Media &amp; Semantic Elements</p>
+      <h1>Frames and iframes</h1>
+      <p class="pp-desc">Embeds other pages inside this page with &lt;iframe&gt;; a link uses target to load a page into a named frame. (&lt;frameset&gt; is obsolete in HTML5.)</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <h3>1. iframe showing another page</h3>
+      <iframe src="../assets/sample-frame.html" title="Sample page"></iframe>
+      <h3>2. Link that loads a page into a named frame</h3>
+      <p><a href="../assets/sample-frame-2.html" target="myframe">Load second page in the frame below</a></p>
+      <iframe name="myframe" src="../assets/sample-frame.html" title="Named frame"></iframe>
+      <h3>3. iframe with inline content (srcdoc)</h3>
+      <iframe srcdoc="<h3 style='font-family:sans-serif'>Hello from srcdoc</h3><p>This HTML is written directly in the attribute.</p>" title="Inline content"></iframe>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;h3&gt;1. iframe showing another page&lt;/h3&gt;
+&lt;iframe src="../assets/sample-frame.html" title="Sample page"&gt;&lt;/iframe&gt;
+&lt;h3&gt;2. Link that loads a page into a named frame&lt;/h3&gt;
+&lt;p&gt;&lt;a href="../assets/sample-frame-2.html" target="myframe"&gt;Load second page in the frame below&lt;/a&gt;&lt;/p&gt;
+&lt;iframe name="myframe" src="../assets/sample-frame.html" title="Named frame"&gt;&lt;/iframe&gt;
+&lt;h3&gt;3. iframe with inline content (srcdoc)&lt;/h3&gt;
+&lt;iframe srcdoc="&lt;h3 style='font-family:sans-serif'&gt;Hello from srcdoc&lt;/h3&gt;&lt;p&gt;This HTML is written directly in the attribute.&lt;/p&gt;" title="Inline content"&gt;&lt;/iframe&gt;
+
+/* CSS */
+.demo iframe { width: 100%; max-width: 560px; height: 190px; border: 3px solid #1769b5; border-radius: 8px; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">HTML Programs</a>
+      <span class="spacer"></span>
+      <a href="audio-video.html">&larr; Previous</a><a href="semantic-elements.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

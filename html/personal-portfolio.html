@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple personal portfolio webpage | HTML Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .pf-head { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; background: #14213d; color: #fff; padding: 1.3rem; border-radius: 10px; }
+.demo .pf-head img { width: 96px; height: 96px; border-radius: 50%; border: 4px solid #f2c200; }
+.demo .pf-head h2 { margin: 0; }
+.demo .pf-head p { margin: .2rem 0 0; color: #c9d3e6; }
+.demo .pf-sec { margin: 1.2rem 0; }
+.demo .pf-sec h3 { border-bottom: 3px solid #f2c200; display: inline-block; padding-bottom: 2px; }
+.demo .skills { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; }
+.demo .skills li { background: #e8edf8; padding: .25rem .8rem; border-radius: 999px; font-weight: 600; }
+.demo .pf-table { border-collapse: collapse; width: 100%; }
+.demo .pf-table th, .demo .pf-table td { border: 1px solid #d5dbe6; padding: .5rem; text-align: left; }
+.demo .pf-table th { background: #e8edf8; }
+</style>
+</head>
+<body data-sec="html">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to HTML Programs</a>
+      </nav>
+      <p class="pp-cat">HTML &rsaquo; Tables, Styling &amp; Mini Pages</p>
+      <h1>Simple personal portfolio webpage</h1>
+      <p class="pp-desc">A one-page portfolio with photo, about, skills, projects table and contact links, built with HTML and CSS only.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <header class="pf-head">
+        <img src="../assets/images/avatar.svg" alt="Profile picture">
+        <div><h2>Aarav Kumar</h2><p>B.Sc Computer Science student &middot; Aspiring web developer</p></div>
+      </header>
+      <section class="pf-sec"><h3>About me</h3>
+        <p>I enjoy building small websites and learning how the web works. I am currently practising HTML, CSS and JavaScript.</p></section>
+      <section class="pf-sec"><h3>Skills</h3>
+        <ul class="skills"><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Git</li><li>Problem solving</li></ul></section>
+      <section class="pf-sec"><h3>Projects</h3>
+        <table class="pf-table"><tr><th>Project</th><th>Technology</th><th>Description</th></tr>
+          <tr><td>Digital Clock</td><td>JavaScript</td><td>Shows live time using setInterval.</td></tr>
+          <tr><td>Product Cards</td><td>HTML, CSS</td><td>Responsive card layout.</td></tr>
+          <tr><td>To-do List</td><td>HTML, CSS, JS</td><td>Add, complete and delete tasks.</td></tr></table></section>
+      <section class="pf-sec"><h3>Contact</h3>
+        <p>Email: <a href="mailto:aarav@example.com">aarav@example.com</a> &middot; <a href="https://github.com" target="_blank" rel="noopener">GitHub</a></p></section>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;header class="pf-head"&gt;
+  &lt;img src="../assets/images/avatar.svg" alt="Profile picture"&gt;
+  &lt;div&gt;&lt;h2&gt;Aarav Kumar&lt;/h2&gt;&lt;p&gt;B.Sc Computer Science student &amp;middot; Aspiring web developer&lt;/p&gt;&lt;/div&gt;
+&lt;/header&gt;
+&lt;section class="pf-sec"&gt;&lt;h3&gt;About me&lt;/h3&gt;
+  &lt;p&gt;I enjoy building small websites and learning how the web works. I am currently practising HTML, CSS and JavaScript.&lt;/p&gt;&lt;/section&gt;
+&lt;section class="pf-sec"&gt;&lt;h3&gt;Skills&lt;/h3&gt;
+  &lt;ul class="skills"&gt;&lt;li&gt;HTML5&lt;/li&gt;&lt;li&gt;CSS3&lt;/li&gt;&lt;li&gt;JavaScript&lt;/li&gt;&lt;li&gt;Git&lt;/li&gt;&lt;li&gt;Problem solving&lt;/li&gt;&lt;/ul&gt;&lt;/section&gt;
+&lt;section class="pf-sec"&gt;&lt;h3&gt;Projects&lt;/h3&gt;
+  &lt;table class="pf-table"&gt;&lt;tr&gt;&lt;th&gt;Project&lt;/th&gt;&lt;th&gt;Technology&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Digital Clock&lt;/td&gt;&lt;td&gt;JavaScript&lt;/td&gt;&lt;td&gt;Shows live time using setInterval.&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Product Cards&lt;/td&gt;&lt;td&gt;HTML, CSS&lt;/td&gt;&lt;td&gt;Responsive card layout.&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;To-do List&lt;/td&gt;&lt;td&gt;HTML, CSS, JS&lt;/td&gt;&lt;td&gt;Add, complete and delete tasks.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/section&gt;
+&lt;section class="pf-sec"&gt;&lt;h3&gt;Contact&lt;/h3&gt;
+  &lt;p&gt;Email: &lt;a href="mailto:aarav@example.com"&gt;aarav@example.com&lt;/a&gt; &amp;middot; &lt;a href="https://github.com" target="_blank" rel="noopener"&gt;GitHub&lt;/a&gt;&lt;/p&gt;&lt;/section&gt;
+
+/* CSS */
+.demo .pf-head { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; background: #14213d; color: #fff; padding: 1.3rem; border-radius: 10px; }
+.demo .pf-head img { width: 96px; height: 96px; border-radius: 50%; border: 4px solid #f2c200; }
+.demo .pf-head h2 { margin: 0; }
+.demo .pf-head p { margin: .2rem 0 0; color: #c9d3e6; }
+.demo .pf-sec { margin: 1.2rem 0; }
+.demo .pf-sec h3 { border-bottom: 3px solid #f2c200; display: inline-block; padding-bottom: 2px; }
+.demo .skills { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; }
+.demo .skills li { background: #e8edf8; padding: .25rem .8rem; border-radius: 999px; font-weight: 600; }
+.demo .pf-table { border-collapse: collapse; width: 100%; }
+.demo .pf-table th, .demo .pf-table td { border: 1px solid #d5dbe6; padding: .5rem; text-align: left; }
+.demo .pf-table th { background: #e8edf8; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">HTML Programs</a>
+      <span class="spacer"></span>
+      <a href="bootstrap-components.html">&larr; Previous</a>
+    </div>
+  </footer>
+</body>
+</html>

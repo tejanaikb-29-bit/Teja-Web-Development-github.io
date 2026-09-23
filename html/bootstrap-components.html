@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webpage using Bootstrap components | HTML Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+</head>
+<body data-sec="html">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to HTML Programs</a>
+      </nav>
+      <p class="pp-cat">HTML &rsaquo; Tables, Styling &amp; Mini Pages</p>
+      <h1>Webpage using Bootstrap components</h1>
+      <p class="pp-desc">Uses Bootstrap 5 (loaded from a CDN, so an internet connection is needed): navbar, alerts, buttons, cards, badges, progress bar, and an accordion.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <nav class="navbar navbar-expand navbar-dark bg-dark rounded px-3 mb-3">
+        <span class="navbar-brand">MyBrand</span>
+        <ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="#">Home</a></li><li class="nav-item"><a class="nav-link" href="#">About</a></li></ul>
+      </nav>
+      <div class="alert alert-success" role="alert">Bootstrap alert &ndash; loaded successfully!</div>
+      <p>
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-outline-danger">Outline danger</button>
+        <span class="badge bg-warning text-dark">New</span>
+      </p>
+      <div class="progress mb-3" style="height:22px"><div class="progress-bar bg-info" style="width:65%">65%</div></div>
+      <div class="row g-3 mb-3">
+        <div class="col-md-6"><div class="card h-100"><img src="../assets/images/img3.svg" class="card-img-top" alt="Ocean"><div class="card-body"><h5 class="card-title">Card one</h5><p class="card-text">Cards group content with an image, text and actions.</p><a href="#" class="btn btn-sm btn-primary">Open</a></div></div></div>
+        <div class="col-md-6"><div class="card h-100"><img src="../assets/images/img4.svg" class="card-img-top" alt="Forest"><div class="card-body"><h5 class="card-title">Card two</h5><p class="card-text">The grid puts them side by side on wide screens.</p><a href="#" class="btn btn-sm btn-primary">Open</a></div></div></div>
+      </div>
+      <div class="accordion" id="acc">
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#a1">What is Bootstrap?</button></h2>
+          <div id="a1" class="accordion-collapse collapse show" data-bs-parent="#acc"><div class="accordion-body">A CSS framework of ready-made components.</div></div></div>
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#a2">Why use a grid?</button></h2>
+          <div id="a2" class="accordion-collapse collapse" data-bs-parent="#acc"><div class="accordion-body">It makes responsive layouts simple with 12 columns.</div></div></div>
+      </div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- &lt;head&gt; extras --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+  &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer&gt;&lt;/script&gt;
+
+&lt;!-- HTML --&gt;
+&lt;nav class="navbar navbar-expand navbar-dark bg-dark rounded px-3 mb-3"&gt;
+  &lt;span class="navbar-brand"&gt;MyBrand&lt;/span&gt;
+  &lt;ul class="navbar-nav"&gt;&lt;li class="nav-item"&gt;&lt;a class="nav-link active" href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;&lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#"&gt;About&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;/nav&gt;
+&lt;div class="alert alert-success" role="alert"&gt;Bootstrap alert &amp;ndash; loaded successfully!&lt;/div&gt;
+&lt;p&gt;
+  &lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
+  &lt;button class="btn btn-outline-danger"&gt;Outline danger&lt;/button&gt;
+  &lt;span class="badge bg-warning text-dark"&gt;New&lt;/span&gt;
+&lt;/p&gt;
+&lt;div class="progress mb-3" style="height:22px"&gt;&lt;div class="progress-bar bg-info" style="width:65%"&gt;65%&lt;/div&gt;&lt;/div&gt;
+&lt;div class="row g-3 mb-3"&gt;
+  &lt;div class="col-md-6"&gt;&lt;div class="card h-100"&gt;&lt;img src="../assets/images/img3.svg" class="card-img-top" alt="Ocean"&gt;&lt;div class="card-body"&gt;&lt;h5 class="card-title"&gt;Card one&lt;/h5&gt;&lt;p class="card-text"&gt;Cards group content with an image, text and actions.&lt;/p&gt;&lt;a href="#" class="btn btn-sm btn-primary"&gt;Open&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="col-md-6"&gt;&lt;div class="card h-100"&gt;&lt;img src="../assets/images/img4.svg" class="card-img-top" alt="Forest"&gt;&lt;div class="card-body"&gt;&lt;h5 class="card-title"&gt;Card two&lt;/h5&gt;&lt;p class="card-text"&gt;The grid puts them side by side on wide screens.&lt;/p&gt;&lt;a href="#" class="btn btn-sm btn-primary"&gt;Open&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="accordion" id="acc"&gt;
+  &lt;div class="accordion-item"&gt;&lt;h2 class="accordion-header"&gt;&lt;button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#a1"&gt;What is Bootstrap?&lt;/button&gt;&lt;/h2&gt;
+    &lt;div id="a1" class="accordion-collapse collapse show" data-bs-parent="#acc"&gt;&lt;div class="accordion-body"&gt;A CSS framework of ready-made components.&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="accordion-item"&gt;&lt;h2 class="accordion-header"&gt;&lt;button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#a2"&gt;Why use a grid?&lt;/button&gt;&lt;/h2&gt;
+    &lt;div id="a2" class="accordion-collapse collapse" data-bs-parent="#acc"&gt;&lt;div class="accordion-body"&gt;It makes responsive layouts simple with 12 columns.&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">HTML Programs</a>
+      <span class="spacer"></span>
+      <a href="responsive-media-queries.html">&larr; Previous</a><a href="personal-portfolio.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

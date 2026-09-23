@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College timetable using an HTML table | HTML Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo table.tt { border-collapse: collapse; width: 100%; text-align: center; }
+.demo table.tt th, .demo table.tt td { border: 1px solid #9aa8c4; padding: .55rem .4rem; }
+.demo table.tt th { background: #14213d; color: #fff; }
+.demo table.tt td.break { background: #fff2c2; font-weight: 700; }
+.demo table.tt td.lab { background: #d6f1e0; }
+.demo table.tt tbody th { background: #e8edf8; color: #14213d; }
+</style>
+</head>
+<body data-sec="html">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to HTML Programs</a>
+      </nav>
+      <p class="pp-cat">HTML &rsaquo; Tables, Styling &amp; Mini Pages</p>
+      <h1>College timetable using an HTML table</h1>
+      <p class="pp-desc">A weekly timetable that uses colspan for the lunch break and rowspan for a two-hour lab.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div style="overflow-x:auto">
+      <table class="tt">
+        <caption><strong>B.Sc Computer Science &ndash; Semester 3 Timetable</strong></caption>
+        <thead>
+          <tr><th>Day</th><th>9:00 - 10:00</th><th>10:00 - 11:00</th><th>11:00 - 12:00</th><th>12:00 - 1:00</th><th>2:00 - 3:00</th><th>3:00 - 4:00</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>Monday</th><td>Mathematics</td><td>Data Structures</td><td>Web Technology</td><td class="break" rowspan="5">LUNCH<br>BREAK</td><td class="lab" colspan="2" rowspan="2">Web Technology Lab</td></tr>
+          <tr><th>Tuesday</th><td>Data Structures</td><td>English</td><td>Mathematics</td></tr>
+          <tr><th>Wednesday</th><td>Operating Systems</td><td>Web Technology</td><td>Data Structures</td><td>Mathematics</td><td>Library</td></tr>
+          <tr><th>Thursday</th><td>English</td><td>Operating Systems</td><td>Mathematics</td><td class="lab" colspan="2">Data Structures Lab</td></tr>
+          <tr><th>Friday</th><td>Web Technology</td><td>Data Structures</td><td>Operating Systems</td><td>Sports</td><td>Mentoring</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div style="overflow-x:auto"&gt;
+&lt;table class="tt"&gt;
+  &lt;caption&gt;&lt;strong&gt;B.Sc Computer Science &amp;ndash; Semester 3 Timetable&lt;/strong&gt;&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th&gt;Day&lt;/th&gt;&lt;th&gt;9:00 - 10:00&lt;/th&gt;&lt;th&gt;10:00 - 11:00&lt;/th&gt;&lt;th&gt;11:00 - 12:00&lt;/th&gt;&lt;th&gt;12:00 - 1:00&lt;/th&gt;&lt;th&gt;2:00 - 3:00&lt;/th&gt;&lt;th&gt;3:00 - 4:00&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;th&gt;Monday&lt;/th&gt;&lt;td&gt;Mathematics&lt;/td&gt;&lt;td&gt;Data Structures&lt;/td&gt;&lt;td&gt;Web Technology&lt;/td&gt;&lt;td class="break" rowspan="5"&gt;LUNCH&lt;br&gt;BREAK&lt;/td&gt;&lt;td class="lab" colspan="2" rowspan="2"&gt;Web Technology Lab&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Tuesday&lt;/th&gt;&lt;td&gt;Data Structures&lt;/td&gt;&lt;td&gt;English&lt;/td&gt;&lt;td&gt;Mathematics&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Wednesday&lt;/th&gt;&lt;td&gt;Operating Systems&lt;/td&gt;&lt;td&gt;Web Technology&lt;/td&gt;&lt;td&gt;Data Structures&lt;/td&gt;&lt;td&gt;Mathematics&lt;/td&gt;&lt;td&gt;Library&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Thursday&lt;/th&gt;&lt;td&gt;English&lt;/td&gt;&lt;td&gt;Operating Systems&lt;/td&gt;&lt;td&gt;Mathematics&lt;/td&gt;&lt;td class="lab" colspan="2"&gt;Data Structures Lab&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Friday&lt;/th&gt;&lt;td&gt;Web Technology&lt;/td&gt;&lt;td&gt;Data Structures&lt;/td&gt;&lt;td&gt;Operating Systems&lt;/td&gt;&lt;td&gt;Sports&lt;/td&gt;&lt;td&gt;Mentoring&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+/* CSS */
+.demo table.tt { border-collapse: collapse; width: 100%; text-align: center; }
+.demo table.tt th, .demo table.tt td { border: 1px solid #9aa8c4; padding: .55rem .4rem; }
+.demo table.tt th { background: #14213d; color: #fff; }
+.demo table.tt td.break { background: #fff2c2; font-weight: 700; }
+.demo table.tt td.lab { background: #d6f1e0; }
+.demo table.tt tbody th { background: #e8edf8; color: #14213d; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">HTML Programs</a>
+      <span class="spacer"></span>
+      <a href="html5-input-types.html">&larr; Previous</a><a href="internal-external-css.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

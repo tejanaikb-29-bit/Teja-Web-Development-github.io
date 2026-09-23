@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webpage with internal and external CSS styling | HTML Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/external-demo.css">
+<style>
+/* Internal CSS: written inside a <style> tag in the page's <head> */
+.demo .int-box { background: #fff1d6; border: 2px solid #d98a00; border-radius: 10px; padding: 1rem; margin: 1rem 0; }
+.demo .int-box h3 { margin-top: 0; color: #a86400; }
+</style>
+</head>
+<body data-sec="html">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to HTML Programs</a>
+      </nav>
+      <p class="pp-cat">HTML &rsaquo; Tables, Styling &amp; Mini Pages</p>
+      <h1>Webpage with internal and external CSS styling</h1>
+      <p class="pp-desc">The same page uses three ways to add CSS: an external stylesheet (&lt;link&gt;), an internal &lt;style&gt; block, and inline style attributes.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <div class="ext-box">
+        <h3>External CSS</h3>
+        <p>Styled by <code>assets/css/external-demo.css</code>, linked with a &lt;link&gt; tag.</p>
+      </div>
+      <div class="int-box">
+        <h3>Internal CSS</h3>
+        <p>Styled by a &lt;style&gt; block inside this page.</p>
+      </div>
+      <div style="background:#e6f6ec;border:2px solid #178a4a;border-radius:10px;padding:1rem;margin:1rem 0">
+        <h3 style="margin-top:0;color:#11683a">Inline CSS</h3>
+        <p>Styled using the <code>style</code> attribute on the element itself.</p>
+      </div>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- &lt;head&gt; extras --&gt;
+&lt;link rel="stylesheet" href="../assets/css/external-demo.css"&gt;
+
+&lt;!-- HTML --&gt;
+&lt;div class="ext-box"&gt;
+  &lt;h3&gt;External CSS&lt;/h3&gt;
+  &lt;p&gt;Styled by &lt;code&gt;assets/css/external-demo.css&lt;/code&gt;, linked with a &amp;lt;link&amp;gt; tag.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="int-box"&gt;
+  &lt;h3&gt;Internal CSS&lt;/h3&gt;
+  &lt;p&gt;Styled by a &amp;lt;style&amp;gt; block inside this page.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div style="background:#e6f6ec;border:2px solid #178a4a;border-radius:10px;padding:1rem;margin:1rem 0"&gt;
+  &lt;h3 style="margin-top:0;color:#11683a"&gt;Inline CSS&lt;/h3&gt;
+  &lt;p&gt;Styled using the &lt;code&gt;style&lt;/code&gt; attribute on the element itself.&lt;/p&gt;
+&lt;/div&gt;
+
+/* CSS */
+/* Internal CSS: written inside a &lt;style&gt; tag in the page's &lt;head&gt; */
+.demo .int-box { background: #fff1d6; border: 2px solid #d98a00; border-radius: 10px; padding: 1rem; margin: 1rem 0; }
+.demo .int-box h3 { margin-top: 0; color: #a86400; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">HTML Programs</a>
+      <span class="spacer"></span>
+      <a href="college-timetable.html">&larr; Previous</a><a href="css-selectors-fonts-box.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

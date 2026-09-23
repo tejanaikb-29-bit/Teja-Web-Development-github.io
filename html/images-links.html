@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Images and hyperlinks | HTML Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+</head>
+<body data-sec="html">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to HTML Programs</a>
+      </nav>
+      <p class="pp-cat">HTML &rsaquo; Content Basics</p>
+      <h1>Images and hyperlinks</h1>
+      <p class="pp-desc">Uses &lt;img&gt; with alt text and size, &lt;figure&gt;/&lt;figcaption&gt;, an image link, and different types of &lt;a&gt; links.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <h3>Images</h3>
+      <img src="../assets/images/img1.svg" alt="Mountains under a blue sky" width="320" height="200" title="Mountains">
+      <figure>
+        <img src="../assets/images/img2.svg" alt="Sunset over purple hills" width="320">
+        <figcaption>Figure 1: An image with a caption.</figcaption>
+      </figure>
+      <h3>Image as a link</h3>
+      <a href="../index.html"><img src="../assets/images/logo.svg" alt="Logo - click to go home" width="64"></a>
+      <h3>Different kinds of hyperlinks</h3>
+      <ul>
+        <li><a href="index.html">Link to another page of this project (relative link)</a></li>
+        <li><a href="https://developer.mozilla.org/" target="_blank" rel="noopener">External website (opens in a new tab)</a></li>
+        <li><a href="mailto:student@example.com">Send an email</a></li>
+        <li><a href="tel:+911234567890">Call a phone number</a></li>
+        <li><a href="#bottom">Jump to the bottom of this demo (anchor link)</a></li>
+      </ul>
+      <p style="margin-top:140px" id="bottom">You reached the anchor <strong>#bottom</strong>. <a href="#demo">Back to top</a></p>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;h3&gt;Images&lt;/h3&gt;
+&lt;img src="../assets/images/img1.svg" alt="Mountains under a blue sky" width="320" height="200" title="Mountains"&gt;
+&lt;figure&gt;
+  &lt;img src="../assets/images/img2.svg" alt="Sunset over purple hills" width="320"&gt;
+  &lt;figcaption&gt;Figure 1: An image with a caption.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3&gt;Image as a link&lt;/h3&gt;
+&lt;a href="../index.html"&gt;&lt;img src="../assets/images/logo.svg" alt="Logo - click to go home" width="64"&gt;&lt;/a&gt;
+&lt;h3&gt;Different kinds of hyperlinks&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="index.html"&gt;Link to another page of this project (relative link)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://developer.mozilla.org/" target="_blank" rel="noopener"&gt;External website (opens in a new tab)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="mailto:student@example.com"&gt;Send an email&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="tel:+911234567890"&gt;Call a phone number&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#bottom"&gt;Jump to the bottom of this demo (anchor link)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p style="margin-top:140px" id="bottom"&gt;You reached the anchor &lt;strong&gt;#bottom&lt;/strong&gt;. &lt;a href="#demo"&gt;Back to top&lt;/a&gt;&lt;/p&gt;</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">HTML Programs</a>
+      <span class="spacer"></span>
+      <a href="tables.html">&larr; Previous</a><a href="student-registration-form.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

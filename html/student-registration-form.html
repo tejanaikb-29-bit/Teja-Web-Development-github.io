@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student registration form | HTML Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo form { max-width: 560px; }
+.demo fieldset { border: 1px solid #b9c3d6; border-radius: 8px; margin-bottom: 1rem; }
+.demo .frow { margin: .6rem 0; }
+.demo label.l { display: inline-block; min-width: 130px; font-weight: 600; }
+</style>
+</head>
+<body data-sec="html">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to HTML Programs</a>
+      </nav>
+      <p class="pp-cat">HTML &rsaquo; Forms, Media &amp; Semantic Elements</p>
+      <h1>Student registration form</h1>
+      <p class="pp-desc">A registration form using text, email, password, radio, checkbox, select, textarea, file and button elements.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <form action="#" method="post" onsubmit="alert('Form submitted (demo)'); return false;">
+        <fieldset>
+          <legend>Personal details</legend>
+          <div class="frow"><label class="l" for="fname">Full name</label><input type="text" id="fname" name="fname" placeholder="Your name" required></div>
+          <div class="frow"><label class="l" for="email">Email</label><input type="email" id="email" name="email" required></div>
+          <div class="frow"><label class="l" for="pwd">Password</label><input type="password" id="pwd" name="pwd" minlength="6" required></div>
+          <div class="frow"><span class="l">Gender</span>
+            <label><input type="radio" name="gender" value="male"> Male</label>
+            <label><input type="radio" name="gender" value="female"> Female</label>
+            <label><input type="radio" name="gender" value="other"> Other</label></div>
+        </fieldset>
+        <fieldset>
+          <legend>Course details</legend>
+          <div class="frow"><label class="l" for="course">Course</label>
+            <select id="course" name="course"><option value="">-- Select --</option><option>B.Sc Computer Science</option><option>BCA</option><option>B.Com</option></select></div>
+          <div class="frow"><span class="l">Hobbies</span>
+            <label><input type="checkbox" name="hobby" value="reading"> Reading</label>
+            <label><input type="checkbox" name="hobby" value="sports"> Sports</label>
+            <label><input type="checkbox" name="hobby" value="music"> Music</label></div>
+          <div class="frow"><label class="l" for="photo">Photo</label><input type="file" id="photo" name="photo"></div>
+          <div class="frow"><label class="l" for="addr">Address</label><textarea id="addr" name="addr" rows="3" cols="30"></textarea></div>
+        </fieldset>
+        <button type="submit">Register</button>
+        <button type="reset" class="secondary">Reset</button>
+      </form>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;form action="#" method="post" onsubmit="alert('Form submitted (demo)'); return false;"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Personal details&lt;/legend&gt;
+    &lt;div class="frow"&gt;&lt;label class="l" for="fname"&gt;Full name&lt;/label&gt;&lt;input type="text" id="fname" name="fname" placeholder="Your name" required&gt;&lt;/div&gt;
+    &lt;div class="frow"&gt;&lt;label class="l" for="email"&gt;Email&lt;/label&gt;&lt;input type="email" id="email" name="email" required&gt;&lt;/div&gt;
+    &lt;div class="frow"&gt;&lt;label class="l" for="pwd"&gt;Password&lt;/label&gt;&lt;input type="password" id="pwd" name="pwd" minlength="6" required&gt;&lt;/div&gt;
+    &lt;div class="frow"&gt;&lt;span class="l"&gt;Gender&lt;/span&gt;
+      &lt;label&gt;&lt;input type="radio" name="gender" value="male"&gt; Male&lt;/label&gt;
+      &lt;label&gt;&lt;input type="radio" name="gender" value="female"&gt; Female&lt;/label&gt;
+      &lt;label&gt;&lt;input type="radio" name="gender" value="other"&gt; Other&lt;/label&gt;&lt;/div&gt;
+  &lt;/fieldset&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Course details&lt;/legend&gt;
+    &lt;div class="frow"&gt;&lt;label class="l" for="course"&gt;Course&lt;/label&gt;
+      &lt;select id="course" name="course"&gt;&lt;option value=""&gt;-- Select --&lt;/option&gt;&lt;option&gt;B.Sc Computer Science&lt;/option&gt;&lt;option&gt;BCA&lt;/option&gt;&lt;option&gt;B.Com&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+    &lt;div class="frow"&gt;&lt;span class="l"&gt;Hobbies&lt;/span&gt;
+      &lt;label&gt;&lt;input type="checkbox" name="hobby" value="reading"&gt; Reading&lt;/label&gt;
+      &lt;label&gt;&lt;input type="checkbox" name="hobby" value="sports"&gt; Sports&lt;/label&gt;
+      &lt;label&gt;&lt;input type="checkbox" name="hobby" value="music"&gt; Music&lt;/label&gt;&lt;/div&gt;
+    &lt;div class="frow"&gt;&lt;label class="l" for="photo"&gt;Photo&lt;/label&gt;&lt;input type="file" id="photo" name="photo"&gt;&lt;/div&gt;
+    &lt;div class="frow"&gt;&lt;label class="l" for="addr"&gt;Address&lt;/label&gt;&lt;textarea id="addr" name="addr" rows="3" cols="30"&gt;&lt;/textarea&gt;&lt;/div&gt;
+  &lt;/fieldset&gt;
+  &lt;button type="submit"&gt;Register&lt;/button&gt;
+  &lt;button type="reset" class="secondary"&gt;Reset&lt;/button&gt;
+&lt;/form&gt;
+
+/* CSS */
+.demo form { max-width: 560px; }
+.demo fieldset { border: 1px solid #b9c3d6; border-radius: 8px; margin-bottom: 1rem; }
+.demo .frow { margin: .6rem 0; }
+.demo label.l { display: inline-block; min-width: 130px; font-weight: 600; }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">HTML Programs</a>
+      <span class="spacer"></span>
+      <a href="images-links.html">&larr; Previous</a><a href="audio-video.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

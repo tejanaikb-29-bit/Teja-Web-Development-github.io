@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semantic elements: header, nav, section, article, footer | HTML Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+.demo .sem { border: 2px dashed #1769b5; padding: .6rem .8rem; margin: .5rem 0; border-radius: 6px; position: relative; }
+.demo .sem > .tag { position: absolute; top: -.75rem; right: .6rem; background: #1769b5; color: #fff; font: 600 .72rem Consolas, monospace; padding: 0 .4rem; border-radius: 4px; }
+.demo .sem h2, .demo .sem h3, .demo .sem p { margin: .3rem 0; }
+.demo .cols { display: grid; grid-template-columns: 2fr 1fr; gap: .6rem; }
+.demo nav a { margin-right: .8rem; }
+@media (max-width: 560px) { .demo .cols { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-sec="html">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Back to HTML Programs</a>
+      </nav>
+      <p class="pp-cat">HTML &rsaquo; Forms, Media &amp; Semantic Elements</p>
+      <h1>Semantic elements: header, nav, section, article, footer</h1>
+      <p class="pp-desc">A page layout using semantic HTML5 tags. Each region is outlined and labelled so you can see the structure.</p>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <p class="pp-demo-title">Working demonstration</p>
+    <section class="pp-demo demo" id="demo">
+      <header class="sem"><span class="tag">&lt;header&gt;</span><h2>My Tech Blog</h2><p>Notes from my HTML class</p></header>
+      <nav class="sem"><span class="tag">&lt;nav&gt;</span><a href="#s1">Home</a><a href="#s1">Articles</a><a href="#s1">About</a></nav>
+      <div class="cols">
+        <main class="sem"><span class="tag">&lt;main&gt;</span>
+          <section class="sem" id="s1"><span class="tag">&lt;section&gt;</span><h3>Latest articles</h3>
+            <article class="sem"><span class="tag">&lt;article&gt;</span><h3>Why semantic HTML matters</h3><p>Semantic tags describe the meaning of content for browsers, search engines and screen readers.</p></article>
+            <article class="sem"><span class="tag">&lt;article&gt;</span><h3>Getting started with CSS</h3><p>Styling begins with selectors and properties.</p></article>
+          </section>
+        </main>
+        <aside class="sem"><span class="tag">&lt;aside&gt;</span><h3>Sidebar</h3><p>Related links or advertisements go here.</p></aside>
+      </div>
+      <footer class="sem"><span class="tag">&lt;footer&gt;</span><p>&copy; 2026 My Tech Blog. All rights reserved.</p></footer>
+    </section>
+
+    <details class="pp-source">
+      <summary>View source code of this program</summary>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;header class="sem"&gt;&lt;span class="tag"&gt;&amp;lt;header&amp;gt;&lt;/span&gt;&lt;h2&gt;My Tech Blog&lt;/h2&gt;&lt;p&gt;Notes from my HTML class&lt;/p&gt;&lt;/header&gt;
+&lt;nav class="sem"&gt;&lt;span class="tag"&gt;&amp;lt;nav&amp;gt;&lt;/span&gt;&lt;a href="#s1"&gt;Home&lt;/a&gt;&lt;a href="#s1"&gt;Articles&lt;/a&gt;&lt;a href="#s1"&gt;About&lt;/a&gt;&lt;/nav&gt;
+&lt;div class="cols"&gt;
+  &lt;main class="sem"&gt;&lt;span class="tag"&gt;&amp;lt;main&amp;gt;&lt;/span&gt;
+    &lt;section class="sem" id="s1"&gt;&lt;span class="tag"&gt;&amp;lt;section&amp;gt;&lt;/span&gt;&lt;h3&gt;Latest articles&lt;/h3&gt;
+      &lt;article class="sem"&gt;&lt;span class="tag"&gt;&amp;lt;article&amp;gt;&lt;/span&gt;&lt;h3&gt;Why semantic HTML matters&lt;/h3&gt;&lt;p&gt;Semantic tags describe the meaning of content for browsers, search engines and screen readers.&lt;/p&gt;&lt;/article&gt;
+      &lt;article class="sem"&gt;&lt;span class="tag"&gt;&amp;lt;article&amp;gt;&lt;/span&gt;&lt;h3&gt;Getting started with CSS&lt;/h3&gt;&lt;p&gt;Styling begins with selectors and properties.&lt;/p&gt;&lt;/article&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+  &lt;aside class="sem"&gt;&lt;span class="tag"&gt;&amp;lt;aside&amp;gt;&lt;/span&gt;&lt;h3&gt;Sidebar&lt;/h3&gt;&lt;p&gt;Related links or advertisements go here.&lt;/p&gt;&lt;/aside&gt;
+&lt;/div&gt;
+&lt;footer class="sem"&gt;&lt;span class="tag"&gt;&amp;lt;footer&amp;gt;&lt;/span&gt;&lt;p&gt;&amp;copy; 2026 My Tech Blog. All rights reserved.&lt;/p&gt;&lt;/footer&gt;
+
+/* CSS */
+.demo .sem { border: 2px dashed #1769b5; padding: .6rem .8rem; margin: .5rem 0; border-radius: 6px; position: relative; }
+.demo .sem &gt; .tag { position: absolute; top: -.75rem; right: .6rem; background: #1769b5; color: #fff; font: 600 .72rem Consolas, monospace; padding: 0 .4rem; border-radius: 4px; }
+.demo .sem h2, .demo .sem h3, .demo .sem p { margin: .3rem 0; }
+.demo .cols { display: grid; grid-template-columns: 2fr 1fr; gap: .6rem; }
+.demo nav a { margin-right: .8rem; }
+@media (max-width: 560px) { .demo .cols { grid-template-columns: 1fr; } }</code></pre>
+    </details>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="index.html">HTML Programs</a>
+      <span class="spacer"></span>
+      <a href="iframes.html">&larr; Previous</a><a href="html5-input-types.html">Next &rarr;</a>
+    </div>
+  </footer>
+</body>
+</html>

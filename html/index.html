@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Programs | Practical Programs</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-sec="html">
+  <header class="pp-header">
+    <div class="pp-inner">
+      <nav class="pp-nav" aria-label="Page navigation">
+        <a href="../index.html">Home</a>
+        <a href="../html/index.html">HTML</a>
+        <a href="../css/index.html">CSS</a>
+        <a href="../javascript/index.html">JavaScript</a>
+      </nav>
+      <h1>HTML Programs</h1>
+      <p class="pp-desc">Page structure: headings, lists, tables, media, forms, semantic layout and Bootstrap. Total programs: <strong>15</strong>.</p>
+    </div>
+  </header>
+
+  <div class="list-wrap">
+    <div class="searchbar">
+      <input type="search" id="filter" placeholder="Search programs in this section..." aria-label="Search programs">
+      <span class="muted" id="shown">Showing all 15 programs</span>
+    </div>
+    <nav class="jump" aria-label="Categories"><a href="#c0">Content Basics</a><a href="#c1">Forms, Media &amp; Semantic Elements</a><a href="#c2">Tables, Styling &amp; Mini Pages</a></nav>
+    <section class="cat-block" id="c0">
+      <h2>Content Basics <small>(4 programs)</small></h2>
+      <ol start="1">
+        <li><a href="basic-webpage.html">Basic webpage with headings, paragraphs and line breaks</a></li>
+        <li><a href="lists.html">Ordered, unordered and description lists</a></li>
+        <li><a href="tables.html">Tables with rows, columns, borders and merged cells</a></li>
+        <li><a href="images-links.html">Images and hyperlinks</a></li>
+      </ol>
+    </section>
+    <section class="cat-block" id="c1">
+      <h2>Forms, Media &amp; Semantic Elements <small>(5 programs)</small></h2>
+      <ol start="5">
+        <li><a href="student-registration-form.html">Student registration form</a></li>
+        <li><a href="audio-video.html">Audio and video elements</a></li>
+        <li><a href="iframes.html">Frames and iframes</a></li>
+        <li><a href="semantic-elements.html">Semantic elements: header, nav, section, article, footer</a></li>
+        <li><a href="html5-input-types.html">HTML5 input types (email, date, number, password and more)</a></li>
+      </ol>
+    </section>
+    <section class="cat-block" id="c2">
+      <h2>Tables, Styling &amp; Mini Pages <small>(6 programs)</small></h2>
+      <ol start="10">
+        <li><a href="college-timetable.html">College timetable using an HTML table</a></li>
+        <li><a href="internal-external-css.html">Webpage with internal and external CSS styling</a></li>
+        <li><a href="css-selectors-fonts-box.html">CSS selectors, colors, fonts, margins, padding and borders</a></li>
+        <li><a href="responsive-media-queries.html">Responsive webpage using CSS media queries</a></li>
+        <li><a href="bootstrap-components.html">Webpage using Bootstrap components</a></li>
+        <li><a href="personal-portfolio.html">Simple personal portfolio webpage</a></li>
+      </ol>
+    </section>
+    <p class="no-result" id="none">No program matches your search.</p>
+  </div>
+
+  <footer class="pp-footer">
+    <div class="pp-inner">
+      <a href="../index.html">Home</a>
+      <a href="#">Back to top</a>
+    </div>
+  </footer>
+
+  <script>
+    // Live search: hides list items that do not match the typed text.
+    const filterBox = document.getElementById('filter');
+    const items = document.querySelectorAll('.cat-block li');
+    filterBox.addEventListener('input', () => {
+      const q = filterBox.value.trim().toLowerCase();
+      let visible = 0;
+      items.forEach((li) => {
+        const match = li.textContent.toLowerCase().includes(q);
+        li.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+      document.querySelectorAll('.cat-block').forEach((block) => {
+        const any = [...block.querySelectorAll('li')].some((li) => li.style.display !== 'none');
+        block.style.display = any ? '' : 'none';
+      });
+      document.getElementById('shown').textContent = q ? `${visible} match(es)` : 'Showing all 15 programs';
+      document.getElementById('none').style.display = visible ? 'none' : 'block';
+    });
+  </script>
+</body>
+</html>
