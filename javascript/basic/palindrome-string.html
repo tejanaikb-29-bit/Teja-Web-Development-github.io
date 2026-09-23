@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Check whether a string is a palindrome | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › More Number, Array &amp; String Programs</p>
+<h1>Check whether a string is a palindrome</h1>
+<p class="pp-desc">Ignores case, spaces and punctuation, then compares the text with its reverse.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row">
+<label class="field">Enter a word or sentence
+          <input id="s" type="text" value="A man, a plan, a canal: Panama"/>
+</label>
+</div>
+<button class="btn" id="run">Run</button>
+<div class="out" id="out">The result will appear here.</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;
+  &lt;label class="field"&gt;Enter a word or sentence
+    &lt;input id="s" type="text" value="A man, a plan, a canal: Panama"&gt;
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;button class="btn" id="run"&gt;Run&lt;/button&gt;
+&lt;div class="out" id="out"&gt;The result will appear here.&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const num = (id) =&gt; parseFloat($(id).value);
+const txt = (id) =&gt; $(id).value;
+const list = (id) =&gt; $(id).value.split(/[\s,]+/).filter(Boolean).map(Number);
+const show = (msg) =&gt; { $('out').textContent = msg; };
+const showHTML = (html) =&gt; { $('out').innerHTML = html; };
+
+function run() {
+  const s = txt('s');
+  const clean = s.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const reversed = clean.split('').reverse().join('');
+  show(`Cleaned : ${clean}\nReversed: ${reversed}\n"${s}" ${clean &amp;&amp; clean === reversed ? 'IS' : 'is NOT'} a palindrome`);
+}
+$('run').addEventListener('click', run);
+document.querySelectorAll('input').forEach((el) =&gt; el.addEventListener('keydown', (e) =&gt; { if (e.key === 'Enter') run(); }));</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../basic/reverse-a-string.html">← Previous</a><a href="../basic/count-vowels-consonants.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const num = (id) => parseFloat($(id).value);
+const txt = (id) => $(id).value;
+const list = (id) => $(id).value.split(/[\s,]+/).filter(Boolean).map(Number);
+const show = (msg) => { $('out').textContent = msg; };
+const showHTML = (html) => { $('out').innerHTML = html; };
+
+function run() {
+  const s = txt('s');
+  const clean = s.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const reversed = clean.split('').reverse().join('');
+  show(`Cleaned : ${clean}\nReversed: ${reversed}\n"${s}" ${clean && clean === reversed ? 'IS' : 'is NOT'} a palindrome`);
+}
+$('run').addEventListener('click', run);
+document.querySelectorAll('input').forEach((el) => el.addEventListener('keydown', (e) => { if (e.key === 'Enter') run(); }));
+</script>
+</body>
+</html>

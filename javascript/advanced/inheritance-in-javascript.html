@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inheritance in JavaScript | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Advanced JavaScript Lab</p>
+<h1>Inheritance in JavaScript</h1>
+<p class="pp-desc">Dog and Cat classes extend Animal, reuse its code with super and override the speak() method.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<button class="btn" id="run">Run inheritance demo</button>
+<div class="out" id="out">The result will appear here.</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;button class="btn" id="run"&gt;Run inheritance demo&lt;/button&gt;
+&lt;div class="out" id="out"&gt;The result will appear here.&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const num = (id) =&gt; parseFloat($(id).value);
+const txt = (id) =&gt; $(id).value;
+const list = (id) =&gt; $(id).value.split(/[\s,]+/).filter(Boolean).map(Number);
+const show = (msg) =&gt; { $('out').textContent = msg; };
+const showHTML = (html) =&gt; { $('out').innerHTML = html; };
+class Animal {
+  constructor(name) { this.name = name; }
+  speak() { return `${this.name} makes a sound.`; }
+  describe() { return `${this.constructor.name}: ${this.name}`; }
+}
+class Dog extends Animal {
+  constructor(name, breed) { super(name); this.breed = breed; }     // call the parent constructor
+  speak() { return `${this.name} the ${this.breed} barks: Woof!`; }   // method overriding
+}
+class Cat extends Animal {
+  speak() { return `${super.speak()} It purrs softly.`; }          // extend the parent method
+}
+
+function run() {
+  const animals = [new Animal('Generic'), new Dog('Buddy', 'Labrador'), new Cat('Misty')];
+  show(animals.map((a) =&gt; `${a.describe()}\n   -&gt; ${a.speak()}   (instanceof Animal: ${a instanceof Animal})`).join('\n\n'));
+}
+$('run').addEventListener('click', run);</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../arrays-objects/classes-and-objects.html">← Previous</a><a href="../advanced/callbacks-promises-async-await.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const num = (id) => parseFloat($(id).value);
+const txt = (id) => $(id).value;
+const list = (id) => $(id).value.split(/[\s,]+/).filter(Boolean).map(Number);
+const show = (msg) => { $('out').textContent = msg; };
+const showHTML = (html) => { $('out').innerHTML = html; };
+class Animal {
+  constructor(name) { this.name = name; }
+  speak() { return `${this.name} makes a sound.`; }
+  describe() { return `${this.constructor.name}: ${this.name}`; }
+}
+class Dog extends Animal {
+  constructor(name, breed) { super(name); this.breed = breed; }     // call the parent constructor
+  speak() { return `${this.name} the ${this.breed} barks: Woof!`; }   // method overriding
+}
+class Cat extends Animal {
+  speak() { return `${super.speak()} It purrs softly.`; }          // extend the parent method
+}
+
+function run() {
+  const animals = [new Animal('Generic'), new Dog('Buddy', 'Labrador'), new Cat('Misty')];
+  show(animals.map((a) => `${a.describe()}\n   -> ${a.speak()}   (instanceof Animal: ${a instanceof Animal})`).join('\n\n'));
+}
+$('run').addEventListener('click', run);
+</script>
+</body>
+</html>

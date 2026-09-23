@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Greatest common divisor (GCD) of two numbers | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › More Number, Array &amp; String Programs</p>
+<h1>Greatest common divisor (GCD) of two numbers</h1>
+<p class="pp-desc">Uses Euclid's algorithm: replace (a, b) with (b, a % b) until b becomes 0.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row">
+<label class="field">First number
+          <input id="a" step="any" type="number" value="48"/>
+</label>
+<label class="field">Second number
+          <input id="b" step="any" type="number" value="36"/>
+</label>
+</div>
+<button class="btn" id="run">Run</button>
+<div class="out" id="out">The result will appear here.</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;
+  &lt;label class="field"&gt;First number
+    &lt;input id="a" type="number" value="48" step="any"&gt;
+  &lt;/label&gt;
+  &lt;label class="field"&gt;Second number
+    &lt;input id="b" type="number" value="36" step="any"&gt;
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;button class="btn" id="run"&gt;Run&lt;/button&gt;
+&lt;div class="out" id="out"&gt;The result will appear here.&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const num = (id) =&gt; parseFloat($(id).value);
+const txt = (id) =&gt; $(id).value;
+const list = (id) =&gt; $(id).value.split(/[\s,]+/).filter(Boolean).map(Number);
+const show = (msg) =&gt; { $('out').textContent = msg; };
+const showHTML = (html) =&gt; { $('out').innerHTML = html; };
+
+function run() {
+  if (Number.isNaN(num('a')) || Number.isNaN(num('b'))) { show('Please enter valid input.'); return; }
+  let a = num('a'), b = num('b');
+  if (!Number.isInteger(a) || !Number.isInteger(b) || a &lt;= 0 || b &lt;= 0) return show('Enter two positive whole numbers.');
+  const x = a, y = b;
+  while (b !== 0) {
+    [a, b] = [b, a % b];
+  }
+  show(`GCD of ${x} and ${y} = ${a}`);
+}
+$('run').addEventListener('click', run);
+document.querySelectorAll('input').forEach((el) =&gt; el.addEventListener('keydown', (e) =&gt; { if (e.key === 'Enter') run(); }));</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../basic/swap-two-numbers.html">← Previous</a><a href="../basic/lcm-of-two-numbers.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const num = (id) => parseFloat($(id).value);
+const txt = (id) => $(id).value;
+const list = (id) => $(id).value.split(/[\s,]+/).filter(Boolean).map(Number);
+const show = (msg) => { $('out').textContent = msg; };
+const showHTML = (html) => { $('out').innerHTML = html; };
+
+function run() {
+  if (Number.isNaN(num('a')) || Number.isNaN(num('b'))) { show('Please enter valid input.'); return; }
+  let a = num('a'), b = num('b');
+  if (!Number.isInteger(a) || !Number.isInteger(b) || a <= 0 || b <= 0) return show('Enter two positive whole numbers.');
+  const x = a, y = b;
+  while (b !== 0) {
+    [a, b] = [b, a % b];
+  }
+  show(`GCD of ${x} and ${y} = ${a}`);
+}
+$('run').addEventListener('click', run);
+document.querySelectorAll('input').forEach((el) => el.addEventListener('keydown', (e) => { if (e.key === 'Enter') run(); }));
+</script>
+</body>
+</html>

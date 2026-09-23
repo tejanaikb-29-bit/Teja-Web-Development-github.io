@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Callbacks, promises and async / await | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Advanced JavaScript Lab</p>
+<h1>Callbacks, promises and async / await</h1>
+<p class="pp-desc">Four ways to handle asynchronous code. Each step waits for a timer, and the log shows the order of events.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<button id="run">Run demo</button>
+<div class="out" id="out" style="font-family:Consolas,monospace">Press the button.</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;button id="run"&gt;Run demo&lt;/button&gt;
+&lt;div class="out" id="out" style="font-family:Consolas,monospace"&gt;Press the button.&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const log = (text) =&gt; { $('out').textContent += text + '\n'; };
+const wait = (ms) =&gt; new Promise((resolve) =&gt; setTimeout(resolve, ms));
+
+// 1. Callback: a function passed to another function and called later
+function loadData(callback) { setTimeout(() =&gt; callback('Data loaded with a callback'), 600); }
+
+// 2. Promise: an object that resolves or rejects in the future
+function checkNumber(n) {
+  return new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; (n &gt; 0 ? resolve(`${n} is positive`) : reject(new Error(`${n} is not positive`))), 600);
+  });
+}
+
+// 3. async / await: promise code that reads like normal code
+async function main() {
+  $('run').disabled = true;
+  $('out').textContent = '';
+  log('1) Callback...');
+  await new Promise((done) =&gt; loadData((msg) =&gt; { log('   ' + msg); done(); }));
+
+  log('2) Promise with .then() / .catch()...');
+  await checkNumber(5).then((m) =&gt; log('   resolved: ' + m));
+  await checkNumber(-2).catch((e) =&gt; log('   rejected: ' + e.message));
+
+  log('3) async / await with try / catch...');
+  try {
+    log('   ' + await checkNumber(10));
+    log('   ' + await checkNumber(0));
+  } catch (error) {
+    log('   caught: ' + error.message);
+  } finally {
+    log('   (finally always runs)');
+  }
+
+  log('4) Promise.all - run two timers together...');
+  const results = await Promise.all([wait(300).then(() =&gt; 'A done'), wait(600).then(() =&gt; 'B done')]);
+  log('   ' + results.join(', '));
+  log('All finished.');
+  $('run').disabled = false;
+}
+$('run').addEventListener('click', main);</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../advanced/inheritance-in-javascript.html">← Previous</a><a href="../basic/fetch-api-data.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const log = (text) => { $('out').textContent += text + '\n'; };
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+// 1. Callback: a function passed to another function and called later
+function loadData(callback) { setTimeout(() => callback('Data loaded with a callback'), 600); }
+
+// 2. Promise: an object that resolves or rejects in the future
+function checkNumber(n) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => (n > 0 ? resolve(`${n} is positive`) : reject(new Error(`${n} is not positive`))), 600);
+  });
+}
+
+// 3. async / await: promise code that reads like normal code
+async function main() {
+  $('run').disabled = true;
+  $('out').textContent = '';
+  log('1) Callback...');
+  await new Promise((done) => loadData((msg) => { log('   ' + msg); done(); }));
+
+  log('2) Promise with .then() / .catch()...');
+  await checkNumber(5).then((m) => log('   resolved: ' + m));
+  await checkNumber(-2).catch((e) => log('   rejected: ' + e.message));
+
+  log('3) async / await with try / catch...');
+  try {
+    log('   ' + await checkNumber(10));
+    log('   ' + await checkNumber(0));
+  } catch (error) {
+    log('   caught: ' + error.message);
+  } finally {
+    log('   (finally always runs)');
+  }
+
+  log('4) Promise.all - run two timers together...');
+  const results = await Promise.all([wait(300).then(() => 'A done'), wait(600).then(() => 'B done')]);
+  log('   ' + results.join(', '));
+  log('All finished.');
+  $('run').disabled = false;
+}
+$('run').addEventListener('click', main);
+</script>
+</body>
+</html>

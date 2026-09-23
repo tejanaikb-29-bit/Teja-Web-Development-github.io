@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Display API data dynamically on a webpage | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .users { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
+.demo .ucard { border: 1px solid #d5dbe6; border-radius: 10px; padding: 1rem; background: #fff; }
+.demo .ucard h4 { margin: 0 0 .3rem; } .demo .ucard p { margin: .15rem 0; font-size: .9rem; color: #55637d; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Advanced JavaScript Lab</p>
+<h1>Display API data dynamically on a webpage</h1>
+<p class="pp-desc">Loads a list of users from an API and builds a card for each one with DOM methods. Includes a live search box.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row"><button id="load">Load users</button><input id="search" placeholder="Filter by name..." type="search"/></div>
+<p class="muted" id="status"></p><div class="users" id="users"></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;&lt;button id="load"&gt;Load users&lt;/button&gt;&lt;input id="search" type="search" placeholder="Filter by name..."&gt;&lt;/div&gt;
+&lt;p id="status" class="muted"&gt;&lt;/p&gt;&lt;div class="users" id="users"&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .users { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
+.demo .ucard { border: 1px solid #d5dbe6; border-radius: 10px; padding: 1rem; background: #fff; }
+.demo .ucard h4 { margin: 0 0 .3rem; } .demo .ucard p { margin: .15rem 0; font-size: .9rem; color: #55637d; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+let users = [];
+function render() {
+  const q = $('search').value.toLowerCase();
+  const box = $('users');
+  box.innerHTML = '';
+  users.filter((u) =&gt; u.name.toLowerCase().includes(q)).forEach((u) =&gt; {
+    const card = document.createElement('div');
+    card.className = 'ucard';
+    card.innerHTML = `&lt;h4&gt;&lt;/h4&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;`;
+    const [h, p1, p2, p3] = card.children;
+    h.textContent = u.name;
+    p1.textContent = 'Email: ' + u.email;
+    p2.textContent = 'City: ' + u.address.city;
+    p3.textContent = 'Company: ' + u.company.name;
+    box.appendChild(card);
+  });
+}
+$('load').addEventListener('click', async () =&gt; {
+  $('status').textContent = 'Loading...';
+  try {
+    const res = await fetch('https://jsonplaceholder.typicode.com/users');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    users = await res.json();
+    $('status').textContent = `${users.length} users loaded.`;
+    render();
+  } catch (e) {
+    $('status').textContent = 'Could not load users (' + e.message + '). Check your internet connection.';
+  }
+});
+$('search').addEventListener('input', render);</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../basic/fetch-api-data.html">← Previous</a><a href="../basic/localstorage-store-retrieve.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+let users = [];
+function render() {
+  const q = $('search').value.toLowerCase();
+  const box = $('users');
+  box.innerHTML = '';
+  users.filter((u) => u.name.toLowerCase().includes(q)).forEach((u) => {
+    const card = document.createElement('div');
+    card.className = 'ucard';
+    card.innerHTML = `<h4></h4><p></p><p></p><p></p>`;
+    const [h, p1, p2, p3] = card.children;
+    h.textContent = u.name;
+    p1.textContent = 'Email: ' + u.email;
+    p2.textContent = 'City: ' + u.address.city;
+    p3.textContent = 'Company: ' + u.company.name;
+    box.appendChild(card);
+  });
+}
+$('load').addEventListener('click', async () => {
+  $('status').textContent = 'Loading...';
+  try {
+    const res = await fetch('https://jsonplaceholder.typicode.com/users');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    users = await res.json();
+    $('status').textContent = `${users.length} users loaded.`;
+    render();
+  } catch (e) {
+    $('status').textContent = 'Could not load users (' + e.message + '). Check your internet connection.';
+  }
+});
+$('search').addEventListener('input', render);
+</script>
+</body>
+</html>

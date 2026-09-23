@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Strings and string methods | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Basic JavaScript Programs</p>
+<h1>Strings and string methods</h1>
+<p class="pp-desc">Length, case conversion, slice, replace, split, includes, indexOf, trim, padStart and more.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row">
+<label class="field">Enter some text
+          <input id="text" type="text" value="  JavaScript is Fun  "/>
+</label>
+</div>
+<button class="btn" id="run">Run</button>
+<div class="out" id="out">The result will appear here.</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;
+  &lt;label class="field"&gt;Enter some text
+    &lt;input id="text" type="text" value="  JavaScript is Fun  "&gt;
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;button class="btn" id="run"&gt;Run&lt;/button&gt;
+&lt;div class="out" id="out"&gt;The result will appear here.&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const num = (id) =&gt; parseFloat($(id).value);
+const txt = (id) =&gt; $(id).value;
+const list = (id) =&gt; $(id).value.split(/[\s,]+/).filter(Boolean).map(Number);
+const show = (msg) =&gt; { $('out').textContent = msg; };
+const showHTML = (html) =&gt; { $('out').innerHTML = html; };
+
+function run() {
+  const s = txt('text');
+  const t = s.trim();
+  show(`Original           : "${s}"
+  length             : ${s.length}
+  trim()             : "${t}"
+  toUpperCase()      : ${t.toUpperCase()}
+  toLowerCase()      : ${t.toLowerCase()}
+  charAt(0)          : ${t.charAt(0)}
+  indexOf('a')       : ${t.indexOf('a')}
+  includes('Fun')    : ${t.includes('Fun')}
+  slice(0, 4)        : ${t.slice(0, 4)}
+  replace('Fun','Great') : ${t.replace('Fun', 'Great')}
+  split(' ')         : ${JSON.stringify(t.split(' '))}
+  padStart(24, '*')  : ${t.padStart(24, '*')}
+  repeat(2)          : ${t.repeat(2)}`);
+}
+$('run').addEventListener('click', run);
+document.querySelectorAll('input').forEach((el) =&gt; el.addEventListener('keydown', (e) =&gt; { if (e.key === 'Enter') run(); }));</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../advanced/arrow-functions.html">← Previous</a><a href="../arrays-objects/array-methods.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const num = (id) => parseFloat($(id).value);
+const txt = (id) => $(id).value;
+const list = (id) => $(id).value.split(/[\s,]+/).filter(Boolean).map(Number);
+const show = (msg) => { $('out').textContent = msg; };
+const showHTML = (html) => { $('out').innerHTML = html; };
+
+function run() {
+  const s = txt('text');
+  const t = s.trim();
+  show(`Original           : "${s}"
+  length             : ${s.length}
+  trim()             : "${t}"
+  toUpperCase()      : ${t.toUpperCase()}
+  toLowerCase()      : ${t.toLowerCase()}
+  charAt(0)          : ${t.charAt(0)}
+  indexOf('a')       : ${t.indexOf('a')}
+  includes('Fun')    : ${t.includes('Fun')}
+  slice(0, 4)        : ${t.slice(0, 4)}
+  replace('Fun','Great') : ${t.replace('Fun', 'Great')}
+  split(' ')         : ${JSON.stringify(t.split(' '))}
+  padStart(24, '*')  : ${t.padStart(24, '*')}
+  repeat(2)          : ${t.repeat(2)}`);
+}
+$('run').addEventListener('click', run);
+document.querySelectorAll('input').forEach((el) => el.addEventListener('keydown', (e) => { if (e.key === 'Enter') run(); }));
+</script>
+</body>
+</html>

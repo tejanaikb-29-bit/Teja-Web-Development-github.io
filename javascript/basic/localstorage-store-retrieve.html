@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Store and retrieve data using localStorage | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Advanced JavaScript Lab</p>
+<h1>Store and retrieve data using localStorage</h1>
+<p class="pp-desc">Saves key / value pairs in the browser with setItem(), reads them with getItem() and lists everything stored.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row">
+<label class="field">Key<input id="key" type="text" value="username"/></label>
+<label class="field">Value<input id="value" type="text" value="Asha"/></label>
+</div>
+<div class="row"><button id="save">Save</button><button class="secondary" id="load">Read value</button><button class="danger" id="remove">Remove key</button></div>
+<div class="out" id="out">Nothing yet.</div>
+<h4>Everything in localStorage for this page</h4><pre class="out" id="all"></pre>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;
+  &lt;label class="field"&gt;Key&lt;input id="key" type="text" value="username"&gt;&lt;/label&gt;
+  &lt;label class="field"&gt;Value&lt;input id="value" type="text" value="Asha"&gt;&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="row"&gt;&lt;button id="save"&gt;Save&lt;/button&gt;&lt;button id="load" class="secondary"&gt;Read value&lt;/button&gt;&lt;button id="remove" class="danger"&gt;Remove key&lt;/button&gt;&lt;/div&gt;
+&lt;div class="out" id="out"&gt;Nothing yet.&lt;/div&gt;
+&lt;h4&gt;Everything in localStorage for this page&lt;/h4&gt;&lt;pre class="out" id="all"&gt;&lt;/pre&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+function showAll() {
+  const items = [];
+  for (let i = 0; i &lt; localStorage.length; i++) {
+    const k = localStorage.key(i);
+    items.push(`${k} = ${localStorage.getItem(k)}`);
+  }
+  $('all').textContent = items.length ? items.join('\n') : '(empty)';
+}
+$('save').addEventListener('click', () =&gt; {
+  const k = $('key').value.trim();
+  if (!k) return ($('out').textContent = 'Enter a key.');
+  localStorage.setItem(k, $('value').value);
+  $('out').textContent = `Saved "${k}". Refresh the page - it is still there.`;
+  showAll();
+});
+$('load').addEventListener('click', () =&gt; {
+  const v = localStorage.getItem($('key').value.trim());
+  $('out').textContent = v === null ? 'No value stored for that key.' : `Value: ${v}`;
+});
+$('remove').addEventListener('click', () =&gt; {
+  localStorage.removeItem($('key').value.trim());
+  $('out').textContent = 'Key removed.';
+  showAll();
+});
+showAll();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../basic/display-api-data-dynamically.html">← Previous</a><a href="../basic/responsive-login-form-validation.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+function showAll() {
+  const items = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    items.push(`${k} = ${localStorage.getItem(k)}`);
+  }
+  $('all').textContent = items.length ? items.join('\n') : '(empty)';
+}
+$('save').addEventListener('click', () => {
+  const k = $('key').value.trim();
+  if (!k) return ($('out').textContent = 'Enter a key.');
+  localStorage.setItem(k, $('value').value);
+  $('out').textContent = `Saved "${k}". Refresh the page - it is still there.`;
+  showAll();
+});
+$('load').addEventListener('click', () => {
+  const v = localStorage.getItem($('key').value.trim());
+  $('out').textContent = v === null ? 'No value stored for that key.' : `Value: ${v}`;
+});
+$('remove').addEventListener('click', () => {
+  localStorage.removeItem($('key').value.trim());
+  $('out').textContent = 'Key removed.';
+  showAll();
+});
+showAll();
+</script>
+</body>
+</html>

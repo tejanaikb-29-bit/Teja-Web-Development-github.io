@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Classes and objects | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Advanced JavaScript Lab</p>
+<h1>Classes and objects</h1>
+<p class="pp-desc">A Student class with a constructor, methods, a getter and a static method; two objects are created from it.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<button class="btn" id="run">Create objects</button>
+<div class="out" id="out">The result will appear here.</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;button class="btn" id="run"&gt;Create objects&lt;/button&gt;
+&lt;div class="out" id="out"&gt;The result will appear here.&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const num = (id) =&gt; parseFloat($(id).value);
+const txt = (id) =&gt; $(id).value;
+const list = (id) =&gt; $(id).value.split(/[\s,]+/).filter(Boolean).map(Number);
+const show = (msg) =&gt; { $('out').textContent = msg; };
+const showHTML = (html) =&gt; { $('out').innerHTML = html; };
+class Student {
+  static count = 0;
+  constructor(name, age, marks) {
+    this.name = name;
+    this.age = age;
+    this.marks = marks;
+    Student.count++;
+  }
+  get average() { return this.marks.reduce((a, b) =&gt; a + b, 0) / this.marks.length; }   // getter
+  grade() { return this.average &gt;= 75 ? 'A' : this.average &gt;= 60 ? 'B' : 'C'; }
+  introduce() { return `Hi, I am ${this.name}, ${this.age} years old.`; }
+  static compare(a, b) { return a.average &gt; b.average ? `${a.name} scored higher` : `${b.name} scored higher`; }
+}
+
+function run() {
+  const s1 = new Student('Asha', 20, [88, 92, 79]);
+  const s2 = new Student('Ravi', 21, [65, 70, 58]);
+  show(`${s1.introduce()}\nAverage: ${s1.average.toFixed(1)}  Grade: ${s1.grade()}\n
+  ${s2.introduce()}\nAverage: ${s2.average.toFixed(1)}  Grade: ${s2.grade()}\n
+  Static method: ${Student.compare(s1, s2)}\nStudents created: ${Student.count}`);
+}
+$('run').addEventListener('click', run);</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../advanced/spread-and-rest.html">← Previous</a><a href="../advanced/inheritance-in-javascript.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const num = (id) => parseFloat($(id).value);
+const txt = (id) => $(id).value;
+const list = (id) => $(id).value.split(/[\s,]+/).filter(Boolean).map(Number);
+const show = (msg) => { $('out').textContent = msg; };
+const showHTML = (html) => { $('out').innerHTML = html; };
+class Student {
+  static count = 0;
+  constructor(name, age, marks) {
+    this.name = name;
+    this.age = age;
+    this.marks = marks;
+    Student.count++;
+  }
+  get average() { return this.marks.reduce((a, b) => a + b, 0) / this.marks.length; }   // getter
+  grade() { return this.average >= 75 ? 'A' : this.average >= 60 ? 'B' : 'C'; }
+  introduce() { return `Hi, I am ${this.name}, ${this.age} years old.`; }
+  static compare(a, b) { return a.average > b.average ? `${a.name} scored higher` : `${b.name} scored higher`; }
+}
+
+function run() {
+  const s1 = new Student('Asha', 20, [88, 92, 79]);
+  const s2 = new Student('Ravi', 21, [65, 70, 58]);
+  show(`${s1.introduce()}\nAverage: ${s1.average.toFixed(1)}  Grade: ${s1.grade()}\n
+  ${s2.introduce()}\nAverage: ${s2.average.toFixed(1)}  Grade: ${s2.grade()}\n
+  Static method: ${Student.compare(s1, s2)}\nStudents created: ${Student.count}`);
+}
+$('run').addEventListener('click', run);
+</script>
+</body>
+</html>

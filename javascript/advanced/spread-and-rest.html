@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Spread and rest operators | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Advanced JavaScript Lab</p>
+<h1>Spread and rest operators</h1>
+<p class="pp-desc">... expands an array or object (spread) or collects many arguments into an array (rest).</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row">
+<label class="field">Numbers (comma separated)
+          <input id="nums" placeholder="e.g. 5, 12, 8, 3" type="text" value="4, 9, 2, 7"/>
+</label>
+</div>
+<button class="btn" id="run">Run</button>
+<div class="out" id="out">The result will appear here.</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;
+  &lt;label class="field"&gt;Numbers (comma separated)
+    &lt;input id="nums" type="text" value="4, 9, 2, 7" placeholder="e.g. 5, 12, 8, 3"&gt;
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;button class="btn" id="run"&gt;Run&lt;/button&gt;
+&lt;div class="out" id="out"&gt;The result will appear here.&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const num = (id) =&gt; parseFloat($(id).value);
+const txt = (id) =&gt; $(id).value;
+const list = (id) =&gt; $(id).value.split(/[\s,]+/).filter(Boolean).map(Number);
+const show = (msg) =&gt; { $('out').textContent = msg; };
+const showHTML = (html) =&gt; { $('out').innerHTML = html; };
+function sum(...values) { return values.reduce((t, v) =&gt; t + v, 0); }        // rest: collect arguments
+function describe(label, ...rest) { return `${label} has ${rest.length} extra values: [${rest}]`; }
+
+function run() {
+  if (list('nums').length === 0 || list('nums').some(Number.isNaN)) { show('Please enter valid input.'); return; }
+  const nums = list('nums');
+  const copy = [...nums];                              // spread: copy an array
+  const merged = [...nums, 100, ...[1, 2]];            // spread: merge arrays
+  const person = { name: 'Ravi', age: 21 };
+  const updated = { ...person, age: 22, city: 'Madurai' };   // spread objects
+  show(`Numbers          : [${nums}]
+  Copy (spread)    : [${copy}]
+  Merged           : [${merged}]
+  Math.max(...nums): ${Math.max(...nums)}
+  Object spread    : ${JSON.stringify(updated)}
+  Rest parameters  : sum(${nums.join(', ')}) = ${sum(...nums)}
+  Rest + first arg : ${describe('Total', 1, 2, 3)}`);
+}
+$('run').addEventListener('click', run);
+document.querySelectorAll('input').forEach((el) =&gt; el.addEventListener('keydown', (e) =&gt; { if (e.key === 'Enter') run(); }));</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../advanced/es6-let-const-template-destructuring.html">← Previous</a><a href="../arrays-objects/classes-and-objects.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const num = (id) => parseFloat($(id).value);
+const txt = (id) => $(id).value;
+const list = (id) => $(id).value.split(/[\s,]+/).filter(Boolean).map(Number);
+const show = (msg) => { $('out').textContent = msg; };
+const showHTML = (html) => { $('out').innerHTML = html; };
+function sum(...values) { return values.reduce((t, v) => t + v, 0); }        // rest: collect arguments
+function describe(label, ...rest) { return `${label} has ${rest.length} extra values: [${rest}]`; }
+
+function run() {
+  if (list('nums').length === 0 || list('nums').some(Number.isNaN)) { show('Please enter valid input.'); return; }
+  const nums = list('nums');
+  const copy = [...nums];                              // spread: copy an array
+  const merged = [...nums, 100, ...[1, 2]];            // spread: merge arrays
+  const person = { name: 'Ravi', age: 21 };
+  const updated = { ...person, age: 22, city: 'Madurai' };   // spread objects
+  show(`Numbers          : [${nums}]
+  Copy (spread)    : [${copy}]
+  Merged           : [${merged}]
+  Math.max(...nums): ${Math.max(...nums)}
+  Object spread    : ${JSON.stringify(updated)}
+  Rest parameters  : sum(${nums.join(', ')}) = ${sum(...nums)}
+  Rest + first arg : ${describe('Total', 1, 2, 3)}`);
+}
+$('run').addEventListener('click', run);
+document.querySelectorAll('input').forEach((el) => el.addEventListener('keydown', (e) => { if (e.key === 'Enter') run(); }));
+</script>
+</body>
+</html>
