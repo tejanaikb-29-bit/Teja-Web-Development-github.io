@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Multi-step registration form | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .prog { display: flex; margin-bottom: 1.2rem; } .demo .prog div { flex: 1; text-align: center; padding: .5rem; border-bottom: 4px solid #d5dbe6; color: #55637d; font-weight: 600; }
+.demo .prog div.on { border-color: #1f419a; color: #1f419a; } .demo .prog div.done { border-color: #178a4a; color: #178a4a; }
+.demo .step { max-width: 460px; } .demo .step .fg { margin: .7rem 0; } .demo .step input { width: 100%; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Forms and Validation</p>
+<h1>Multi-step registration form</h1>
+<p class="pp-desc">Three steps (account, personal details, review) with a progress bar. Each step is validated before you can continue.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="prog" id="prog"><div>1. Account</div><div>2. Personal</div><div>3. Review</div></div>
+<form class="step" id="f" novalidate="">
+<section data-step="0"><div class="fg"><label>Username</label><input id="user" type="text"/><small class="msg" id="e_user"></small></div>
+<div class="fg"><label>Email</label><input id="email" type="email"/><small class="msg" id="e_email"></small></div>
+<div class="fg"><label>Password</label><input id="pw" type="password"/><small class="msg" id="e_pw"></small></div></section>
+<section data-step="1" hidden=""><div class="fg"><label>Full name</label><input id="name" type="text"/><small class="msg" id="e_name"></small></div>
+<div class="fg"><label>Phone</label><input id="phone" type="tel"/><small class="msg" id="e_phone"></small></div>
+<div class="fg"><label>Date of birth</label><input id="dob" type="date"/><small class="msg" id="e_dob"></small></div></section>
+<section data-step="2" hidden=""><h4>Please review your details</h4><table class="data" id="review"></table></section>
+<div class="row"><button class="secondary" hidden="" id="back" type="button">Back</button><button id="next" type="button">Next</button></div>
+</form><div class="banner good" hidden="" id="done">Registration complete! Welcome aboard.</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="prog" id="prog"&gt;&lt;div&gt;1. Account&lt;/div&gt;&lt;div&gt;2. Personal&lt;/div&gt;&lt;div&gt;3. Review&lt;/div&gt;&lt;/div&gt;
+&lt;form id="f" novalidate class="step"&gt;
+  &lt;section data-step="0"&gt;&lt;div class="fg"&gt;&lt;label&gt;Username&lt;/label&gt;&lt;input id="user" type="text"&gt;&lt;small class="msg" id="e_user"&gt;&lt;/small&gt;&lt;/div&gt;
+    &lt;div class="fg"&gt;&lt;label&gt;Email&lt;/label&gt;&lt;input id="email" type="email"&gt;&lt;small class="msg" id="e_email"&gt;&lt;/small&gt;&lt;/div&gt;
+    &lt;div class="fg"&gt;&lt;label&gt;Password&lt;/label&gt;&lt;input id="pw" type="password"&gt;&lt;small class="msg" id="e_pw"&gt;&lt;/small&gt;&lt;/div&gt;&lt;/section&gt;
+  &lt;section data-step="1" hidden&gt;&lt;div class="fg"&gt;&lt;label&gt;Full name&lt;/label&gt;&lt;input id="name" type="text"&gt;&lt;small class="msg" id="e_name"&gt;&lt;/small&gt;&lt;/div&gt;
+    &lt;div class="fg"&gt;&lt;label&gt;Phone&lt;/label&gt;&lt;input id="phone" type="tel"&gt;&lt;small class="msg" id="e_phone"&gt;&lt;/small&gt;&lt;/div&gt;
+    &lt;div class="fg"&gt;&lt;label&gt;Date of birth&lt;/label&gt;&lt;input id="dob" type="date"&gt;&lt;small class="msg" id="e_dob"&gt;&lt;/small&gt;&lt;/div&gt;&lt;/section&gt;
+  &lt;section data-step="2" hidden&gt;&lt;h4&gt;Please review your details&lt;/h4&gt;&lt;table class="data" id="review"&gt;&lt;/table&gt;&lt;/section&gt;
+  &lt;div class="row"&gt;&lt;button type="button" id="back" class="secondary" hidden&gt;Back&lt;/button&gt;&lt;button type="button" id="next"&gt;Next&lt;/button&gt;&lt;/div&gt;
+&lt;/form&gt;&lt;div id="done" class="banner good" hidden&gt;Registration complete! Welcome aboard.&lt;/div&gt;
+
+/* CSS */
+.demo .prog { display: flex; margin-bottom: 1.2rem; } .demo .prog div { flex: 1; text-align: center; padding: .5rem; border-bottom: 4px solid #d5dbe6; color: #55637d; font-weight: 600; }
+.demo .prog div.on { border-color: #1f419a; color: #1f419a; } .demo .prog div.done { border-color: #178a4a; color: #178a4a; }
+.demo .step { max-width: 460px; } .demo .step .fg { margin: .7rem 0; } .demo .step input { width: 100%; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+let step = 0;
+const checks = [
+  { user: (v) =&gt; /^\w{4,}$/.test(v) ? '' : 'At least 4 letters, digits or _', email: (v) =&gt; /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? '' : 'Enter a valid email', pw: (v) =&gt; v.length &gt;= 8 ? '' : 'At least 8 characters' },
+  { name: (v) =&gt; /^[A-Za-z ]{3,}$/.test(v) ? '' : 'Letters only, min 3 characters', phone: (v) =&gt; /^[6-9]\d{9}$/.test(v) ? '' : 'Enter a valid 10-digit number', dob: (v) =&gt; v &amp;&amp; new Date(v) &lt; new Date() ? '' : 'Choose a past date' },
+];
+function validate(s) {
+  let ok = true;
+  Object.entries(checks[s]).forEach(([id, fn]) =&gt; { const msg = fn($(id).value.trim()); $('e_' + id).textContent = msg; $(id).classList.toggle('invalid', !!msg); if (msg) ok = false; });
+  return ok;
+}
+function render() {
+  document.querySelectorAll('section[data-step]').forEach((s) =&gt; { s.hidden = Number(s.dataset.step) !== step; });
+  [...$('prog').children].forEach((d, i) =&gt; { d.className = i &lt; step ? 'done' : i === step ? 'on' : ''; });
+  $('back').hidden = step === 0;
+  $('next').textContent = step === 2 ? 'Submit' : 'Next';
+  if (step === 2) {
+    $('review').innerHTML = '';
+    [['Username', 'user'], ['Email', 'email'], ['Full name', 'name'], ['Phone', 'phone'], ['Date of birth', 'dob']].forEach(([label, id]) =&gt; {
+      const tr = $('review').insertRow();
+      tr.insertCell().textContent = label; tr.insertCell().textContent = $(id).value;
+    });
+  }
+}
+$('next').addEventListener('click', () =&gt; {
+  if (step &lt; 2) { if (validate(step)) { step++; render(); } }
+  else { $('f').hidden = true; $('prog').hidden = true; $('done').hidden = false; }
+});
+$('back').addEventListener('click', () =&gt; { step--; render(); });
+render();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../forms-validation/form-contact.html">← Previous</a><a href="../forms-validation/form-preview-before-submit.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+let step = 0;
+const checks = [
+  { user: (v) => /^\w{4,}$/.test(v) ? '' : 'At least 4 letters, digits or _', email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? '' : 'Enter a valid email', pw: (v) => v.length >= 8 ? '' : 'At least 8 characters' },
+  { name: (v) => /^[A-Za-z ]{3,}$/.test(v) ? '' : 'Letters only, min 3 characters', phone: (v) => /^[6-9]\d{9}$/.test(v) ? '' : 'Enter a valid 10-digit number', dob: (v) => v && new Date(v) < new Date() ? '' : 'Choose a past date' },
+];
+function validate(s) {
+  let ok = true;
+  Object.entries(checks[s]).forEach(([id, fn]) => { const msg = fn($(id).value.trim()); $('e_' + id).textContent = msg; $(id).classList.toggle('invalid', !!msg); if (msg) ok = false; });
+  return ok;
+}
+function render() {
+  document.querySelectorAll('section[data-step]').forEach((s) => { s.hidden = Number(s.dataset.step) !== step; });
+  [...$('prog').children].forEach((d, i) => { d.className = i < step ? 'done' : i === step ? 'on' : ''; });
+  $('back').hidden = step === 0;
+  $('next').textContent = step === 2 ? 'Submit' : 'Next';
+  if (step === 2) {
+    $('review').innerHTML = '';
+    [['Username', 'user'], ['Email', 'email'], ['Full name', 'name'], ['Phone', 'phone'], ['Date of birth', 'dob']].forEach(([label, id]) => {
+      const tr = $('review').insertRow();
+      tr.insertCell().textContent = label; tr.insertCell().textContent = $(id).value;
+    });
+  }
+}
+$('next').addEventListener('click', () => {
+  if (step < 2) { if (validate(step)) { step++; render(); } }
+  else { $('f').hidden = true; $('prog').hidden = true; $('done').hidden = false; }
+});
+$('back').addEventListener('click', () => { step--; render(); });
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Shopping order form: calculate the total price | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .qtyin { width: 80px; } .demo .totals td:last-child { text-align: right; font-weight: 600; } .demo .grand td { font-size: 1.2rem; background: #e8edf8; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Forms and Validation</p>
+<h1>Shopping order form: calculate the total price</h1>
+<p class="pp-desc">Choose quantities to see subtotal, coupon discount (try SAVE10), 18% GST, delivery charge and the grand total update instantly.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<table class="data"><thead><tr><th>Product</th><th>Price</th><th>Qty</th><th>Amount</th></tr></thead><tbody id="items"></tbody></table>
+<div class="row"><label class="field">Coupon code<input id="coupon" placeholder="SAVE10" type="text"/></label><button class="secondary" id="apply">Apply</button><span class="muted" id="cmsg"></span></div>
+<table class="data totals" style="max-width:420px;margin-top:.6rem"><tr><td>Subtotal</td><td id="sub"></td></tr><tr><td>Discount</td><td id="disc"></td></tr><tr><td>GST (18%)</td><td id="gst"></td></tr><tr><td>Delivery</td><td id="ship"></td></tr><tr class="grand"><td>Grand total</td><td id="total"></td></tr></table>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;table class="data"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Price&lt;/th&gt;&lt;th&gt;Qty&lt;/th&gt;&lt;th&gt;Amount&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id="items"&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;div class="row"&gt;&lt;label class="field"&gt;Coupon code&lt;input id="coupon" type="text" placeholder="SAVE10"&gt;&lt;/label&gt;&lt;button id="apply" class="secondary"&gt;Apply&lt;/button&gt;&lt;span id="cmsg" class="muted"&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;table class="data totals" style="max-width:420px;margin-top:.6rem"&gt;&lt;tr&gt;&lt;td&gt;Subtotal&lt;/td&gt;&lt;td id="sub"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Discount&lt;/td&gt;&lt;td id="disc"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;GST (18%)&lt;/td&gt;&lt;td id="gst"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Delivery&lt;/td&gt;&lt;td id="ship"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr class="grand"&gt;&lt;td&gt;Grand total&lt;/td&gt;&lt;td id="total"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+/* CSS */
+.demo .qtyin { width: 80px; } .demo .totals td:last-child { text-align: right; font-weight: 600; } .demo .grand td { font-size: 1.2rem; background: #e8edf8; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const products = [['Notebook', 40], ['Pen pack', 60], ['Backpack', 899], ['Water bottle', 350], ['Headphones', 1299]];
+let discountRate = 0;
+products.forEach(([name, price], i) =&gt; {
+  const tr = $('items').insertRow();
+  tr.insertCell().textContent = name;
+  tr.insertCell().textContent = price.toFixed(2);
+  const q = tr.insertCell();
+  q.innerHTML = `&lt;input type="number" class="qtyin" min="0" max="20" value="${i &lt; 2 ? 1 : 0}"&gt;`;
+  tr.insertCell().className = 'amt';
+  q.firstChild.addEventListener('input', update);
+});
+function update() {
+  let subtotal = 0;
+  [...$('items').rows].forEach((tr, i) =&gt; {
+    const qty = Math.max(0, Math.min(20, parseInt(tr.querySelector('input').value) || 0));
+    const amount = qty * products[i][1];
+    tr.querySelector('.amt').textContent = amount.toFixed(2);
+    subtotal += amount;
+  });
+  const discount = subtotal * discountRate;
+  const taxable = subtotal - discount;
+  const gst = taxable * 0.18;
+  const ship = subtotal === 0 || taxable &gt;= 500 ? 0 : 49;
+  const f = (n) =&gt; n.toFixed(2);
+  $('sub').textContent = f(subtotal); $('disc').textContent = '- ' + f(discount); $('gst').textContent = f(gst);
+  $('ship').textContent = ship ? f(ship) : 'FREE (orders of 500 or more)'; $('total').textContent = f(taxable + gst + ship);
+}
+$('apply').addEventListener('click', () =&gt; {
+  const code = $('coupon').value.trim().toUpperCase();
+  discountRate = code === 'SAVE10' ? 0.10 : code === 'SAVE20' ? 0.20 : 0;
+  $('cmsg').textContent = discountRate ? `Coupon applied: ${discountRate * 100}% off` : 'Invalid coupon (try SAVE10 or SAVE20)';
+  $('cmsg').style.color = discountRate ? '#178a4a' : '#c62828';
+  update();
+});
+update();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../forms-validation/form-employee-salary.html">← Previous</a><a href="../forms-validation/form-dynamic-fields.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const products = [['Notebook', 40], ['Pen pack', 60], ['Backpack', 899], ['Water bottle', 350], ['Headphones', 1299]];
+let discountRate = 0;
+products.forEach(([name, price], i) => {
+  const tr = $('items').insertRow();
+  tr.insertCell().textContent = name;
+  tr.insertCell().textContent = price.toFixed(2);
+  const q = tr.insertCell();
+  q.innerHTML = `<input type="number" class="qtyin" min="0" max="20" value="${i < 2 ? 1 : 0}">`;
+  tr.insertCell().className = 'amt';
+  q.firstChild.addEventListener('input', update);
+});
+function update() {
+  let subtotal = 0;
+  [...$('items').rows].forEach((tr, i) => {
+    const qty = Math.max(0, Math.min(20, parseInt(tr.querySelector('input').value) || 0));
+    const amount = qty * products[i][1];
+    tr.querySelector('.amt').textContent = amount.toFixed(2);
+    subtotal += amount;
+  });
+  const discount = subtotal * discountRate;
+  const taxable = subtotal - discount;
+  const gst = taxable * 0.18;
+  const ship = subtotal === 0 || taxable >= 500 ? 0 : 49;
+  const f = (n) => n.toFixed(2);
+  $('sub').textContent = f(subtotal); $('disc').textContent = '- ' + f(discount); $('gst').textContent = f(gst);
+  $('ship').textContent = ship ? f(ship) : 'FREE (orders of 500 or more)'; $('total').textContent = f(taxable + gst + ship);
+}
+$('apply').addEventListener('click', () => {
+  const code = $('coupon').value.trim().toUpperCase();
+  discountRate = code === 'SAVE10' ? 0.10 : code === 'SAVE20' ? 0.20 : 0;
+  $('cmsg').textContent = discountRate ? `Coupon applied: ${discountRate * 100}% off` : 'Invalid coupon (try SAVE10 or SAVE20)';
+  $('cmsg').style.color = discountRate ? '#178a4a' : '#c62828';
+  update();
+});
+update();
+</script>
+</body>
+</html>

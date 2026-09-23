@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Validate a name field to accept only alphabets | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Forms and Validation</p>
+<h1>Validate a name field to accept only alphabets</h1>
+<p class="pp-desc">Letters and spaces are accepted. Digits and symbols show an error.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<form id="f" novalidate="" style="max-width:640px">
+<div class="fg"><label for="name">Name</label><div class="line"><input id="name" name="name" placeholder="e.g. Asha Kumar" type="text"/><small class="msg" id="e_name"></small></div></div>
+<button type="submit">Check name</button> <button class="secondary" type="reset">Reset</button>
+</form>
+<div id="banner" role="status"></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;form id="f" novalidate style="max-width:640px"&gt;
+&lt;div class="fg"&gt;&lt;label for="name"&gt;Name&lt;/label&gt;&lt;div class="line"&gt;&lt;input type="text" id="name" name="name" placeholder="e.g. Asha Kumar"&gt;&lt;small class="msg" id="e_name"&gt;&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;button type="submit"&gt;Check name&lt;/button&gt; &lt;button type="reset" class="secondary"&gt;Reset&lt;/button&gt;
+&lt;/form&gt;
+&lt;div id="banner" role="status"&gt;&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const form = $('f');
+const kinds = {"name": "text"};
+const rules = {
+  name: (v, get) =&gt; !v ? 'Name is required' : /^[A-Za-z ]+$/.test(v) ? '' : 'Only alphabets and spaces are allowed'
+};
+const ageFrom = (iso) =&gt; {
+  const d = new Date(iso), now = new Date();
+  let age = now.getFullYear() - d.getFullYear();
+  if (now &lt; new Date(now.getFullYear(), d.getMonth(), d.getDate())) age--;
+  return age;
+};
+function getVal(name) {
+  const kind = kinds[name];
+  if (kind === 'radio') { const c = form.querySelector(`input[name="${name}"]:checked`); return c ? c.value : ''; }
+  if (kind === 'checks') return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map((c) =&gt; c.value);
+  if (kind === 'check') return form.elements[name].checked;
+  return form.elements[name].value.trim();
+}
+function showState(name, msg) {
+  const box = $('e_' + name);
+  box.textContent = msg;
+  box.classList.remove('good');
+  const el = form.elements[name];
+  if (el &amp;&amp; el.classList) { el.classList.toggle('invalid', msg !== ''); el.classList.toggle('valid', msg === '' &amp;&amp; getVal(name) !== ''); }
+}
+function validateField(name) {
+  const msg = rules[name](getVal(name), getVal);
+  showState(name, msg);
+  return msg === '';
+}
+
+const EVENTS = ["input"];
+const logBox = $('log');
+function log(text) { if (logBox) logBox.textContent = text + '\n' + logBox.textContent.split('\n').slice(0, 5).join('\n'); }
+Object.keys(rules).forEach((name) =&gt; {
+  document.querySelectorAll(`[name="${name}"]`).forEach((el) =&gt; {
+    EVENTS.forEach((type) =&gt; {
+      el.addEventListener(type, () =&gt; {
+        log(`${type} on "${name}"`);
+        if (type === 'focus') { showState(name, ''); el.classList &amp;&amp; el.classList.add('valid'); if (el.classList) el.classList.remove('invalid'); }
+        else validateField(name);
+      });
+    });
+  });
+});
+
+form.addEventListener('submit', (e) =&gt; {
+  e.preventDefault();                       // stop the page from reloading / submitting
+  let ok = true, firstBad = null;
+  Object.keys(rules).forEach((name) =&gt; { if (!validateField(name)) { ok = false; firstBad = firstBad || name; } });
+  const banner = $('banner');
+  if (ok) {
+    banner.className = 'banner good';
+    banner.textContent = 'Valid name!';
+    form.reset();
+    Object.keys(rules).forEach((name) =&gt; showState(name, ''));
+    document.querySelectorAll('.valid').forEach((el) =&gt; el.classList.remove('valid'));
+  } else {
+    banner.className = 'banner bad';
+    banner.textContent = 'Please correct the highlighted fields.';
+    const el = form.elements[firstBad];
+    if (el &amp;&amp; el.focus) el.focus();
+  }
+});
+form.addEventListener('reset', () =&gt; {
+  setTimeout(() =&gt; {
+    Object.keys(rules).forEach((name) =&gt; showState(name, ''));
+    document.querySelectorAll('.valid').forEach((el) =&gt; el.classList.remove('valid'));
+    $('banner').className = ''; $('banner').textContent = '';
+  });
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../forms-validation/form-login-validation.html">← Previous</a><a href="../forms-validation/form-age-validation.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const form = $('f');
+const kinds = {"name": "text"};
+const rules = {
+  name: (v, get) => !v ? 'Name is required' : /^[A-Za-z ]+$/.test(v) ? '' : 'Only alphabets and spaces are allowed'
+};
+const ageFrom = (iso) => {
+  const d = new Date(iso), now = new Date();
+  let age = now.getFullYear() - d.getFullYear();
+  if (now < new Date(now.getFullYear(), d.getMonth(), d.getDate())) age--;
+  return age;
+};
+function getVal(name) {
+  const kind = kinds[name];
+  if (kind === 'radio') { const c = form.querySelector(`input[name="${name}"]:checked`); return c ? c.value : ''; }
+  if (kind === 'checks') return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map((c) => c.value);
+  if (kind === 'check') return form.elements[name].checked;
+  return form.elements[name].value.trim();
+}
+function showState(name, msg) {
+  const box = $('e_' + name);
+  box.textContent = msg;
+  box.classList.remove('good');
+  const el = form.elements[name];
+  if (el && el.classList) { el.classList.toggle('invalid', msg !== ''); el.classList.toggle('valid', msg === '' && getVal(name) !== ''); }
+}
+function validateField(name) {
+  const msg = rules[name](getVal(name), getVal);
+  showState(name, msg);
+  return msg === '';
+}
+
+const EVENTS = ["input"];
+const logBox = $('log');
+function log(text) { if (logBox) logBox.textContent = text + '\n' + logBox.textContent.split('\n').slice(0, 5).join('\n'); }
+Object.keys(rules).forEach((name) => {
+  document.querySelectorAll(`[name="${name}"]`).forEach((el) => {
+    EVENTS.forEach((type) => {
+      el.addEventListener(type, () => {
+        log(`${type} on "${name}"`);
+        if (type === 'focus') { showState(name, ''); el.classList && el.classList.add('valid'); if (el.classList) el.classList.remove('invalid'); }
+        else validateField(name);
+      });
+    });
+  });
+});
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();                       // stop the page from reloading / submitting
+  let ok = true, firstBad = null;
+  Object.keys(rules).forEach((name) => { if (!validateField(name)) { ok = false; firstBad = firstBad || name; } });
+  const banner = $('banner');
+  if (ok) {
+    banner.className = 'banner good';
+    banner.textContent = 'Valid name!';
+    form.reset();
+    Object.keys(rules).forEach((name) => showState(name, ''));
+    document.querySelectorAll('.valid').forEach((el) => el.classList.remove('valid'));
+  } else {
+    banner.className = 'banner bad';
+    banner.textContent = 'Please correct the highlighted fields.';
+    const el = form.elements[firstBad];
+    if (el && el.focus) el.focus();
+  }
+});
+form.addEventListener('reset', () => {
+  setTimeout(() => {
+    Object.keys(rules).forEach((name) => showState(name, ''));
+    document.querySelectorAll('.valid').forEach((el) => el.classList.remove('valid'));
+    $('banner').className = ''; $('banner').textContent = '';
+  });
+});
+</script>
+</body>
+</html>

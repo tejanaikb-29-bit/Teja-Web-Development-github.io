@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Feedback form with validation | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Forms and Validation</p>
+<h1>Feedback form with validation</h1>
+<p class="pp-desc">A star rating, category and comment are required. The comment needs at least 10 characters.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<form id="f" novalidate="" style="max-width:640px">
+<div class="fg"><label for="name">Name</label><div class="line"><input id="name" name="name" type="text"/><small class="msg" id="e_name"></small></div></div>
+<div class="fg"><label for="email">Email</label><div class="line"><input id="email" name="email" type="email"/><small class="msg" id="e_email"></small></div></div>
+<div class="fg"><label for="rating">Rating</label><div class="line"><label><input name="rating" type="radio" value="1 - Poor"/> 1 - Poor</label> <label><input name="rating" type="radio" value="2 - Fair"/> 2 - Fair</label> <label><input name="rating" type="radio" value="3 - Good"/> 3 - Good</label> <label><input name="rating" type="radio" value="4 - Very good"/> 4 - Very good</label> <label><input name="rating" type="radio" value="5 - Excellent"/> 5 - Excellent</label> <small class="msg" id="e_rating"></small></div></div>
+<div class="fg"><label for="category">Feedback about</label><div class="line"><select id="category" name="category"><option value="">-- Select --</option><option>Teaching</option><option>Facilities</option><option>Website</option><option>Other</option></select><small class="msg" id="e_category"></small></div></div>
+<div class="fg"><label for="comment">Comments</label><div class="line"><textarea id="comment" name="comment" rows="3"></textarea><small class="msg" id="e_comment"></small></div></div>
+<button type="submit">Send feedback</button> <button class="secondary" type="reset">Reset</button>
+</form>
+<div id="banner" role="status"></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;form id="f" novalidate style="max-width:640px"&gt;
+&lt;div class="fg"&gt;&lt;label for="name"&gt;Name&lt;/label&gt;&lt;div class="line"&gt;&lt;input type="text" id="name" name="name"&gt;&lt;small class="msg" id="e_name"&gt;&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="fg"&gt;&lt;label for="email"&gt;Email&lt;/label&gt;&lt;div class="line"&gt;&lt;input type="email" id="email" name="email"&gt;&lt;small class="msg" id="e_email"&gt;&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="fg"&gt;&lt;label for="rating"&gt;Rating&lt;/label&gt;&lt;div class="line"&gt;&lt;label&gt;&lt;input type="radio" name="rating" value="1 - Poor"&gt; 1 - Poor&lt;/label&gt; &lt;label&gt;&lt;input type="radio" name="rating" value="2 - Fair"&gt; 2 - Fair&lt;/label&gt; &lt;label&gt;&lt;input type="radio" name="rating" value="3 - Good"&gt; 3 - Good&lt;/label&gt; &lt;label&gt;&lt;input type="radio" name="rating" value="4 - Very good"&gt; 4 - Very good&lt;/label&gt; &lt;label&gt;&lt;input type="radio" name="rating" value="5 - Excellent"&gt; 5 - Excellent&lt;/label&gt; &lt;small class="msg" id="e_rating"&gt;&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="fg"&gt;&lt;label for="category"&gt;Feedback about&lt;/label&gt;&lt;div class="line"&gt;&lt;select id="category" name="category"&gt;&lt;option value=""&gt;-- Select --&lt;/option&gt;&lt;option&gt;Teaching&lt;/option&gt;&lt;option&gt;Facilities&lt;/option&gt;&lt;option&gt;Website&lt;/option&gt;&lt;option&gt;Other&lt;/option&gt;&lt;/select&gt;&lt;small class="msg" id="e_category"&gt;&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="fg"&gt;&lt;label for="comment"&gt;Comments&lt;/label&gt;&lt;div class="line"&gt;&lt;textarea id="comment" name="comment" rows="3"&gt;&lt;/textarea&gt;&lt;small class="msg" id="e_comment"&gt;&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;button type="submit"&gt;Send feedback&lt;/button&gt; &lt;button type="reset" class="secondary"&gt;Reset&lt;/button&gt;
+&lt;/form&gt;
+&lt;div id="banner" role="status"&gt;&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const form = $('f');
+const kinds = {"name": "text", "email": "email", "rating": "radio", "category": "select", "comment": "textarea"};
+const rules = {
+  name: (v, get) =&gt; !v ? 'Name is required' : /^[A-Za-z ]+$/.test(v) ? '' : 'Only alphabets and spaces are allowed',
+  email: (v, get) =&gt; !v ? 'Email is required' : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? '' : 'Enter a valid email like name@example.com',
+  rating: (v, get) =&gt; v ? '' : 'Please give a rating',
+  category: (v, get) =&gt; v ? '' : 'Please select an option',
+  comment: (v, get) =&gt; !v ? 'This field is required' : v.length &lt; 10 ? 'Write at least 10 characters (' + v.length + '/10)' : ''
+};
+const ageFrom = (iso) =&gt; {
+  const d = new Date(iso), now = new Date();
+  let age = now.getFullYear() - d.getFullYear();
+  if (now &lt; new Date(now.getFullYear(), d.getMonth(), d.getDate())) age--;
+  return age;
+};
+function getVal(name) {
+  const kind = kinds[name];
+  if (kind === 'radio') { const c = form.querySelector(`input[name="${name}"]:checked`); return c ? c.value : ''; }
+  if (kind === 'checks') return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map((c) =&gt; c.value);
+  if (kind === 'check') return form.elements[name].checked;
+  return form.elements[name].value.trim();
+}
+function showState(name, msg) {
+  const box = $('e_' + name);
+  box.textContent = msg;
+  box.classList.remove('good');
+  const el = form.elements[name];
+  if (el &amp;&amp; el.classList) { el.classList.toggle('invalid', msg !== ''); el.classList.toggle('valid', msg === '' &amp;&amp; getVal(name) !== ''); }
+}
+function validateField(name) {
+  const msg = rules[name](getVal(name), getVal);
+  showState(name, msg);
+  return msg === '';
+}
+
+form.addEventListener('submit', (e) =&gt; {
+  e.preventDefault();                       // stop the page from reloading / submitting
+  let ok = true, firstBad = null;
+  Object.keys(rules).forEach((name) =&gt; { if (!validateField(name)) { ok = false; firstBad = firstBad || name; } });
+  const banner = $('banner');
+  if (ok) {
+    banner.className = 'banner good';
+    banner.textContent = 'Thank you for your feedback!';
+    form.reset();
+    Object.keys(rules).forEach((name) =&gt; showState(name, ''));
+    document.querySelectorAll('.valid').forEach((el) =&gt; el.classList.remove('valid'));
+  } else {
+    banner.className = 'banner bad';
+    banner.textContent = 'Please correct the highlighted fields.';
+    const el = form.elements[firstBad];
+    if (el &amp;&amp; el.focus) el.focus();
+  }
+});
+form.addEventListener('reset', () =&gt; {
+  setTimeout(() =&gt; {
+    Object.keys(rules).forEach((name) =&gt; showState(name, ''));
+    document.querySelectorAll('.valid').forEach((el) =&gt; el.classList.remove('valid'));
+    $('banner').className = ''; $('banner').textContent = '';
+  });
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../forms-validation/form-job-application.html">← Previous</a><a href="../forms-validation/form-contact.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const form = $('f');
+const kinds = {"name": "text", "email": "email", "rating": "radio", "category": "select", "comment": "textarea"};
+const rules = {
+  name: (v, get) => !v ? 'Name is required' : /^[A-Za-z ]+$/.test(v) ? '' : 'Only alphabets and spaces are allowed',
+  email: (v, get) => !v ? 'Email is required' : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? '' : 'Enter a valid email like name@example.com',
+  rating: (v, get) => v ? '' : 'Please give a rating',
+  category: (v, get) => v ? '' : 'Please select an option',
+  comment: (v, get) => !v ? 'This field is required' : v.length < 10 ? 'Write at least 10 characters (' + v.length + '/10)' : ''
+};
+const ageFrom = (iso) => {
+  const d = new Date(iso), now = new Date();
+  let age = now.getFullYear() - d.getFullYear();
+  if (now < new Date(now.getFullYear(), d.getMonth(), d.getDate())) age--;
+  return age;
+};
+function getVal(name) {
+  const kind = kinds[name];
+  if (kind === 'radio') { const c = form.querySelector(`input[name="${name}"]:checked`); return c ? c.value : ''; }
+  if (kind === 'checks') return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map((c) => c.value);
+  if (kind === 'check') return form.elements[name].checked;
+  return form.elements[name].value.trim();
+}
+function showState(name, msg) {
+  const box = $('e_' + name);
+  box.textContent = msg;
+  box.classList.remove('good');
+  const el = form.elements[name];
+  if (el && el.classList) { el.classList.toggle('invalid', msg !== ''); el.classList.toggle('valid', msg === '' && getVal(name) !== ''); }
+}
+function validateField(name) {
+  const msg = rules[name](getVal(name), getVal);
+  showState(name, msg);
+  return msg === '';
+}
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();                       // stop the page from reloading / submitting
+  let ok = true, firstBad = null;
+  Object.keys(rules).forEach((name) => { if (!validateField(name)) { ok = false; firstBad = firstBad || name; } });
+  const banner = $('banner');
+  if (ok) {
+    banner.className = 'banner good';
+    banner.textContent = 'Thank you for your feedback!';
+    form.reset();
+    Object.keys(rules).forEach((name) => showState(name, ''));
+    document.querySelectorAll('.valid').forEach((el) => el.classList.remove('valid'));
+  } else {
+    banner.className = 'banner bad';
+    banner.textContent = 'Please correct the highlighted fields.';
+    const el = form.elements[firstBad];
+    if (el && el.focus) el.focus();
+  }
+});
+form.addEventListener('reset', () => {
+  setTimeout(() => {
+    Object.keys(rules).forEach((name) => showState(name, ''));
+    document.querySelectorAll('.valid').forEach((el) => el.classList.remove('valid'));
+    $('banner').className = ''; $('banner').textContent = '';
+  });
+});
+</script>
+</body>
+</html>

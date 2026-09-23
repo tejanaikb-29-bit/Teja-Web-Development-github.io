@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Employee salary form: calculate salary details | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .payslip td:last-child, .demo .payslip th:last-child { text-align: right; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Forms and Validation</p>
+<h1>Employee salary form: calculate salary details</h1>
+<p class="pp-desc">Enter the basic salary and percentages. The form calculates HRA, DA, gross salary, deductions (PF and tax) and net salary.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<form id="f" novalidate=""><div class="row"><label class="field">Employee name<input id="name" type="text" value="Ravi Kumar"/></label><label class="field">Basic salary<input id="basic" min="0" type="number" value="40000"/></label><label class="field">HRA %<input id="hra" max="100" min="0" type="number" value="20"/></label><label class="field">DA %<input id="da" max="100" min="0" type="number" value="10"/></label><label class="field">PF %<input id="pf" max="30" min="0" type="number" value="12"/></label></div><button>Calculate salary</button></form><p class="err" id="err"></p><div id="res"></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;form id="f" novalidate&gt;&lt;div class="row"&gt;&lt;label class="field"&gt;Employee name&lt;input id="name" type="text" value="Ravi Kumar"&gt;&lt;/label&gt;&lt;label class="field"&gt;Basic salary&lt;input id="basic" type="number" value="40000" min="0"&gt;&lt;/label&gt;&lt;label class="field"&gt;HRA %&lt;input id="hra" type="number" value="20" min="0" max="100"&gt;&lt;/label&gt;&lt;label class="field"&gt;DA %&lt;input id="da" type="number" value="10" min="0" max="100"&gt;&lt;/label&gt;&lt;label class="field"&gt;PF %&lt;input id="pf" type="number" value="12" min="0" max="30"&gt;&lt;/label&gt;&lt;/div&gt;&lt;button&gt;Calculate salary&lt;/button&gt;&lt;/form&gt;&lt;p class="err" id="err"&gt;&lt;/p&gt;&lt;div id="res"&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .payslip td:last-child, .demo .payslip th:last-child { text-align: right; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const val = (id) =&gt; parseFloat($(id).value);
+$('f').addEventListener('submit', (e) =&gt; {
+  e.preventDefault();
+  const [basic, hraP, daP, pfP] = ['basic', 'hra', 'da', 'pf'].map(val);
+  if ([basic, hraP, daP, pfP].some((x) =&gt; Number.isNaN(x) || x &lt; 0) || basic &lt;= 0) { $('err').textContent = 'Enter a basic salary above 0 and non-negative percentages.'; $('res').innerHTML = ''; return; }
+  $('err').textContent = '';
+  const hra = basic * hraP / 100, da = basic * daP / 100, gross = basic + hra + da, pf = basic * pfP / 100;
+  const annual = gross * 12;
+  const tax = annual &lt;= 300000 ? 0 : annual &lt;= 700000 ? (annual - 300000) * 0.05 / 12 : (20000 + (annual - 700000) * 0.10) / 12;   // simple demo slabs
+  const net = gross - pf - tax;
+  const fmt = (n) =&gt; n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const rows = [['Basic salary', basic], ['HRA', hra], ['DA', da], ['Gross salary', gross], ['PF deduction', -pf], ['Income tax (monthly, demo slabs)', -tax], ['Net salary', net]];
+  $('res').innerHTML = '&lt;table class="data payslip" style="max-width:480px"&gt;&lt;tr&gt;&lt;th colspan="2" id="who"&gt;&lt;/th&gt;&lt;/tr&gt;' + rows.map(([l, v]) =&gt; `&lt;tr&gt;&lt;td&gt;${l}&lt;/td&gt;&lt;td&gt;${v &lt; 0 ? '- ' : ''}${fmt(Math.abs(v))}&lt;/td&gt;&lt;/tr&gt;`).join('') + '&lt;/table&gt;';
+  $('who').textContent = 'Pay slip: ' + ($('name').value || 'Employee');
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../forms-validation/form-marks-entry-total-average-grade.html">← Previous</a><a href="../forms-validation/form-shopping-order-total.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const val = (id) => parseFloat($(id).value);
+$('f').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const [basic, hraP, daP, pfP] = ['basic', 'hra', 'da', 'pf'].map(val);
+  if ([basic, hraP, daP, pfP].some((x) => Number.isNaN(x) || x < 0) || basic <= 0) { $('err').textContent = 'Enter a basic salary above 0 and non-negative percentages.'; $('res').innerHTML = ''; return; }
+  $('err').textContent = '';
+  const hra = basic * hraP / 100, da = basic * daP / 100, gross = basic + hra + da, pf = basic * pfP / 100;
+  const annual = gross * 12;
+  const tax = annual <= 300000 ? 0 : annual <= 700000 ? (annual - 300000) * 0.05 / 12 : (20000 + (annual - 700000) * 0.10) / 12;   // simple demo slabs
+  const net = gross - pf - tax;
+  const fmt = (n) => n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const rows = [['Basic salary', basic], ['HRA', hra], ['DA', da], ['Gross salary', gross], ['PF deduction', -pf], ['Income tax (monthly, demo slabs)', -tax], ['Net salary', net]];
+  $('res').innerHTML = '<table class="data payslip" style="max-width:480px"><tr><th colspan="2" id="who"></th></tr>' + rows.map(([l, v]) => `<tr><td>${l}</td><td>${v < 0 ? '- ' : ''}${fmt(Math.abs(v))}</td></tr>`).join('') + '</table>';
+  $('who').textContent = 'Pay slip: ' + ($('name').value || 'Employee');
+});
+</script>
+</body>
+</html>

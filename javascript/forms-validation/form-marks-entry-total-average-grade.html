@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Marks entry form: total, average and grade | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .grid6 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .8rem; margin: .8rem 0; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Forms and Validation</p>
+<h1>Marks entry form: total, average and grade</h1>
+<p class="pp-desc">Enter marks for six subjects. The form validates each mark, then shows the total, average, grade and result.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<form id="f" novalidate=""><label class="field" style="max-width:280px">Student name<input id="name" type="text" value="Priya"/></label><div class="grid6" id="grid"></div><button type="submit">Calculate</button> <button class="secondary" type="reset">Clear</button></form><p class="err" id="err"></p><div id="res"></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;form id="f" novalidate&gt;&lt;label class="field" style="max-width:280px"&gt;Student name&lt;input id="name" type="text" value="Priya"&gt;&lt;/label&gt;&lt;div class="grid6" id="grid"&gt;&lt;/div&gt;&lt;button type="submit"&gt;Calculate&lt;/button&gt; &lt;button type="reset" class="secondary"&gt;Clear&lt;/button&gt;&lt;/form&gt;&lt;p class="err" id="err"&gt;&lt;/p&gt;&lt;div id="res"&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .grid6 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .8rem; margin: .8rem 0; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const subs = ['Tamil', 'English', 'Maths', 'Physics', 'Chemistry', 'Computer Science'];
+subs.forEach((s, i) =&gt; { const l = document.createElement('label'); l.className = 'field'; l.innerHTML = `${s}&lt;input type="number" class="m" min="0" max="100" value="${[78, 82, 91, 74, 69, 95][i]}"&gt;`; $('grid').appendChild(l); });
+$('f').addEventListener('submit', (e) =&gt; {
+  e.preventDefault();
+  const marks = [...document.querySelectorAll('.m')].map((i) =&gt; (i.value === '' ? NaN : Number(i.value)));
+  const bad = subs.filter((s, i) =&gt; Number.isNaN(marks[i]) || marks[i] &lt; 0 || marks[i] &gt; 100);
+  document.querySelectorAll('.m').forEach((i, k) =&gt; i.classList.toggle('invalid', bad.includes(subs[k])));
+  if (bad.length) { $('err').textContent = 'Enter marks from 0 to 100 for: ' + bad.join(', '); $('res').innerHTML = ''; return; }
+  $('err').textContent = '';
+  const total = marks.reduce((a, b) =&gt; a + b, 0), avg = total / marks.length, failed = marks.some((m) =&gt; m &lt; 35);
+  const grade = failed ? 'F' : avg &gt;= 90 ? 'O' : avg &gt;= 80 ? 'A+' : avg &gt;= 70 ? 'A' : avg &gt;= 60 ? 'B' : avg &gt;= 50 ? 'C' : 'D';
+  $('res').innerHTML = `&lt;table class="data" style="max-width:420px"&gt;&lt;tr&gt;&lt;th&gt;Student&lt;/th&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Total&lt;/th&gt;&lt;td&gt;${total} / ${marks.length * 100}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Average&lt;/th&gt;&lt;td&gt;${avg.toFixed(2)}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Grade&lt;/th&gt;&lt;td&gt;&lt;strong&gt;${grade}&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Result&lt;/th&gt;&lt;td class="${failed ? 'err' : 'ok'}"&gt;&lt;strong&gt;${failed ? 'FAIL' : 'PASS'}&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;`;
+  $('res').querySelector('td').textContent = $('name').value || 'Student';
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../forms-validation/form-age-from-date-of-birth.html">← Previous</a><a href="../forms-validation/form-employee-salary.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const subs = ['Tamil', 'English', 'Maths', 'Physics', 'Chemistry', 'Computer Science'];
+subs.forEach((s, i) => { const l = document.createElement('label'); l.className = 'field'; l.innerHTML = `${s}<input type="number" class="m" min="0" max="100" value="${[78, 82, 91, 74, 69, 95][i]}">`; $('grid').appendChild(l); });
+$('f').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const marks = [...document.querySelectorAll('.m')].map((i) => (i.value === '' ? NaN : Number(i.value)));
+  const bad = subs.filter((s, i) => Number.isNaN(marks[i]) || marks[i] < 0 || marks[i] > 100);
+  document.querySelectorAll('.m').forEach((i, k) => i.classList.toggle('invalid', bad.includes(subs[k])));
+  if (bad.length) { $('err').textContent = 'Enter marks from 0 to 100 for: ' + bad.join(', '); $('res').innerHTML = ''; return; }
+  $('err').textContent = '';
+  const total = marks.reduce((a, b) => a + b, 0), avg = total / marks.length, failed = marks.some((m) => m < 35);
+  const grade = failed ? 'F' : avg >= 90 ? 'O' : avg >= 80 ? 'A+' : avg >= 70 ? 'A' : avg >= 60 ? 'B' : avg >= 50 ? 'C' : 'D';
+  $('res').innerHTML = `<table class="data" style="max-width:420px"><tr><th>Student</th><td></td></tr><tr><th>Total</th><td>${total} / ${marks.length * 100}</td></tr><tr><th>Average</th><td>${avg.toFixed(2)}</td></tr><tr><th>Grade</th><td><strong>${grade}</strong></td></tr><tr><th>Result</th><td class="${failed ? 'err' : 'ok'}"><strong>${failed ? 'FAIL' : 'PASS'}</strong></td></tr></table>`;
+  $('res').querySelector('td').textContent = $('name').value || 'Student';
+});
+</script>
+</body>
+</html>

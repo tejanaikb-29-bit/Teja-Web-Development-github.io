@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Form with dynamic fields based on user selection | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Forms and Validation</p>
+<h1>Form with dynamic fields based on user selection</h1>
+<p class="pp-desc">Choose who you are (student, employee or business) and the form builds different fields. You can also add extra phone numbers.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<form id="f" novalidate="" style="max-width:520px"><div class="fg"><label>I am a</label><select id="type"><option value="">-- Select --</option><option value="student">Student</option><option value="employee">Employee</option><option value="business">Business owner</option></select></div>
+<div id="dyn"></div><div id="phones"></div><button class="secondary small" hidden="" id="addPhone" type="button">+ Add another phone</button><p class="err" id="err"></p><button hidden="" id="go" type="submit">Submit</button></form><pre class="out" hidden="" id="out"></pre>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;form id="f" novalidate style="max-width:520px"&gt;&lt;div class="fg"&gt;&lt;label&gt;I am a&lt;/label&gt;&lt;select id="type"&gt;&lt;option value=""&gt;-- Select --&lt;/option&gt;&lt;option value="student"&gt;Student&lt;/option&gt;&lt;option value="employee"&gt;Employee&lt;/option&gt;&lt;option value="business"&gt;Business owner&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+&lt;div id="dyn"&gt;&lt;/div&gt;&lt;div id="phones"&gt;&lt;/div&gt;&lt;button type="button" id="addPhone" class="secondary small" hidden&gt;+ Add another phone&lt;/button&gt;&lt;p class="err" id="err"&gt;&lt;/p&gt;&lt;button type="submit" id="go" hidden&gt;Submit&lt;/button&gt;&lt;/form&gt;&lt;pre class="out" id="out" hidden&gt;&lt;/pre&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const config = {
+  student: [['college', 'College name', 'text'], ['course', 'Course', 'text'], ['year', 'Year of study', 'number']],
+  employee: [['company', 'Company name', 'text'], ['role', 'Job title', 'text'], ['exp', 'Years of experience', 'number']],
+  business: [['biz', 'Business name', 'text'], ['gst', 'GST number', 'text'], ['staff', 'Number of employees', 'number']],
+};
+function addPhone() {
+  const n = $('phones').children.length + 1;
+  const div = document.createElement('div');
+  div.className = 'fg';
+  div.innerHTML = `&lt;label&gt;Phone ${n}&lt;/label&gt;&lt;input type="tel" class="phone" placeholder="10 digits"&gt;`;
+  $('phones').appendChild(div);
+}
+$('type').addEventListener('change', () =&gt; {
+  const fields = config[$('type').value] || [];
+  $('dyn').innerHTML = '';
+  fields.forEach(([id, label, type]) =&gt; {
+    const div = document.createElement('div');
+    div.className = 'fg';
+    div.innerHTML = `&lt;label&gt;&lt;/label&gt;&lt;input id="${id}" type="${type}" data-label="${label}"&gt;`;
+    div.firstChild.textContent = label;
+    $('dyn').appendChild(div);
+  });
+  $('phones').innerHTML = '';
+  if (fields.length) addPhone();
+  $('addPhone').hidden = $('go').hidden = !fields.length;
+});
+$('addPhone').addEventListener('click', addPhone);
+$('f').addEventListener('submit', (e) =&gt; {
+  e.preventDefault();
+  const data = { type: $('type').value };
+  let bad = null;
+  $('dyn').querySelectorAll('input').forEach((i) =&gt; { if (!i.value.trim()) bad = bad || i.dataset.label; data[i.id] = i.value.trim(); i.classList.toggle('invalid', !i.value.trim()); });
+  const phones = [...document.querySelectorAll('.phone')].map((p) =&gt; p.value.trim());
+  if (phones.some((p) =&gt; !/^[6-9]\d{9}$/.test(p))) bad = bad || 'a valid 10-digit phone number';
+  data.phones = phones;
+  $('err').textContent = bad ? `Please fill in: ${bad}` : '';
+  $('out').hidden = !!bad;
+  if (!bad) $('out').textContent = 'Collected data:\n' + JSON.stringify(data, null, 2);
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../forms-validation/form-shopping-order-total.html">← Previous</a><a href="../forms-validation/form-validate-without-page-reload.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const config = {
+  student: [['college', 'College name', 'text'], ['course', 'Course', 'text'], ['year', 'Year of study', 'number']],
+  employee: [['company', 'Company name', 'text'], ['role', 'Job title', 'text'], ['exp', 'Years of experience', 'number']],
+  business: [['biz', 'Business name', 'text'], ['gst', 'GST number', 'text'], ['staff', 'Number of employees', 'number']],
+};
+function addPhone() {
+  const n = $('phones').children.length + 1;
+  const div = document.createElement('div');
+  div.className = 'fg';
+  div.innerHTML = `<label>Phone ${n}</label><input type="tel" class="phone" placeholder="10 digits">`;
+  $('phones').appendChild(div);
+}
+$('type').addEventListener('change', () => {
+  const fields = config[$('type').value] || [];
+  $('dyn').innerHTML = '';
+  fields.forEach(([id, label, type]) => {
+    const div = document.createElement('div');
+    div.className = 'fg';
+    div.innerHTML = `<label></label><input id="${id}" type="${type}" data-label="${label}">`;
+    div.firstChild.textContent = label;
+    $('dyn').appendChild(div);
+  });
+  $('phones').innerHTML = '';
+  if (fields.length) addPhone();
+  $('addPhone').hidden = $('go').hidden = !fields.length;
+});
+$('addPhone').addEventListener('click', addPhone);
+$('f').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = { type: $('type').value };
+  let bad = null;
+  $('dyn').querySelectorAll('input').forEach((i) => { if (!i.value.trim()) bad = bad || i.dataset.label; data[i.id] = i.value.trim(); i.classList.toggle('invalid', !i.value.trim()); });
+  const phones = [...document.querySelectorAll('.phone')].map((p) => p.value.trim());
+  if (phones.some((p) => !/^[6-9]\d{9}$/.test(p))) bad = bad || 'a valid 10-digit phone number';
+  data.phones = phones;
+  $('err').textContent = bad ? `Please fill in: ${bad}` : '';
+  $('out').hidden = !!bad;
+  if (!bad) $('out').textContent = 'Collected data:\n' + JSON.stringify(data, null, 2);
+});
+</script>
+</body>
+</html>

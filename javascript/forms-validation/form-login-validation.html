@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login form with username and password validation | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Forms and Validation</p>
+<h1>Login form with username and password validation</h1>
+<p class="pp-desc">The username needs at least 4 characters with no spaces, and the password needs at least 6 characters.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<form id="f" novalidate="" style="max-width:640px">
+<div class="fg"><label for="username">Username</label><div class="line"><input id="username" name="username" placeholder="e.g. asha_k" type="text"/><small class="msg" id="e_username"></small></div></div>
+<div class="fg"><label for="password">Password</label><div class="line"><input id="password" name="password" placeholder="min 6 characters" type="password"/><small class="msg" id="e_password"></small></div></div>
+<button type="submit">Login</button> <button class="secondary" type="reset">Reset</button>
+</form>
+<div id="banner" role="status"></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;form id="f" novalidate style="max-width:640px"&gt;
+&lt;div class="fg"&gt;&lt;label for="username"&gt;Username&lt;/label&gt;&lt;div class="line"&gt;&lt;input type="text" id="username" name="username" placeholder="e.g. asha_k"&gt;&lt;small class="msg" id="e_username"&gt;&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="fg"&gt;&lt;label for="password"&gt;Password&lt;/label&gt;&lt;div class="line"&gt;&lt;input type="password" id="password" name="password" placeholder="min 6 characters"&gt;&lt;small class="msg" id="e_password"&gt;&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;button type="submit"&gt;Login&lt;/button&gt; &lt;button type="reset" class="secondary"&gt;Reset&lt;/button&gt;
+&lt;/form&gt;
+&lt;div id="banner" role="status"&gt;&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const form = $('f');
+const kinds = {"username": "text", "password": "password"};
+const rules = {
+  username: (v, get) =&gt; !v ? 'Username is required' : v.length &lt; 4 ? 'At least 4 characters' : /\s/.test(v) ? 'No spaces allowed' : '',
+  password: (v, get) =&gt; !v ? 'Password is required' : v.length &lt; 6 ? 'At least 6 characters' : ''
+};
+const ageFrom = (iso) =&gt; {
+  const d = new Date(iso), now = new Date();
+  let age = now.getFullYear() - d.getFullYear();
+  if (now &lt; new Date(now.getFullYear(), d.getMonth(), d.getDate())) age--;
+  return age;
+};
+function getVal(name) {
+  const kind = kinds[name];
+  if (kind === 'radio') { const c = form.querySelector(`input[name="${name}"]:checked`); return c ? c.value : ''; }
+  if (kind === 'checks') return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map((c) =&gt; c.value);
+  if (kind === 'check') return form.elements[name].checked;
+  return form.elements[name].value.trim();
+}
+function showState(name, msg) {
+  const box = $('e_' + name);
+  box.textContent = msg;
+  box.classList.remove('good');
+  const el = form.elements[name];
+  if (el &amp;&amp; el.classList) { el.classList.toggle('invalid', msg !== ''); el.classList.toggle('valid', msg === '' &amp;&amp; getVal(name) !== ''); }
+}
+function validateField(name) {
+  const msg = rules[name](getVal(name), getVal);
+  showState(name, msg);
+  return msg === '';
+}
+
+form.addEventListener('submit', (e) =&gt; {
+  e.preventDefault();                       // stop the page from reloading / submitting
+  let ok = true, firstBad = null;
+  Object.keys(rules).forEach((name) =&gt; { if (!validateField(name)) { ok = false; firstBad = firstBad || name; } });
+  const banner = $('banner');
+  if (ok) {
+    banner.className = 'banner good';
+    banner.textContent = 'Login form is valid. Signing in...';
+    form.reset();
+    Object.keys(rules).forEach((name) =&gt; showState(name, ''));
+    document.querySelectorAll('.valid').forEach((el) =&gt; el.classList.remove('valid'));
+  } else {
+    banner.className = 'banner bad';
+    banner.textContent = 'Please correct the highlighted fields.';
+    const el = form.elements[firstBad];
+    if (el &amp;&amp; el.focus) el.focus();
+  }
+});
+form.addEventListener('reset', () =&gt; {
+  setTimeout(() =&gt; {
+    Object.keys(rules).forEach((name) =&gt; showState(name, ''));
+    document.querySelectorAll('.valid').forEach((el) =&gt; el.classList.remove('valid'));
+    $('banner').className = ''; $('banner').textContent = '';
+  });
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../forms-validation/form-student-registration.html">← Previous</a><a href="../forms-validation/form-name-alphabets-only.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const form = $('f');
+const kinds = {"username": "text", "password": "password"};
+const rules = {
+  username: (v, get) => !v ? 'Username is required' : v.length < 4 ? 'At least 4 characters' : /\s/.test(v) ? 'No spaces allowed' : '',
+  password: (v, get) => !v ? 'Password is required' : v.length < 6 ? 'At least 6 characters' : ''
+};
+const ageFrom = (iso) => {
+  const d = new Date(iso), now = new Date();
+  let age = now.getFullYear() - d.getFullYear();
+  if (now < new Date(now.getFullYear(), d.getMonth(), d.getDate())) age--;
+  return age;
+};
+function getVal(name) {
+  const kind = kinds[name];
+  if (kind === 'radio') { const c = form.querySelector(`input[name="${name}"]:checked`); return c ? c.value : ''; }
+  if (kind === 'checks') return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map((c) => c.value);
+  if (kind === 'check') return form.elements[name].checked;
+  return form.elements[name].value.trim();
+}
+function showState(name, msg) {
+  const box = $('e_' + name);
+  box.textContent = msg;
+  box.classList.remove('good');
+  const el = form.elements[name];
+  if (el && el.classList) { el.classList.toggle('invalid', msg !== ''); el.classList.toggle('valid', msg === '' && getVal(name) !== ''); }
+}
+function validateField(name) {
+  const msg = rules[name](getVal(name), getVal);
+  showState(name, msg);
+  return msg === '';
+}
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();                       // stop the page from reloading / submitting
+  let ok = true, firstBad = null;
+  Object.keys(rules).forEach((name) => { if (!validateField(name)) { ok = false; firstBad = firstBad || name; } });
+  const banner = $('banner');
+  if (ok) {
+    banner.className = 'banner good';
+    banner.textContent = 'Login form is valid. Signing in...';
+    form.reset();
+    Object.keys(rules).forEach((name) => showState(name, ''));
+    document.querySelectorAll('.valid').forEach((el) => el.classList.remove('valid'));
+  } else {
+    banner.className = 'banner bad';
+    banner.textContent = 'Please correct the highlighted fields.';
+    const el = form.elements[firstBad];
+    if (el && el.focus) el.focus();
+  }
+});
+form.addEventListener('reset', () => {
+  setTimeout(() => {
+    Object.keys(rules).forEach((name) => showState(name, ''));
+    document.querySelectorAll('.valid').forEach((el) => el.classList.remove('valid'));
+    $('banner').className = ''; $('banner').textContent = '';
+  });
+});
+</script>
+</body>
+</html>
