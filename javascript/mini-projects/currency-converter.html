@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Currency converter using an API | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .big { font-size: 1.8rem; font-weight: 800; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Mini Projects</p>
+<h1>Currency converter using an API</h1>
+<p class="pp-desc">Converts between currencies using live rates from the free open.er-api.com service. If you are offline, sample rates are used.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row">
+<label class="field">Amount<input id="amount" min="0" step="any" style="width:140px" type="number" value="100"/></label>
+<label class="field">From<select id="from"></select></label>
+<button class="secondary" id="swap" title="Swap currencies">⇆</button>
+<label class="field">To<select id="to"></select></label>
+</div>
+<div class="out"><div class="big" id="result"></div><div class="muted" id="rate"></div><div class="muted" id="source"></div></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;
+  &lt;label class="field"&gt;Amount&lt;input id="amount" type="number" value="100" min="0" step="any" style="width:140px"&gt;&lt;/label&gt;
+  &lt;label class="field"&gt;From&lt;select id="from"&gt;&lt;/select&gt;&lt;/label&gt;
+  &lt;button id="swap" class="secondary" title="Swap currencies"&gt;&amp;#8646;&lt;/button&gt;
+  &lt;label class="field"&gt;To&lt;select id="to"&gt;&lt;/select&gt;&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="out"&gt;&lt;div class="big" id="result"&gt;&lt;/div&gt;&lt;div class="muted" id="rate"&gt;&lt;/div&gt;&lt;div class="muted" id="source"&gt;&lt;/div&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .big { font-size: 1.8rem; font-weight: 800; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+// Sample rates (per 1 USD) used until / unless live data loads
+let rates = { USD: 1, INR: 83.2, EUR: 0.92, GBP: 0.79, JPY: 150.5, AUD: 1.52, CAD: 1.36, CNY: 7.2, AED: 3.67, SGD: 1.35 };
+let live = false;
+
+function fillSelects() {
+  const codes = Object.keys(rates).sort();
+  [['from', 'USD'], ['to', 'INR']].forEach(([id, def]) =&gt; {
+    const sel = $(id), keep = sel.value || def;
+    sel.innerHTML = codes.map((c) =&gt; `&lt;option value="${c}"&gt;${c}&lt;/option&gt;`).join('');
+    sel.value = codes.includes(keep) ? keep : def;
+  });
+}
+function convert() {
+  const amount = parseFloat($('amount').value);
+  if (Number.isNaN(amount) || amount &lt; 0) { $('result').textContent = 'Enter a valid amount'; return; }
+  const from = $('from').value, to = $('to').value;
+  const rate = rates[to] / rates[from];               // go through USD as the common base
+  $('result').textContent = `${amount.toLocaleString()} ${from} = ${(amount * rate).toLocaleString(undefined, { maximumFractionDigits: 2 })} ${to}`;
+  $('rate').textContent = `1 ${from} = ${rate.toFixed(4)} ${to}`;
+  $('source').textContent = live ? 'Live rates loaded from open.er-api.com' : 'Using sample rates (could not reach the API)';
+}
+['amount', 'from', 'to'].forEach((id) =&gt; $(id).addEventListener('input', convert));
+$('swap').addEventListener('click', () =&gt; { const f = $('from').value; $('from').value = $('to').value; $('to').value = f; convert(); });
+fillSelects();
+convert();
+fetch('https://open.er-api.com/v6/latest/USD')
+  .then((r) =&gt; r.json())
+  .then((d) =&gt; { if (d.result === 'success') { rates = d.rates; live = true; fillSelects(); convert(); } })
+  .catch(() =&gt; { /* keep the sample rates */ });</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../mini-projects/bmi-calculator.html">← Previous</a><a href="../mini-projects/interactive-portfolio-website.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+// Sample rates (per 1 USD) used until / unless live data loads
+let rates = { USD: 1, INR: 83.2, EUR: 0.92, GBP: 0.79, JPY: 150.5, AUD: 1.52, CAD: 1.36, CNY: 7.2, AED: 3.67, SGD: 1.35 };
+let live = false;
+
+function fillSelects() {
+  const codes = Object.keys(rates).sort();
+  [['from', 'USD'], ['to', 'INR']].forEach(([id, def]) => {
+    const sel = $(id), keep = sel.value || def;
+    sel.innerHTML = codes.map((c) => `<option value="${c}">${c}</option>`).join('');
+    sel.value = codes.includes(keep) ? keep : def;
+  });
+}
+function convert() {
+  const amount = parseFloat($('amount').value);
+  if (Number.isNaN(amount) || amount < 0) { $('result').textContent = 'Enter a valid amount'; return; }
+  const from = $('from').value, to = $('to').value;
+  const rate = rates[to] / rates[from];               // go through USD as the common base
+  $('result').textContent = `${amount.toLocaleString()} ${from} = ${(amount * rate).toLocaleString(undefined, { maximumFractionDigits: 2 })} ${to}`;
+  $('rate').textContent = `1 ${from} = ${rate.toFixed(4)} ${to}`;
+  $('source').textContent = live ? 'Live rates loaded from open.er-api.com' : 'Using sample rates (could not reach the API)';
+}
+['amount', 'from', 'to'].forEach((id) => $(id).addEventListener('input', convert));
+$('swap').addEventListener('click', () => { const f = $('from').value; $('from').value = $('to').value; $('to').value = f; convert(); });
+fillSelects();
+convert();
+fetch('https://open.er-api.com/v6/latest/USD')
+  .then((r) => r.json())
+  .then((d) => { if (d.result === 'success') { rates = d.rates; live = true; fillSelects(); convert(); } })
+  .catch(() => { /* keep the sample rates */ });
+</script>
+</body>
+</html>

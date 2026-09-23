@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student marks / grade calculator | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .marks { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .8rem; margin: .8rem 0; } .demo .grade { font-size: 3rem; font-weight: 800; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Mini Projects</p>
+<h1>Student marks / grade calculator</h1>
+<p class="pp-desc">Enter marks for five subjects to get the total, percentage, grade and pass / fail result.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<label class="field" style="max-width:300px">Student name<input id="name" type="text" value="Asha"/></label>
+<div class="marks" id="marks"></div>
+<div class="row"><button id="calc">Calculate result</button><button class="secondary" id="clear">Clear</button></div>
+<div class="out" id="out">Enter marks (0 - 100) and press Calculate.</div>
+<table class="data" style="margin-top:1rem;max-width:420px"><tr><th>Percentage</th><th>Grade</th></tr>
+<tr><td>90 and above</td><td>O</td></tr><tr><td>80 - 89</td><td>A+</td></tr><tr><td>70 - 79</td><td>A</td></tr><tr><td>60 - 69</td><td>B</td></tr><tr><td>50 - 59</td><td>C</td></tr><tr><td>Below 50</td><td>F</td></tr></table>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;label class="field" style="max-width:300px"&gt;Student name&lt;input id="name" type="text" value="Asha"&gt;&lt;/label&gt;
+&lt;div class="marks" id="marks"&gt;&lt;/div&gt;
+&lt;div class="row"&gt;&lt;button id="calc"&gt;Calculate result&lt;/button&gt;&lt;button id="clear" class="secondary"&gt;Clear&lt;/button&gt;&lt;/div&gt;
+&lt;div class="out" id="out"&gt;Enter marks (0 - 100) and press Calculate.&lt;/div&gt;
+&lt;table class="data" style="margin-top:1rem;max-width:420px"&gt;&lt;tr&gt;&lt;th&gt;Percentage&lt;/th&gt;&lt;th&gt;Grade&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;90 and above&lt;/td&gt;&lt;td&gt;O&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;80 - 89&lt;/td&gt;&lt;td&gt;A+&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;70 - 79&lt;/td&gt;&lt;td&gt;A&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;60 - 69&lt;/td&gt;&lt;td&gt;B&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;50 - 59&lt;/td&gt;&lt;td&gt;C&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Below 50&lt;/td&gt;&lt;td&gt;F&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+/* CSS */
+.demo .marks { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .8rem; margin: .8rem 0; } .demo .grade { font-size: 3rem; font-weight: 800; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const subjects = ['Tamil / Language', 'English', 'Mathematics', 'Science', 'Computer Science'];
+const defaults = [82, 76, 91, 68, 88];
+subjects.forEach((s, i) =&gt; {
+  const label = document.createElement('label');
+  label.className = 'field';
+  label.innerHTML = `${s}&lt;input type="number" min="0" max="100" class="mark" value="${defaults[i]}"&gt;`;
+  $('marks').appendChild(label);
+});
+function gradeOf(p) { return p &gt;= 90 ? 'O' : p &gt;= 80 ? 'A+' : p &gt;= 70 ? 'A' : p &gt;= 60 ? 'B' : p &gt;= 50 ? 'C' : 'F'; }
+
+$('calc').addEventListener('click', () =&gt; {
+  const values = [...document.querySelectorAll('.mark')].map((i) =&gt; i.value.trim() === '' ? NaN : Number(i.value));
+  if (values.some((v) =&gt; Number.isNaN(v) || v &lt; 0 || v &gt; 100)) { $('out').textContent = 'Every mark must be a number from 0 to 100.'; return; }
+  const total = values.reduce((a, b) =&gt; a + b, 0);
+  const percent = total / values.length;
+  const failed = subjects.filter((s, i) =&gt; values[i] &lt; 35);
+  $('out').innerHTML = `&lt;strong&gt;${$('name').value || 'Student'}&lt;/strong&gt;&lt;br&gt;Total: ${total} / ${values.length * 100}&lt;br&gt;Percentage: ${percent.toFixed(2)}%&lt;br&gt;
+    Grade: &lt;span class="grade"&gt;${failed.length ? 'F' : gradeOf(percent)}&lt;/span&gt;&lt;br&gt;
+    Result: &lt;strong class="${failed.length ? 'err' : 'ok'}"&gt;${failed.length ? 'FAIL (below 35 in ' + failed.join(', ') + ')' : 'PASS'}&lt;/strong&gt;`;
+});
+$('clear').addEventListener('click', () =&gt; {
+  document.querySelectorAll('.mark').forEach((i) =&gt; { i.value = ''; });
+  $('out').textContent = 'Enter marks (0 - 100) and press Calculate.';
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../mini-projects/expense-tracker.html">← Previous</a><a href="../mini-projects/shopping-cart-project.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const subjects = ['Tamil / Language', 'English', 'Mathematics', 'Science', 'Computer Science'];
+const defaults = [82, 76, 91, 68, 88];
+subjects.forEach((s, i) => {
+  const label = document.createElement('label');
+  label.className = 'field';
+  label.innerHTML = `${s}<input type="number" min="0" max="100" class="mark" value="${defaults[i]}">`;
+  $('marks').appendChild(label);
+});
+function gradeOf(p) { return p >= 90 ? 'O' : p >= 80 ? 'A+' : p >= 70 ? 'A' : p >= 60 ? 'B' : p >= 50 ? 'C' : 'F'; }
+
+$('calc').addEventListener('click', () => {
+  const values = [...document.querySelectorAll('.mark')].map((i) => i.value.trim() === '' ? NaN : Number(i.value));
+  if (values.some((v) => Number.isNaN(v) || v < 0 || v > 100)) { $('out').textContent = 'Every mark must be a number from 0 to 100.'; return; }
+  const total = values.reduce((a, b) => a + b, 0);
+  const percent = total / values.length;
+  const failed = subjects.filter((s, i) => values[i] < 35);
+  $('out').innerHTML = `<strong>${$('name').value || 'Student'}</strong><br>Total: ${total} / ${values.length * 100}<br>Percentage: ${percent.toFixed(2)}%<br>
+    Grade: <span class="grade">${failed.length ? 'F' : gradeOf(percent)}</span><br>
+    Result: <strong class="${failed.length ? 'err' : 'ok'}">${failed.length ? 'FAIL (below 35 in ' + failed.join(', ') + ')' : 'PASS'}</strong>`;
+});
+$('clear').addEventListener('click', () => {
+  document.querySelectorAll('.mark').forEach((i) => { i.value = ''; });
+  $('out').textContent = 'Enter marks (0 - 100) and press Calculate.';
+});
+</script>
+</body>
+</html>

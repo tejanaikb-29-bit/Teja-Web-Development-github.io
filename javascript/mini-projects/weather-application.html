@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Weather application using an API | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .wx { margin-top: 1rem; display: none; }
+.demo .now { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; background: linear-gradient(135deg, #1769b5, #14213d); color: #fff; padding: 1.2rem; border-radius: 12px; }
+.demo .now .temp { font-size: 3.4rem; font-weight: 800; line-height: 1; } .demo .now .icon { font-size: 3.4rem; }
+.demo .days { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: .6rem; margin-top: .8rem; }
+.demo .day { background: #f1f4fa; border-radius: 10px; padding: .6rem; text-align: center; font-size: .9rem; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Mini Projects</p>
+<h1>Weather application using an API</h1>
+<p class="pp-desc">Type a city name to get the current weather and a 5-day forecast from the free Open-Meteo API (internet needed, no key required).</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row"><input id="city" placeholder="Enter city name" type="text" value="Chennai"/><button id="go">Get weather</button></div>
+<p class="muted" id="status"></p>
+<div class="wx" id="wx"><div class="now"><div class="icon" id="icon"></div><div><div class="temp" id="temp"></div><div id="desc"></div></div>
+<div><div id="place" style="font-weight:700;font-size:1.2rem"></div><div id="wind"></div><div id="time"></div></div></div>
+<h4>Next days</h4><div class="days" id="days"></div></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;&lt;input id="city" type="text" value="Chennai" placeholder="Enter city name"&gt;&lt;button id="go"&gt;Get weather&lt;/button&gt;&lt;/div&gt;
+&lt;p id="status" class="muted"&gt;&lt;/p&gt;
+&lt;div class="wx" id="wx"&gt;&lt;div class="now"&gt;&lt;div class="icon" id="icon"&gt;&lt;/div&gt;&lt;div&gt;&lt;div class="temp" id="temp"&gt;&lt;/div&gt;&lt;div id="desc"&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;div id="place" style="font-weight:700;font-size:1.2rem"&gt;&lt;/div&gt;&lt;div id="wind"&gt;&lt;/div&gt;&lt;div id="time"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;h4&gt;Next days&lt;/h4&gt;&lt;div class="days" id="days"&gt;&lt;/div&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .wx { margin-top: 1rem; display: none; }
+.demo .now { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; background: linear-gradient(135deg, #1769b5, #14213d); color: #fff; padding: 1.2rem; border-radius: 12px; }
+.demo .now .temp { font-size: 3.4rem; font-weight: 800; line-height: 1; } .demo .now .icon { font-size: 3.4rem; }
+.demo .days { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: .6rem; margin-top: .8rem; }
+.demo .day { background: #f1f4fa; border-radius: 10px; padding: .6rem; text-align: center; font-size: .9rem; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const codes = {
+  0: ['Clear sky', '\u2600\ufe0f'], 1: ['Mainly clear', '\ud83c\udf24\ufe0f'], 2: ['Partly cloudy', '\u26c5'], 3: ['Overcast', '\u2601\ufe0f'],
+  45: ['Fog', '\ud83c\udf2b\ufe0f'], 48: ['Rime fog', '\ud83c\udf2b\ufe0f'], 51: ['Light drizzle', '\ud83c\udf26\ufe0f'], 53: ['Drizzle', '\ud83c\udf26\ufe0f'], 55: ['Dense drizzle', '\ud83c\udf27\ufe0f'],
+  61: ['Light rain', '\ud83c\udf27\ufe0f'], 63: ['Rain', '\ud83c\udf27\ufe0f'], 65: ['Heavy rain', '\ud83c\udf27\ufe0f'], 71: ['Light snow', '\ud83c\udf28\ufe0f'], 73: ['Snow', '\u2744\ufe0f'], 75: ['Heavy snow', '\u2744\ufe0f'],
+  80: ['Rain showers', '\ud83c\udf26\ufe0f'], 81: ['Rain showers', '\ud83c\udf27\ufe0f'], 82: ['Violent showers', '\u26c8\ufe0f'], 95: ['Thunderstorm', '\u26c8\ufe0f'], 96: ['Thunderstorm with hail', '\u26c8\ufe0f'], 99: ['Thunderstorm with hail', '\u26c8\ufe0f'],
+};
+const info = (code) =&gt; codes[code] || ['Unknown', '\ud83c\udf21\ufe0f'];
+
+async function getWeather() {
+  const city = $('city').value.trim();
+  if (!city) { $('status').textContent = 'Please enter a city name.'; return; }
+  $('status').textContent = 'Loading...';
+  $('wx').style.display = 'none';
+  try {
+    // Step 1: convert the city name to latitude / longitude
+    const geo = await (await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&amp;count=1`)).json();
+    if (!geo.results || !geo.results.length) throw new Error('City not found');
+    const { latitude, longitude, name, country } = geo.results[0];
+    // Step 2: ask for the weather at that position
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&amp;longitude=${longitude}&amp;current_weather=true&amp;daily=weathercode,temperature_2m_max,temperature_2m_min&amp;timezone=auto`;
+    const data = await (await fetch(url)).json();
+    const cw = data.current_weather;
+    const [text, icon] = info(cw.weathercode);
+    $('icon').textContent = icon;
+    $('temp').textContent = Math.round(cw.temperature) + '\u00b0C';
+    $('desc').textContent = text;
+    $('place').textContent = `${name}, ${country}`;
+    $('wind').textContent = `Wind: ${cw.windspeed} km/h`;
+    $('time').textContent = 'Updated: ' + cw.time.replace('T', ' ');
+    $('days').innerHTML = '';
+    data.daily.time.slice(1, 6).forEach((day, i) =&gt; {
+      const d = document.createElement('div');
+      d.className = 'day';
+      const label = new Date(day).toLocaleDateString(undefined, { weekday: 'short', day: 'numeric' });
+      d.innerHTML = `&lt;strong&gt;${label}&lt;/strong&gt;&lt;div style="font-size:1.6rem"&gt;${info(data.daily.weathercode[i + 1])[1]}&lt;/div&gt;${Math.round(data.daily.temperature_2m_max[i + 1])}\u00b0 / ${Math.round(data.daily.temperature_2m_min[i + 1])}\u00b0`;
+      $('days').appendChild(d);
+    });
+    $('wx').style.display = 'block';
+    $('status').textContent = '';
+  } catch (error) {
+    $('status').textContent = error.message === 'City not found' ? 'City not found. Check the spelling.' : 'Could not load the weather (' + error.message + '). Check your internet connection.';
+  }
+}
+$('go').addEventListener('click', getWeather);
+$('city').addEventListener('keydown', (e) =&gt; { if (e.key === 'Enter') getWeather(); });</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../mini-projects/to-do-list-application.html">← Previous</a><a href="../mini-projects/quiz-application.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const codes = {
+  0: ['Clear sky', '\u2600\ufe0f'], 1: ['Mainly clear', '\ud83c\udf24\ufe0f'], 2: ['Partly cloudy', '\u26c5'], 3: ['Overcast', '\u2601\ufe0f'],
+  45: ['Fog', '\ud83c\udf2b\ufe0f'], 48: ['Rime fog', '\ud83c\udf2b\ufe0f'], 51: ['Light drizzle', '\ud83c\udf26\ufe0f'], 53: ['Drizzle', '\ud83c\udf26\ufe0f'], 55: ['Dense drizzle', '\ud83c\udf27\ufe0f'],
+  61: ['Light rain', '\ud83c\udf27\ufe0f'], 63: ['Rain', '\ud83c\udf27\ufe0f'], 65: ['Heavy rain', '\ud83c\udf27\ufe0f'], 71: ['Light snow', '\ud83c\udf28\ufe0f'], 73: ['Snow', '\u2744\ufe0f'], 75: ['Heavy snow', '\u2744\ufe0f'],
+  80: ['Rain showers', '\ud83c\udf26\ufe0f'], 81: ['Rain showers', '\ud83c\udf27\ufe0f'], 82: ['Violent showers', '\u26c8\ufe0f'], 95: ['Thunderstorm', '\u26c8\ufe0f'], 96: ['Thunderstorm with hail', '\u26c8\ufe0f'], 99: ['Thunderstorm with hail', '\u26c8\ufe0f'],
+};
+const info = (code) => codes[code] || ['Unknown', '\ud83c\udf21\ufe0f'];
+
+async function getWeather() {
+  const city = $('city').value.trim();
+  if (!city) { $('status').textContent = 'Please enter a city name.'; return; }
+  $('status').textContent = 'Loading...';
+  $('wx').style.display = 'none';
+  try {
+    // Step 1: convert the city name to latitude / longitude
+    const geo = await (await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1`)).json();
+    if (!geo.results || !geo.results.length) throw new Error('City not found');
+    const { latitude, longitude, name, country } = geo.results[0];
+    // Step 2: ask for the weather at that position
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto`;
+    const data = await (await fetch(url)).json();
+    const cw = data.current_weather;
+    const [text, icon] = info(cw.weathercode);
+    $('icon').textContent = icon;
+    $('temp').textContent = Math.round(cw.temperature) + '\u00b0C';
+    $('desc').textContent = text;
+    $('place').textContent = `${name}, ${country}`;
+    $('wind').textContent = `Wind: ${cw.windspeed} km/h`;
+    $('time').textContent = 'Updated: ' + cw.time.replace('T', ' ');
+    $('days').innerHTML = '';
+    data.daily.time.slice(1, 6).forEach((day, i) => {
+      const d = document.createElement('div');
+      d.className = 'day';
+      const label = new Date(day).toLocaleDateString(undefined, { weekday: 'short', day: 'numeric' });
+      d.innerHTML = `<strong>${label}</strong><div style="font-size:1.6rem">${info(data.daily.weathercode[i + 1])[1]}</div>${Math.round(data.daily.temperature_2m_max[i + 1])}\u00b0 / ${Math.round(data.daily.temperature_2m_min[i + 1])}\u00b0`;
+      $('days').appendChild(d);
+    });
+    $('wx').style.display = 'block';
+    $('status').textContent = '';
+  } catch (error) {
+    $('status').textContent = error.message === 'City not found' ? 'City not found. Check the spelling.' : 'Could not load the weather (' + error.message + '). Check your internet connection.';
+  }
+}
+$('go').addEventListener('click', getWeather);
+$('city').addEventListener('keydown', (e) => { if (e.key === 'Enter') getWeather(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notes application using localStorage | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.notes { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.2rem; }
+.nl { list-style: none; padding: 0; margin: .6rem 0 0; }
+.nl li { padding: .55rem .7rem; border: 1px solid #d5dbe6; border-radius: 8px; margin-bottom: .4rem; cursor: pointer; background: #fff; }
+.nl li.active { border-color: #2b59c3; background: #eef3ff; } .nl li small { display: block; color: #6b7a94; }
+@media (max-width: 680px) { .notes { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Mini Projects</p>
+<h1>Notes application using localStorage</h1>
+<p class="pp-desc">Create, edit, search and delete notes. They stay saved even after you close the browser.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="notes">
+<div>
+<input id="title" placeholder="Note title" style="width:100%;margin-bottom:.5rem" type="text"/>
+<textarea id="text" placeholder="Write your note here..." rows="8" style="width:100%"></textarea>
+<div class="row"><button id="save">Save note</button><button class="secondary" id="new">New note</button><button class="danger" id="del">Delete</button></div>
+<p class="muted" id="status"></p>
+</div>
+<div><input id="search" placeholder="Search notes..." style="width:100%" type="search"/><ul class="nl" id="list"></ul></div>
+</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="notes"&gt;
+  &lt;div&gt;
+    &lt;input id="title" type="text" placeholder="Note title" style="width:100%;margin-bottom:.5rem"&gt;
+    &lt;textarea id="text" rows="8" placeholder="Write your note here..." style="width:100%"&gt;&lt;/textarea&gt;
+    &lt;div class="row"&gt;&lt;button id="save"&gt;Save note&lt;/button&gt;&lt;button id="new" class="secondary"&gt;New note&lt;/button&gt;&lt;button id="del" class="danger"&gt;Delete&lt;/button&gt;&lt;/div&gt;
+    &lt;p class="muted" id="status"&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div&gt;&lt;input id="search" type="search" placeholder="Search notes..." style="width:100%"&gt;&lt;ul id="list" class="nl"&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+/* CSS */
+.notes { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.2rem; }
+.nl { list-style: none; padding: 0; margin: .6rem 0 0; }
+.nl li { padding: .55rem .7rem; border: 1px solid #d5dbe6; border-radius: 8px; margin-bottom: .4rem; cursor: pointer; background: #fff; }
+.nl li.active { border-color: #2b59c3; background: #eef3ff; } .nl li small { display: block; color: #6b7a94; }
+@media (max-width: 680px) { .notes { grid-template-columns: 1fr; } }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const KEY = 'mini-notes';
+function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+function save() { localStorage.setItem(KEY, JSON.stringify(notes)); }
+let notes = load();
+let currentId = null;
+
+function render() {
+  const q = $('search').value.toLowerCase();
+  $('list').innerHTML = '';
+  notes.filter((n) =&gt; (n.title + n.text).toLowerCase().includes(q)).sort((a, b) =&gt; b.updated - a.updated).forEach((n) =&gt; {
+    const li = document.createElement('li');
+    if (n.id === currentId) li.className = 'active';
+    li.innerHTML = '&lt;strong&gt;&lt;/strong&gt;&lt;small&gt;&lt;/small&gt;';
+    li.querySelector('strong').textContent = n.title || 'Untitled';
+    li.querySelector('small').textContent = new Date(n.updated).toLocaleString();
+    li.addEventListener('click', () =&gt; open(n.id));
+    $('list').appendChild(li);
+  });
+  if (!$('list').children.length) $('list').innerHTML = '&lt;li class="muted"&gt;No notes found.&lt;/li&gt;';
+}
+function open(id) {
+  const n = notes.find((x) =&gt; x.id === id);
+  currentId = id;
+  $('title').value = n.title;
+  $('text').value = n.text;
+  $('status').textContent = 'Editing saved note.';
+  render();
+}
+function clearEditor() { currentId = null; $('title').value = ''; $('text').value = ''; $('status').textContent = 'New note.'; render(); }
+
+$('save').addEventListener('click', () =&gt; {
+  const title = $('title').value.trim(), text = $('text').value.trim();
+  if (!title &amp;&amp; !text) { $('status').textContent = 'Write something first.'; return; }
+  if (currentId) {
+    const n = notes.find((x) =&gt; x.id === currentId);
+    Object.assign(n, { title, text, updated: Date.now() });
+  } else {
+    currentId = Date.now();
+    notes.push({ id: currentId, title, text, updated: Date.now() });
+  }
+  save();
+  $('status').textContent = 'Saved to localStorage.';
+  render();
+});
+$('new').addEventListener('click', clearEditor);
+$('del').addEventListener('click', () =&gt; {
+  if (!currentId) return;
+  notes = notes.filter((n) =&gt; n.id !== currentId);
+  save();
+  clearEditor();
+});
+$('search').addEventListener('input', render);
+render();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../mini-projects/shopping-cart-project.html">← Previous</a><a href="../mini-projects/random-password-generator.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const KEY = 'mini-notes';
+function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+function save() { localStorage.setItem(KEY, JSON.stringify(notes)); }
+let notes = load();
+let currentId = null;
+
+function render() {
+  const q = $('search').value.toLowerCase();
+  $('list').innerHTML = '';
+  notes.filter((n) => (n.title + n.text).toLowerCase().includes(q)).sort((a, b) => b.updated - a.updated).forEach((n) => {
+    const li = document.createElement('li');
+    if (n.id === currentId) li.className = 'active';
+    li.innerHTML = '<strong></strong><small></small>';
+    li.querySelector('strong').textContent = n.title || 'Untitled';
+    li.querySelector('small').textContent = new Date(n.updated).toLocaleString();
+    li.addEventListener('click', () => open(n.id));
+    $('list').appendChild(li);
+  });
+  if (!$('list').children.length) $('list').innerHTML = '<li class="muted">No notes found.</li>';
+}
+function open(id) {
+  const n = notes.find((x) => x.id === id);
+  currentId = id;
+  $('title').value = n.title;
+  $('text').value = n.text;
+  $('status').textContent = 'Editing saved note.';
+  render();
+}
+function clearEditor() { currentId = null; $('title').value = ''; $('text').value = ''; $('status').textContent = 'New note.'; render(); }
+
+$('save').addEventListener('click', () => {
+  const title = $('title').value.trim(), text = $('text').value.trim();
+  if (!title && !text) { $('status').textContent = 'Write something first.'; return; }
+  if (currentId) {
+    const n = notes.find((x) => x.id === currentId);
+    Object.assign(n, { title, text, updated: Date.now() });
+  } else {
+    currentId = Date.now();
+    notes.push({ id: currentId, title, text, updated: Date.now() });
+  }
+  save();
+  $('status').textContent = 'Saved to localStorage.';
+  render();
+});
+$('new').addEventListener('click', clearEditor);
+$('del').addEventListener('click', () => {
+  if (!currentId) return;
+  notes = notes.filter((n) => n.id !== currentId);
+  save();
+  clearEditor();
+});
+$('search').addEventListener('input', render);
+render();
+</script>
+</body>
+</html>

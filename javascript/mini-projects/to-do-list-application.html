@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>To-do list application | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.todo { list-style: none; padding: 0; }
+.todo li { display: flex; align-items: center; gap: .5rem; padding: .6rem .8rem; border: 1px solid #d5dbe6; border-radius: 8px; margin: .4rem 0; background: #fff; }
+.todo li span { flex: 1; cursor: pointer; word-break: break-word; }
+.todo li.done span { text-decoration: line-through; color: #8a97b3; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Mini Projects</p>
+<h1>To-do list application</h1>
+<p class="pp-desc">Add, complete, edit and delete tasks. Everything is saved in localStorage.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row">
+<input id="task" placeholder="Add a new task..." style="flex:1;min-width:200px" type="text"/>
+<button id="add">Add task</button>
+</div>
+<ul class="todo" id="list"></ul>
+<p class="muted" id="count"></p>
+<button class="secondary small" id="clear">Clear completed</button>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;
+  &lt;input id="task" type="text" placeholder="Add a new task..." style="flex:1;min-width:200px"&gt;
+  &lt;button id="add"&gt;Add task&lt;/button&gt;
+&lt;/div&gt;
+&lt;ul id="list" class="todo"&gt;&lt;/ul&gt;
+&lt;p class="muted" id="count"&gt;&lt;/p&gt;
+&lt;button id="clear" class="secondary small"&gt;Clear completed&lt;/button&gt;
+
+/* CSS */
+.todo { list-style: none; padding: 0; }
+.todo li { display: flex; align-items: center; gap: .5rem; padding: .6rem .8rem; border: 1px solid #d5dbe6; border-radius: 8px; margin: .4rem 0; background: #fff; }
+.todo li span { flex: 1; cursor: pointer; word-break: break-word; }
+.todo li.done span { text-decoration: line-through; color: #8a97b3; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const KEY = 'mini-todos';
+function load() {
+  try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+}
+function save() { localStorage.setItem(KEY, JSON.stringify(todos)); }
+let todos = load();
+
+function render() {
+  const list = $('list');
+  list.innerHTML = '';
+  todos.forEach((todo, i) =&gt; {
+    const li = document.createElement('li');
+    if (todo.done) li.classList.add('done');
+    const label = document.createElement('span');
+    label.textContent = todo.text;
+    label.title = 'Click to mark as done';
+    label.addEventListener('click', () =&gt; { todo.done = !todo.done; save(); render(); });
+
+    const editBtn = document.createElement('button');
+    editBtn.textContent = 'Edit';
+    editBtn.className = 'secondary small';
+    editBtn.addEventListener('click', () =&gt; {
+      const text = prompt('Edit task', todo.text);
+      if (text !== null &amp;&amp; text.trim() !== '') { todo.text = text.trim(); save(); render(); }
+    });
+
+    const del = document.createElement('button');
+    del.textContent = 'Delete';
+    del.className = 'danger small';
+    del.addEventListener('click', () =&gt; { todos.splice(i, 1); save(); render(); });
+    li.append(label, editBtn, del);
+    list.appendChild(li);
+  });
+  const left = todos.filter((t) =&gt; !t.done).length;
+  $('count').textContent = todos.length ? `${left} of ${todos.length} tasks remaining` : 'No tasks yet. Add one above!';
+}
+function addTask() {
+  const text = $('task').value.trim();
+  if (!text) return;
+  todos.push({ text, done: false });
+  $('task').value = '';
+  $('task').focus();
+  save();
+  render();
+}
+$('add').addEventListener('click', addTask);
+$('task').addEventListener('keydown', (e) =&gt; { if (e.key === 'Enter') addTask(); });
+$('clear').addEventListener('click', () =&gt; { todos = todos.filter((t) =&gt; !t.done); save(); render(); });
+render();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../mini-projects/countdown-timer-app.html">← Previous</a><a href="../mini-projects/weather-application.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const KEY = 'mini-todos';
+function load() {
+  try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+}
+function save() { localStorage.setItem(KEY, JSON.stringify(todos)); }
+let todos = load();
+
+function render() {
+  const list = $('list');
+  list.innerHTML = '';
+  todos.forEach((todo, i) => {
+    const li = document.createElement('li');
+    if (todo.done) li.classList.add('done');
+    const label = document.createElement('span');
+    label.textContent = todo.text;
+    label.title = 'Click to mark as done';
+    label.addEventListener('click', () => { todo.done = !todo.done; save(); render(); });
+
+    const editBtn = document.createElement('button');
+    editBtn.textContent = 'Edit';
+    editBtn.className = 'secondary small';
+    editBtn.addEventListener('click', () => {
+      const text = prompt('Edit task', todo.text);
+      if (text !== null && text.trim() !== '') { todo.text = text.trim(); save(); render(); }
+    });
+
+    const del = document.createElement('button');
+    del.textContent = 'Delete';
+    del.className = 'danger small';
+    del.addEventListener('click', () => { todos.splice(i, 1); save(); render(); });
+    li.append(label, editBtn, del);
+    list.appendChild(li);
+  });
+  const left = todos.filter((t) => !t.done).length;
+  $('count').textContent = todos.length ? `${left} of ${todos.length} tasks remaining` : 'No tasks yet. Add one above!';
+}
+function addTask() {
+  const text = $('task').value.trim();
+  if (!text) return;
+  todos.push({ text, done: false });
+  $('task').value = '';
+  $('task').focus();
+  save();
+  render();
+}
+$('add').addEventListener('click', addTask);
+$('task').addEventListener('keydown', (e) => { if (e.key === 'Enter') addTask(); });
+$('clear').addEventListener('click', () => { todos = todos.filter((t) => !t.done); save(); render(); });
+render();
+</script>
+</body>
+</html>

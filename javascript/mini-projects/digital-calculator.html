@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Digital calculator | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.calc { max-width: 320px; margin: 0 auto; background: #101828; padding: 1rem; border-radius: 18px; box-shadow: 0 12px 30px rgba(0, 0, 0, .3); }
+.screen { background: #0b1220; color: #5eead4; font: 600 2.2rem "Courier New", monospace; text-align: right; padding: 1rem; border-radius: 10px; margin-bottom: .8rem; overflow-x: auto; white-space: nowrap; }
+.pad { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; }
+.pad button { font-size: 1.25rem; padding: .9rem 0; border-radius: 10px; background: #263248; color: #fff; }
+.pad button:hover { background: #33425e; }
+.pad button.op { background: #f2a900; color: #14213d; } .pad button.op:hover { background: #ffc233; }
+.pad button.fn { background: #55637d; } .pad button.eq { background: #178a4a; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Mini Projects</p>
+<h1>Digital calculator</h1>
+<p class="pp-desc">A full keypad calculator with chained operations, percent, sign change, backspace and keyboard support.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="calc">
+<div class="screen" id="display">0</div>
+<div class="pad" id="pad">
+<button class="fn" data-a="clear">C</button><button class="fn" data-a="back">⌫</button><button class="fn" data-a="percent">%</button><button class="op" data-a="op" data-v="÷">÷</button>
+<button data-a="digit" data-v="7">7</button><button data-a="digit" data-v="8">8</button><button data-a="digit" data-v="9">9</button><button class="op" data-a="op" data-v="×">×</button>
+<button data-a="digit" data-v="4">4</button><button data-a="digit" data-v="5">5</button><button data-a="digit" data-v="6">6</button><button class="op" data-a="op" data-v="-">−</button>
+<button data-a="digit" data-v="1">1</button><button data-a="digit" data-v="2">2</button><button data-a="digit" data-v="3">3</button><button class="op" data-a="op" data-v="+">+</button>
+<button class="fn" data-a="sign">±</button><button data-a="digit" data-v="0">0</button><button data-a="dot">.</button><button class="eq" data-a="eq">=</button>
+</div>
+</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="calc"&gt;
+  &lt;div class="screen" id="display"&gt;0&lt;/div&gt;
+  &lt;div class="pad" id="pad"&gt;
+    &lt;button data-a="clear" class="fn"&gt;C&lt;/button&gt;&lt;button data-a="back" class="fn"&gt;&amp;#9003;&lt;/button&gt;&lt;button data-a="percent" class="fn"&gt;%&lt;/button&gt;&lt;button data-a="op" data-v="&amp;divide;" class="op"&gt;&amp;divide;&lt;/button&gt;
+    &lt;button data-a="digit" data-v="7"&gt;7&lt;/button&gt;&lt;button data-a="digit" data-v="8"&gt;8&lt;/button&gt;&lt;button data-a="digit" data-v="9"&gt;9&lt;/button&gt;&lt;button data-a="op" data-v="&amp;times;" class="op"&gt;&amp;times;&lt;/button&gt;
+    &lt;button data-a="digit" data-v="4"&gt;4&lt;/button&gt;&lt;button data-a="digit" data-v="5"&gt;5&lt;/button&gt;&lt;button data-a="digit" data-v="6"&gt;6&lt;/button&gt;&lt;button data-a="op" data-v="-" class="op"&gt;&amp;minus;&lt;/button&gt;
+    &lt;button data-a="digit" data-v="1"&gt;1&lt;/button&gt;&lt;button data-a="digit" data-v="2"&gt;2&lt;/button&gt;&lt;button data-a="digit" data-v="3"&gt;3&lt;/button&gt;&lt;button data-a="op" data-v="+" class="op"&gt;+&lt;/button&gt;
+    &lt;button data-a="sign" class="fn"&gt;&amp;plusmn;&lt;/button&gt;&lt;button data-a="digit" data-v="0"&gt;0&lt;/button&gt;&lt;button data-a="dot"&gt;.&lt;/button&gt;&lt;button data-a="eq" class="eq"&gt;=&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+/* CSS */
+.calc { max-width: 320px; margin: 0 auto; background: #101828; padding: 1rem; border-radius: 18px; box-shadow: 0 12px 30px rgba(0, 0, 0, .3); }
+.screen { background: #0b1220; color: #5eead4; font: 600 2.2rem "Courier New", monospace; text-align: right; padding: 1rem; border-radius: 10px; margin-bottom: .8rem; overflow-x: auto; white-space: nowrap; }
+.pad { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; }
+.pad button { font-size: 1.25rem; padding: .9rem 0; border-radius: 10px; background: #263248; color: #fff; }
+.pad button:hover { background: #33425e; }
+.pad button.op { background: #f2a900; color: #14213d; } .pad button.op:hover { background: #ffc233; }
+.pad button.fn { background: #55637d; } .pad button.eq { background: #178a4a; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+let current = '0', previous = null, op = null, fresh = false;
+const display = $('display');
+
+const update = () =&gt; { display.textContent = current; };
+function compute(a, b, o) {
+  switch (o) {
+    case '+': return a + b;
+    case '-': return a - b;
+    case '×': return a * b;
+    case '÷': return b === 0 ? NaN : a / b;
+  }
+  return b;
+}
+function inputDigit(d) {
+  if (fresh || current === 'Error') { current = '0'; fresh = false; }
+  current = current === '0' ? d : current + d;
+}
+function inputDot() {
+  if (fresh || current === 'Error') { current = '0'; fresh = false; }
+  if (!current.includes('.')) current += '.';
+}
+function calculate() {
+  if (op === null) return;
+  const result = compute(previous, parseFloat(current), op);
+  current = Number.isNaN(result) ? 'Error' : String(parseFloat(result.toFixed(10)));
+  op = null;
+  fresh = true;
+}
+function chooseOp(o) {
+  if (current === 'Error') return;
+  if (op !== null &amp;&amp; !fresh) calculate();      // chain: 2 + 3 + 4
+  previous = parseFloat(current);
+  op = o;
+  fresh = true;
+}
+function handle(action, value) {
+  switch (action) {
+    case 'digit': inputDigit(value); break;
+    case 'dot': inputDot(); break;
+    case 'op': chooseOp(value); break;
+    case 'eq': calculate(); break;
+    case 'clear': current = '0'; previous = null; op = null; fresh = false; break;
+    case 'back': current = current.length &gt; 1 &amp;&amp; current !== 'Error' ? current.slice(0, -1) : '0'; break;
+    case 'sign': if (current !== 'Error') current = String(-parseFloat(current)); break;
+    case 'percent': if (current !== 'Error') current = String(parseFloat(current) / 100); break;
+  }
+  update();
+}
+// One listener on the keypad handles every button (event delegation)
+$('pad').addEventListener('click', (e) =&gt; {
+  const btn = e.target.closest('button');
+  if (btn) handle(btn.dataset.a, btn.dataset.v);
+});
+// Keyboard support
+document.addEventListener('keydown', (e) =&gt; {
+  if (/^[0-9]$/.test(e.key)) handle('digit', e.key);
+  else if (e.key === '.') handle('dot');
+  else if (e.key === '+' || e.key === '-') handle('op', e.key);
+  else if (e.key === '*') handle('op', '×');
+  else if (e.key === '/') { e.preventDefault(); handle('op', '÷'); }
+  else if (e.key === 'Enter' || e.key === '=') handle('eq');
+  else if (e.key === 'Backspace') handle('back');
+  else if (e.key === 'Escape') handle('clear');
+});
+update();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../forms-validation/validate-email-regex.html">← Previous</a><a href="../mini-projects/digital-clock-app.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+let current = '0', previous = null, op = null, fresh = false;
+const display = $('display');
+
+const update = () => { display.textContent = current; };
+function compute(a, b, o) {
+  switch (o) {
+    case '+': return a + b;
+    case '-': return a - b;
+    case '×': return a * b;
+    case '÷': return b === 0 ? NaN : a / b;
+  }
+  return b;
+}
+function inputDigit(d) {
+  if (fresh || current === 'Error') { current = '0'; fresh = false; }
+  current = current === '0' ? d : current + d;
+}
+function inputDot() {
+  if (fresh || current === 'Error') { current = '0'; fresh = false; }
+  if (!current.includes('.')) current += '.';
+}
+function calculate() {
+  if (op === null) return;
+  const result = compute(previous, parseFloat(current), op);
+  current = Number.isNaN(result) ? 'Error' : String(parseFloat(result.toFixed(10)));
+  op = null;
+  fresh = true;
+}
+function chooseOp(o) {
+  if (current === 'Error') return;
+  if (op !== null && !fresh) calculate();      // chain: 2 + 3 + 4
+  previous = parseFloat(current);
+  op = o;
+  fresh = true;
+}
+function handle(action, value) {
+  switch (action) {
+    case 'digit': inputDigit(value); break;
+    case 'dot': inputDot(); break;
+    case 'op': chooseOp(value); break;
+    case 'eq': calculate(); break;
+    case 'clear': current = '0'; previous = null; op = null; fresh = false; break;
+    case 'back': current = current.length > 1 && current !== 'Error' ? current.slice(0, -1) : '0'; break;
+    case 'sign': if (current !== 'Error') current = String(-parseFloat(current)); break;
+    case 'percent': if (current !== 'Error') current = String(parseFloat(current) / 100); break;
+  }
+  update();
+}
+// One listener on the keypad handles every button (event delegation)
+$('pad').addEventListener('click', (e) => {
+  const btn = e.target.closest('button');
+  if (btn) handle(btn.dataset.a, btn.dataset.v);
+});
+// Keyboard support
+document.addEventListener('keydown', (e) => {
+  if (/^[0-9]$/.test(e.key)) handle('digit', e.key);
+  else if (e.key === '.') handle('dot');
+  else if (e.key === '+' || e.key === '-') handle('op', e.key);
+  else if (e.key === '*') handle('op', '×');
+  else if (e.key === '/') { e.preventDefault(); handle('op', '÷'); }
+  else if (e.key === 'Enter' || e.key === '=') handle('eq');
+  else if (e.key === 'Backspace') handle('back');
+  else if (e.key === 'Escape') handle('clear');
+});
+update();
+</script>
+</body>
+</html>

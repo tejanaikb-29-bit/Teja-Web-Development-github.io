@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Simple shopping cart | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.shop { display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.2rem; }
+.product { border: 1px solid #d5dbe6; border-radius: 10px; padding: .8rem; text-align: center; }
+.product .emoji { font-size: 2.2rem; } .product h4 { margin: .2rem 0; } .product .price { color: #178a4a; font-weight: 700; }
+.cartbox { background: #f4f7fd; border-radius: 12px; padding: 1rem; align-self: start; }
+.line { display: flex; align-items: center; gap: .4rem; padding: .35rem 0; border-bottom: 1px solid #dbe2ef; font-size: .92rem; }
+.line span.name { flex: 1; } .line button { padding: .1rem .5rem; }
+.total { font-size: 1.2rem; font-weight: 800; }
+@media (max-width: 680px) { .shop { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Mini Projects</p>
+<h1>Simple shopping cart</h1>
+<p class="pp-desc">Add products, change quantities, remove them and see the running total.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="shop">
+<div><h3 style="margin-top:0">Products</h3><div class="grid-auto" id="products"></div></div>
+<div class="cartbox"><h3 style="margin-top:0">Your cart</h3><div id="cart"></div><p class="total">Total: <span id="total">$0.00</span></p><button class="danger small" id="empty">Empty cart</button></div>
+</div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="shop"&gt;
+  &lt;div&gt;&lt;h3 style="margin-top:0"&gt;Products&lt;/h3&gt;&lt;div id="products" class="grid-auto"&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="cartbox"&gt;&lt;h3 style="margin-top:0"&gt;Your cart&lt;/h3&gt;&lt;div id="cart"&gt;&lt;/div&gt;&lt;p class="total"&gt;Total: &lt;span id="total"&gt;$0.00&lt;/span&gt;&lt;/p&gt;&lt;button id="empty" class="danger small"&gt;Empty cart&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+/* CSS */
+.shop { display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.2rem; }
+.product { border: 1px solid #d5dbe6; border-radius: 10px; padding: .8rem; text-align: center; }
+.product .emoji { font-size: 2.2rem; } .product h4 { margin: .2rem 0; } .product .price { color: #178a4a; font-weight: 700; }
+.cartbox { background: #f4f7fd; border-radius: 12px; padding: 1rem; align-self: start; }
+.line { display: flex; align-items: center; gap: .4rem; padding: .35rem 0; border-bottom: 1px solid #dbe2ef; font-size: .92rem; }
+.line span.name { flex: 1; } .line button { padding: .1rem .5rem; }
+.total { font-size: 1.2rem; font-weight: 800; }
+@media (max-width: 680px) { .shop { grid-template-columns: 1fr; } }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+let cart = {};              // { productId: quantity }
+function saveCart() { /* memory only */ }
+
+const products = [
+  { id: 1, name: 'Notebook', price: 3.5, icon: '📓' },
+  { id: 2, name: 'Pen set', price: 2.25, icon: '🖊️' },
+  { id: 3, name: 'Backpack', price: 24, icon: '🎒' },
+  { id: 4, name: 'Headphones', price: 32.99, icon: '🎧' },
+  { id: 5, name: 'Water bottle', price: 9.5, icon: '🧴' },
+  { id: 6, name: 'Calculator', price: 12, icon: '🧮' }
+];
+const money = (n) =&gt; '$' + n.toFixed(2);
+
+function renderProducts() {
+  $('products').innerHTML = '';
+  products.forEach((p) =&gt; {
+    const card = document.createElement('div');
+    card.className = 'product';
+    card.innerHTML = `&lt;div class="emoji"&gt;${p.icon}&lt;/div&gt;&lt;h4&gt;${p.name}&lt;/h4&gt;&lt;div class="price"&gt;${money(p.price)}&lt;/div&gt;`;
+    const btn = document.createElement('button');
+    btn.textContent = 'Add to cart';
+    btn.addEventListener('click', () =&gt; { cart[p.id] = (cart[p.id] || 0) + 1; saveCart(); renderCart(); });
+    card.appendChild(btn);
+    $('products').appendChild(card);
+  });
+}
+function renderCart() {
+  const box = $('cart');
+  box.innerHTML = '';
+  let total = 0;
+  const ids = Object.keys(cart);
+  if (!ids.length) box.innerHTML = '&lt;p class="muted"&gt;The cart is empty.&lt;/p&gt;';
+  ids.forEach((id) =&gt; {
+    const p = products.find((x) =&gt; x.id === Number(id));
+    const qty = cart[id];
+    total += p.price * qty;
+    const row = document.createElement('div');
+    row.className = 'line';
+    row.innerHTML = `&lt;span class="name"&gt;${p.icon} ${p.name}&lt;/span&gt;`;
+    const minus = document.createElement('button');
+    minus.textContent = '−';
+    minus.addEventListener('click', () =&gt; { cart[id]--; if (cart[id] &lt;= 0) delete cart[id]; saveCart(); renderCart(); });
+    const q = document.createElement('b');
+    q.textContent = qty;
+    const plus = document.createElement('button');
+    plus.textContent = '+';
+    plus.addEventListener('click', () =&gt; { cart[id]++; saveCart(); renderCart(); });
+    const sub = document.createElement('span');
+    sub.textContent = money(p.price * qty);
+    row.append(minus, q, plus, sub);
+    box.appendChild(row);
+  });
+  $('total').textContent = money(total);
+}
+$('empty').addEventListener('click', () =&gt; { cart = {}; saveCart(); renderCart(); });
+renderProducts();
+renderCart();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../mini-projects/student-marks-grade-calculator.html">← Previous</a><a href="../mini-projects/notes-application.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+let cart = {};              // { productId: quantity }
+function saveCart() { /* memory only */ }
+
+const products = [
+  { id: 1, name: 'Notebook', price: 3.5, icon: '📓' },
+  { id: 2, name: 'Pen set', price: 2.25, icon: '🖊️' },
+  { id: 3, name: 'Backpack', price: 24, icon: '🎒' },
+  { id: 4, name: 'Headphones', price: 32.99, icon: '🎧' },
+  { id: 5, name: 'Water bottle', price: 9.5, icon: '🧴' },
+  { id: 6, name: 'Calculator', price: 12, icon: '🧮' }
+];
+const money = (n) => '$' + n.toFixed(2);
+
+function renderProducts() {
+  $('products').innerHTML = '';
+  products.forEach((p) => {
+    const card = document.createElement('div');
+    card.className = 'product';
+    card.innerHTML = `<div class="emoji">${p.icon}</div><h4>${p.name}</h4><div class="price">${money(p.price)}</div>`;
+    const btn = document.createElement('button');
+    btn.textContent = 'Add to cart';
+    btn.addEventListener('click', () => { cart[p.id] = (cart[p.id] || 0) + 1; saveCart(); renderCart(); });
+    card.appendChild(btn);
+    $('products').appendChild(card);
+  });
+}
+function renderCart() {
+  const box = $('cart');
+  box.innerHTML = '';
+  let total = 0;
+  const ids = Object.keys(cart);
+  if (!ids.length) box.innerHTML = '<p class="muted">The cart is empty.</p>';
+  ids.forEach((id) => {
+    const p = products.find((x) => x.id === Number(id));
+    const qty = cart[id];
+    total += p.price * qty;
+    const row = document.createElement('div');
+    row.className = 'line';
+    row.innerHTML = `<span class="name">${p.icon} ${p.name}</span>`;
+    const minus = document.createElement('button');
+    minus.textContent = '−';
+    minus.addEventListener('click', () => { cart[id]--; if (cart[id] <= 0) delete cart[id]; saveCart(); renderCart(); });
+    const q = document.createElement('b');
+    q.textContent = qty;
+    const plus = document.createElement('button');
+    plus.textContent = '+';
+    plus.addEventListener('click', () => { cart[id]++; saveCart(); renderCart(); });
+    const sub = document.createElement('span');
+    sub.textContent = money(p.price * qty);
+    row.append(minus, q, plus, sub);
+    box.appendChild(row);
+  });
+  $('total').textContent = money(total);
+}
+$('empty').addEventListener('click', () => { cart = {}; saveCart(); renderCart(); });
+renderProducts();
+renderCart();
+</script>
+</body>
+</html>

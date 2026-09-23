@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stopwatch | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Mini Projects</p>
+<h1>Stopwatch</h1>
+<p class="pp-desc">A stopwatch with start, stop, reset and lap times.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="clock" id="display">00:00:00.00</div>
+<div class="row" style="justify-content:center">
+<button id="start">Start</button>
+<button class="secondary" id="stop">Stop</button>
+<button class="danger" id="reset">Reset</button>
+<button class="success" id="lap">Lap</button>
+</div>
+<ol id="laps"></ol>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="clock" id="display"&gt;00:00:00.00&lt;/div&gt;
+&lt;div class="row" style="justify-content:center"&gt;
+  &lt;button id="start"&gt;Start&lt;/button&gt;
+  &lt;button id="stop" class="secondary"&gt;Stop&lt;/button&gt;
+  &lt;button id="reset" class="danger"&gt;Reset&lt;/button&gt;
+  &lt;button id="lap" class="success"&gt;Lap&lt;/button&gt;
+&lt;/div&gt;
+&lt;ol id="laps"&gt;&lt;/ol&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+let startTime = 0, elapsed = 0, timer = null;
+
+function format(ms) {
+  const cs = Math.floor(ms / 10) % 100;
+  const s = Math.floor(ms / 1000) % 60;
+  const m = Math.floor(ms / 60000) % 60;
+  const h = Math.floor(ms / 3600000);
+  return [h, m, s].map((n) =&gt; String(n).padStart(2, '0')).join(':') + '.' + String(cs).padStart(2, '0');
+}
+function render() {
+  $('display').textContent = format(elapsed + (timer ? Date.now() - startTime : 0));
+}
+$('start').addEventListener('click', () =&gt; {
+  if (timer) return;                       // already running
+  startTime = Date.now();
+  timer = setInterval(render, 10);
+});
+$('stop').addEventListener('click', () =&gt; {
+  if (!timer) return;
+  elapsed += Date.now() - startTime;
+  clearInterval(timer);
+  timer = null;
+  render();
+});
+$('reset').addEventListener('click', () =&gt; {
+  clearInterval(timer);
+  timer = null;
+  elapsed = 0;
+  render();
+  $('laps').innerHTML = '';
+});
+
+$('lap').addEventListener('click', () =&gt; {
+  if (!timer) return;
+  const li = document.createElement('li');
+  li.textContent = $('display').textContent;
+  $('laps').appendChild(li);
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../mini-projects/digital-clock-app.html">← Previous</a><a href="../mini-projects/countdown-timer-app.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+let startTime = 0, elapsed = 0, timer = null;
+
+function format(ms) {
+  const cs = Math.floor(ms / 10) % 100;
+  const s = Math.floor(ms / 1000) % 60;
+  const m = Math.floor(ms / 60000) % 60;
+  const h = Math.floor(ms / 3600000);
+  return [h, m, s].map((n) => String(n).padStart(2, '0')).join(':') + '.' + String(cs).padStart(2, '0');
+}
+function render() {
+  $('display').textContent = format(elapsed + (timer ? Date.now() - startTime : 0));
+}
+$('start').addEventListener('click', () => {
+  if (timer) return;                       // already running
+  startTime = Date.now();
+  timer = setInterval(render, 10);
+});
+$('stop').addEventListener('click', () => {
+  if (!timer) return;
+  elapsed += Date.now() - startTime;
+  clearInterval(timer);
+  timer = null;
+  render();
+});
+$('reset').addEventListener('click', () => {
+  clearInterval(timer);
+  timer = null;
+  elapsed = 0;
+  render();
+  $('laps').innerHTML = '';
+});
+
+$('lap').addEventListener('click', () => {
+  if (!timer) return;
+  const li = document.createElement('li');
+  li.textContent = $('display').textContent;
+  $('laps').appendChild(li);
+});
+</script>
+</body>
+</html>

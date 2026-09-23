@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tic-tac-toe game | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.board { display: grid; grid-template-columns: repeat(3, 90px); gap: 8px; justify-content: center; }
+.board button { width: 90px; height: 90px; font-size: 2.4rem; font-weight: 800; background: #eef2fb; color: #14213d; border-radius: 12px; }
+.board button:hover:not(:disabled) { background: #dbe6ff; }
+.board button.x { color: #d9481f; } .board button.o { color: #1769b5; } .board button.win { background: #d6f1e0; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Mini Projects</p>
+<h1>Tic-tac-toe game</h1>
+<p class="pp-desc">Two players (or play against the computer) take turns. Winning lines are highlighted and scores are kept.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row"><label><input id="cpu" type="checkbox"/> Play against the computer (you are X)</label><button class="secondary" id="restart">New game</button></div>
+<p id="status" style="font-weight:700;font-size:1.1rem"></p>
+<div class="board" id="board"></div>
+<p class="muted" id="score"></p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;&lt;label&gt;&lt;input type="checkbox" id="cpu"&gt; Play against the computer (you are X)&lt;/label&gt;&lt;button id="restart" class="secondary"&gt;New game&lt;/button&gt;&lt;/div&gt;
+&lt;p id="status" style="font-weight:700;font-size:1.1rem"&gt;&lt;/p&gt;
+&lt;div class="board" id="board"&gt;&lt;/div&gt;
+&lt;p class="muted" id="score"&gt;&lt;/p&gt;
+
+/* CSS */
+.board { display: grid; grid-template-columns: repeat(3, 90px); gap: 8px; justify-content: center; }
+.board button { width: 90px; height: 90px; font-size: 2.4rem; font-weight: 800; background: #eef2fb; color: #14213d; border-radius: 12px; }
+.board button:hover:not(:disabled) { background: #dbe6ff; }
+.board button.x { color: #d9481f; } .board button.o { color: #1769b5; } .board button.win { background: #d6f1e0; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const LINES = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+let cells, turn, over;
+const wins = { X: 0, O: 0, Draw: 0 };
+
+function winnerLine(b) {
+  return LINES.find(([a, c, d]) =&gt; b[a] &amp;&amp; b[a] === b[c] &amp;&amp; b[a] === b[d]);
+}
+function draw() {
+  const buttons = $('board').children;
+  cells.forEach((v, i) =&gt; {
+    buttons[i].textContent = v;
+    buttons[i].className = v.toLowerCase();
+    buttons[i].disabled = over || v !== '';
+  });
+  const line = winnerLine(cells);
+  if (line) line.forEach((i) =&gt; buttons[i].classList.add('win'));
+  $('score').textContent = `Score  X: ${wins.X}   O: ${wins.O}   Draws: ${wins.Draw}`;
+}
+function finish() {
+  const line = winnerLine(cells);
+  if (line) { over = true; wins[cells[line[0]]]++; $('status').textContent = `Player ${cells[line[0]]} wins!`; }
+  else if (cells.every(Boolean)) { over = true; wins.Draw++; $('status').textContent = "It's a draw!"; }
+  else $('status').textContent = `Turn: Player ${turn}`;
+  draw();
+}
+function cpuMove() {
+  const free = cells.map((v, i) =&gt; (v === '' ? i : -1)).filter((i) =&gt; i &gt;= 0);
+  const tryMark = (mark) =&gt; free.find((i) =&gt; { const t = [...cells]; t[i] = mark; return winnerLine(t); });
+  const move = tryMark('O') ?? tryMark('X') ?? (cells[4] === '' ? 4 : free[Math.floor(Math.random() * free.length)]);
+  cells[move] = 'O';
+  turn = 'X';
+  finish();
+}
+function play(i) {
+  if (over || cells[i]) return;
+  cells[i] = turn;
+  turn = turn === 'X' ? 'O' : 'X';
+  finish();
+  if (!over &amp;&amp; $('cpu').checked &amp;&amp; turn === 'O') setTimeout(cpuMove, 300);
+}
+function reset() {
+  cells = Array(9).fill('');
+  turn = 'X';
+  over = false;
+  $('board').innerHTML = '';
+  for (let i = 0; i &lt; 9; i++) {
+    const b = document.createElement('button');
+    b.addEventListener('click', () =&gt; play(i));
+    $('board').appendChild(b);
+  }
+  $('status').textContent = 'Turn: Player X';
+  draw();
+}
+$('restart').addEventListener('click', reset);
+reset();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../mini-projects/number-guessing-game-project.html">← Previous</a><a href="../mini-projects/expense-tracker.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const LINES = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+let cells, turn, over;
+const wins = { X: 0, O: 0, Draw: 0 };
+
+function winnerLine(b) {
+  return LINES.find(([a, c, d]) => b[a] && b[a] === b[c] && b[a] === b[d]);
+}
+function draw() {
+  const buttons = $('board').children;
+  cells.forEach((v, i) => {
+    buttons[i].textContent = v;
+    buttons[i].className = v.toLowerCase();
+    buttons[i].disabled = over || v !== '';
+  });
+  const line = winnerLine(cells);
+  if (line) line.forEach((i) => buttons[i].classList.add('win'));
+  $('score').textContent = `Score  X: ${wins.X}   O: ${wins.O}   Draws: ${wins.Draw}`;
+}
+function finish() {
+  const line = winnerLine(cells);
+  if (line) { over = true; wins[cells[line[0]]]++; $('status').textContent = `Player ${cells[line[0]]} wins!`; }
+  else if (cells.every(Boolean)) { over = true; wins.Draw++; $('status').textContent = "It's a draw!"; }
+  else $('status').textContent = `Turn: Player ${turn}`;
+  draw();
+}
+function cpuMove() {
+  const free = cells.map((v, i) => (v === '' ? i : -1)).filter((i) => i >= 0);
+  const tryMark = (mark) => free.find((i) => { const t = [...cells]; t[i] = mark; return winnerLine(t); });
+  const move = tryMark('O') ?? tryMark('X') ?? (cells[4] === '' ? 4 : free[Math.floor(Math.random() * free.length)]);
+  cells[move] = 'O';
+  turn = 'X';
+  finish();
+}
+function play(i) {
+  if (over || cells[i]) return;
+  cells[i] = turn;
+  turn = turn === 'X' ? 'O' : 'X';
+  finish();
+  if (!over && $('cpu').checked && turn === 'O') setTimeout(cpuMove, 300);
+}
+function reset() {
+  cells = Array(9).fill('');
+  turn = 'X';
+  over = false;
+  $('board').innerHTML = '';
+  for (let i = 0; i < 9; i++) {
+    const b = document.createElement('button');
+    b.addEventListener('click', () => play(i));
+    $('board').appendChild(b);
+  }
+  $('status').textContent = 'Turn: Player X';
+  draw();
+}
+$('restart').addEventListener('click', reset);
+reset();
+</script>
+</body>
+</html>
