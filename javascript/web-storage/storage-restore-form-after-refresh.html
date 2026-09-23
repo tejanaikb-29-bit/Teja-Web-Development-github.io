@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Restore previously entered form data after refreshing the page | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Web Storage</p>
+<h1>Restore previously entered form data after refreshing the page</h1>
+<p class="pp-desc">A form with text, select, radio and checkbox fields is stored on every change and refilled when the page loads again. Try the Reload button.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<form id="f" style="max-width:520px"><div class="row"><label class="field">Name<input name="name" type="text"/></label><label class="field">Course<select name="course"><option value="">-- Select --</option><option>BCA</option><option>B.Sc CS</option><option>B.Com</option></select></label></div>
+<div class="row"><span>Mode:</span><label><input name="mode" type="radio" value="Full time"/> Full time</label><label><input name="mode" type="radio" value="Part time"/> Part time</label></div><label><input name="hostel" type="checkbox"/> I need hostel accommodation</label><div class="row"><button id="reload" type="button">Reload page</button><button class="danger" id="clear" type="button">Clear stored form</button></div></form><p class="muted" id="status"></p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;form id="f" style="max-width:520px"&gt;&lt;div class="row"&gt;&lt;label class="field"&gt;Name&lt;input name="name" type="text"&gt;&lt;/label&gt;&lt;label class="field"&gt;Course&lt;select name="course"&gt;&lt;option value=""&gt;-- Select --&lt;/option&gt;&lt;option&gt;BCA&lt;/option&gt;&lt;option&gt;B.Sc CS&lt;/option&gt;&lt;option&gt;B.Com&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;/div&gt;
+&lt;div class="row"&gt;&lt;span&gt;Mode:&lt;/span&gt;&lt;label&gt;&lt;input type="radio" name="mode" value="Full time"&gt; Full time&lt;/label&gt;&lt;label&gt;&lt;input type="radio" name="mode" value="Part time"&gt; Part time&lt;/label&gt;&lt;/div&gt;&lt;label&gt;&lt;input type="checkbox" name="hostel"&gt; I need hostel accommodation&lt;/label&gt;&lt;div class="row"&gt;&lt;button type="button" id="reload"&gt;Reload page&lt;/button&gt;&lt;button type="button" id="clear" class="danger"&gt;Clear stored form&lt;/button&gt;&lt;/div&gt;&lt;/form&gt;&lt;p class="muted" id="status"&gt;&lt;/p&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const form = $('f');
+function collect() {
+  const d = {};
+  new FormData(form).forEach((v, k) =&gt; { d[k] = v; });
+  d.hostel = form.elements.hostel.checked;                 // unchecked boxes are missing from FormData
+  return d;
+}
+function restore() {
+  const d = JSON.parse(localStorage.getItem('form-state') || 'null');
+  if (!d) return;
+  Object.entries(d).forEach(([k, v]) =&gt; {
+    const el = form.elements[k];
+    if (!el) return;
+    if (k === 'hostel') el.checked = v;
+    else if (el instanceof RadioNodeList) el.value = v;
+    else el.value = v;
+  });
+  $('status').textContent = 'Form restored from localStorage.';
+}
+form.addEventListener('input', () =&gt; { localStorage.setItem('form-state', JSON.stringify(collect())); $('status').textContent = 'Saved.'; });
+form.addEventListener('change', () =&gt; { localStorage.setItem('form-state', JSON.stringify(collect())); });
+$('reload').addEventListener('click', () =&gt; location.reload());
+$('clear').addEventListener('click', () =&gt; { localStorage.removeItem('form-state'); form.reset(); $('status').textContent = 'Stored form cleared.'; });
+restore();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../web-storage/storage-autosave-form-data.html">← Previous</a><a href="../web-storage/storage-cart-persists-after-refresh.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const form = $('f');
+function collect() {
+  const d = {};
+  new FormData(form).forEach((v, k) => { d[k] = v; });
+  d.hostel = form.elements.hostel.checked;                 // unchecked boxes are missing from FormData
+  return d;
+}
+function restore() {
+  const d = JSON.parse(localStorage.getItem('form-state') || 'null');
+  if (!d) return;
+  Object.entries(d).forEach(([k, v]) => {
+    const el = form.elements[k];
+    if (!el) return;
+    if (k === 'hostel') el.checked = v;
+    else if (el instanceof RadioNodeList) el.value = v;
+    else el.value = v;
+  });
+  $('status').textContent = 'Form restored from localStorage.';
+}
+form.addEventListener('input', () => { localStorage.setItem('form-state', JSON.stringify(collect())); $('status').textContent = 'Saved.'; });
+form.addEventListener('change', () => { localStorage.setItem('form-state', JSON.stringify(collect())); });
+$('reload').addEventListener('click', () => location.reload());
+$('clear').addEventListener('click', () => { localStorage.removeItem('form-state'); form.reset(); $('status').textContent = 'Stored form cleared.'; });
+restore();
+</script>
+</body>
+</html>

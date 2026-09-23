@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login preference system using localStorage | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .lp { max-width: 380px; } .demo .lp .field { margin-bottom: .7rem; }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Web Storage</p>
+<h1>Login preference system using localStorage</h1>
+<p class="pp-desc">The "Remember me" option stores the username, language and theme so the next visit starts pre-filled. Logging out can forget them.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="lp" id="loginView"><h3>Sign in</h3><label class="field">Username<input id="user" type="text"/></label><label class="field">Password<input id="pass" placeholder="(demo - any value)" type="password"/></label>
+<label class="field">Preferred language<select id="lang"><option>English</option><option>Tamil</option><option>Hindi</option></select></label><label><input id="remember" type="checkbox"/> Remember me on this device</label><p class="err" id="err"></p><button id="login">Log in</button></div>
+<div hidden="" id="welcome"><h3 id="hi"></h3><p id="prefs"></p><button class="secondary" id="logout">Log out</button> <button class="danger" id="forget">Log out and forget me</button></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div id="loginView" class="lp"&gt;&lt;h3&gt;Sign in&lt;/h3&gt;&lt;label class="field"&gt;Username&lt;input id="user" type="text"&gt;&lt;/label&gt;&lt;label class="field"&gt;Password&lt;input id="pass" type="password" placeholder="(demo - any value)"&gt;&lt;/label&gt;
+&lt;label class="field"&gt;Preferred language&lt;select id="lang"&gt;&lt;option&gt;English&lt;/option&gt;&lt;option&gt;Tamil&lt;/option&gt;&lt;option&gt;Hindi&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;label&gt;&lt;input type="checkbox" id="remember"&gt; Remember me on this device&lt;/label&gt;&lt;p id="err" class="err"&gt;&lt;/p&gt;&lt;button id="login"&gt;Log in&lt;/button&gt;&lt;/div&gt;
+&lt;div id="welcome" hidden&gt;&lt;h3 id="hi"&gt;&lt;/h3&gt;&lt;p id="prefs"&gt;&lt;/p&gt;&lt;button id="logout" class="secondary"&gt;Log out&lt;/button&gt; &lt;button id="forget" class="danger"&gt;Log out and forget me&lt;/button&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .lp { max-width: 380px; } .demo .lp .field { margin-bottom: .7rem; }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const prefs = JSON.parse(localStorage.getItem('login-prefs') || 'null');
+if (prefs) { $('user').value = prefs.user; $('lang').value = prefs.lang; $('remember').checked = true; }
+$('login').addEventListener('click', () =&gt; {
+  const user = $('user').value.trim();
+  if (!user || !$('pass').value) { $('err').textContent = 'Enter a username and a password.'; return; }
+  $('err').textContent = '';
+  if ($('remember').checked) localStorage.setItem('login-prefs', JSON.stringify({ user, lang: $('lang').value }));
+  else localStorage.removeItem('login-prefs');
+  $('hi').textContent = `Hello, ${user}!`;
+  $('prefs').textContent = `Language: ${$('lang').value}. ${$('remember').checked ? 'Your username and language will be remembered.' : 'Nothing will be remembered.'}`;
+  $('loginView').hidden = true; $('welcome').hidden = false;
+});
+$('logout').addEventListener('click', () =&gt; { $('welcome').hidden = true; $('loginView').hidden = false; $('pass').value = ''; });
+$('forget').addEventListener('click', () =&gt; { localStorage.removeItem('login-prefs'); $('user').value = ''; $('remember').checked = false; $('lang').value = 'English'; $('logout').click(); });</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../web-storage/storage-shopping-cart.html">← Previous</a><a href="../web-storage/storage-dark-light-theme-switcher.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const prefs = JSON.parse(localStorage.getItem('login-prefs') || 'null');
+if (prefs) { $('user').value = prefs.user; $('lang').value = prefs.lang; $('remember').checked = true; }
+$('login').addEventListener('click', () => {
+  const user = $('user').value.trim();
+  if (!user || !$('pass').value) { $('err').textContent = 'Enter a username and a password.'; return; }
+  $('err').textContent = '';
+  if ($('remember').checked) localStorage.setItem('login-prefs', JSON.stringify({ user, lang: $('lang').value }));
+  else localStorage.removeItem('login-prefs');
+  $('hi').textContent = `Hello, ${user}!`;
+  $('prefs').textContent = `Language: ${$('lang').value}. ${$('remember').checked ? 'Your username and language will be remembered.' : 'Nothing will be remembered.'}`;
+  $('loginView').hidden = true; $('welcome').hidden = false;
+});
+$('logout').addEventListener('click', () => { $('welcome').hidden = true; $('loginView').hidden = false; $('pass').value = ''; });
+$('forget').addEventListener('click', () => { localStorage.removeItem('login-prefs'); $('user').value = ''; $('remember').checked = false; $('lang').value = 'English'; $('logout').click(); });
+</script>
+</body>
+</html>

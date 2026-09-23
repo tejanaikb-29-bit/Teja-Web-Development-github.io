@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Multi-page form: step 2 of 3 | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Web Storage</p>
+<h1>Multi-page form: step 2 of 3</h1>
+<p class="pp-desc">Step 2 of 3: address and course. Your earlier answers are still stored in sessionStorage.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<p class="muted"><strong>Step 2 of 3</strong> – Address and course</p><div class="fg"><label>City</label><input id="city" type="text"/></div><div class="fg"><label>Course</label><input id="course" type="text"/></div><p class="err" id="err"></p><a class="btn secondary" href="../web-storage/storage-multi-page-form-sessionstorage.html">← Back</a> <button id="next">Next: summary →</button>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;p class="muted"&gt;&lt;strong&gt;Step 2 of 3&lt;/strong&gt; &amp;ndash; Address and course&lt;/p&gt;&lt;div class="fg"&gt;&lt;label&gt;City&lt;/label&gt;&lt;input id="city" type="text"&gt;&lt;/div&gt;&lt;div class="fg"&gt;&lt;label&gt;Course&lt;/label&gt;&lt;input id="course" type="text"&gt;&lt;/div&gt;&lt;p class="err" id="err"&gt;&lt;/p&gt;&lt;a class="btn secondary" href="storage-multi-page-form-sessionstorage.html"&gt;&amp;larr; Back&lt;/a&gt; &lt;button id="next"&gt;Next: summary &amp;rarr;&lt;/button&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const KEY = 'multi-page-form';
+const data = JSON.parse(sessionStorage.getItem(KEY) || '{}');
+const fields = ['city', 'course'];
+fields.forEach((id) =&gt; { if (data[id]) $(id).value = data[id]; });
+$('next').addEventListener('click', () =&gt; {
+  let ok = true;
+  fields.forEach((id) =&gt; {
+    const v = $(id).value.trim();
+    const bad = !v || (id === 'email' &amp;&amp; !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) || (id === 'phone' &amp;&amp; !/^[6-9]\d{9}$/.test(v));
+    $(id).classList.toggle('invalid', bad);
+    if (bad) ok = false; else data[id] = v;
+  });
+  $('err').textContent = ok ? '' : 'Please complete every field correctly.';
+  if (!ok) return;
+  sessionStorage.setItem(KEY, JSON.stringify(data));
+  location.href = 'storage-multi-page-form-summary.html';
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const KEY = 'multi-page-form';
+const data = JSON.parse(sessionStorage.getItem(KEY) || '{}');
+const fields = ['city', 'course'];
+fields.forEach((id) => { if (data[id]) $(id).value = data[id]; });
+$('next').addEventListener('click', () => {
+  let ok = true;
+  fields.forEach((id) => {
+    const v = $(id).value.trim();
+    const bad = !v || (id === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) || (id === 'phone' && !/^[6-9]\d{9}$/.test(v));
+    $(id).classList.toggle('invalid', bad);
+    if (bad) ok = false; else data[id] = v;
+  });
+  $('err').textContent = ok ? '' : 'Please complete every field correctly.';
+  if (!ok) return;
+  sessionStorage.setItem(KEY, JSON.stringify(data));
+  location.href = 'storage-multi-page-form-summary.html';
+});
+</script>
+</body>
+</html>

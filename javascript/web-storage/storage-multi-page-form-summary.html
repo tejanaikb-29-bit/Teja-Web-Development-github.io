@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Multi-page form: summary (step 3 of 3) | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Web Storage</p>
+<h1>Multi-page form: summary (step 3 of 3)</h1>
+<p class="pp-desc">Step 3 of 3: all answers from the previous pages are read back from sessionStorage and displayed for confirmation.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<p class="muted"><strong>Step 3 of 3</strong> – Summary</p><table class="data" id="tb"></table><p class="err" hidden="" id="empty">No data found. Please start from step 1.</p><div class="banner good" hidden="" id="done">Form submitted! The temporary data has been cleared.</div><div class="row" id="btns"><a class="btn secondary" href="../web-storage/storage-multi-page-form-step2.html">← Back</a><button class="success" id="submit">Submit</button></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;p class="muted"&gt;&lt;strong&gt;Step 3 of 3&lt;/strong&gt; &amp;ndash; Summary&lt;/p&gt;&lt;table class="data" id="tb"&gt;&lt;/table&gt;&lt;p id="empty" class="err" hidden&gt;No data found. Please start from step 1.&lt;/p&gt;&lt;div id="done" class="banner good" hidden&gt;Form submitted! The temporary data has been cleared.&lt;/div&gt;&lt;div class="row" id="btns"&gt;&lt;a class="btn secondary" href="storage-multi-page-form-step2.html"&gt;&amp;larr; Back&lt;/a&gt;&lt;button id="submit" class="success"&gt;Submit&lt;/button&gt;&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const KEY = 'multi-page-form';
+const data = JSON.parse(sessionStorage.getItem(KEY) || '{}');
+const labels = { name: 'Full name', email: 'Email', phone: 'Phone', city: 'City', course: 'Course' };
+const filled = Object.keys(labels).filter((k) =&gt; data[k]);
+filled.forEach((k) =&gt; { const tr = $('tb').insertRow(); tr.insertCell().textContent = labels[k]; tr.insertCell().textContent = data[k]; });
+if (!filled.length) { $('empty').hidden = false; $('submit').disabled = true; }
+$('submit').addEventListener('click', () =&gt; {
+  sessionStorage.removeItem(KEY);
+  $('done').hidden = false; $('btns').hidden = true; $('tb').hidden = true;
+});</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const KEY = 'multi-page-form';
+const data = JSON.parse(sessionStorage.getItem(KEY) || '{}');
+const labels = { name: 'Full name', email: 'Email', phone: 'Phone', city: 'City', course: 'Course' };
+const filled = Object.keys(labels).filter((k) => data[k]);
+filled.forEach((k) => { const tr = $('tb').insertRow(); tr.insertCell().textContent = labels[k]; tr.insertCell().textContent = data[k]; });
+if (!filled.length) { $('empty').hidden = false; $('submit').disabled = true; }
+$('submit').addEventListener('click', () => {
+  sessionStorage.removeItem(KEY);
+  $('done').hidden = false; $('btns').hidden = true; $('tb').hidden = true;
+});
+</script>
+</body>
+</html>

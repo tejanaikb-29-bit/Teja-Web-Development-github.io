@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Recently viewed items feature using localStorage | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+.demo .split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.2rem; } .demo .prod { display: flex; justify-content: space-between; align-items: center; padding: .5rem .7rem; border: 1px solid #d5dbe6; border-radius: 8px; margin-bottom: .4rem; } @media (max-width: 640px) { .demo .split { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Web Storage</p>
+<h1>Recently viewed items feature using localStorage</h1>
+<p class="pp-desc">Click "View" on a product and it is added to the top of the recently viewed list (maximum 5, no duplicates), stored in localStorage.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="split"><div><h4>Products</h4><div id="products"></div></div><div><h4>Recently viewed</h4><ol id="recent"></ol><button class="danger small" id="clear">Clear history</button></div></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="split"&gt;&lt;div&gt;&lt;h4&gt;Products&lt;/h4&gt;&lt;div id="products"&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;h4&gt;Recently viewed&lt;/h4&gt;&lt;ol id="recent"&gt;&lt;/ol&gt;&lt;button id="clear" class="danger small"&gt;Clear history&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+
+/* CSS */
+.demo .split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.2rem; } .demo .prod { display: flex; justify-content: space-between; align-items: center; padding: .5rem .7rem; border: 1px solid #d5dbe6; border-radius: 8px; margin-bottom: .4rem; } @media (max-width: 640px) { .demo .split { grid-template-columns: 1fr; } }
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const products = ['Laptop', 'Smartphone', 'Headphones', 'Smart watch', 'Keyboard', 'Monitor', 'Backpack', 'Camera'];
+let recent = JSON.parse(localStorage.getItem('recent-items') || '[]');
+function render() {
+  $('recent').innerHTML = recent.length ? '' : '&lt;li class="muted"&gt;Nothing viewed yet.&lt;/li&gt;';
+  recent.forEach((r) =&gt; { const li = document.createElement('li'); li.textContent = r; $('recent').appendChild(li); });
+}
+products.forEach((p) =&gt; {
+  const d = document.createElement('div');
+  d.className = 'prod';
+  d.innerHTML = '&lt;span&gt;&lt;/span&gt;'; d.firstChild.textContent = p;
+  const b = document.createElement('button'); b.textContent = 'View'; b.className = 'small';
+  b.addEventListener('click', () =&gt; {
+    recent = [p, ...recent.filter((x) =&gt; x !== p)].slice(0, 5);      // newest first, no duplicates, max 5
+    localStorage.setItem('recent-items', JSON.stringify(recent));
+    render();
+  });
+  d.appendChild(b); $('products').appendChild(d);
+});
+$('clear').addEventListener('click', () =&gt; { recent = []; localStorage.removeItem('recent-items'); render(); });
+render();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../web-storage/storage-font-size-preference.html">← Previous</a><a href="../web-storage/storage-visitor-counter.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const products = ['Laptop', 'Smartphone', 'Headphones', 'Smart watch', 'Keyboard', 'Monitor', 'Backpack', 'Camera'];
+let recent = JSON.parse(localStorage.getItem('recent-items') || '[]');
+function render() {
+  $('recent').innerHTML = recent.length ? '' : '<li class="muted">Nothing viewed yet.</li>';
+  recent.forEach((r) => { const li = document.createElement('li'); li.textContent = r; $('recent').appendChild(li); });
+}
+products.forEach((p) => {
+  const d = document.createElement('div');
+  d.className = 'prod';
+  d.innerHTML = '<span></span>'; d.firstChild.textContent = p;
+  const b = document.createElement('button'); b.textContent = 'View'; b.className = 'small';
+  b.addEventListener('click', () => {
+    recent = [p, ...recent.filter((x) => x !== p)].slice(0, 5);      // newest first, no duplicates, max 5
+    localStorage.setItem('recent-items', JSON.stringify(recent));
+    render();
+  });
+  d.appendChild(b); $('products').appendChild(d);
+});
+$('clear').addEventListener('click', () => { recent = []; localStorage.removeItem('recent-items'); render(); });
+render();
+</script>
+</body>
+</html>

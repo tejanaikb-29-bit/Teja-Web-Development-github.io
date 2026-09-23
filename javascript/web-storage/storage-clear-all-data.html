@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Clear all localStorage data | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Web Storage</p>
+<h1>Clear all localStorage data</h1>
+<p class="pp-desc">localStorage.clear() removes every item stored by this website. This demo first lists everything, then clears it after confirmation.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<div class="row"><button id="fill">Add 3 sample items</button><button class="danger" id="clear">localStorage.clear()</button></div><pre class="out" id="out"></pre><p class="muted">Warning: clear() deletes ALL keys for this site, including data saved by other pages of this project.</p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="row"&gt;&lt;button id="fill"&gt;Add 3 sample items&lt;/button&gt;&lt;button id="clear" class="danger"&gt;localStorage.clear()&lt;/button&gt;&lt;/div&gt;&lt;pre class="out" id="out"&gt;&lt;/pre&gt;&lt;p class="muted"&gt;Warning: clear() deletes ALL keys for this site, including data saved by other pages of this project.&lt;/p&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+function show() {
+  const rows = [];
+  for (let i = 0; i &lt; localStorage.length; i++) { const k = localStorage.key(i); rows.push(`${k} = ${localStorage.getItem(k).slice(0, 40)}`); }
+  $('out').textContent = `localStorage.length = ${localStorage.length}\n` + rows.join('\n');
+}
+$('fill').addEventListener('click', () =&gt; { localStorage.setItem('a', '1'); localStorage.setItem('b', '2'); localStorage.setItem('c', '3'); show(); });
+$('clear').addEventListener('click', () =&gt; { if (confirm('Delete ALL localStorage data for this site?')) { localStorage.clear(); show(); } });
+show();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../web-storage/storage-delete-item.html">← Previous</a><a href="../web-storage/storage-multiple-values.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+function show() {
+  const rows = [];
+  for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); rows.push(`${k} = ${localStorage.getItem(k).slice(0, 40)}`); }
+  $('out').textContent = `localStorage.length = ${localStorage.length}\n` + rows.join('\n');
+}
+$('fill').addEventListener('click', () => { localStorage.setItem('a', '1'); localStorage.setItem('b', '2'); localStorage.setItem('c', '3'); show(); });
+$('clear').addEventListener('click', () => { if (confirm('Delete ALL localStorage data for this site?')) { localStorage.clear(); show(); } });
+show();
+</script>
+</body>
+</html>

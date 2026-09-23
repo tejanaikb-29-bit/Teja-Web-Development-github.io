@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Update data stored in localStorage | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Web Storage</p>
+<h1>Update data stored in localStorage</h1>
+<p class="pp-desc">Calling setItem() with an existing key replaces its value. The old and new values are shown side by side.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<p>Stored city: <strong id="city"></strong></p><div class="row"><label class="field">New city<input id="in" placeholder="Type a new value" type="text"/></label><button id="up">Update</button></div><div class="out" id="out"></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;p&gt;Stored city: &lt;strong id="city"&gt;&lt;/strong&gt;&lt;/p&gt;&lt;div class="row"&gt;&lt;label class="field"&gt;New city&lt;input id="in" type="text" placeholder="Type a new value"&gt;&lt;/label&gt;&lt;button id="up"&gt;Update&lt;/button&gt;&lt;/div&gt;&lt;div class="out" id="out"&gt;&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+if (localStorage.getItem('city') === null) localStorage.setItem('city', 'Chennai');
+function show() { $('city').textContent = localStorage.getItem('city'); }
+$('up').addEventListener('click', () =&gt; {
+  const v = $('in').value.trim();
+  if (!v) { $('out').textContent = 'Enter a new value.'; return; }
+  const old = localStorage.getItem('city');
+  localStorage.setItem('city', v);                   // same key = overwrite
+  $('out').textContent = `Updated key "city":\nold value: ${old}\nnew value: ${v}`;
+  $('in').value = '';
+  show();
+});
+show();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../web-storage/storage-retrieve-display-data.html">← Previous</a><a href="../web-storage/storage-delete-item.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+if (localStorage.getItem('city') === null) localStorage.setItem('city', 'Chennai');
+function show() { $('city').textContent = localStorage.getItem('city'); }
+$('up').addEventListener('click', () => {
+  const v = $('in').value.trim();
+  if (!v) { $('out').textContent = 'Enter a new value.'; return; }
+  const old = localStorage.getItem('city');
+  localStorage.setItem('city', v);                   // same key = overwrite
+  $('out').textContent = `Updated key "city":\nold value: ${old}\nnew value: ${v}`;
+  $('in').value = '';
+  show();
+});
+show();
+</script>
+</body>
+</html>

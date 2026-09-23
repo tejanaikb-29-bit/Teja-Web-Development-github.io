@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student marks database using localStorage | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Web Storage</p>
+<h1>Student marks database using localStorage</h1>
+<p class="pp-desc">Store marks for each student and see the total, percentage and result calculated automatically. Search, edit and delete records.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<form id="form" novalidate="">
+<div class="row">
+<label class="field">Roll no<input id="f_roll" type="text" value=""/></label>
+<label class="field">Name<input id="f_name" type="text" value=""/></label>
+<label class="field">Maths<input id="f_m1" step="any" type="number" value=""/></label>
+<label class="field">Science<input id="f_m2" step="any" type="number" value=""/></label>
+<label class="field">English<input id="f_m3" step="any" type="number" value=""/></label>
+</div>
+<div class="row"><button id="save" type="submit">Add student mark record</button><button class="secondary" id="cancel" style="display:none" type="button">Cancel edit</button>
+<input id="search" placeholder="Search..." style="margin-left:auto" type="search"/></div>
+<p class="msg" id="msg"></p>
+</form>
+<div style="overflow-x:auto"><table class="data" id="table"></table></div>
+<p class="muted" id="info"></p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;form id="form" novalidate&gt;
+  &lt;div class="row"&gt;
+  &lt;label class="field"&gt;Roll no&lt;input id="f_roll" type="text" value=""&gt;&lt;/label&gt;
+  &lt;label class="field"&gt;Name&lt;input id="f_name" type="text" value=""&gt;&lt;/label&gt;
+  &lt;label class="field"&gt;Maths&lt;input id="f_m1" type="number" value="" step="any"&gt;&lt;/label&gt;
+  &lt;label class="field"&gt;Science&lt;input id="f_m2" type="number" value="" step="any"&gt;&lt;/label&gt;
+  &lt;label class="field"&gt;English&lt;input id="f_m3" type="number" value="" step="any"&gt;&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;div class="row"&gt;&lt;button type="submit" id="save"&gt;Add student mark record&lt;/button&gt;&lt;button type="button" id="cancel" class="secondary" style="display:none"&gt;Cancel edit&lt;/button&gt;
+  &lt;input id="search" type="search" placeholder="Search..." style="margin-left:auto"&gt;&lt;/div&gt;
+  &lt;p class="msg" id="msg"&gt;&lt;/p&gt;
+&lt;/form&gt;
+&lt;div style="overflow-x:auto"&gt;&lt;table class="data" id="table"&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p class="muted" id="info"&gt;&lt;/p&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const KEY = 'student-marks-db';
+const fields = [["roll", "Roll no", "text"], ["name", "Name", "text"], ["m1", "Maths", "number"], ["m2", "Science", "number"], ["m3", "English", "number"]];                  // [name, label, type]
+const computed = [
+  { label: "Total", fn: (r) =&gt; Number(r.m1) + Number(r.m2) + Number(r.m3) },
+  { label: "Percentage", fn: (r) =&gt; ((Number(r.m1) + Number(r.m2) + Number(r.m3)) / 3).toFixed(1) + "%" },
+  { label: "Result", fn: (r) =&gt; Math.min(r.m1, r.m2, r.m3) &gt;= 35 ? "Pass" : "Fail" }
+];
+function load() {
+  try { const d = JSON.parse(localStorage.getItem(KEY)); if (d) return d; } catch (e) { /* ignore */ }
+  return [{"id": 1, "roll": "101", "name": "Asha", "m1": 88, "m2": 92, "m3": 79}, {"id": 2, "roll": "102", "name": "Ravi", "m1": 45, "m2": 30, "m3": 62}];
+}
+function save() { localStorage.setItem(KEY, JSON.stringify(records)); }
+let records = load();
+let editId = null;
+
+function render() {
+  const q = $('search').value.toLowerCase();
+  const table = $('table');
+  table.innerHTML = '';
+  const head = table.insertRow();
+  fields.forEach(([, label]) =&gt; head.appendChild(Object.assign(document.createElement('th'), { textContent: label })));
+  computed.forEach((c) =&gt; head.appendChild(Object.assign(document.createElement('th'), { textContent: c.label })));
+  head.appendChild(Object.assign(document.createElement('th'), { textContent: 'Actions' }));
+  const shown = records.filter((r) =&gt; fields.some(([n]) =&gt; String(r[n]).toLowerCase().includes(q)));
+  shown.forEach((r) =&gt; {
+    const row = table.insertRow();
+    fields.forEach(([n]) =&gt; { row.insertCell().textContent = r[n]; });
+    computed.forEach((c) =&gt; { row.insertCell().textContent = c.fn(r); });
+    const cell = row.insertCell();
+    const edit = document.createElement('button');
+    edit.textContent = 'Edit'; edit.className = 'secondary small';
+    edit.addEventListener('click', () =&gt; startEdit(r.id));
+    const del = document.createElement('button');
+    del.textContent = 'Delete'; del.className = 'danger small'; del.style.marginLeft = '.3rem';
+    del.addEventListener('click', () =&gt; { if (confirm('Delete this student mark record?')) { if (r.id === editId) stopEdit(); records = records.filter((x) =&gt; x.id !== r.id); save(); render(); } });
+    cell.append(edit, del);
+  });
+  if (!shown.length) { const cell = table.insertRow().insertCell(); cell.colSpan = fields.length + computed.length + 1; cell.textContent = 'No records to show.'; }
+  $('info').textContent = `${records.length} student mark record(s) stored in localStorage under the key "${KEY}".`;
+}
+function startEdit(id) {
+  const r = records.find((x) =&gt; x.id === id);
+  fields.forEach(([n]) =&gt; { $('f_' + n).value = r[n]; });
+  editId = id;
+  $('save').textContent = 'Update student mark record';
+  $('cancel').style.display = 'inline-block';
+  $('msg').textContent = 'Editing: change the values and click Update.';
+}
+function stopEdit() {
+  editId = null;
+  $('form').reset();
+  $('save').textContent = 'Add student mark record';
+  $('cancel').style.display = 'none';
+}
+$('form').addEventListener('submit', (e) =&gt; {
+  e.preventDefault();
+  const data = {};
+  for (const [n, label, type] of fields) {
+    let v = $('f_' + n).value.trim();
+    if (v === '') { $('msg').textContent = `${label} is required.`; return; }
+    if (type === 'number') { v = Number(v); if (Number.isNaN(v)) { $('msg').textContent = `${label} must be a number.`; return; } }
+    data[n] = v;
+  }
+  const existing = editId ? records.find((r) =&gt; r.id === editId) : null;
+  if (existing) Object.assign(existing, data);          // update the record being edited
+  else records.push({ id: Date.now(), ...data });       // otherwise create a new one
+  save();
+  $('msg').textContent = editId ? 'Record updated.' : 'Record added.';
+  stopEdit();
+  render();
+});
+$('cancel').addEventListener('click', () =&gt; { stopEdit(); $('msg').textContent = ''; });
+$('search').addEventListener('input', render);
+render();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../web-storage/storage-cart-persists-after-refresh.html">← Previous</a><a href="../web-storage/storage-crud-application.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const KEY = 'student-marks-db';
+const fields = [["roll", "Roll no", "text"], ["name", "Name", "text"], ["m1", "Maths", "number"], ["m2", "Science", "number"], ["m3", "English", "number"]];                  // [name, label, type]
+const computed = [
+  { label: "Total", fn: (r) => Number(r.m1) + Number(r.m2) + Number(r.m3) },
+  { label: "Percentage", fn: (r) => ((Number(r.m1) + Number(r.m2) + Number(r.m3)) / 3).toFixed(1) + "%" },
+  { label: "Result", fn: (r) => Math.min(r.m1, r.m2, r.m3) >= 35 ? "Pass" : "Fail" }
+];
+function load() {
+  try { const d = JSON.parse(localStorage.getItem(KEY)); if (d) return d; } catch (e) { /* ignore */ }
+  return [{"id": 1, "roll": "101", "name": "Asha", "m1": 88, "m2": 92, "m3": 79}, {"id": 2, "roll": "102", "name": "Ravi", "m1": 45, "m2": 30, "m3": 62}];
+}
+function save() { localStorage.setItem(KEY, JSON.stringify(records)); }
+let records = load();
+let editId = null;
+
+function render() {
+  const q = $('search').value.toLowerCase();
+  const table = $('table');
+  table.innerHTML = '';
+  const head = table.insertRow();
+  fields.forEach(([, label]) => head.appendChild(Object.assign(document.createElement('th'), { textContent: label })));
+  computed.forEach((c) => head.appendChild(Object.assign(document.createElement('th'), { textContent: c.label })));
+  head.appendChild(Object.assign(document.createElement('th'), { textContent: 'Actions' }));
+  const shown = records.filter((r) => fields.some(([n]) => String(r[n]).toLowerCase().includes(q)));
+  shown.forEach((r) => {
+    const row = table.insertRow();
+    fields.forEach(([n]) => { row.insertCell().textContent = r[n]; });
+    computed.forEach((c) => { row.insertCell().textContent = c.fn(r); });
+    const cell = row.insertCell();
+    const edit = document.createElement('button');
+    edit.textContent = 'Edit'; edit.className = 'secondary small';
+    edit.addEventListener('click', () => startEdit(r.id));
+    const del = document.createElement('button');
+    del.textContent = 'Delete'; del.className = 'danger small'; del.style.marginLeft = '.3rem';
+    del.addEventListener('click', () => { if (confirm('Delete this student mark record?')) { if (r.id === editId) stopEdit(); records = records.filter((x) => x.id !== r.id); save(); render(); } });
+    cell.append(edit, del);
+  });
+  if (!shown.length) { const cell = table.insertRow().insertCell(); cell.colSpan = fields.length + computed.length + 1; cell.textContent = 'No records to show.'; }
+  $('info').textContent = `${records.length} student mark record(s) stored in localStorage under the key "${KEY}".`;
+}
+function startEdit(id) {
+  const r = records.find((x) => x.id === id);
+  fields.forEach(([n]) => { $('f_' + n).value = r[n]; });
+  editId = id;
+  $('save').textContent = 'Update student mark record';
+  $('cancel').style.display = 'inline-block';
+  $('msg').textContent = 'Editing: change the values and click Update.';
+}
+function stopEdit() {
+  editId = null;
+  $('form').reset();
+  $('save').textContent = 'Add student mark record';
+  $('cancel').style.display = 'none';
+}
+$('form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = {};
+  for (const [n, label, type] of fields) {
+    let v = $('f_' + n).value.trim();
+    if (v === '') { $('msg').textContent = `${label} is required.`; return; }
+    if (type === 'number') { v = Number(v); if (Number.isNaN(v)) { $('msg').textContent = `${label} must be a number.`; return; } }
+    data[n] = v;
+  }
+  const existing = editId ? records.find((r) => r.id === editId) : null;
+  if (existing) Object.assign(existing, data);          // update the record being edited
+  else records.push({ id: Date.now(), ...data });       // otherwise create a new one
+  save();
+  $('msg').textContent = editId ? 'Record updated.' : 'Record added.';
+  stopEdit();
+  render();
+});
+$('cancel').addEventListener('click', () => { stopEdit(); $('msg').textContent = ''; });
+$('search').addEventListener('input', render);
+render();
+</script>
+</body>
+</html>

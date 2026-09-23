@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Store multiple values using localStorage | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Web Storage</p>
+<h1>Store multiple values using localStorage</h1>
+<p class="pp-desc">Each form field is stored under its own key (name, email, city, age) and all values are read back.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<form class="row" id="f"><label class="field">Name<input id="name" type="text"/></label><label class="field">Email<input id="email" type="email"/></label><label class="field">City<input id="city" type="text"/></label><label class="field">Age<input id="age" style="width:90px" type="number"/></label><button>Save all</button></form><table class="data"><thead><tr><th>Key</th><th>Stored value</th></tr></thead><tbody id="tb"></tbody></table>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;form id="f" class="row"&gt;&lt;label class="field"&gt;Name&lt;input id="name" type="text"&gt;&lt;/label&gt;&lt;label class="field"&gt;Email&lt;input id="email" type="email"&gt;&lt;/label&gt;&lt;label class="field"&gt;City&lt;input id="city" type="text"&gt;&lt;/label&gt;&lt;label class="field"&gt;Age&lt;input id="age" type="number" style="width:90px"&gt;&lt;/label&gt;&lt;button&gt;Save all&lt;/button&gt;&lt;/form&gt;&lt;table class="data"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Key&lt;/th&gt;&lt;th&gt;Stored value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id="tb"&gt;&lt;/tbody&gt;&lt;/table&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const keys = ['name', 'email', 'city', 'age'];
+function show() {
+  $('tb').innerHTML = '';
+  keys.forEach((k) =&gt; { const tr = $('tb').insertRow(); tr.insertCell().textContent = k; tr.insertCell().textContent = localStorage.getItem('profile-' + k) ?? '(not set)'; $(k).value = localStorage.getItem('profile-' + k) || ''; });
+}
+$('f').addEventListener('submit', (e) =&gt; {
+  e.preventDefault();
+  keys.forEach((k) =&gt; localStorage.setItem('profile-' + k, $(k).value.trim()));
+  show();
+});
+show();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../web-storage/storage-clear-all-data.html">← Previous</a><a href="../web-storage/storage-array-json.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const keys = ['name', 'email', 'city', 'age'];
+function show() {
+  $('tb').innerHTML = '';
+  keys.forEach((k) => { const tr = $('tb').insertRow(); tr.insertCell().textContent = k; tr.insertCell().textContent = localStorage.getItem('profile-' + k) ?? '(not set)'; $(k).value = localStorage.getItem('profile-' + k) || ''; });
+}
+$('f').addEventListener('submit', (e) => {
+  e.preventDefault();
+  keys.forEach((k) => localStorage.setItem('profile-' + k, $(k).value.trim()));
+  show();
+});
+show();
+</script>
+</body>
+</html>

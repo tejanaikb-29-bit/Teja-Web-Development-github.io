@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CRUD application using localStorage: Create, Read, Update and Delete | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Web Storage</p>
+<h1>CRUD application using localStorage: Create, Read, Update and Delete</h1>
+<p class="pp-desc">A complete product inventory: create records with the form, read them in the table, update with Edit and delete with Delete.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<form id="form" novalidate="">
+<div class="row">
+<label class="field">Product code<input id="f_sku" type="text" value=""/></label>
+<label class="field">Product name<input id="f_name" type="text" value=""/></label>
+<label class="field">Category<select id="f_category"><option>Stationery</option><option>Electronics</option><option>Grocery</option><option>Clothing</option></select></label>
+<label class="field">Price<input id="f_price" step="any" type="number" value=""/></label>
+<label class="field">In stock<input id="f_stock" step="any" type="number" value=""/></label>
+</div>
+<div class="row"><button id="save" type="submit">Add product</button><button class="secondary" id="cancel" style="display:none" type="button">Cancel edit</button>
+<input id="search" placeholder="Search..." style="margin-left:auto" type="search"/></div>
+<p class="msg" id="msg"></p>
+</form>
+<div style="overflow-x:auto"><table class="data" id="table"></table></div>
+<p class="muted" id="info"></p>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;form id="form" novalidate&gt;
+  &lt;div class="row"&gt;
+  &lt;label class="field"&gt;Product code&lt;input id="f_sku" type="text" value=""&gt;&lt;/label&gt;
+  &lt;label class="field"&gt;Product name&lt;input id="f_name" type="text" value=""&gt;&lt;/label&gt;
+  &lt;label class="field"&gt;Category&lt;select id="f_category"&gt;&lt;option&gt;Stationery&lt;/option&gt;&lt;option&gt;Electronics&lt;/option&gt;&lt;option&gt;Grocery&lt;/option&gt;&lt;option&gt;Clothing&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+  &lt;label class="field"&gt;Price&lt;input id="f_price" type="number" value="" step="any"&gt;&lt;/label&gt;
+  &lt;label class="field"&gt;In stock&lt;input id="f_stock" type="number" value="" step="any"&gt;&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;div class="row"&gt;&lt;button type="submit" id="save"&gt;Add product&lt;/button&gt;&lt;button type="button" id="cancel" class="secondary" style="display:none"&gt;Cancel edit&lt;/button&gt;
+  &lt;input id="search" type="search" placeholder="Search..." style="margin-left:auto"&gt;&lt;/div&gt;
+  &lt;p class="msg" id="msg"&gt;&lt;/p&gt;
+&lt;/form&gt;
+&lt;div style="overflow-x:auto"&gt;&lt;table class="data" id="table"&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p class="muted" id="info"&gt;&lt;/p&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const KEY = 'crud-products';
+const fields = [["sku", "Product code", "text"], ["name", "Product name", "text"], ["category", "Category", "select:Stationery|Electronics|Grocery|Clothing"], ["price", "Price", "number"], ["stock", "In stock", "number"]];                  // [name, label, type]
+const computed = [
+  { label: "Stock value", fn: (r) =&gt; (Number(r.price) * Number(r.stock)).toFixed(2) }
+];
+function load() {
+  try { const d = JSON.parse(localStorage.getItem(KEY)); if (d) return d; } catch (e) { /* ignore */ }
+  return [{"id": 1, "sku": "P001", "name": "Notebook", "category": "Stationery", "price": 40, "stock": 120}, {"id": 2, "sku": "P002", "name": "USB cable", "category": "Electronics", "price": 150, "stock": 60}];
+}
+function save() { localStorage.setItem(KEY, JSON.stringify(records)); }
+let records = load();
+let editId = null;
+
+function render() {
+  const q = $('search').value.toLowerCase();
+  const table = $('table');
+  table.innerHTML = '';
+  const head = table.insertRow();
+  fields.forEach(([, label]) =&gt; head.appendChild(Object.assign(document.createElement('th'), { textContent: label })));
+  computed.forEach((c) =&gt; head.appendChild(Object.assign(document.createElement('th'), { textContent: c.label })));
+  head.appendChild(Object.assign(document.createElement('th'), { textContent: 'Actions' }));
+  const shown = records.filter((r) =&gt; fields.some(([n]) =&gt; String(r[n]).toLowerCase().includes(q)));
+  shown.forEach((r) =&gt; {
+    const row = table.insertRow();
+    fields.forEach(([n]) =&gt; { row.insertCell().textContent = r[n]; });
+    computed.forEach((c) =&gt; { row.insertCell().textContent = c.fn(r); });
+    const cell = row.insertCell();
+    const edit = document.createElement('button');
+    edit.textContent = 'Edit'; edit.className = 'secondary small';
+    edit.addEventListener('click', () =&gt; startEdit(r.id));
+    const del = document.createElement('button');
+    del.textContent = 'Delete'; del.className = 'danger small'; del.style.marginLeft = '.3rem';
+    del.addEventListener('click', () =&gt; { if (confirm('Delete this product?')) { if (r.id === editId) stopEdit(); records = records.filter((x) =&gt; x.id !== r.id); save(); render(); } });
+    cell.append(edit, del);
+  });
+  if (!shown.length) { const cell = table.insertRow().insertCell(); cell.colSpan = fields.length + computed.length + 1; cell.textContent = 'No records to show.'; }
+  $('info').textContent = `${records.length} product(s) stored in localStorage under the key "${KEY}".`;
+}
+function startEdit(id) {
+  const r = records.find((x) =&gt; x.id === id);
+  fields.forEach(([n]) =&gt; { $('f_' + n).value = r[n]; });
+  editId = id;
+  $('save').textContent = 'Update product';
+  $('cancel').style.display = 'inline-block';
+  $('msg').textContent = 'Editing: change the values and click Update.';
+}
+function stopEdit() {
+  editId = null;
+  $('form').reset();
+  $('save').textContent = 'Add product';
+  $('cancel').style.display = 'none';
+}
+$('form').addEventListener('submit', (e) =&gt; {
+  e.preventDefault();
+  const data = {};
+  for (const [n, label, type] of fields) {
+    let v = $('f_' + n).value.trim();
+    if (v === '') { $('msg').textContent = `${label} is required.`; return; }
+    if (type === 'number') { v = Number(v); if (Number.isNaN(v)) { $('msg').textContent = `${label} must be a number.`; return; } }
+    data[n] = v;
+  }
+  const existing = editId ? records.find((r) =&gt; r.id === editId) : null;
+  if (existing) Object.assign(existing, data);          // update the record being edited
+  else records.push({ id: Date.now(), ...data });       // otherwise create a new one
+  save();
+  $('msg').textContent = editId ? 'Record updated.' : 'Record added.';
+  stopEdit();
+  render();
+});
+$('cancel').addEventListener('click', () =&gt; { stopEdit(); $('msg').textContent = ''; });
+$('search').addEventListener('input', render);
+render();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../web-storage/storage-student-marks-database.html">← Previous</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const KEY = 'crud-products';
+const fields = [["sku", "Product code", "text"], ["name", "Product name", "text"], ["category", "Category", "select:Stationery|Electronics|Grocery|Clothing"], ["price", "Price", "number"], ["stock", "In stock", "number"]];                  // [name, label, type]
+const computed = [
+  { label: "Stock value", fn: (r) => (Number(r.price) * Number(r.stock)).toFixed(2) }
+];
+function load() {
+  try { const d = JSON.parse(localStorage.getItem(KEY)); if (d) return d; } catch (e) { /* ignore */ }
+  return [{"id": 1, "sku": "P001", "name": "Notebook", "category": "Stationery", "price": 40, "stock": 120}, {"id": 2, "sku": "P002", "name": "USB cable", "category": "Electronics", "price": 150, "stock": 60}];
+}
+function save() { localStorage.setItem(KEY, JSON.stringify(records)); }
+let records = load();
+let editId = null;
+
+function render() {
+  const q = $('search').value.toLowerCase();
+  const table = $('table');
+  table.innerHTML = '';
+  const head = table.insertRow();
+  fields.forEach(([, label]) => head.appendChild(Object.assign(document.createElement('th'), { textContent: label })));
+  computed.forEach((c) => head.appendChild(Object.assign(document.createElement('th'), { textContent: c.label })));
+  head.appendChild(Object.assign(document.createElement('th'), { textContent: 'Actions' }));
+  const shown = records.filter((r) => fields.some(([n]) => String(r[n]).toLowerCase().includes(q)));
+  shown.forEach((r) => {
+    const row = table.insertRow();
+    fields.forEach(([n]) => { row.insertCell().textContent = r[n]; });
+    computed.forEach((c) => { row.insertCell().textContent = c.fn(r); });
+    const cell = row.insertCell();
+    const edit = document.createElement('button');
+    edit.textContent = 'Edit'; edit.className = 'secondary small';
+    edit.addEventListener('click', () => startEdit(r.id));
+    const del = document.createElement('button');
+    del.textContent = 'Delete'; del.className = 'danger small'; del.style.marginLeft = '.3rem';
+    del.addEventListener('click', () => { if (confirm('Delete this product?')) { if (r.id === editId) stopEdit(); records = records.filter((x) => x.id !== r.id); save(); render(); } });
+    cell.append(edit, del);
+  });
+  if (!shown.length) { const cell = table.insertRow().insertCell(); cell.colSpan = fields.length + computed.length + 1; cell.textContent = 'No records to show.'; }
+  $('info').textContent = `${records.length} product(s) stored in localStorage under the key "${KEY}".`;
+}
+function startEdit(id) {
+  const r = records.find((x) => x.id === id);
+  fields.forEach(([n]) => { $('f_' + n).value = r[n]; });
+  editId = id;
+  $('save').textContent = 'Update product';
+  $('cancel').style.display = 'inline-block';
+  $('msg').textContent = 'Editing: change the values and click Update.';
+}
+function stopEdit() {
+  editId = null;
+  $('form').reset();
+  $('save').textContent = 'Add product';
+  $('cancel').style.display = 'none';
+}
+$('form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = {};
+  for (const [n, label, type] of fields) {
+    let v = $('f_' + n).value.trim();
+    if (v === '') { $('msg').textContent = `${label} is required.`; return; }
+    if (type === 'number') { v = Number(v); if (Number.isNaN(v)) { $('msg').textContent = `${label} must be a number.`; return; } }
+    data[n] = v;
+  }
+  const existing = editId ? records.find((r) => r.id === editId) : null;
+  if (existing) Object.assign(existing, data);          // update the record being edited
+  else records.push({ id: Date.now(), ...data });       // otherwise create a new one
+  save();
+  $('msg').textContent = editId ? 'Record updated.' : 'Record added.';
+  stopEdit();
+  render();
+});
+$('cancel').addEventListener('click', () => { stopEdit(); $('msg').textContent = ''; });
+$('search').addEventListener('input', render);
+render();
+</script>
+</body>
+</html>

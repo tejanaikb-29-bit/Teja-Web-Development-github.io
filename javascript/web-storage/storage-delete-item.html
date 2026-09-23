@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Delete an item from localStorage | JavaScript Programs</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body data-sec="javascript">
+<header class="pp-header">
+<div class="pp-inner">
+<nav aria-label="Page navigation" class="pp-nav">
+<a href="../../index.html">Home</a>
+<a href="../index.html">Back to JavaScript Programs</a>
+</nav>
+<p class="pp-cat">JavaScript › Web Storage</p>
+<h1>Delete an item from localStorage</h1>
+<p class="pp-desc">localStorage.removeItem(key) deletes one entry and leaves the others untouched.</p>
+</div>
+</header>
+<main class="pp-main">
+<p class="pp-demo-title">Working demonstration</p>
+<section class="pp-demo demo" id="demo">
+<ul id="list"></ul><div class="row"><button id="add">Add sample items</button></div><div class="out" id="out"></div>
+</section>
+<details class="pp-source">
+<summary>View source code of this program</summary>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;ul id="list"&gt;&lt;/ul&gt;&lt;div class="row"&gt;&lt;button id="add"&gt;Add sample items&lt;/button&gt;&lt;/div&gt;&lt;div class="out" id="out"&gt;&lt;/div&gt;
+
+// JavaScript
+const $ = (id) =&gt; document.getElementById(id);
+const sample = { fruit: 'Mango', colour: 'Blue', city: 'Madurai' };
+function show() {
+  $('list').innerHTML = '';
+  Object.keys(sample).forEach((k) =&gt; {
+    const v = localStorage.getItem('demo-' + k);
+    if (v === null) return;
+    const li = document.createElement('li');
+    li.textContent = `demo-${k} = ${v}  `;
+    const b = document.createElement('button');
+    b.textContent = 'removeItem'; b.className = 'danger small';
+    b.addEventListener('click', () =&gt; { localStorage.removeItem('demo-' + k); $('out').textContent = `Removed "demo-${k}". The other items are still stored.`; show(); });
+    li.appendChild(b);
+    $('list').appendChild(li);
+  });
+  if (!$('list').children.length) $('list').innerHTML = '&lt;li class="muted"&gt;No items stored. Click "Add sample items".&lt;/li&gt;';
+}
+$('add').addEventListener('click', () =&gt; { Object.entries(sample).forEach(([k, v]) =&gt; localStorage.setItem('demo-' + k, v)); show(); });
+show();</code></pre>
+</details>
+</main>
+<footer class="pp-footer">
+<div class="pp-inner">
+<a href="../../index.html">Home</a>
+<a href="../index.html">JavaScript Programs</a>
+<span class="spacer"></span>
+<a href="../web-storage/storage-update-data.html">← Previous</a><a href="../web-storage/storage-clear-all-data.html">Next →</a>
+</div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const sample = { fruit: 'Mango', colour: 'Blue', city: 'Madurai' };
+function show() {
+  $('list').innerHTML = '';
+  Object.keys(sample).forEach((k) => {
+    const v = localStorage.getItem('demo-' + k);
+    if (v === null) return;
+    const li = document.createElement('li');
+    li.textContent = `demo-${k} = ${v}  `;
+    const b = document.createElement('button');
+    b.textContent = 'removeItem'; b.className = 'danger small';
+    b.addEventListener('click', () => { localStorage.removeItem('demo-' + k); $('out').textContent = `Removed "demo-${k}". The other items are still stored.`; show(); });
+    li.appendChild(b);
+    $('list').appendChild(li);
+  });
+  if (!$('list').children.length) $('list').innerHTML = '<li class="muted">No items stored. Click "Add sample items".</li>';
+}
+$('add').addEventListener('click', () => { Object.entries(sample).forEach(([k, v]) => localStorage.setItem('demo-' + k, v)); show(); });
+show();
+</script>
+</body>
+</html>
